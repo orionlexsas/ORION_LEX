@@ -1,16 +1,28 @@
 {
   "eyebrow": "Servicios jurídicos",
   "title": [
-    { "text": "Nuestros", "highlight": false },
-    { "text": "servicios", "highlight": true }
+    {
+      "text": "Nuestros",
+      "highlight": false
+    },
+    {
+      "text": "servicios",
+      "highlight": true
+    }
   ],
   "description": "Soluciones legales integrales con atención profesional, estratégica y personalizada.",
   "quote": "Más que servicios legales, construimos tranquilidad en cada etapa de tu vida.",
   "image": {
     "src": "/images/servicios/encabezado-justicia.webp",
-    "alt": ""
+    "alt": "",
+    "light": {
+      "src": "/images/servicios/encabezado-justicia-claro.webp"
+    }
   },
-  "brand": { "name": "Orión Lex", "tagline": "Servicios jurídicos" },
+  "brand": {
+    "name": "Orión Lex",
+    "tagline": "Servicios jurídicos"
+  },
   "featured": {
     "eyebrow": "Apoyo en cada decisión",
     "footerLabel": "Tu aliado legal en cada paso",
@@ -26,7 +38,10 @@
       "href": "/contacto",
       "image": {
         "src": "/images/servicios/asesoria-juridica.webp",
-        "alt": "Libros de leyes y una pluma sobre un escritorio"
+        "alt": "Libros de leyes y una pluma sobre un escritorio",
+        "light": {
+          "src": "/images/servicios/asesoria-juridica-claro.webp"
+        }
       }
     },
     {
@@ -37,7 +52,10 @@
       "href": "/contacto",
       "image": {
         "src": "/images/servicios/derecho-civil.webp",
-        "alt": "Balanza de la justicia dorada"
+        "alt": "Balanza de la justicia dorada",
+        "light": {
+          "src": "/images/servicios/derecho-civil-claro.webp"
+        }
       }
     },
     {
@@ -48,7 +66,10 @@
       "href": "/contacto",
       "image": {
         "src": "/images/servicios/derecho-laboral.webp",
-        "alt": "Silla de oficina y documentos sobre un escritorio"
+        "alt": "Silla de oficina y documentos sobre un escritorio",
+        "light": {
+          "src": "/images/servicios/derecho-laboral-claro.webp"
+        }
       }
     },
     {
@@ -59,7 +80,10 @@
       "href": "/contacto",
       "image": {
         "src": "/images/servicios/derecho-familia.webp",
-        "alt": "Familia caminando de la mano al atardecer"
+        "alt": "Familia caminando de la mano al atardecer",
+        "light": {
+          "src": "/images/servicios/derecho-familia-claro.webp"
+        }
       }
     },
     {
@@ -70,7 +94,10 @@
       "href": "/contacto",
       "image": {
         "src": "/images/servicios/derecho-comercial.webp",
-        "alt": "Edificios de oficinas vistos desde abajo"
+        "alt": "Edificios de oficinas vistos desde abajo",
+        "light": {
+          "src": "/images/servicios/derecho-comercial-claro.webp"
+        }
       }
     },
     {
@@ -81,7 +108,10 @@
       "href": "/contacto",
       "image": {
         "src": "/images/servicios/derecho-penal.webp",
-        "alt": "Mazo de juez sobre la mesa"
+        "alt": "Mazo de juez sobre la mesa",
+        "light": {
+          "src": "/images/servicios/derecho-penal-claro.webp"
+        }
       }
     },
     {
@@ -92,7 +122,10 @@
       "href": "/contacto",
       "image": {
         "src": "/images/servicios/conciliacion-contratos.webp",
-        "alt": "Apretón de manos sobre un contrato firmado"
+        "alt": "Apretón de manos sobre un contrato firmado",
+        "light": {
+          "src": "/images/servicios/conciliacion-contratos-claro.webp"
+        }
       }
     }
   ]

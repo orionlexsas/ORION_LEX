@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { Link } from 'react-router';
+import { useTranslation } from 'react-i18next';
 import { ArrowRight, ChevronRight } from 'lucide-react';
-import type { ContentIcon as ContentIconName, ServiceItem } from '@orion-lex/shared';
+import type { ContentIcon as ContentIconName, ContentImage } from '@orion-lex/shared';
 import { ContentIcon } from '@/components/ui/ContentIcon';
+import { useThemedImage } from '@/hooks/use-themed-image';
 import { cn } from '@/lib/cn';
 
 /** Círculo dorado con el ícono del servicio. */
@@ -29,27 +31,27 @@ export function ServiceIconBadge({
  * Foto del servicio a la derecha de la tarjeta, fundida con el fondo hacia la izquierda.
  * Si la imagen no existe o falla, se oculta y la tarjeta sigue viéndose bien.
  */
-export function ServiceImage({
-  image,
-  className,
-}: {
-  image: ServiceItem['image'];
-  className?: string;
-}) {
-  const [failed, setFailed] = useState(false);
-  if (!image || failed) return null;
+export function ServiceImage({ image, className }: { image?: ContentImage; className?: string }) {
+  return image ? <ThemedServiceImage image={image} className={className} /> : null;
+}
+
+function ThemedServiceImage({ image, className }: { image: ContentImage; className?: string }) {
+  const { src, alt } = useThemedImage(image);
+  // Se guarda qué ruta falló: si cambia el tema, la otra versión puede cargar bien.
+  const [failedSrc, setFailedSrc] = useState<string>();
+  if (failedSrc === src) return null;
 
   return (
     <div
-      aria-hidden={image.alt ? undefined : true}
+      aria-hidden={alt ? undefined : true}
       className={cn('absolute inset-y-0 right-0 -z-10', className)}
     >
       <img
-        src={image.src}
-        alt={image.alt}
+        src={src}
+        alt={alt}
         loading="lazy"
         decoding="async"
-        onError={() => setFailed(true)}
+        onError={() => setFailedSrc(src)}
         className="size-full object-cover transition-transform duration-700 ease-out-soft group-hover:scale-[1.05]"
       />
       <div className="absolute inset-0 bg-gradient-to-r from-surface via-surface/35 to-transparent" />
@@ -72,6 +74,7 @@ export function ServiceMoreLink({
   serviceTitle: string;
   className?: string;
 }) {
+  const { t } = useTranslation();
   return (
     <Link
       to={href}
@@ -84,7 +87,7 @@ export function ServiceMoreLink({
         <ChevronRight className="size-4" aria-hidden="true" />
       </span>
       {label}
-      <span className="sr-only"> sobre {serviceTitle}</span>
+      <span className="sr-only"> {t('a11y.moreAbout', { title: serviceTitle })}</span>
       <ArrowRight
         className="size-4 text-gold transition-transform duration-300 ease-out-soft group-hover:translate-x-1"
         aria-hidden="true"

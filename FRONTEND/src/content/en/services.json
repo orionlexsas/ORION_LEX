@@ -1,0 +1,132 @@
+{
+  "eyebrow": "Legal services",
+  "title": [
+    {
+      "text": "Our",
+      "highlight": false
+    },
+    {
+      "text": "services",
+      "highlight": true
+    }
+  ],
+  "description": "Comprehensive legal solutions with professional, strategic and personalized attention.",
+  "quote": "More than legal services, we build peace of mind at every stage of your life.",
+  "image": {
+    "src": "/images/servicios/encabezado-justicia.webp",
+    "alt": "",
+    "light": {
+      "src": "/images/servicios/encabezado-justicia-claro.webp"
+    }
+  },
+  "brand": {
+    "name": "Orión Lex",
+    "tagline": "Legal services"
+  },
+  "featured": {
+    "eyebrow": "Support in every decision",
+    "footerLabel": "Your legal ally every step of the way",
+    "footerText": "We listen, analyze and guide you to the best solution."
+  },
+  "linkLabel": "Learn more",
+  "items": [
+    {
+      "slug": "asesoria-juridica",
+      "icon": "user",
+      "title": "Legal advice",
+      "description": "Clear, strategic legal guidance for individuals and businesses.",
+      "href": "/contacto",
+      "image": {
+        "src": "/images/servicios/asesoria-juridica.webp",
+        "alt": "Law books and a pen on a desk",
+        "light": {
+          "src": "/images/servicios/asesoria-juridica-claro.webp"
+        }
+      }
+    },
+    {
+      "slug": "derecho-civil",
+      "icon": "scale",
+      "title": "Civil law",
+      "description": "Contracts, obligations, civil liability and more.",
+      "href": "/contacto",
+      "image": {
+        "src": "/images/servicios/derecho-civil.webp",
+        "alt": "Golden scales of justice",
+        "light": {
+          "src": "/images/servicios/derecho-civil-claro.webp"
+        }
+      }
+    },
+    {
+      "slug": "derecho-laboral",
+      "icon": "briefcase",
+      "title": "Labor law",
+      "description": "Support in employment relationships and claims.",
+      "href": "/contacto",
+      "image": {
+        "src": "/images/servicios/derecho-laboral.webp",
+        "alt": "Office chair and documents on a desk",
+        "light": {
+          "src": "/images/servicios/derecho-laboral-claro.webp"
+        }
+      }
+    },
+    {
+      "slug": "derecho-familia",
+      "icon": "users",
+      "title": "Family law",
+      "description": "Family proceedings handled with sensitivity and legal backing.",
+      "href": "/contacto",
+      "image": {
+        "src": "/images/servicios/derecho-familia.webp",
+        "alt": "Family walking hand in hand at sunset",
+        "light": {
+          "src": "/images/servicios/derecho-familia-claro.webp"
+        }
+      }
+    },
+    {
+      "slug": "derecho-comercial",
+      "icon": "landmark",
+      "title": "Commercial law",
+      "description": "Support for businesses, companies and commercial matters.",
+      "href": "/contacto",
+      "image": {
+        "src": "/images/servicios/derecho-comercial.webp",
+        "alt": "Office buildings seen from below",
+        "light": {
+          "src": "/images/servicios/derecho-comercial-claro.webp"
+        }
+      }
+    },
+    {
+      "slug": "derecho-penal",
+      "icon": "gavel",
+      "title": "Criminal law",
+      "description": "Defense and representation with professional rigor.",
+      "href": "/contacto",
+      "image": {
+        "src": "/images/servicios/derecho-penal.webp",
+        "alt": "Judge's gavel on the table",
+        "light": {
+          "src": "/images/servicios/derecho-penal-claro.webp"
+        }
+      }
+    },
+    {
+      "slug": "conciliacion-contratos",
+      "icon": "file-text",
+      "title": "Mediation and contracts",
+      "description": "Conflict prevention and secure legal agreements.",
+      "href": "/contacto",
+      "image": {
+        "src": "/images/servicios/conciliacion-contratos.webp",
+        "alt": "Handshake over a signed contract",
+        "light": {
+          "src": "/images/servicios/conciliacion-contratos-claro.webp"
+        }
+      }
+    }
+  ]
+}

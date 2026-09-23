@@ -1,4 +1,5 @@
 import type { ServicesContent } from '@orion-lex/shared';
+import { useThemedImage } from '@/hooks/use-themed-image';
 import { cn } from '@/lib/cn';
 
 interface ServicesHeaderProps {
@@ -15,6 +16,7 @@ const statueMask = {
 
 /** Encabezado de la sección: título, descripción, cita y estatua decorativa. */
 export function ServicesHeader({ content, titleId }: ServicesHeaderProps) {
+  const statue = useThemedImage(content.image);
   return (
     <div className="flex items-stretch gap-10">
       <div className="flex-1 lg:pl-12">
@@ -47,8 +49,8 @@ export function ServicesHeader({ content, titleId }: ServicesHeaderProps) {
 
       <div className="relative hidden w-[17rem] shrink-0 xl:block">
         <img
-          src={content.image.src}
-          alt={content.image.alt}
+          src={statue.src}
+          alt={statue.alt}
           loading="lazy"
           className="absolute -top-16 left-0 h-[14.5rem] w-full object-cover"
           style={statueMask}

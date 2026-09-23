@@ -24,7 +24,7 @@ export function ServicesSection({ id, content }: ServicesSectionProps) {
     <section
       id={id}
       aria-labelledby={titleId}
-      className="relative scroll-mt-24 overflow-hidden py-16 lg:py-16"
+      className="relative scroll-mt-24 overflow-hidden section-spacing"
     >
       <Container size="wide">
         <ServicesHeader content={content} titleId={titleId} />

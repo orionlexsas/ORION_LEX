@@ -21,7 +21,7 @@ export function FeaturedServiceCard({
     <article
       className={cn(
         cardBase,
-        'flex flex-col border-gold/70 shadow-[0_0_0_1px_rgb(227_191_118/0.15),0_30px_80px_-40px_rgb(227_191_118/0.55)] hover:border-gold',
+        'flex flex-col border-gold/70 shadow-[0_0_0_1px_color-mix(in_oklab,var(--color-gold)_15%,transparent),0_30px_80px_-40px_color-mix(in_oklab,var(--color-gold)_55%,transparent)] hover:border-gold',
         className,
       )}
     >
@@ -46,7 +46,7 @@ export function FeaturedServiceCard({
         />
       </div>
 
-      <div className="flex flex-col gap-3 border-t border-gold/40 bg-[linear-gradient(90deg,rgb(227_191_118/0.3),rgb(227_191_118/0.12)_55%,rgb(227_191_118/0.22))] px-7 py-5 sm:flex-row sm:items-center sm:gap-8 lg:px-9 lg:py-4">
+      <div className="flex flex-col gap-3 border-t border-gold/40 bg-[linear-gradient(90deg,color-mix(in_oklab,var(--color-gold)_30%,transparent),color-mix(in_oklab,var(--color-gold)_12%,transparent)_55%,color-mix(in_oklab,var(--color-gold)_22%,transparent))] px-7 py-5 sm:flex-row sm:items-center sm:gap-8 lg:px-9 lg:py-4">
         <p className="max-w-[11rem] text-xs leading-relaxed font-medium tracking-[0.25em] uppercase">
           {featured.footerLabel}
         </p>

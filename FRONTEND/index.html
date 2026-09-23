@@ -7,16 +7,69 @@
       name="description"
       content="Orión Lex, servicios jurídicos en Bogotá. Asesoría legal profesional y acompañamiento personalizado para personas y empresas en Colombia."
     />
-    <meta name="theme-color" content="#0b0a08" />
+    <meta name="theme-color" content="#f7f3ec" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preload" as="image" href="/images/hero-abogado.webp" media="(min-width: 768px)" />
-    <link
-      rel="preload"
-      as="image"
-      href="/images/hero-abogado-960.webp"
-      media="(max-width: 767px)"
-    />
     <title>Orión Lex | Servicios jurídicos en Bogotá</title>
+    <script>
+      // Aplica el tema antes de pintar (evita un parpadeo del tema equivocado): claro por
+      // defecto, oscuro solo si el visitante lo eligió antes. También precarga la foto de ese tema.
+      (function () {
+        var light = true;
+        try {
+          light = localStorage.getItem('orion-lex-theme') !== 'dark';
+        } catch (e) {}
+        document.documentElement.dataset.theme = light ? 'light' : 'dark';
+        if (!light) {
+          document.querySelector('meta[name="theme-color"]').content = '#0b0a08';
+        }
+        var name = light ? 'hero-abogado-claro' : 'hero-abogado';
+        [
+          ['/images/' + name + '.webp', '(min-width: 768px)'],
+          ['/images/' + name + '-960.webp', '(max-width: 767px)'],
+        ].forEach(function (item) {
+          var link = document.createElement('link');
+          link.rel = 'preload';
+          link.as = 'image';
+          link.href = item[0];
+          link.media = item[1];
+          document.head.appendChild(link);
+        });
+
+        // Video de intro: una vez por visita y solo si no se pidió reducir el movimiento.
+        // Mientras carga React, una cortina blanca (del color del video) tapa la página.
+        var intro = false;
+        try {
+          intro =
+            !sessionStorage.getItem('orion-lex-intro') &&
+            !matchMedia('(prefers-reduced-motion: reduce)').matches;
+        } catch (e) {}
+        if (intro) {
+          document.documentElement.classList.add('intro-pending');
+          // Seguro: si la app no llegara a arrancar, la cortina no se queda puesta.
+          setTimeout(function () {
+            document.documentElement.classList.remove('intro-pending');
+          }, 8000);
+          var video = document.createElement('link');
+          video.rel = 'preload';
+          video.as = 'fetch';
+          video.href = '/video/intro-orion-lex.mp4';
+          video.crossOrigin = 'anonymous';
+          document.head.appendChild(video);
+        }
+      })();
+    </script>
+    <style>
+      html.intro-pending {
+        overflow: hidden;
+      }
+      html.intro-pending body::after {
+        content: '';
+        position: fixed;
+        inset: 0;
+        z-index: 2147483647;
+        background: #fefefe;
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>

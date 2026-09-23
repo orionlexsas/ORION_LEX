@@ -1,0 +1,52 @@
+{
+  "eyebrow": "Our approach",
+  "title": [
+    {
+      "text": "Your case, in",
+      "highlight": false
+    },
+    {
+      "text": "good hands",
+      "highlight": true
+    }
+  ],
+  "description": "A clear process to support you from the very first conversation.",
+  "scriptLines": ["More than lawyers,", "your trusted team."],
+  "steps": [
+    {
+      "icon": "messages",
+      "title": "Tell us your situation",
+      "description": "We listen to your needs and answer your first questions.",
+      "image": {
+        "src": "/images/enfoque/paso-1-conversacion.webp",
+        "alt": "Lawyer talking with a client at his desk"
+      }
+    },
+    {
+      "icon": "file-search",
+      "title": "We map out a path",
+      "description": "We analyze your case and explain the available options.",
+      "image": {
+        "src": "/images/enfoque/paso-2-ruta.webp",
+        "alt": "Document and pen on the desk, with scales of justice in the background"
+      }
+    },
+    {
+      "icon": "users",
+      "title": "We move forward together",
+      "description": "We support you through every stage with clear communication.",
+      "image": {
+        "src": "/images/enfoque/paso-3-acompanamiento.webp",
+        "alt": "Handshake between the lawyer and his client"
+      }
+    }
+  ],
+  "cta": {
+    "label": "Let's talk about your case",
+    "href": "/contacto"
+  },
+  "decoration": {
+    "src": "/images/enfoque/fondo-justicia.webp",
+    "alt": ""
+  }
+}

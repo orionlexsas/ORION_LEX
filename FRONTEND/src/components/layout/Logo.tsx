@@ -1,4 +1,6 @@
+import { useId } from 'react';
 import { Link } from 'react-router';
+import { useTranslation } from 'react-i18next';
 import { cn } from '@/lib/cn';
 
 interface LogoProps {
@@ -9,15 +11,16 @@ interface LogoProps {
 
 /** Escudo con columnas y estrellas + nombre del despacho. */
 export function Logo({ name, tagline, className }: LogoProps) {
+  const { t } = useTranslation();
   return (
     <Link
       to="/"
-      aria-label={`${name}, ir al inicio`}
+      aria-label={t('a11y.goHome', { name })}
       className={cn('flex items-center gap-3', className)}
     >
       <ShieldMark className="h-12 w-auto shrink-0 sm:h-16" />
       <span className="flex flex-col leading-none">
-        <span className="bg-gold-gradient bg-clip-text font-display text-xl font-semibold tracking-wide text-transparent uppercase sm:text-[1.9rem]">
+        <span className="bg-gold-text-gradient bg-clip-text font-display text-xl font-semibold tracking-wide text-transparent uppercase sm:text-[1.9rem]">
           {name}
         </span>
         <span className="mt-1.5 text-center font-display text-[0.5rem] tracking-[0.3em] text-gold/90 uppercase sm:text-[0.6rem]">
@@ -28,11 +31,14 @@ export function Logo({ name, tagline, className }: LogoProps) {
   );
 }
 
-function ShieldMark({ className }: { className?: string }) {
+/** Escudo del despacho (columnas y estrellas). */
+export function ShieldMark({ className }: { className?: string }) {
+  // id único: el escudo puede aparecer varias veces en la página (encabezado y pie).
+  const goldId = useId();
   return (
     <svg viewBox="0 0 64 72" className={className} aria-hidden="true">
       <defs>
-        <linearGradient id="logo-gold" x1="0" y1="0" x2="0" y2="1">
+        <linearGradient id={goldId} x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stopColor="#f3d99f" />
           <stop offset="1" stopColor="#c2974b" />
         </linearGradient>
@@ -52,7 +58,7 @@ function ShieldMark({ className }: { className?: string }) {
           key={x}
           transform={`translate(${x} 13.2)`}
           d="m0-3.2.9 2.1 2.3.2-1.7 1.5.5 2.2L0 1.7-2 2.8l.5-2.2-1.7-1.5 2.3-.2Z"
-          fill="url(#logo-gold)"
+          fill={`url(#${goldId})`}
         />
       ))}
       {/* Frontón y columnas */}
@@ -62,7 +68,7 @@ function ShieldMark({ className }: { className?: string }) {
         <rect key={x} x={x - 1.6} y="36" width="3.2" height="16" rx="0.6" fill="#fff" />
       ))}
       <rect x="16.5" y="53" width="31" height="2.6" fill="#fff" />
-      <rect x="15" y="56.6" width="34" height="2.4" fill="url(#logo-gold)" />
+      <rect x="15" y="56.6" width="34" height="2.4" fill={`url(#${goldId})`} />
     </svg>
   );
 }

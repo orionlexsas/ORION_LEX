@@ -14,7 +14,7 @@ export function HeroHighlights({ items, className, style }: HeroHighlightsProps)
   return (
     <ul
       className={cn(
-        'grid max-w-[52rem] divide-y divide-border rounded-lg border border-border bg-black/45 backdrop-blur-md sm:grid-cols-3 sm:divide-x sm:divide-y-0',
+        'grid max-w-[52rem] divide-y divide-border rounded-lg border border-border bg-background/55 backdrop-blur-md sm:grid-cols-3 sm:divide-x sm:divide-y-0',
         className,
       )}
       style={style}

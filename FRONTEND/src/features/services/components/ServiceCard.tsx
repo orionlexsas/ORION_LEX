@@ -29,7 +29,7 @@ export function ServiceCard({
     <article
       className={cn(
         cardBase,
-        'border-gold/25 hover:border-gold/60 hover:shadow-[0_24px_60px_-32px_rgb(227_191_118/0.5)]',
+        'border-gold/25 hover:border-gold/60 hover:shadow-[0_24px_60px_-32px_color-mix(in_oklab,var(--color-gold)_50%,transparent)]',
         layout === 'stacked'
           ? 'flex flex-col px-6 py-6 lg:px-7 lg:py-5'
           : 'flex items-start gap-5 px-6 py-6 lg:gap-7 lg:px-8 lg:py-6',

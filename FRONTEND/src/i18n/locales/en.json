@@ -1,0 +1,71 @@
+{
+  "meta": {
+    "title": "Orión Lex | Legal services in Bogotá",
+    "description": "Orión Lex, legal services in Bogotá. Professional legal advice and personalized support for individuals and businesses in Colombia."
+  },
+  "a11y": {
+    "goHome": "{{name}}, go to home page",
+    "mainNav": "Main",
+    "legalNav": "Legal",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "moreAbout": "about {{title}}",
+    "opensWhatsApp": "(opens WhatsApp)",
+    "whatsappChat": "Chat with us on WhatsApp",
+    "backToTop": "Back to top",
+    "socialNav": "Social media",
+    "socialProfile": "{{brand}} on {{network}}",
+    "opensNewTab": "(opens in a new tab)"
+  },
+  "theme": {
+    "toLight": "Switch to light theme",
+    "toDark": "Switch to dark theme"
+  },
+  "language": {
+    "label": "Language",
+    "switchTo": "Change language to {{language}}",
+    "names": {
+      "es": "Español",
+      "en": "English"
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "fields": {
+      "fullName": "Full name",
+      "email": "Email",
+      "message": "Message"
+    },
+    "send": "Send message",
+    "sending": "Sending…",
+    "success": "Thank you. We will contact you soon.",
+    "errors": {
+      "fullNameRequired": "Please enter your full name",
+      "fullNameTooLong": "Maximum 120 characters",
+      "emailRequired": "Please enter your email",
+      "emailInvalid": "Invalid email",
+      "phoneTooLong": "Maximum 30 characters",
+      "messageRequired": "Tell us how we can help you",
+      "messageTooShort": "Tell us a bit more",
+      "messageTooLong": "Maximum 5000 characters",
+      "network": "The message could not be sent. Please try again."
+    }
+  },
+  "notFound": {
+    "title": "Page not found",
+    "back": "Back to home"
+  },
+  "carousel": {
+    "label": "Clients carousel",
+    "slide": "{{current}} of {{total}}",
+    "previous": "Previous",
+    "next": "Next",
+    "pause": "Pause automatic rotation",
+    "play": "Resume automatic rotation",
+    "goTo": "Go to card {{number}}"
+  },
+  "intro": {
+    "label": "Introduction",
+    "skip": "Skip intro"
+  }
+}

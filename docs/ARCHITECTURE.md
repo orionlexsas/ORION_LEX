@@ -59,15 +59,21 @@ FRONTEND/src/
 ├── main.tsx
 ├── app/                    App, router, providers globales
 ├── config/env.ts           variables VITE_*
+├── content/<idioma>/       textos e imágenes del sitio (es/, en/) → useContent()
+├── i18n/                   idiomas: configuración de i18next y textos de interfaz (locales/)
 ├── lib/                    api-client (único fetch), cn()
 ├── styles/globals.css      tokens de diseño (@theme de Tailwind)
 ├── components/
 │   ├── ui/                 piezas del sistema de diseño (Button, Input…) — sin lógica de negocio
-│   └── layout/             SiteLayout (web pública), AdminLayout (panel)
+│   └── layout/             SiteLayout, SiteHeader, SiteFooter (web pública), AdminLayout (panel)
 ├── features/               una carpeta por funcionalidad
 │   ├── contact/            referencia: api/ · hooks/ · components/ · index.ts
 │   ├── home/               portada (HeroSection…)
-│   ├── services/           sección de servicios (tarjetas y encabezado)
+│   ├── approach/           "Nuestro enfoque": pasos del proceso (en la portada)
+│   ├── clients/            "Nuestros clientes": carrusel 3D con paso automático
+│   ├── locations/          "Dónde te atendemos": mapa animado con ciudades (posiciones en % en el JSON)
+│   ├── faq/                "Preguntas frecuentes" (acordeón + datos schema.org para Google), antes del pie
+│   ├── services/           servicios (tarjetas y encabezado), página /servicios
 │   ├── team/ · blog/                           (pendientes, web pública)
 │   └── auth/ · admin-messages/                  (pendientes, panel)
 ├── pages/
@@ -91,17 +97,39 @@ Reglas:
 
 ## Contenido y datos locales (mientras no hay base de datos)
 
-| Qué                            | Dónde                                                 | Validado con                           |
-| ------------------------------ | ----------------------------------------------------- | -------------------------------------- |
-| Textos de la web (menú, hero…) | `FRONTEND/src/content/*.json`                         | `SHARED/src/schemas/content.schema.ts` |
-| Imágenes                       | `FRONTEND/public/images/` (WebP optimizado)           | —                                      |
-| Mensajes del formulario        | `BACKEND/data/contact-messages.json` (no se versiona) | `contact.schema.ts`                    |
+| Qué                            | Dónde                                                 | Validado con        |
+| ------------------------------ | ----------------------------------------------------- | ------------------- |
+| Textos de la web (menú, hero…) | `FRONTEND/src/content/<es                             | en>/*.json`         | `SHARED/src/schemas/content.schema.ts` |
+| Imágenes                       | `FRONTEND/public/images/` (WebP optimizado)           | —                   |
+| Mensajes del formulario        | `BACKEND/data/contact-messages.json` (no se versiona) | `contact.schema.ts` |
 
 - Para cambiar un texto se edita el JSON; si falta un campo, la web falla al cargar con el error exacto.
 - Los componentes nunca importan los JSON directamente: pasan por `FRONTEND/src/content/index.ts`.
   Cuando exista el panel, ese archivo leerá de la API y nada más cambia.
 - El backend guarda con `lib/json-file-store.ts` (escrituras en cola y atómicas). Para pasar a
   PostgreSQL se cambia `createJsonContactRepository` por `createPrismaContactRepository` en `server.ts`.
+
+## Idiomas y tema
+
+- **Idiomas** (react-i18next): español por defecto; inglés al elegirlo (se guarda) o con `?lang=en`.
+  - Contenido del sitio: `content/es/*.json` y `content/en/*.json`, misma estructura. Se lee con `useContent()`.
+  - Textos de interfaz (botones, errores, accesibilidad): `i18n/locales/{es,en}.json`, con tipos (`t('clave')`).
+  - Los errores del formulario en `SHARED` son **códigos** (`emailInvalid`); el frontend los traduce.
+  - Para añadir un idioma: agregarlo en `i18n/index.ts`, crear `locales/<idioma>.json` y `content/<idioma>/`.
+- **Tema** claro/oscuro (`hooks/use-theme.ts`): claro por defecto; la elección se guarda. `index.html` lo
+  aplica antes de pintar. El tema claro redefine los tokens en `globals.css` (`:root[data-theme='light']`).
+  - `light:` es una variante para ajustes puntuales. La portada usa `hero.image.light` en tema claro.
+
+## Intro, WhatsApp y botones flotantes
+
+- **Video de intro** (`components/layout/IntroCurtain.tsx`, video en `site.intro.video`): una vez por
+  visita (sessionStorage), no aparece con movimiento reducido y se puede saltar. `index.html` decide
+  antes de pintar y pone una cortina estática para que no se vea la web un instante; tiene un seguro de
+  8 s por si la app no arranca. Al terminar, el bloque sube como telón y arrancan las animaciones.
+- **WhatsApp**: en el contenido, `href: "whatsapp"` convierte un botón en enlace a WhatsApp con el
+  número y mensaje de `site.contact.whatsapp` (un solo lugar para cambiarlo). Lo resuelve `CtaLink`.
+- **Botones flotantes** (`FloatingActions`): WhatsApp siempre visible y "volver arriba" tras bajar una pantalla.
+- `content/content.test.ts` valida todos los JSON de contenido en ambos idiomas.
 
 ## Cómo añadir una funcionalidad nueva
 

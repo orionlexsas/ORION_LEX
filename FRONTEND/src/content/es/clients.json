@@ -1,0 +1,31 @@
+{
+  "eyebrow": "Nuestros clientes",
+  "title": "Acompañamos a personas y empresas",
+  "autoplaySeconds": 5,
+  "items": [
+    {
+      "tag": "Personas",
+      "caption": "Orientación para tus decisiones",
+      "image": {
+        "src": "/images/clientes/personas.webp",
+        "alt": "Abogado conversando con una clienta en la oficina"
+      }
+    },
+    {
+      "tag": "Emprendedores",
+      "caption": "Respaldo para hacer crecer tu negocio",
+      "image": {
+        "src": "/images/clientes/emprendedores.webp",
+        "alt": "Emprendedor sonriendo durante una asesoría con su abogada"
+      }
+    },
+    {
+      "tag": "Familias",
+      "caption": "Apoyo en momentos importantes",
+      "image": {
+        "src": "/images/clientes/familias.webp",
+        "alt": "Familia con su hija reunida con una abogada"
+      }
+    }
+  ]
+}

@@ -3,10 +3,12 @@ import {
   ChartColumn,
   Clock3,
   createLucideIcon,
+  FileSearch,
   FileText,
   Gavel,
   Landmark,
   MapPin,
+  MessagesSquare,
   Phone,
   Scale,
   UserRound,
@@ -34,6 +36,8 @@ const icons = {
   landmark: Landmark,
   gavel: Gavel,
   'file-text': FileText,
+  messages: MessagesSquare,
+  'file-search': FileSearch,
 } satisfies Record<ContentIconName, unknown>;
 
 /** Traduce el nombre de ícono guardado en el JSON de contenido a su componente. */

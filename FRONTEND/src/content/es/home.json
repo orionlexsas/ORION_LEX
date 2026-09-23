@@ -2,17 +2,36 @@
   "hero": {
     "eyebrow": "Soluciones legales para tu tranquilidad",
     "titleLines": [
-      { "text": "Defensa legal con", "highlight": false },
-      { "text": "experiencia, confianza", "highlight": true },
-      { "text": "y resultados", "highlight": false }
+      {
+        "text": "Defensa legal con",
+        "highlight": false
+      },
+      {
+        "text": "experiencia, confianza",
+        "highlight": true
+      },
+      {
+        "text": "y resultados",
+        "highlight": false
+      }
     ],
     "description": "Brindamos asesoría jurídica profesional y acompañamiento personalizado para personas y empresas en Colombia.",
-    "primaryCta": { "label": "Agenda tu consulta", "href": "/contacto" },
-    "secondaryCta": { "label": "Conoce más sobre nuestro enfoque", "href": "/#nosotros" },
+    "primaryCta": {
+      "label": "Agenda tu consulta",
+      "href": "whatsapp"
+    },
+    "secondaryCta": {
+      "label": "Conoce más sobre nuestro enfoque",
+      "href": "/#enfoque"
+    },
     "image": {
       "src": "/images/hero-abogado.webp",
       "srcMobile": "/images/hero-abogado-960.webp",
-      "alt": "Abogado de Orión Lex sonriendo en la oficina, junto a una estatua de la justicia"
+      "alt": "Abogado de Orión Lex sonriendo en la oficina, junto a una estatua de la justicia",
+      "light": {
+        "src": "/images/hero-abogado-claro.webp",
+        "srcMobile": "/images/hero-abogado-claro-960.webp"
+      }
     },
     "highlights": [
       {
@@ -35,14 +54,14 @@
       {
         "icon": "phone",
         "label": "Llámanos",
-        "value": "+57 300 123 4567",
-        "href": "tel:+573001234567"
+        "value": "+57 313 234 4178",
+        "href": "tel:+573132344178"
       },
       {
         "icon": "mail",
         "label": "Escríbenos",
-        "value": "contacto@orionlex.com",
-        "href": "mailto:contacto@orionlex.com"
+        "value": "sergio.ardila@outlook.com",
+        "href": "mailto:sergio.ardila@outlook.com"
       },
       {
         "icon": "map-pin",

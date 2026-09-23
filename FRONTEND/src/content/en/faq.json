@@ -1,0 +1,63 @@
+{
+  "eyebrow": "We answer your questions",
+  "title": [
+    {
+      "text": "Frequently asked",
+      "highlight": false
+    },
+    {
+      "text": "questions",
+      "highlight": true
+    }
+  ],
+  "description": "Clear information to take the first step with confidence.",
+  "items": [
+    {
+      "question": "How can I book a consultation?",
+      "answer": "Write to us through the contact form, call us or send us an email. We will get back to you to agree on the day, time and whether you prefer an in-person or virtual meeting."
+    },
+    {
+      "question": "What legal matters do you handle?",
+      "answer": "We advise on civil, labor, family, commercial and criminal law, as well as mediation and contracts. If your case falls in another area, tell us and we will guide you."
+    },
+    {
+      "question": "What should I prepare for the first consultation?",
+      "answer": "A summary of your situation, the key dates and any documents you have: contracts, messages or notices. If something is missing, don’t worry; we will tell you what we need."
+    },
+    {
+      "question": "Can I get virtual assistance?",
+      "answer": "Yes. We meet by video call, so you can get advice wherever you are."
+    },
+    {
+      "question": "Which cities do you serve?",
+      "answer": "We offer in-person meetings in Bogotá, Medellín and Bucaramanga, and virtual assistance from anywhere in Colombia."
+    },
+    {
+      "question": "How is the cost of the advice determined?",
+      "answer": "It depends on the type of matter and its complexity. Before we start, we explain the fee and payment terms, with no surprises."
+    },
+    {
+      "question": "Do you work with both individuals and businesses?",
+      "answer": "Yes. We support individuals, families, entrepreneurs and businesses, with a strategy tailored to each case."
+    },
+    {
+      "question": "How can I contact Orión Lex?",
+      "answer": "By phone at +57 313 234 4178, by email at sergio.ardila@outlook.com or through the contact form on this site."
+    }
+  ],
+  "cta": {
+    "label": "Book a consultation",
+    "href": "whatsapp"
+  },
+  "footnote": "Bogotá · Medellín · Bucaramanga",
+  "decorations": {
+    "right": {
+      "src": "/images/faq/estatua.webp",
+      "alt": ""
+    },
+    "left": {
+      "src": "/images/faq/marmol.webp",
+      "alt": ""
+    }
+  }
+}

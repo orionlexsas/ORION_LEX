@@ -29,7 +29,7 @@ export function HeroSignature({ signature, quote }: HeroSignatureProps) {
       </div>
 
       <figure className="absolute right-[5.5%] bottom-[11%] hidden max-w-[20.5rem] animate-rise xl:block [--delay:600ms]">
-        <blockquote className="font-serif text-[0.9rem] leading-relaxed text-foreground/80 italic">
+        <blockquote className="font-serif text-[0.9rem] leading-relaxed text-foreground/85 italic">
           “{quote}”
         </blockquote>
         <span aria-hidden="true" className="mt-4 block h-0.5 w-10 bg-gold" />

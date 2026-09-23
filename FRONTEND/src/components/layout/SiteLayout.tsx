@@ -1,27 +1,23 @@
-import { Outlet } from 'react-router';
-import { siteContent } from '@/content';
-import { Container } from '@/components/ui/Container';
-import { useScrollToHash } from '@/hooks/use-scroll-to-hash';
+import { Outlet, ScrollRestoration } from 'react-router';
+import { useContent } from '@/content';
+import { FloatingActions } from './FloatingActions';
+import { SiteFooter } from './SiteFooter';
 import { SiteHeader } from './SiteHeader';
-import { TopBar } from './TopBar';
 
-/** Estructura común de la web pública: barra superior, cabecera, contenido y pie. */
+/** Estructura común de la web pública: cabecera, contenido, pie y botones flotantes. */
 export function SiteLayout() {
-  const { brand, topBar, nav, cta } = siteContent;
-  useScrollToHash();
+  const { site, services } = useContent();
 
   return (
     <div className="flex min-h-dvh flex-col">
-      <TopBar topBar={topBar} />
-      <SiteHeader brand={brand} nav={nav} cta={cta} />
+      {/* Al cambiar de página sube al inicio, respeta #anclas y restaura la posición al volver atrás. */}
+      <ScrollRestoration />
+      <SiteHeader brand={site.brand} nav={site.nav} cta={site.cta} />
       <main className="flex-1">
         <Outlet />
       </main>
-      <footer className="border-t border-border py-8 text-sm text-muted">
-        <Container className="text-center">
-          © {new Date().getFullYear()} {brand.name} · {brand.tagline}
-        </Container>
-      </footer>
+      <SiteFooter site={site} services={services.items} />
+      <FloatingActions whatsapp={site.contact.whatsapp} />
     </div>
   );
 }
