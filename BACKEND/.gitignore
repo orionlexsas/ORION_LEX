@@ -1,0 +1,3 @@
+src/generated/
+# Datos locales: contienen información personal de clientes, no se versionan
+data/

@@ -1,0 +1,77 @@
+@import 'tailwindcss';
+
+/*
+ * Tokens de diseño de Orión Lex (tema oscuro con dorado).
+ * Los componentes usan estos nombres, nunca colores sueltos.
+ */
+@theme {
+  --font-sans: 'Figtree Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Libre Caslon Text', ui-serif, Georgia, serif;
+  --font-display: 'Cinzel', ui-serif, Georgia, serif;
+  --font-script: 'Allura', cursive;
+
+  --color-background: #0b0a08;
+  --color-surface: #14120f;
+  --color-foreground: #f6f2ea;
+  --color-muted: #b8b1a5;
+  --color-border: rgb(255 255 255 / 0.14);
+  --color-gold: #e3bf76;
+  --color-gold-light: #f3d99f;
+  --color-gold-dark: #c2974b;
+  --color-on-gold: #1b1409;
+  --color-danger: #f0877d;
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background font-sans text-foreground antialiased;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-gold;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@utility bg-gold-gradient {
+  background-image: linear-gradient(
+    180deg,
+    var(--color-gold-light) 0%,
+    var(--color-gold) 45%,
+    var(--color-gold-dark) 100%
+  );
+}
+
+/* Entrada suave del contenido del hero, escalonada con --delay. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@utility animate-rise {
+  animation: rise 0.8s var(--ease-out-soft) both;
+  animation-delay: var(--delay, 0ms);
+}
