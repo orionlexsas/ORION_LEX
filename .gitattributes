@@ -1,0 +1,10 @@
+# Saltos de línea LF en el repositorio y al descargar (igual que .editorconfig y Prettier),
+# para que Windows no los convierta a CRLF.
+* text=auto eol=lf
+
+# Archivos binarios: sin conversión
+*.png binary
+*.jpg binary
+*.webp binary
+*.mp4 binary
+*.woff2 binary

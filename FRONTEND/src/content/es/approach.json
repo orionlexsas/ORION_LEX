@@ -1,0 +1,52 @@
+{
+  "eyebrow": "Nuestro enfoque",
+  "title": [
+    {
+      "text": "Tu caso, en",
+      "highlight": false
+    },
+    {
+      "text": "buenas manos",
+      "highlight": true
+    }
+  ],
+  "description": "Un proceso claro para acompañarte desde la primera conversación.",
+  "scriptLines": ["Más que abogados,", "tu equipo de confianza."],
+  "steps": [
+    {
+      "icon": "messages",
+      "title": "Cuéntanos tu situación",
+      "description": "Escuchamos tus necesidades y resolvemos tus primeras inquietudes.",
+      "image": {
+        "src": "/images/enfoque/paso-1-conversacion.webp",
+        "alt": "Abogado conversando con una clienta en su escritorio"
+      }
+    },
+    {
+      "icon": "file-search",
+      "title": "Trazamos una ruta",
+      "description": "Analizamos tu caso y te explicamos las opciones disponibles.",
+      "image": {
+        "src": "/images/enfoque/paso-2-ruta.webp",
+        "alt": "Documento y pluma sobre el escritorio, con una balanza de la justicia al fondo"
+      }
+    },
+    {
+      "icon": "users",
+      "title": "Avanzamos contigo",
+      "description": "Te acompañamos durante cada etapa con comunicación clara.",
+      "image": {
+        "src": "/images/enfoque/paso-3-acompanamiento.webp",
+        "alt": "Apretón de manos entre el abogado y su cliente"
+      }
+    }
+  ],
+  "cta": {
+    "label": "Hablemos de tu caso",
+    "href": "/contacto"
+  },
+  "decoration": {
+    "src": "/images/enfoque/fondo-justicia.webp",
+    "alt": ""
+  }
+}

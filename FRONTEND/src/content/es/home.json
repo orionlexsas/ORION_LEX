@@ -1,0 +1,81 @@
+{
+  "hero": {
+    "eyebrow": "Soluciones legales para tu tranquilidad",
+    "titleLines": [
+      {
+        "text": "Defensa legal con",
+        "highlight": false
+      },
+      {
+        "text": "experiencia, confianza",
+        "highlight": true
+      },
+      {
+        "text": "y resultados",
+        "highlight": false
+      }
+    ],
+    "description": "Brindamos asesoría jurídica profesional y acompañamiento personalizado para personas y empresas en Colombia.",
+    "primaryCta": {
+      "label": "Agenda tu consulta",
+      "href": "whatsapp"
+    },
+    "secondaryCta": {
+      "label": "Conoce más sobre nuestro enfoque",
+      "href": "/#enfoque"
+    },
+    "image": {
+      "src": "/images/hero-abogado.webp",
+      "srcMobile": "/images/hero-abogado-960.webp",
+      "alt": "Abogado de Orión Lex sonriendo en la oficina, junto a una estatua de la justicia",
+      "light": {
+        "src": "/images/hero-abogado-claro.webp",
+        "srcMobile": "/images/hero-abogado-claro-960.webp"
+      }
+    },
+    "highlights": [
+      {
+        "icon": "user",
+        "title": "Asesoría personalizada",
+        "description": "Soluciones adaptadas a tu situación."
+      },
+      {
+        "icon": "clock",
+        "title": "Atención oportuna",
+        "description": "Respuesta ágil y acompañamiento constante."
+      },
+      {
+        "icon": "chart",
+        "title": "Compromiso legal",
+        "description": "Estrategia, honestidad y enfoque en resultados."
+      }
+    ],
+    "contactItems": [
+      {
+        "icon": "phone",
+        "label": "Llámanos",
+        "value": "+57 313 234 4178",
+        "href": "tel:+573132344178"
+      },
+      {
+        "icon": "mail",
+        "label": "Escríbenos",
+        "value": "sergio.ardila@outlook.com",
+        "href": "mailto:sergio.ardila@outlook.com"
+      },
+      {
+        "icon": "map-pin",
+        "label": "Visítanos",
+        "value": "Bogotá, Colombia",
+        "detail": "Consulta presencial o virtual"
+      }
+    ],
+    "signature": {
+      "scriptLines": ["Tu aliado", "en cada paso"],
+      "brand": "Orión Lex",
+      "tagline": "Servicios jurídicos"
+    },
+    "quote": "La ley no es solo un conjunto de reglas, es una herramienta para construir un mejor futuro.",
+    "scrollHint": "Desliza para conocer más"
+  }
+}

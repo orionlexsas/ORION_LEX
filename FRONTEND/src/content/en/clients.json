@@ -1,0 +1,31 @@
+{
+  "eyebrow": "Our clients",
+  "title": "We support individuals and businesses",
+  "autoplaySeconds": 5,
+  "items": [
+    {
+      "tag": "Individuals",
+      "caption": "Guidance for your decisions",
+      "image": {
+        "src": "/images/clientes/personas.webp",
+        "alt": "Lawyer talking with a client in the office"
+      }
+    },
+    {
+      "tag": "Entrepreneurs",
+      "caption": "Backing to help your business grow",
+      "image": {
+        "src": "/images/clientes/emprendedores.webp",
+        "alt": "Entrepreneur smiling during a meeting with his lawyer"
+      }
+    },
+    {
+      "tag": "Families",
+      "caption": "Support at important moments",
+      "image": {
+        "src": "/images/clientes/familias.webp",
+        "alt": "Family with their daughter meeting with a lawyer"
+      }
+    }
+  ]
+}

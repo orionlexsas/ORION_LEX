@@ -1,0 +1,100 @@
+{
+  "brand": {
+    "name": "Orión Lex",
+    "tagline": "Servicios jurídicos"
+  },
+  "nav": [
+    {
+      "label": "Inicio",
+      "href": "/"
+    },
+    {
+      "label": "Servicios",
+      "href": "/servicios"
+    },
+    {
+      "label": "Nosotros",
+      "href": "/#nosotros"
+    },
+    {
+      "label": "Casos",
+      "href": "/#casos"
+    },
+    {
+      "label": "Contacto",
+      "href": "/contacto"
+    }
+  ],
+  "cta": {
+    "label": "Agenda tu consulta",
+    "href": "whatsapp"
+  },
+  "contact": {
+    "phone": "+57 313 234 4178",
+    "email": "sergio.ardila@outlook.com",
+    "city": "Bogotá, Colombia",
+    "modality": "Atención presencial y virtual",
+    "whatsapp": {
+      "number": "573132344178",
+      "message": "Hola, quisiera agendar una consulta con Orión Lex."
+    }
+  },
+  "social": [
+    {
+      "network": "tiktok",
+      "url": "https://www.tiktok.com/@orionlex"
+    },
+    {
+      "network": "facebook",
+      "url": "https://www.facebook.com/AbogadoSergioArdila/"
+    }
+  ],
+  "footer": {
+    "cta": {
+      "eyebrow": "Estamos para ayudarte",
+      "title": "Hablemos de tu caso",
+      "description": "Recibe orientación jurídica clara y personalizada.",
+      "button": {
+        "label": "Agenda tu consulta",
+        "href": "whatsapp"
+      },
+      "scriptLines": ["Tu aliado", "en cada paso"],
+      "image": {
+        "src": "/images/footer/justicia.webp",
+        "alt": ""
+      }
+    },
+    "tagline": "Tu tranquilidad legal, nuestra prioridad.",
+    "headings": {
+      "explore": "Explora",
+      "services": "Servicios",
+      "contact": "Contacto"
+    },
+    "servicesLimit": 4,
+    "writeUsLabel": "Escríbenos",
+    "rightsText": "Todos los derechos reservados.",
+    "legalLinks": [
+      {
+        "label": "Privacidad",
+        "href": "/privacidad"
+      },
+      {
+        "label": "Términos",
+        "href": "/terminos"
+      }
+    ],
+    "decorations": {
+      "left": {
+        "src": "/images/footer/libros.webp",
+        "alt": ""
+      },
+      "right": {
+        "src": "/images/footer/planta.webp",
+        "alt": ""
+      }
+    }
+  },
+  "intro": {
+    "video": "/video/intro-orion-lex.mp4"
+  }
+}

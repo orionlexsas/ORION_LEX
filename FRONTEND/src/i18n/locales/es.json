@@ -1,0 +1,71 @@
+{
+  "meta": {
+    "title": "Orión Lex | Servicios jurídicos en Bogotá",
+    "description": "Orión Lex, servicios jurídicos en Bogotá. Asesoría legal profesional y acompañamiento personalizado para personas y empresas en Colombia."
+  },
+  "a11y": {
+    "goHome": "{{name}}, ir al inicio",
+    "mainNav": "Principal",
+    "legalNav": "Legal",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "moreAbout": "sobre {{title}}",
+    "opensWhatsApp": "(se abre WhatsApp)",
+    "whatsappChat": "Escríbenos por WhatsApp",
+    "backToTop": "Volver arriba",
+    "socialNav": "Redes sociales",
+    "socialProfile": "{{brand}} en {{network}}",
+    "opensNewTab": "(se abre en una pestaña nueva)"
+  },
+  "theme": {
+    "toLight": "Cambiar a tema claro",
+    "toDark": "Cambiar a tema oscuro"
+  },
+  "language": {
+    "label": "Idioma",
+    "switchTo": "Cambiar idioma a {{language}}",
+    "names": {
+      "es": "Español",
+      "en": "English"
+    }
+  },
+  "contact": {
+    "title": "Contacto",
+    "fields": {
+      "fullName": "Nombre completo",
+      "email": "Correo",
+      "message": "Mensaje"
+    },
+    "send": "Enviar mensaje",
+    "sending": "Enviando…",
+    "success": "Gracias. Te contactaremos pronto.",
+    "errors": {
+      "fullNameRequired": "Escribe tu nombre completo",
+      "fullNameTooLong": "Máximo 120 caracteres",
+      "emailRequired": "Escribe tu correo",
+      "emailInvalid": "Correo no válido",
+      "phoneTooLong": "Máximo 30 caracteres",
+      "messageRequired": "Cuéntanos en qué podemos ayudarte",
+      "messageTooShort": "Cuéntanos un poco más",
+      "messageTooLong": "Máximo 5000 caracteres",
+      "network": "No se pudo enviar el mensaje. Inténtalo de nuevo."
+    }
+  },
+  "notFound": {
+    "title": "Página no encontrada",
+    "back": "Volver al inicio"
+  },
+  "carousel": {
+    "label": "Carrusel de clientes",
+    "slide": "{{current}} de {{total}}",
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "pause": "Pausar el paso automático",
+    "play": "Reanudar el paso automático",
+    "goTo": "Ir a la tarjeta {{number}}"
+  },
+  "intro": {
+    "label": "Introducción",
+    "skip": "Saltar intro"
+  }
+}
