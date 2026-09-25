@@ -36,9 +36,9 @@
       "email": "Email",
       "message": "Message"
     },
-    "send": "Send message",
-    "sending": "Sending…",
-    "success": "Thank you. We will contact you soon.",
+    "send": "Send via WhatsApp",
+    "whatsappMessage": "Hello, I am {{fullName}} ({{email}}).\n\n{{message}}",
+    "success": "We opened WhatsApp with your message. Just tap send in the chat.",
     "errors": {
       "fullNameRequired": "Please enter your full name",
       "fullNameTooLong": "Maximum 120 characters",
@@ -47,8 +47,7 @@
       "phoneTooLong": "Maximum 30 characters",
       "messageRequired": "Tell us how we can help you",
       "messageTooShort": "Tell us a bit more",
-      "messageTooLong": "Maximum 5000 characters",
-      "network": "The message could not be sent. Please try again."
+      "messageTooLong": "Maximum 5000 characters"
     }
   },
   "notFound": {

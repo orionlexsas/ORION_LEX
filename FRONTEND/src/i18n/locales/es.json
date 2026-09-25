@@ -36,9 +36,9 @@
       "email": "Correo",
       "message": "Mensaje"
     },
-    "send": "Enviar mensaje",
-    "sending": "Enviando…",
-    "success": "Gracias. Te contactaremos pronto.",
+    "send": "Enviar por WhatsApp",
+    "whatsappMessage": "Hola, soy {{fullName}} ({{email}}).\n\n{{message}}",
+    "success": "Abrimos WhatsApp con tu mensaje. Solo pulsa enviar en el chat.",
     "errors": {
       "fullNameRequired": "Escribe tu nombre completo",
       "fullNameTooLong": "Máximo 120 caracteres",
@@ -47,8 +47,7 @@
       "phoneTooLong": "Máximo 30 caracteres",
       "messageRequired": "Cuéntanos en qué podemos ayudarte",
       "messageTooShort": "Cuéntanos un poco más",
-      "messageTooLong": "Máximo 5000 caracteres",
-      "network": "No se pudo enviar el mensaje. Inténtalo de nuevo."
+      "messageTooLong": "Máximo 5000 caracteres"
     }
   },
   "notFound": {

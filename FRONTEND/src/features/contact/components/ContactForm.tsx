@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { useState, type ReactNode } from 'react';
 import { useForm, type FieldError } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -9,7 +9,9 @@ import {
   type ContactRequest,
 } from '@orion-lex/shared';
 import { Button } from '@/components/ui/Button';
-import { useSendContact } from '../hooks/use-send-contact';
+import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon';
+import { useContent } from '@/content';
+import { whatsappUrl } from '@/lib/whatsapp';
 
 const inputClass =
   'w-full rounded-xl border border-border bg-surface px-4 py-3 outline-none focus:border-gold';
@@ -17,10 +19,15 @@ const inputClass =
 const isErrorCode = (value: unknown): value is ContactErrorCode =>
   contactErrorCodes.includes(value as ContactErrorCode);
 
-/** Formulario de contacto. Usa el mismo esquema de validación que el backend. */
+/**
+ * Formulario de contacto. Usa el mismo esquema de validación que el backend.
+ * Por ahora no guarda nada: abre WhatsApp con el mensaje ya escrito (el sitio publicado
+ * aún no tiene base de datos). Para volver a enviarlo a la API, ver `BACKEND/src/modules/contact`.
+ */
 export function ContactForm() {
   const { t } = useTranslation();
-  const sendContact = useSendContact();
+  const { site } = useContent();
+  const [sent, setSent] = useState(false);
   const {
     register,
     handleSubmit,
@@ -28,15 +35,16 @@ export function ContactForm() {
     formState: { errors },
   } = useForm<ContactRequest>({ resolver: zodResolver(contactRequestSchema) });
 
-  const onSubmit = handleSubmit((data) => sendContact.mutate(data, { onSuccess: () => reset() }));
+  const onSubmit = handleSubmit((data) => {
+    const text = t('contact.whatsappMessage', data);
+    window.open(whatsappUrl(site.contact.whatsapp.number, text), '_blank', 'noopener,noreferrer');
+    reset();
+    setSent(true);
+  });
 
   // El esquema devuelve códigos (p. ej. "emailInvalid"); aquí se traducen al idioma activo.
   const errorText = (error?: FieldError) =>
     error && (isErrorCode(error.message) ? t(`contact.errors.${error.message}`) : error.message);
-
-  if (sendContact.isSuccess) {
-    return <p role="status">{t('contact.success')}</p>;
-  }
 
   return (
     <form onSubmit={onSubmit} noValidate className="grid gap-4">
@@ -49,13 +57,11 @@ export function ContactForm() {
       <Field label={t('contact.fields.message')} error={errorText(errors.message)}>
         <textarea className={inputClass} rows={5} {...register('message')} />
       </Field>
-      {sendContact.isError && (
-        <p role="alert" className="text-sm text-danger">
-          {t('contact.errors.network')}
-        </p>
-      )}
-      <Button type="submit" disabled={sendContact.isPending}>
-        {sendContact.isPending ? t('contact.sending') : t('contact.send')}
+      {sent && <p role="status">{t('contact.success')}</p>}
+      <Button type="submit">
+        <WhatsAppIcon className="size-5 shrink-0" />
+        {t('contact.send')}
+        <span className="sr-only"> {t('a11y.opensWhatsApp')}</span>
       </Button>
     </form>
   );
