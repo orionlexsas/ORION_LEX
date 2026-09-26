@@ -2,6 +2,8 @@ import { lazy } from 'react';
 
 // API pública de la feature: el resto de la app solo importa desde aquí.
 export { ArticleGrid } from './components/ArticleGrid';
+export { BlogCta } from './components/BlogCta';
+export { BlogHero } from './components/BlogHero';
 export { BlogPreviewSection } from './components/BlogPreviewSection';
 
 /**

@@ -1,12 +1,12 @@
 {
-  "slug": "prescripcion-multas-de-transito",
+  "slug": "comparendos-antiguos-que-revisar",
   "status": "provisional",
   "published": true,
   "featured": false,
-  "title": "Can a traffic fine expire under the statute of limitations?",
-  "category": "novedades",
-  "date": "2026-09-04",
-  "excerpt": "Traffic fines do not last forever. We explain what the statute of limitations is, why dates and notices matter, and when to have your case reviewed.",
+  "title": "Old traffic tickets: what to check",
+  "category": "transito",
+  "date": "2026-09-18",
+  "excerpt": "Important points to assess the validity and enforceability of past traffic tickets.",
   "body": "Having old traffic tickets or fines can prevent you, for example, from registering the transfer of a vehicle. But traffic penalties cannot be collected indefinitely.\n\n## What is the statute of limitations?\n\nIt is the loss of the authority's right to collect a penalty when it lets the legally established time pass without acting. The National Traffic Code (Law 769 of 2002, article 159) governs this period for traffic penalties.\n\n## Why dates matter\n\nThe period can be interrupted by certain actions of the authority, such as a payment order within a coercive collection process. That is why knowing whether a fine has expired is not just about its age: you need to review **the dates of the ticket, the penalty and each notice**.\n\n## Other options\n\nBesides the statute of limitations, there are other grounds to request the removal of a ticket, such as expiration or errors in identifying the offender, for example in cases of identity theft or cloned license plates.\n\n## How do you know if your case qualifies?\n\nCheck your account status on SIMIT and review the information with a lawyer before paying or signing payment agreements.",
   "sources": [
     {
@@ -17,5 +17,9 @@
       "label": "SIMIT: traffic tickets and fines lookup (in Spanish)",
       "url": "https://www.fcm.org.co/simit/"
     }
-  ]
+  ],
+  "image": {
+    "src": "/images/actualidad/comparendos-antiguos.webp",
+    "alt": "Traffic officer with a clipboard next to a road with cars"
+  }
 }

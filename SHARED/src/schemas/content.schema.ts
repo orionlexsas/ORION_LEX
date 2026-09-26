@@ -283,7 +283,13 @@ export const blogContentSchema = z.object({
   eyebrow: z.string(),
   title: z.string(),
   description: z.string(),
+  /** Foto del encabezado de /actualidad (se funde con el fondo por la izquierda). */
+  heroImage: imageSchema,
   featuredLabel: z.string(),
+  /** Enlace del artículo destacado ("Leer artículo"). */
+  featuredReadMore: z.string(),
+  /** Título sobre la cuadrícula ("Últimos artículos"). */
+  latestTitle: z.string(),
   readMore: z.string(),
   allLabel: z.string(),
   empty: z.string(),
@@ -291,7 +297,13 @@ export const blogContentSchema = z.object({
   sourcesLabel: z.string(),
   shareLabel: z.string(),
   categories: z.array(z.object({ slug: slugSchema, name: z.string() })).min(1),
-  cta: z.object({ title: z.string(), text: z.string(), button: linkSchema }),
+  cta: z.object({
+    title: z.string(),
+    text: z.string(),
+    button: linkSchema,
+    /** Foto decorativa a la derecha de la franja (opcional). */
+    image: imageSchema.optional(),
+  }),
   /** Cuántos artículos se muestran en la portada. */
   homeLimit: z.number().int().positive(),
 });

@@ -1,12 +1,12 @@
 import { Link } from 'react-router';
 import { ArrowLeft, ExternalLink } from 'lucide-react';
 import type { ArticleContent, BlogContent } from '@orion-lex/shared';
-import { CtaLink } from '@/components/cta/CtaLink';
 import { StructuredData } from '@/components/seo/StructuredData';
 import { Container } from '@/components/ui/Container';
 import { Markdown } from '@/components/ui/Markdown';
 import { MediaPanel } from '@/components/ui/MediaPanel';
 import { ArticleMeta } from './ArticleMeta';
+import { BlogCta } from './BlogCta';
 import { ShareButtons } from './ShareButtons';
 
 interface ArticleViewProps {
@@ -78,11 +78,9 @@ export function ArticleView({ article, blog, url, publisher }: ArticleViewProps)
           <ShareButtons url={url} title={article.title} label={blog.shareLabel} />
         </div>
 
-        <aside className="on-dark mt-12 rounded-lg bg-ink p-8 sm:p-10">
-          <h2 className="font-serif text-2xl font-semibold sm:text-3xl">{blog.cta.title}</h2>
-          <p className="mt-3 text-lg text-foreground/80">{blog.cta.text}</p>
-          <CtaLink link={blog.cta.button} location="article" className="mt-6" />
-        </aside>
+        <div className="mt-12">
+          <BlogCta cta={blog.cta} location="article" />
+        </div>
       </Container>
 
       <StructuredData

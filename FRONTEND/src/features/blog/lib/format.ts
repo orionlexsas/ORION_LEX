@@ -1,12 +1,15 @@
 import type { BlogContent } from '@orion-lex/shared';
 
-/** Fecha legible ("18 de septiembre de 2026") a partir de AAAA-MM-DD, sin desfase de zona horaria. */
-export function formatDate(date: string, language: string) {
-  const [year, month, day] = date.split('-').map(Number);
-  return new Date(year!, month! - 1, day!).toLocaleDateString(
-    language === 'en' ? 'en-US' : 'es-CO',
-    { day: 'numeric', month: 'long', year: 'numeric' },
-  );
+const MONTHS: Record<string, string[]> = {
+  es: ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'],
+  en: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
+};
+
+/** Fecha corta en mayúsculas ("25 SEP 2026") a partir de AAAA-MM-DD, sin desfase de zona horaria. */
+export function formatShortDate(date: string, language: string) {
+  const [year, month, day] = date.split('-');
+  const months = MONTHS[language] ?? MONTHS.es!;
+  return `${day} ${months[Number(month) - 1]} ${year}`;
 }
 
 /** Nombre visible de una categoría (slug → nombre de blog.json). */

@@ -33,10 +33,11 @@ export const router = createBrowserRouter([
       { index: true, Component: HomePage, handle: noFooterCta },
       { path: 'servicios', Component: ServicesPage },
       { path: 'nosotros', Component: AboutPage },
-      { path: 'actualidad', Component: BlogPage },
+      { path: 'actualidad', Component: BlogPage, handle: noFooterCta },
       {
         // Los artículos y las páginas legales usan Markdown: se cargan aparte.
         path: 'actualidad/:slug',
+        handle: noFooterCta,
         lazy: async () => ({
           Component: (await import('@/pages/public/ArticlePage')).ArticlePage,
         }),
