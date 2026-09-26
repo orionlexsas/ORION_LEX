@@ -12,11 +12,21 @@
       "label": "See services",
       "href": "/#asuntos"
     },
-    "points": ["Online service throughout Colombia", "Replies on WhatsApp"],
+    "script": "Clarity to move forward",
+    "points": [
+      {
+        "icon": "laptop",
+        "text": "Online service throughout Colombia"
+      },
+      {
+        "icon": "message-circle",
+        "text": "Replies on WhatsApp"
+      }
+    ],
     "image": {
-      "src": "/images/hero/equipo-1715.webp",
-      "srcMobile": "/images/hero/equipo-960.webp",
-      "alt": "Members of Orión Lex smiling in the office, next to a statue of justice and law books"
+      "src": "/images/hero/portada-1672.webp",
+      "srcMobile": "/images/hero/portada-960.webp",
+      "alt": "Orión Lex Servicios Jurídicos team"
     }
   }
 }

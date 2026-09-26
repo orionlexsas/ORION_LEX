@@ -14,8 +14,8 @@
     "opensNewTab": "(se abre en una pestaña nueva)"
   },
   "theme": {
-    "toLight": "Cambiar a tema claro",
-    "toDark": "Cambiar a tema oscuro"
+    "toLight": "Activar modo claro",
+    "toDark": "Activar modo oscuro"
   },
   "language": {
     "label": "Idioma",

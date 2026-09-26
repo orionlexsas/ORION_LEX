@@ -15,6 +15,7 @@ import {
   Landmark,
   Laptop,
   MapPin,
+  MessageCircle,
   MessagesSquare,
   Phone,
   Route,
@@ -56,6 +57,7 @@ const icons = {
   car: CarFront,
   'file-pen': FilePenLine,
   hospital: Ambulance,
+  'message-circle': MessageCircle,
 } satisfies Record<ContentIconName, unknown>;
 
 /** Traduce el nombre de ícono guardado en el JSON de contenido a su componente. */

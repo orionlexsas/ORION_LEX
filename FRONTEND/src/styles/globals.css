@@ -13,6 +13,8 @@
 @theme {
   --font-sans: 'Montserrat Variable', ui-sans-serif, system-ui, sans-serif;
   --font-serif: 'Playfair Display Variable', ui-serif, Georgia, serif;
+  /* Solo para la frase decorativa del hero */
+  --font-script: 'Allura', cursive;
 
   --color-background: #ffffff;
   /* Fondo alterno de secciones y tarjetas */

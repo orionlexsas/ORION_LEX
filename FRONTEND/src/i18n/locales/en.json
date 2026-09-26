@@ -14,8 +14,8 @@
     "opensNewTab": "(opens in a new tab)"
   },
   "theme": {
-    "toLight": "Switch to light theme",
-    "toDark": "Switch to dark theme"
+    "toLight": "Turn on light mode",
+    "toDark": "Turn on dark mode"
   },
   "language": {
     "label": "Language",

@@ -57,6 +57,7 @@ export function CtaLink({
         target="_blank"
         rel="noopener noreferrer"
         onClick={handleClick}
+        aria-label={`${link.label} ${t('a11y.opensWhatsApp')}`}
         className={classes}
         // El botón flotante de WhatsApp se oculta mientras este llamado está en pantalla.
         data-whatsapp-cta=""

@@ -12,11 +12,21 @@
       "label": "Ver servicios",
       "href": "/#asuntos"
     },
-    "points": ["Atención virtual en toda Colombia", "Respuesta por WhatsApp"],
+    "script": "Claridad para avanzar",
+    "points": [
+      {
+        "icon": "laptop",
+        "text": "Atención virtual en toda Colombia"
+      },
+      {
+        "icon": "message-circle",
+        "text": "Respuesta por WhatsApp"
+      }
+    ],
     "image": {
-      "src": "/images/hero/equipo-1715.webp",
-      "srcMobile": "/images/hero/equipo-960.webp",
-      "alt": "Integrantes de Orión Lex sonriendo en la oficina, junto a una estatua de la justicia y libros de derecho"
+      "src": "/images/hero/portada-1672.webp",
+      "srcMobile": "/images/hero/portada-960.webp",
+      "alt": "Equipo de Orión Lex Servicios Jurídicos"
     }
   }
 }

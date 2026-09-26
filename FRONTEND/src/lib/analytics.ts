@@ -12,6 +12,7 @@ export type AnalyticsEvent =
   | 'contact_form_submit'
   | 'service_card_click'
   | 'landing_cta_click'
+  | 'hero_services_click'
   /** Llamados de cada landing (datacredito_lead, comparendos_lead…), definidos en su JSON. */
   | `${string}_lead`;
 

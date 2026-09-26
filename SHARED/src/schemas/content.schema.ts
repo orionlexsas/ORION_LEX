@@ -25,6 +25,7 @@ export const contentIconSchema = z.enum([
   'car',
   'file-pen',
   'hospital',
+  'message-circle',
 ]);
 
 /**
@@ -126,8 +127,10 @@ export const homeContentSchema = z.object({
     description: z.string(),
     primaryCta: linkSchema,
     secondaryCta: linkSchema,
-    /** Frases cortas de confianza bajo los botones. */
-    points: z.array(z.string()).max(4),
+    /** Frase decorativa en letra manuscrita bajo los botones ("Claridad para avanzar"). */
+    script: z.string().optional(),
+    /** Franja inferior del hero: frases cortas de confianza con su ícono. */
+    points: z.array(z.object({ icon: contentIconSchema, text: z.string() })).max(4),
     image: imageSchema,
   }),
 });
