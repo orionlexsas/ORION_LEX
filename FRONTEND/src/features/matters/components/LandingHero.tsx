@@ -83,7 +83,7 @@ export function LandingHero({ landing, coverage }: LandingHeroProps) {
           image={landing.image}
           icon={landing.icon}
           priority
-          className="aspect-[16/9] rounded-lg lg:aspect-[4/5]"
+          className="aspect-[16/9] rounded-lg lg:aspect-[4/3]"
         />
       </Container>
     </section>

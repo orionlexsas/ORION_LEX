@@ -8,6 +8,10 @@
   },
   "leadEvent": "tutela_lead",
   "icon": "scale",
+  "image": {
+    "src": "/images/servicios-frecuentes/acciones-de-tutela.webp",
+    "alt": "Judge's gavel and scales of justice on a desk"
+  },
   "cta": {
     "label": "Request advice",
     "message": "Hello, I saw the Orión Lex website and I need help with a tutela action."

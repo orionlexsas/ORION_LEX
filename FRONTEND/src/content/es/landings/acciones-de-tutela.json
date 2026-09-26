@@ -8,6 +8,10 @@
   },
   "leadEvent": "tutela_lead",
   "icon": "scale",
+  "image": {
+    "src": "/images/servicios-frecuentes/acciones-de-tutela.webp",
+    "alt": "Mazo judicial y balanza de la justicia sobre un escritorio"
+  },
   "cta": {
     "label": "Solicitar asesoría",
     "message": "Hola, vi la página de Orión Lex y necesito ayuda con una acción de tutela."

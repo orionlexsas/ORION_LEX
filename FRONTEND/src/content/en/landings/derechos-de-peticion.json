@@ -8,6 +8,10 @@
   },
   "leadEvent": "peticion_lead",
   "icon": "file-pen",
+  "image": {
+    "src": "/images/servicios-frecuentes/derechos-de-peticion.webp",
+    "alt": "Hands signing a written petition on a desk"
+  },
   "cta": {
     "label": "Request advice",
     "message": "Hello, I saw the Orión Lex website and I need help with a petition."

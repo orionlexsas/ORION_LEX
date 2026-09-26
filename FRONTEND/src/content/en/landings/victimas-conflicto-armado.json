@@ -8,6 +8,10 @@
   },
   "leadEvent": "victimas_lead",
   "icon": "heart",
+  "image": {
+    "src": "/images/servicios-frecuentes/victimas-conflicto-armado.webp",
+    "alt": "A person respectfully holding another's hands during a consultation"
+  },
   "cta": {
     "label": "Request advice",
     "message": "Hello, I saw the Orión Lex website and I need advice as a victim of the armed conflict."

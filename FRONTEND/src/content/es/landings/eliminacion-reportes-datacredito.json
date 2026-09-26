@@ -8,6 +8,10 @@
   },
   "leadEvent": "datacredito_lead",
   "icon": "credit-card",
+  "image": {
+    "src": "/images/servicios-frecuentes/eliminacion-reportes-datacredito.webp",
+    "alt": "Persona revisando con un bolígrafo un informe con gráficas de historial crediticio"
+  },
   "cta": {
     "label": "Revisar mi reporte",
     "message": "Hola, quiero revisar mi reporte en Datacrédito."

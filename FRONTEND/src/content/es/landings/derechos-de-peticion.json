@@ -8,6 +8,10 @@
   },
   "leadEvent": "peticion_lead",
   "icon": "file-pen",
+  "image": {
+    "src": "/images/servicios-frecuentes/derechos-de-peticion.webp",
+    "alt": "Manos firmando una petición escrita sobre un escritorio"
+  },
   "cta": {
     "label": "Solicitar asesoría",
     "message": "Hola, vi la página de Orión Lex y necesito ayuda con un derecho de petición."

@@ -21,7 +21,7 @@ export function HomePage() {
   return (
     <>
       <HeroSection hero={home.hero} />
-      <MattersSection id="asuntos" content={matters} landings={landings} className="bg-surface" />
+      <MattersSection id="asuntos" content={matters} landings={landings} />
       <ApproachSection id="como-trabajamos" content={approach} />
       <ServicesSection id="servicios-juridicos" content={services} className="bg-surface" />
       <TeamSection id="nosotros" content={team} />

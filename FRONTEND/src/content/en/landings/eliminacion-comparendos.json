@@ -8,6 +8,10 @@
   },
   "leadEvent": "comparendos_lead",
   "icon": "car",
+  "image": {
+    "src": "/images/servicios-frecuentes/eliminacion-comparendos.webp",
+    "alt": "Traffic officer filling out a document next to a vehicle"
+  },
   "cta": {
     "label": "Request a free diagnosis",
     "message": "Hello, I would like to request a diagnosis of my traffic tickets. My ID number is:"

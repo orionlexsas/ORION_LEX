@@ -8,6 +8,10 @@
   },
   "leadEvent": "comparendos_lead",
   "icon": "car",
+  "image": {
+    "src": "/images/servicios-frecuentes/eliminacion-comparendos.webp",
+    "alt": "Agente de tránsito diligenciando un documento junto a un vehículo"
+  },
   "cta": {
     "label": "Solicitar diagnóstico gratis",
     "message": "Hola, quiero solicitar un diagnóstico de mis comparendos. Mi número de cédula es:"

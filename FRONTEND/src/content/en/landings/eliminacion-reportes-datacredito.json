@@ -8,6 +8,10 @@
   },
   "leadEvent": "datacredito_lead",
   "icon": "credit-card",
+  "image": {
+    "src": "/images/servicios-frecuentes/eliminacion-reportes-datacredito.webp",
+    "alt": "Person reviewing a credit history report with charts using a pen"
+  },
   "cta": {
     "label": "Review my report",
     "message": "Hello, I would like to review my Datacrédito report."

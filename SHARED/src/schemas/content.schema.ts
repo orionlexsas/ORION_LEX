@@ -140,6 +140,8 @@ export const mattersContentSchema = z.object({
   eyebrow: z.string(),
   title: z.string(),
   description: z.string(),
+  /** Frase decorativa manuscrita a la derecha del encabezado (opcional). */
+  script: z.string().optional(),
   cardCta: z.string(),
   /** Slugs de las landing pages, en el orden en que se muestran (6 tarjetas). */
   order: z.array(slugSchema).min(1),

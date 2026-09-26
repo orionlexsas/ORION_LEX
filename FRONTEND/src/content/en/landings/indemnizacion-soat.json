@@ -8,6 +8,10 @@
   },
   "leadEvent": "soat_lead",
   "icon": "hospital",
+  "image": {
+    "src": "/images/servicios-frecuentes/indemnizacion-soat.webp",
+    "alt": "SOAT insurance document on a clipboard next to a vehicle"
+  },
   "cta": {
     "label": "Request advice",
     "message": "Hello, I saw the Orión Lex website and I would like information about a SOAT compensation claim."

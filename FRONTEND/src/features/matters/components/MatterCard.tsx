@@ -7,34 +7,40 @@ import { track } from '@/lib/analytics';
 interface MatterCardProps {
   landing: LandingContent;
   ctaLabel: string;
+  /** Carga inmediata de la foto (tarjetas visibles al abrir la página). */
+  priority?: boolean;
 }
 
 /**
- * Tarjeta de un servicio frecuente. Toda la tarjeta es un enlace a su landing page (un solo
- * enlace por tarjeta, así los lectores de pantalla no repiten el mismo destino).
+ * Tarjeta de un servicio frecuente. Toda la tarjeta es un único enlace a su landing page
+ * (`/<slug>`, el mismo slug del archivo landings/<slug>.json). Foto a la izquierda desde 1280 px
+ * y arriba en pantallas menores; título, línea naranja y "Ver más →".
  */
-export function MatterCard({ landing, ctaLabel }: MatterCardProps) {
-  const href = `/${landing.slug}`;
-
+export function MatterCard({ landing, ctaLabel, priority }: MatterCardProps) {
   return (
     <Link
-      to={href}
+      to={`/${landing.slug}`}
       onClick={() => track('service_card_click', { service: landing.slug })}
-      className="group flex overflow-hidden rounded-lg border border-border bg-background transition-[border-color,box-shadow,translate] duration-300 ease-out-soft hover:-translate-y-0.5 hover:border-accent hover:shadow-[0_18px_40px_-24px_rgb(0_0_0/0.35)]"
+      className="group flex h-full flex-col overflow-hidden rounded-md border border-border bg-background shadow-[0_2px_12px_-6px_rgb(0_0_0/0.12)] transition-[translate,box-shadow,border-color] duration-200 ease-out hover:-translate-y-1 hover:border-accent/70 hover:shadow-[0_18px_36px_-20px_rgb(0_0_0/0.35)] active:translate-y-0 xl:flex-row"
     >
       <MediaPanel
         image={landing.image}
         icon={landing.icon}
-        className="w-[38%] shrink-0 sm:w-[42%]"
+        priority={priority}
+        className="aspect-[2/1] w-full shrink-0 xl:aspect-auto xl:min-h-[12.75rem] xl:w-[47%]"
       />
-      <span className="flex min-h-36 flex-1 flex-col justify-between gap-4 p-5 sm:min-h-44 sm:p-7">
-        <span className="font-serif text-xl leading-snug font-semibold sm:text-2xl">
+      <span className="flex flex-1 flex-col justify-center px-6 py-6 sm:px-7">
+        <span className="font-serif text-[1.45rem] leading-[1.15] font-semibold tracking-tight sm:text-[1.6rem] xl:text-[1.55rem]">
           {landing.title}
         </span>
-        <span className="inline-flex items-center gap-2 text-sm font-semibold text-accent-text">
+        <span
+          aria-hidden="true"
+          className="mt-4 block h-0.5 w-9 bg-accent transition-[width] duration-200 ease-out group-hover:w-12"
+        />
+        <span className="mt-4 inline-flex min-h-6 items-center gap-3 text-[0.95rem] font-medium text-foreground/85">
           {ctaLabel}
           <ArrowRight
-            className="size-4 transition-transform duration-300 ease-out-soft group-hover:translate-x-1"
+            className="size-5 text-accent transition-transform duration-200 ease-out group-hover:translate-x-1"
             aria-hidden="true"
           />
         </span>

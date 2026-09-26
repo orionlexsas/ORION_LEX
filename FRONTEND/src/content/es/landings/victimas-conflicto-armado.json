@@ -8,6 +8,10 @@
   },
   "leadEvent": "victimas_lead",
   "icon": "heart",
+  "image": {
+    "src": "/images/servicios-frecuentes/victimas-conflicto-armado.webp",
+    "alt": "Una persona toma con respeto las manos de otra en una asesoría"
+  },
   "cta": {
     "label": "Solicitar asesoría",
     "message": "Hola, vi la página de Orión Lex y necesito asesoría como víctima del conflicto armado."
