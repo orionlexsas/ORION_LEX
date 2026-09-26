@@ -38,9 +38,9 @@ export function SocialLinks({ profiles, brandName, className }: SocialLinksProps
                 aria-label={`${label} ${t('a11y.opensNewTab')}`}
                 title={label}
                 className={cn(
-                  'grid size-11 place-items-center rounded-full border-[1.5px] border-gold/60 text-gold',
+                  'grid size-11 place-items-center rounded-full border border-border text-foreground',
                   'transition-[background-color,color,border-color,translate] duration-300 ease-out-soft',
-                  'hover:-translate-y-0.5 hover:border-gold hover:bg-gold hover:text-on-gold',
+                  'hover:-translate-y-0.5 hover:border-accent hover:bg-accent hover:text-on-accent',
                 )}
               >
                 <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="size-5">

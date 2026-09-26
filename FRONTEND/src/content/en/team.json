@@ -1,0 +1,33 @@
+{
+  "eyebrow": "About us",
+  "title": "Who will handle your case",
+  "description": "A team that listens, explains clearly and supports you at every stage.",
+  "script": "People who listen to people",
+  "facebookLabel": "View Facebook profile",
+  "members": [
+    {
+      "status": "final",
+      "name": "Yuricsa Romero Trigos",
+      "role": "Lawyer | Comprehensive legal support",
+      "description": "Listens carefully to each situation and explains the legal alternatives in a clear, approachable and understandable way.",
+      "photo": {
+        "src": "/images/equipo/yuricsa-romero-trigos.webp",
+        "alt": "Yuricsa Romero Trigos, lawyer at Orión Lex",
+        "position": "50% 15%"
+      },
+      "facebook": "https://www.facebook.com/yuricsar"
+    },
+    {
+      "status": "final",
+      "name": "Sergio Ardila",
+      "role": "Lawyer | Comprehensive legal support",
+      "description": "Analyzes each case, organizes the path forward and supports the client at every stage with clear and timely communication.",
+      "photo": {
+        "src": "/images/equipo/sergio-ardila.webp",
+        "alt": "Sergio Ardila, lawyer at Orión Lex",
+        "position": "55% 20%"
+      },
+      "facebook": "https://www.facebook.com/sergioardila406"
+    }
+  ]
+}

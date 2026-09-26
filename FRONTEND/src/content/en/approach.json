@@ -1,52 +1,32 @@
 {
-  "eyebrow": "Our approach",
-  "title": [
-    {
-      "text": "Your case, in",
-      "highlight": false
-    },
-    {
-      "text": "good hands",
-      "highlight": true
-    }
-  ],
+  "eyebrow": "Our process",
+  "title": "How we work",
   "description": "A clear process to support you from the very first conversation.",
-  "scriptLines": ["More than lawyers,", "your trusted team."],
+  "script": "Support at every step",
   "steps": [
     {
-      "icon": "messages",
       "title": "Tell us your situation",
-      "description": "We listen to your needs and answer your first questions.",
+      "description": "We listen to your case and answer your first questions.",
       "image": {
-        "src": "/images/enfoque/paso-1-conversacion.webp",
-        "alt": "Lawyer talking with a client at his desk"
+        "src": "/images/proceso/paso-1-conversacion.webp",
+        "alt": "Lawyer talking with a client in a bright office"
       }
     },
     {
-      "icon": "file-search",
       "title": "We map out a path",
-      "description": "We analyze your case and explain the available options.",
+      "description": "We analyze your case and explain the options available.",
       "image": {
-        "src": "/images/enfoque/paso-2-ruta.webp",
-        "alt": "Document and pen on the desk, with scales of justice in the background"
+        "src": "/images/proceso/paso-2-analisis.webp",
+        "alt": "Professional reviewing legal documents with a pen"
       }
     },
     {
-      "icon": "users",
-      "title": "We move forward together",
-      "description": "We support you through every stage with clear communication.",
+      "title": "We move forward with you",
+      "description": "We support you at every stage with clear communication.",
       "image": {
-        "src": "/images/enfoque/paso-3-acompanamiento.webp",
-        "alt": "Handshake between the lawyer and his client"
+        "src": "/images/proceso/paso-3-acompanamiento.webp",
+        "alt": "Lawyer listening attentively to a client during a consultation"
       }
     }
-  ],
-  "cta": {
-    "label": "Let's talk about your case",
-    "href": "/contacto"
-  },
-  "decoration": {
-    "src": "/images/enfoque/fondo-justicia.webp",
-    "alt": ""
-  }
+  ]
 }

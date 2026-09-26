@@ -1,0 +1,80 @@
+{
+  "slug": "indemnizacion-soat",
+  "status": "provisional",
+  "title": "Indemnización ante el SOAT",
+  "seo": {
+    "title": "Indemnización ante el SOAT | Orión Lex",
+    "description": "Asesoría para reclamar las indemnizaciones del SOAT tras un accidente de tránsito: incapacidad permanente, muerte y gastos funerarios. Atención virtual en toda Colombia."
+  },
+  "leadEvent": "soat_lead",
+  "icon": "hospital",
+  "image": {
+    "src": "/images/servicios-frecuentes/indemnizacion-soat.webp",
+    "alt": "Documento del SOAT en una tabla de apoyo junto a un vehículo"
+  },
+  "cta": {
+    "label": "Solicitar asesoría",
+    "message": "Hola, vi la página de Orión Lex y quiero información sobre una indemnización del SOAT."
+  },
+  "hero": {
+    "eyebrow": "Accidentes de tránsito",
+    "lead": "¿Sufrió un accidente de tránsito y no sabe qué indemnización le corresponde?",
+    "paragraphs": [
+      "El SOAT protege a las víctimas de accidentes de tránsito, sin importar quién tuvo la culpa. Además de los gastos médicos, puede reconocer indemnizaciones por incapacidad permanente o por muerte, y gastos funerarios y de transporte."
+    ],
+    "emphasis": "En ORIÓN LEX le orientamos sobre lo que puede reclamar y le acompañamos en la reclamación."
+  },
+  "cases": {
+    "title": "¿Cuándo puede servirle?",
+    "items": [
+      "Quedó con secuelas o una incapacidad permanente tras un accidente.",
+      "Un familiar falleció en un accidente de tránsito.",
+      "La aseguradora negó o no ha respondido su reclamación.",
+      "No sabe qué documentos necesita para reclamar.",
+      "El vehículo no tenía SOAT o no fue identificado."
+    ]
+  },
+  "process": {
+    "title": "¿Cómo trabajamos?",
+    "steps": [
+      {
+        "title": "Diagnóstico",
+        "description": "Revisamos el accidente, sus consecuencias y qué indemnizaciones pueden aplicar."
+      },
+      {
+        "title": "Documentación",
+        "description": "Le indicamos y ayudamos a reunir los documentos que exige la reclamación."
+      },
+      {
+        "title": "Reclamación",
+        "description": "Presentamos la reclamación ante la aseguradora o la entidad que corresponda."
+      },
+      {
+        "title": "Seguimiento",
+        "description": "Acompañamos el trámite hasta obtener una respuesta."
+      }
+    ]
+  },
+  "faq": {
+    "title": "Preguntas frecuentes",
+    "items": [
+      {
+        "question": "¿Quién puede reclamar?",
+        "answer": "La víctima del accidente o, en caso de fallecimiento, sus beneficiarios."
+      },
+      {
+        "question": "¿Importa quién tuvo la culpa del accidente?",
+        "answer": "No. El SOAT protege a las víctimas sin importar la responsabilidad en el accidente."
+      },
+      {
+        "question": "¿Qué pasa si el vehículo no tenía SOAT?",
+        "answer": "La reclamación puede presentarse ante la ADRES, que responde en esos casos y cuando el vehículo no fue identificado."
+      }
+    ]
+  },
+  "closing": {
+    "title": "Revisemos su caso",
+    "text": "Escríbanos por WhatsApp y le orientaremos sobre la indemnización que puede reclamar.",
+    "coverage": "Atendemos de forma virtual en toda Colombia y a personas que viven en el exterior y necesitan resolver asuntos jurídicos en el país."
+  }
+}

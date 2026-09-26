@@ -1,0 +1,15 @@
+{
+  "eyebrow": "Servicios destacados",
+  "title": "Asuntos que atendemos con frecuencia",
+  "description": "Elija su situación para conocer cómo podemos ayudarle.",
+  "script": "Una solución empieza por entender su caso",
+  "cardCta": "Ver más",
+  "order": [
+    "eliminacion-reportes-datacredito",
+    "eliminacion-comparendos",
+    "derechos-de-peticion",
+    "acciones-de-tutela",
+    "indemnizacion-soat",
+    "victimas-conflicto-armado"
+  ]
+}

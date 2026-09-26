@@ -1,0 +1,66 @@
+{
+  "eyebrow": "Conocimiento Orión Lex",
+  "title": "Actualidad Jurídica",
+  "description": "Información jurídica clara y relevante sobre los cambios que pueden impactar sus derechos, obligaciones y decisiones.",
+  "heroImage": {
+    "src": "/images/actualidad/encabezado-balanza.webp",
+    "alt": ""
+  },
+  "featuredLabel": "Actualidad jurídica de la semana",
+  "featuredReadMore": "Leer artículo",
+  "latestTitle": "Últimos artículos",
+  "readMore": "Leer más",
+  "allLabel": "Ver todos los artículos",
+  "empty": "Pronto publicaremos nuevos artículos.",
+  "backLabel": "Volver a Actualidad Jurídica",
+  "sourcesLabel": "Fuentes",
+  "shareLabel": "Compartir",
+  "homeLimit": 4,
+  "categories": [
+    {
+      "slug": "actualidad-legislativa",
+      "name": "Actualidad legislativa"
+    },
+    {
+      "slug": "seguridad-social",
+      "name": "Seguridad social"
+    },
+    {
+      "slug": "transito",
+      "name": "Tránsito"
+    },
+    {
+      "slug": "datacredito",
+      "name": "Datacrédito"
+    },
+    {
+      "slug": "tutelas",
+      "name": "Tutelas"
+    },
+    {
+      "slug": "derecho-laboral",
+      "name": "Derecho laboral"
+    },
+    {
+      "slug": "jurisprudencia",
+      "name": "Jurisprudencia"
+    },
+    {
+      "slug": "guias",
+      "name": "Guías prácticas"
+    }
+  ],
+  "cta": {
+    "title": "¿Necesita orientación sobre alguno de estos temas?",
+    "text": "Nuestro equipo puede revisar su situación y orientarle sobre las alternativas jurídicas disponibles.",
+    "button": {
+      "label": "Hablar con Orión Lex",
+      "href": "whatsapp",
+      "message": "Hola, leí Actualidad Jurídica en la página de Orión Lex y quiero orientación sobre mi caso."
+    },
+    "image": {
+      "src": "/images/actualidad/cta-planta.webp",
+      "alt": ""
+    }
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "slug": "indemnizacion-soat",
+  "status": "provisional",
+  "title": "SOAT compensation claims",
+  "seo": {
+    "title": "SOAT compensation claims | Orión Lex",
+    "description": "Advice to claim SOAT compensation after a traffic accident: permanent disability, death and funeral expenses. Online service throughout Colombia."
+  },
+  "leadEvent": "soat_lead",
+  "icon": "hospital",
+  "image": {
+    "src": "/images/servicios-frecuentes/indemnizacion-soat.webp",
+    "alt": "SOAT insurance document on a clipboard next to a vehicle"
+  },
+  "cta": {
+    "label": "Request advice",
+    "message": "Hello, I saw the Orión Lex website and I would like information about a SOAT compensation claim."
+  },
+  "hero": {
+    "eyebrow": "Traffic accidents",
+    "lead": "Were you in a traffic accident and do not know what compensation you are entitled to?",
+    "paragraphs": [
+      "SOAT, Colombia's mandatory traffic accident insurance, protects accident victims regardless of who was at fault. In addition to medical expenses, it can cover compensation for permanent disability or death, as well as funeral and transportation expenses."
+    ],
+    "emphasis": "At ORIÓN LEX we guide you on what you can claim and support you throughout the claim."
+  },
+  "cases": {
+    "title": "When can it help you?",
+    "items": [
+      "You were left with after-effects or a permanent disability after an accident.",
+      "A family member died in a traffic accident.",
+      "The insurer denied or has not answered your claim.",
+      "You do not know which documents you need to file a claim.",
+      "The vehicle had no SOAT or was not identified."
+    ]
+  },
+  "process": {
+    "title": "How we work",
+    "steps": [
+      {
+        "title": "Diagnosis",
+        "description": "We review the accident, its consequences and which compensation may apply."
+      },
+      {
+        "title": "Documentation",
+        "description": "We tell you which documents the claim requires and help you gather them."
+      },
+      {
+        "title": "Claim",
+        "description": "We file the claim with the insurer or the corresponding entity."
+      },
+      {
+        "title": "Follow-up",
+        "description": "We follow the process until a response is obtained."
+      }
+    ]
+  },
+  "faq": {
+    "title": "Frequently asked questions",
+    "items": [
+      {
+        "question": "Who can file a claim?",
+        "answer": "The accident victim or, in case of death, their beneficiaries."
+      },
+      {
+        "question": "Does it matter who was at fault?",
+        "answer": "No. SOAT protects victims regardless of who was responsible for the accident."
+      },
+      {
+        "question": "What if the vehicle had no SOAT?",
+        "answer": "The claim can be filed with ADRES, which covers these cases and those in which the vehicle was not identified."
+      }
+    ]
+  },
+  "closing": {
+    "title": "Let's review your case",
+    "text": "Write to us on WhatsApp and we will guide you on the compensation you can claim.",
+    "coverage": "We work online throughout Colombia and with people living abroad who need to resolve legal matters in the country."
+  }
+}

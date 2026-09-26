@@ -1,0 +1,112 @@
+{
+  "slug": "eliminacion-comparendos",
+  "status": "final",
+  "title": "Eliminación de comparendos",
+  "seo": {
+    "title": "Eliminación de comparendos y multas de tránsito | Orión Lex",
+    "description": "¿Tiene un comparendo antiguo, una multa que no reconoce o una cuenta embargada? Diagnóstico inicial gratis con su número de cédula. Atención virtual en toda Colombia."
+  },
+  "leadEvent": "comparendos_lead",
+  "icon": "car",
+  "image": {
+    "src": "/images/servicios-frecuentes/eliminacion-comparendos.webp",
+    "alt": "Agente de tránsito diligenciando un documento junto a un vehículo"
+  },
+  "cta": {
+    "label": "Solicitar diagnóstico gratis",
+    "message": "Hola, quiero solicitar un diagnóstico de mis comparendos. Mi número de cédula es:"
+  },
+  "hero": {
+    "eyebrow": "Multas de tránsito",
+    "lead": "¿Tiene un comparendo antiguo, una multa que no reconoce o una cuenta embargada por una sanción de tránsito?",
+    "paragraphs": [],
+    "emphasis": "En ORIÓN LEX revisamos su caso y adelantamos las acciones jurídicas que correspondan para solicitar la eliminación del comparendo o la multa, cuando sea procedente.",
+    "highlight": "Diagnóstico inicial gratis. Solo necesitamos su número de cédula."
+  },
+  "cases": {
+    "title": "¿En qué casos podemos ayudarle?",
+    "items": [
+      "Comparendos y multas antiguas.",
+      "Comparendos o multas por infracciones que no reconoce haber cometido.",
+      "Sanciones relacionadas con suplantación de identidad.",
+      "Comparendos asociados a una placa clonada, gemeliada o alterada.",
+      "Cobros coactivos y cuentas embargadas por multas de tránsito."
+    ]
+  },
+  "process": {
+    "title": "¿Cómo trabajamos?",
+    "steps": [
+      {
+        "title": "Diagnóstico gratis",
+        "description": "Revisamos su historial de comparendos y multas, las fechas y el estado de cada obligación. Le indicamos si encontramos una vía jurídica para solicitar su eliminación."
+      },
+      {
+        "title": "Estrategia jurídica",
+        "description": "Adelantamos las actuaciones que correspondan para defender sus derechos."
+      },
+      {
+        "title": "Gestión y seguimiento",
+        "description": "Hacemos seguimiento ante las autoridades hasta obtener una respuesta a las solicitudes presentadas."
+      },
+      {
+        "title": "Actualización de registros",
+        "description": "Si el resultado es favorable, solicitamos y verificamos la actualización del SIMIT y de los demás registros que correspondan, así como el levantamiento de los embargos derivados de la multa eliminada."
+      }
+    ]
+  },
+  "guarantee": {
+    "title": "Nuestra garantía",
+    "text": "Si asumimos su caso y, después de nuestra gestión, no logramos la eliminación acordada, le devolvemos el 100 % de lo que nos haya pagado por este servicio. ORIÓN LEX asume el trabajo jurídico realizado."
+  },
+  "stats": {
+    "prefix": "Más de",
+    "value": 1000,
+    "label": "comparendos eliminados"
+  },
+  "testimonials": {
+    "title": "Lo que dicen nuestros clientes",
+    "items": []
+  },
+  "faq": {
+    "title": "Preguntas frecuentes",
+    "items": [
+      {
+        "question": "¿Se pueden eliminar todos los comparendos y multas?",
+        "answer": "Existen distintas vías para solicitar su eliminación, como la prescripción, la caducidad o los errores en la identificación de la persona. Con su número de cédula revisamos cuál puede servirle."
+      },
+      {
+        "question": "¿Solo se eliminan comparendos de más de seis años?",
+        "answer": "No. En algunos casos encontramos opciones jurídicas desde el primer año. No tiene que esperar seis años para consultar su comparendo."
+      },
+      {
+        "question": "¿Mi multa tiene más de seis años: vale la pena revisarla?",
+        "answer": "Sí. Es especialmente importante revisar las fechas del cobro y sus notificaciones: una multa antigua puede reunir los requisitos para solicitar su prescripción. El diagnóstico es gratis."
+      },
+      {
+        "question": "¿Cómo sé que ORIÓN LEX es una empresa seria y que mi dinero está seguro?",
+        "answer": "Puede verificar nuestro NIT y registro en Cámara de Comercio, así como nuestra página web y canales oficiales."
+      },
+      {
+        "question": "¿Qué pasa si encuentran que mi multa no se puede eliminar?",
+        "answer": "Se lo explicamos en el diagnóstico gratuito, antes de que pague. También le indicamos qué otras opciones tiene."
+      },
+      {
+        "question": "¿Qué pasa si pago y no logran eliminar mi multa?",
+        "answer": "Si aceptamos su caso y no conseguimos la eliminación acordada, le devolvemos el 100 % de lo que nos haya pagado por este servicio."
+      },
+      {
+        "question": "¿Cuánto tarda el trámite?",
+        "answer": "El tiempo estimado es de 30 a 90 días. Le informaremos sobre los avances y las respuestas de la autoridad durante el proceso."
+      },
+      {
+        "question": "¿Puedo comprar o vender un vehículo si tengo multas?",
+        "answer": "Puede acordar la compraventa, pero para registrar el traspaso se exige que comprador y vendedor estén a paz y salvo por multas de tránsito. Revisemos primero si puede solicitar la eliminación de las suyas."
+      }
+    ]
+  },
+  "closing": {
+    "title": "Empecemos con su caso",
+    "text": "Envíenos únicamente su número de cédula por WhatsApp. Revisaremos su historial y le indicaremos si encontramos una opción jurídica para solicitar la eliminación.",
+    "coverage": "Atendemos de forma virtual en toda Colombia y a personas en el exterior que tengan comparendos o multas en Colombia."
+  }
+}

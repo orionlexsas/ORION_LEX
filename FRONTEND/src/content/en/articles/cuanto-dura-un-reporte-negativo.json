@@ -1,0 +1,25 @@
+{
+  "slug": "cuanto-dura-un-reporte-negativo",
+  "status": "provisional",
+  "published": true,
+  "featured": false,
+  "title": "How long does a negative report remain?",
+  "category": "datacredito",
+  "date": "2026-09-15",
+  "excerpt": "What you need to know about how long negative reports remain with credit bureaus.",
+  "body": "Many people believe that once they pay an overdue debt, the negative report immediately disappears from credit bureaus such as Datacrédito. That is not always the case.\n\n## How long does negative information remain?\n\nLaw 1266 of 2008, as amended by Law 2157 of 2021, establishes that negative information remains **for twice the time the debt was overdue**, up to a **maximum of four years** from the date the obligation was paid.\n\nFor example, if a person was six months overdue and then paid, the negative report could remain for up to twelve months after payment.\n\n## Must they notify you before reporting?\n\nYes. The entity must notify you in advance that you will be reported, so that you can pay or dispute the information before the report takes effect.\n\n## When should you have your case reviewed?\n\n- You already paid and the report remains after the deadline.\n- You do not recognize the debt or the amount reported.\n- You did not receive prior notice.\n- You believe the retention period has already ended.\n\nIn these cases you can file a claim with the source of the information or with the credit bureau. If the response does not resolve your situation, there are other legal options.",
+  "sources": [
+    {
+      "label": "Law 2157 of 2021 (Colombian Senate, in Spanish)",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2157_2021.html"
+    },
+    {
+      "label": "Law 1266 of 2008 (Colombian Senate, in Spanish)",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1266_2008.html"
+    }
+  ],
+  "image": {
+    "src": "/images/actualidad/reporte-negativo.webp",
+    "alt": "Person reviewing a credit report on a laptop"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "slug": "comparendos-antiguos-que-revisar",
+  "status": "provisional",
+  "published": true,
+  "featured": false,
+  "title": "Comparendos antiguos: qué revisar",
+  "category": "transito",
+  "date": "2026-09-18",
+  "excerpt": "Elementos importantes para evaluar la validez y exigibilidad de comparendos anteriores.",
+  "body": "Tener comparendos o multas antiguas puede impedirle, por ejemplo, registrar el traspaso de un vehículo. Pero las sanciones de tránsito no se pueden cobrar indefinidamente.\n\n## ¿Qué es la prescripción?\n\nEs la pérdida del derecho de la autoridad a cobrar una sanción cuando deja pasar el tiempo que fija la ley sin actuar. El Código Nacional de Tránsito (Ley 769 de 2002, artículo 159) regula este término para las sanciones de tránsito.\n\n## Por qué importan las fechas\n\nEl término puede interrumpirse con ciertas actuaciones de la autoridad, como el mandamiento de pago en un proceso de cobro coactivo. Por eso, para saber si una multa prescribió no basta con su antigüedad: hay que revisar **las fechas del comparendo, de la sanción y de cada notificación**.\n\n## Otras vías\n\nAdemás de la prescripción, existen otras razones para solicitar la eliminación de un comparendo, como la caducidad o los errores en la identificación del infractor, por ejemplo en casos de suplantación o de placas clonadas.\n\n## ¿Cómo saber si su caso aplica?\n\nConsulte su estado de cuenta en el SIMIT y revise la información con un abogado antes de pagar o firmar acuerdos de pago.",
+  "sources": [
+    {
+      "label": "Ley 769 de 2002, Código Nacional de Tránsito (Secretaría del Senado)",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_0769_2002.html"
+    },
+    {
+      "label": "SIMIT: consulta de comparendos y multas",
+      "url": "https://www.fcm.org.co/simit/"
+    }
+  ],
+  "image": {
+    "src": "/images/actualidad/comparendos-antiguos.webp",
+    "alt": "Agente de tránsito con una libreta junto a una vía con carros"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "cuando-utilizar-accion-de-tutela",
+  "status": "provisional",
+  "published": true,
+  "featured": false,
+  "title": "When should you use a tutela action?",
+  "category": "tutelas",
+  "date": "2026-09-12",
+  "excerpt": "Situations in which a tutela action can be an effective tool to protect your rights.",
+  "image": {
+    "src": "/images/actualidad/accion-de-tutela.webp",
+    "alt": "Judge's gavel on a wooden desk"
+  },
+  "body": "The tutela action, established in article 86 of the Colombian Constitution, allows you to ask a judge for the immediate protection of a fundamental right when an authority or, in certain cases, a private party violates or threatens it.\n\n## When does it apply?\n\n- When there is no other effective legal remedy.\n- When, even if another remedy exists, it is used to prevent irreparable harm.\n\n## Common cases\n\n- Denial of treatments, medicines or medical appointments.\n- No response to a petition.\n- Impact on minimum subsistence.\n- Violation of due process.\n\n## How does it work?\n\nAnyone can file it, without a lawyer. The judge must decide within 10 business days (Decree 2591 of 1991). The decision can be appealed and, if it is not complied with, a contempt proceeding can be started.",
+  "sources": [
+    {
+      "label": "Decree 2591 of 1991 (Colombian Senate, in Spanish)",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/decreto_2591_1991.html"
+    }
+  ]
+}

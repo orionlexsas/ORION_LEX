@@ -1,0 +1,112 @@
+{
+  "slug": "eliminacion-comparendos",
+  "status": "final",
+  "title": "Removal of traffic tickets",
+  "seo": {
+    "title": "Removal of traffic tickets and fines | Orión Lex",
+    "description": "Do you have an old traffic ticket, a fine you do not recognize or a bank account seized over a traffic penalty? Free initial diagnosis with your ID number."
+  },
+  "leadEvent": "comparendos_lead",
+  "icon": "car",
+  "image": {
+    "src": "/images/servicios-frecuentes/eliminacion-comparendos.webp",
+    "alt": "Traffic officer filling out a document next to a vehicle"
+  },
+  "cta": {
+    "label": "Request a free diagnosis",
+    "message": "Hello, I would like to request a diagnosis of my traffic tickets. My ID number is:"
+  },
+  "hero": {
+    "eyebrow": "Traffic fines",
+    "lead": "Do you have an old traffic ticket, a fine you do not recognize or a bank account seized over a traffic penalty?",
+    "paragraphs": [],
+    "emphasis": "At ORIÓN LEX we review your case and take the appropriate legal actions to request the removal of the ticket or fine, when applicable.",
+    "highlight": "Free initial diagnosis. All we need is your ID number."
+  },
+  "cases": {
+    "title": "In which cases can we help you?",
+    "items": [
+      "Old traffic tickets and fines.",
+      "Tickets or fines for violations you do not recognize having committed.",
+      "Penalties related to identity theft.",
+      "Tickets linked to a cloned, duplicated or altered license plate.",
+      "Coercive collection and bank accounts seized over traffic fines."
+    ]
+  },
+  "process": {
+    "title": "How we work",
+    "steps": [
+      {
+        "title": "Free diagnosis",
+        "description": "We review your history of tickets and fines, the dates and the status of each obligation. We tell you whether we find a legal path to request their removal."
+      },
+      {
+        "title": "Legal strategy",
+        "description": "We carry out the appropriate actions to defend your rights."
+      },
+      {
+        "title": "Management and follow-up",
+        "description": "We follow up with the authorities until we obtain a response to the requests filed."
+      },
+      {
+        "title": "Records update",
+        "description": "If the result is favorable, we request and verify the update of SIMIT and the other applicable records, as well as the release of seizures arising from the removed fine."
+      }
+    ]
+  },
+  "guarantee": {
+    "title": "Our guarantee",
+    "text": "If we take on your case and, after our work, we do not achieve the agreed removal, we refund 100% of what you paid us for this service. ORIÓN LEX absorbs the legal work performed."
+  },
+  "stats": {
+    "prefix": "More than",
+    "value": 1000,
+    "label": "traffic tickets removed"
+  },
+  "testimonials": {
+    "title": "What our clients say",
+    "items": []
+  },
+  "faq": {
+    "title": "Frequently asked questions",
+    "items": [
+      {
+        "question": "Can all traffic tickets and fines be removed?",
+        "answer": "There are different ways to request their removal, such as the statute of limitations, expiration or errors in identifying the person. With your ID number we check which one may apply to you."
+      },
+      {
+        "question": "Can only tickets older than six years be removed?",
+        "answer": "No. In some cases we find legal options from the first year. You do not have to wait six years to have your ticket reviewed."
+      },
+      {
+        "question": "My fine is more than six years old: is it worth reviewing?",
+        "answer": "Yes. It is especially important to review the collection dates and their notices: an old fine may meet the requirements to request its statute of limitations. The diagnosis is free."
+      },
+      {
+        "question": "How do I know ORIÓN LEX is a serious company and my money is safe?",
+        "answer": "You can verify our tax ID (NIT) and Chamber of Commerce registration, as well as our website and official channels."
+      },
+      {
+        "question": "What happens if you find that my fine cannot be removed?",
+        "answer": "We explain it in the free diagnosis, before you pay. We also tell you what other options you have."
+      },
+      {
+        "question": "What happens if I pay and you cannot remove my fine?",
+        "answer": "If we accept your case and do not achieve the agreed removal, we refund 100% of what you paid us for this service."
+      },
+      {
+        "question": "How long does the process take?",
+        "answer": "The estimated time is 30 to 90 days. We will keep you informed of progress and of the authority's responses during the process."
+      },
+      {
+        "question": "Can I buy or sell a vehicle if I have fines?",
+        "answer": "You can agree on the sale, but registering the transfer requires both buyer and seller to be clear of traffic fines. Let's first check whether you can request the removal of yours."
+      }
+    ]
+  },
+  "closing": {
+    "title": "Let's start with your case",
+    "text": "Send us only your ID number on WhatsApp. We will review your history and tell you whether we find a legal option to request the removal.",
+    "coverage": "We work online throughout Colombia and with people abroad who have traffic tickets or fines in Colombia."
+  }
+}

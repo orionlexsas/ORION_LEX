@@ -1,25 +1,21 @@
 {
-  "meta": {
-    "title": "Orión Lex | Legal services in Bogotá",
-    "description": "Orión Lex, legal services in Bogotá. Professional legal advice and personalized support for individuals and businesses in Colombia."
-  },
   "a11y": {
     "goHome": "{{name}}, go to home page",
+    "skipToContent": "Skip to content",
     "mainNav": "Main",
     "legalNav": "Legal",
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
-    "moreAbout": "about {{title}}",
     "opensWhatsApp": "(opens WhatsApp)",
-    "whatsappChat": "Chat with us on WhatsApp",
+    "whatsappChat": "Message us on WhatsApp",
     "backToTop": "Back to top",
     "socialNav": "Social media",
     "socialProfile": "{{brand}} on {{network}}",
     "opensNewTab": "(opens in a new tab)"
   },
   "theme": {
-    "toLight": "Switch to light theme",
-    "toDark": "Switch to dark theme"
+    "toLight": "Turn on light mode",
+    "toDark": "Turn on dark mode"
   },
   "language": {
     "label": "Language",
@@ -30,38 +26,61 @@
     }
   },
   "contact": {
-    "title": "Contact",
+    "eyebrow": "Contact",
+    "title": "Tell us about your case",
+    "description": "Write to us on WhatsApp or leave your details and our team will get in touch with you.",
+    "whatsappLabel": "WhatsApp and phone",
+    "emailLabel": "Email",
     "fields": {
       "fullName": "Full name",
+      "phone": "Phone",
       "email": "Email",
+      "subject": "Subject",
       "message": "Message"
     },
-    "send": "Send via WhatsApp",
-    "whatsappMessage": "Hello, I am {{fullName}} ({{email}}).\n\n{{message}}",
-    "success": "We opened WhatsApp with your message. Just tap send in the chat.",
+    "subjectPlaceholder": "Select a subject (optional)",
+    "otherSubject": "Other matter",
+    "privacyPrefix": "I accept the processing of my personal data in accordance with the",
+    "privacyLink": "privacy policy",
+    "send": "Send message",
+    "sending": "Sending…",
+    "success": "Thank you for contacting us. We have received your information and our team will get in touch with you.",
+    "sendAnother": "Send another message",
     "errors": {
       "fullNameRequired": "Please enter your full name",
       "fullNameTooLong": "Maximum 120 characters",
       "emailRequired": "Please enter your email",
       "emailInvalid": "Invalid email",
-      "phoneTooLong": "Maximum 30 characters",
+      "phoneRequired": "Please enter your phone number",
+      "phoneInvalid": "Invalid phone number",
+      "subjectTooLong": "Maximum 120 characters",
       "messageRequired": "Tell us how we can help you",
       "messageTooShort": "Tell us a bit more",
-      "messageTooLong": "Maximum 5000 characters"
+      "messageTooLong": "Maximum 5000 characters",
+      "privacyRequired": "You must accept the privacy policy to send the message",
+      "network": "The message could not be sent. Please try again or write to us on WhatsApp."
     }
+  },
+  "landing": {
+    "breadcrumb": "Breadcrumb",
+    "home": "Home",
+    "services": "Services",
+    "testimonialPending": "Review pending"
+  },
+  "share": {
+    "whatsapp": "Share on WhatsApp",
+    "facebook": "Share on Facebook",
+    "copy": "Copy link",
+    "copied": "Link copied",
+    "more": "More sharing options"
+  },
+  "legal": {
+    "pendingNotice": "Document in preparation: Orión Lex will publish the final text once approved."
   },
   "notFound": {
     "title": "Page not found",
+    "description": "The page you are looking for does not exist or has moved.",
     "back": "Back to home"
-  },
-  "carousel": {
-    "label": "Clients carousel",
-    "slide": "{{current}} of {{total}}",
-    "previous": "Previous",
-    "next": "Next",
-    "pause": "Pause automatic rotation",
-    "play": "Resume automatic rotation",
-    "goTo": "Go to card {{number}}"
   },
   "intro": {
     "label": "Introduction",

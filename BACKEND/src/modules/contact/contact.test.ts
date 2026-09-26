@@ -19,8 +19,10 @@ describe('POST /api/v1/contact', () => {
     const { app, contactService } = setup();
     const res = await request(app).post('/api/v1/contact').send({
       fullName: 'Ana Pérez',
+      phone: '313 000 0000',
       email: 'ana@example.com',
       message: 'Necesito asesoría laboral.',
+      privacyAccepted: true,
     });
     expect(res.status).toBe(201);
     expect(res.body.id).toBe('msg_1');

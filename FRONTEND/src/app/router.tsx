@@ -1,18 +1,73 @@
-import { createBrowserRouter } from 'react-router';
-import { SiteLayout } from '@/components/layout/SiteLayout';
-import { HomePage } from '@/pages/public/HomePage';
+import { createBrowserRouter, type RouteObject } from 'react-router';
+import { SiteLayout, type RouteHandle } from '@/components/layout/SiteLayout';
+import { getContent } from '@/content';
+import { defaultLanguage } from '@/i18n';
+import { AboutPage } from '@/pages/public/AboutPage';
+import { BlogPage } from '@/pages/public/BlogPage';
 import { ContactPage } from '@/pages/public/ContactPage';
-import { ServicesPage } from '@/pages/public/ServicesPage';
+import { HomePage } from '@/pages/public/HomePage';
+import { LandingPage } from '@/pages/public/LandingPage';
 import { NotFoundPage } from '@/pages/public/NotFoundPage';
+import { PracticeAreaPage } from '@/pages/public/PracticeAreaPage';
+import { ServicesPage } from '@/pages/public/ServicesPage';
+
+/** Páginas que ya cierran con su propio llamado: sin la franja "Hablemos de su caso". */
+const noFooterCta: RouteHandle = { footerCta: false };
+
+/*
+ * Una ruta por landing (/eliminacion-comparendos…), generada desde el contenido: los slugs son
+ * iguales en todos los idiomas. Así cada tarjeta tiene su URL y no quedan rutas sin página.
+ */
+const landingRoutes: RouteObject[] = getContent(defaultLanguage).landings.map((landing) => ({
+  path: landing.slug,
+  element: <LandingPage slug={landing.slug} />,
+  handle: noFooterCta,
+}));
+
+/** Una página por área del derecho: /servicios/<slug> (mismos slugs en todos los idiomas). */
+const practiceAreaRoutes: RouteObject[] = getContent(defaultLanguage).services.items.map(
+  (item) => ({
+    path: `servicios/${item.slug}`,
+    element: <PracticeAreaPage slug={item.slug} />,
+  }),
+);
 
 export const router = createBrowserRouter([
   {
     path: '/',
     Component: SiteLayout,
+    // Mientras carga una página diferida (artículo, páginas legales) al entrar directo a ella.
+    HydrateFallback: () => <div className="min-h-dvh" />,
     children: [
-      { index: true, Component: HomePage },
+      { index: true, Component: HomePage, handle: noFooterCta },
       { path: 'servicios', Component: ServicesPage },
-      { path: 'contacto', Component: ContactPage },
+      { path: 'nosotros', Component: AboutPage },
+      { path: 'actualidad', Component: BlogPage, handle: noFooterCta },
+      {
+        // Los artículos y las páginas legales usan Markdown: se cargan aparte.
+        path: 'actualidad/:slug',
+        handle: noFooterCta,
+        lazy: async () => ({
+          Component: (await import('@/pages/public/ArticlePage')).ArticlePage,
+        }),
+      },
+      { path: 'contacto', Component: ContactPage, handle: noFooterCta },
+      {
+        path: 'privacidad',
+        lazy: async () => {
+          const { LegalPage } = await import('@/pages/public/LegalPage');
+          return { element: <LegalPage kind="privacy" /> };
+        },
+      },
+      {
+        path: 'terminos',
+        lazy: async () => {
+          const { LegalPage } = await import('@/pages/public/LegalPage');
+          return { element: <LegalPage kind="terms" /> };
+        },
+      },
+      ...landingRoutes,
+      ...practiceAreaRoutes,
       { path: '*', Component: NotFoundPage },
     ],
   },

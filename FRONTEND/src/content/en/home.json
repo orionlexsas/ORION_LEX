@@ -1,81 +1,32 @@
 {
   "hero": {
-    "eyebrow": "Legal solutions for your peace of mind",
-    "titleLines": [
-      {
-        "text": "Legal defense with",
-        "highlight": false
-      },
-      {
-        "text": "experience, trust",
-        "highlight": true
-      },
-      {
-        "text": "and results",
-        "highlight": false
-      }
-    ],
-    "description": "We provide professional legal advice and personalized support for individuals and businesses in Colombia.",
+    "eyebrow": "Orión Lex Servicios Jurídicos",
+    "title": "Clear legal solutions for your case",
+    "description": "We review your situation, explain your options clearly and take the legal steps your case requires. Online service throughout Colombia and for Colombians abroad.",
     "primaryCta": {
-      "label": "Book a consultation",
-      "href": "whatsapp"
+      "label": "Tell us about your case",
+      "href": "whatsapp",
+      "message": "Hello, I saw the Orión Lex website and I would like to tell you about my case."
     },
     "secondaryCta": {
-      "label": "Learn more about our approach",
-      "href": "/#enfoque"
+      "label": "See services",
+      "href": "/#asuntos"
     },
+    "script": "Clarity to move forward",
+    "points": [
+      {
+        "icon": "laptop",
+        "text": "Online service throughout Colombia"
+      },
+      {
+        "icon": "message-circle",
+        "text": "Replies on WhatsApp"
+      }
+    ],
     "image": {
-      "src": "/images/hero-abogado.webp",
-      "srcMobile": "/images/hero-abogado-960.webp",
-      "alt": "Orión Lex lawyer smiling in the office, next to a statue of Lady Justice",
-      "light": {
-        "src": "/images/hero-abogado-claro.webp",
-        "srcMobile": "/images/hero-abogado-claro-960.webp"
-      }
-    },
-    "highlights": [
-      {
-        "icon": "user",
-        "title": "Personalized advice",
-        "description": "Solutions tailored to your situation."
-      },
-      {
-        "icon": "clock",
-        "title": "Timely attention",
-        "description": "Quick response and ongoing support."
-      },
-      {
-        "icon": "chart",
-        "title": "Legal commitment",
-        "description": "Strategy, honesty and a focus on results."
-      }
-    ],
-    "contactItems": [
-      {
-        "icon": "phone",
-        "label": "Call us",
-        "value": "+57 313 234 4178",
-        "href": "tel:+573132344178"
-      },
-      {
-        "icon": "mail",
-        "label": "Write to us",
-        "value": "sergio.ardila@outlook.com",
-        "href": "mailto:sergio.ardila@outlook.com"
-      },
-      {
-        "icon": "map-pin",
-        "label": "Visit us",
-        "value": "Bogotá, Colombia",
-        "detail": "In-person or virtual consultation"
-      }
-    ],
-    "signature": {
-      "scriptLines": ["Your ally", "at every step"],
-      "brand": "Orión Lex",
-      "tagline": "Legal services"
-    },
-    "quote": "The law is not just a set of rules, it is a tool to build a better future.",
-    "scrollHint": "Scroll to learn more"
+      "src": "/images/hero/portada-1672.webp",
+      "srcMobile": "/images/hero/portada-960.webp",
+      "alt": "Orión Lex Servicios Jurídicos team"
+    }
   }
 }

@@ -1,0 +1,31 @@
+{
+  "eyebrow": "Cobertura",
+  "title": "Atención en toda Colombia y en el exterior",
+  "text": "Atendemos de forma virtual en toda Colombia y a personas que viven en el exterior y necesitan resolver asuntos jurídicos en el país.",
+  "points": [
+    {
+      "icon": "laptop",
+      "title": "Atención virtual",
+      "text": "Resolvemos su caso sin que tenga que desplazarse."
+    },
+    {
+      "icon": "globe",
+      "title": "Colombianos en el exterior",
+      "text": "Gestionamos sus asuntos en Colombia desde donde esté."
+    },
+    {
+      "icon": "phone",
+      "title": "Contacto directo",
+      "text": "Hable con nosotros por WhatsApp, teléfono o correo."
+    }
+  ],
+  "image": {
+    "src": "/images/ubicaciones/mapa-colombia-gris.webp",
+    "alt": "Mapa de Colombia"
+  },
+  "cta": {
+    "label": "Hablar con un abogado",
+    "href": "whatsapp",
+    "message": "Hola, vi la página de Orión Lex y quiero hablar con un abogado."
+  }
+}

@@ -1,25 +1,21 @@
 {
-  "meta": {
-    "title": "Orión Lex | Servicios jurídicos en Bogotá",
-    "description": "Orión Lex, servicios jurídicos en Bogotá. Asesoría legal profesional y acompañamiento personalizado para personas y empresas en Colombia."
-  },
   "a11y": {
     "goHome": "{{name}}, ir al inicio",
+    "skipToContent": "Ir al contenido",
     "mainNav": "Principal",
     "legalNav": "Legal",
     "openMenu": "Abrir menú",
     "closeMenu": "Cerrar menú",
-    "moreAbout": "sobre {{title}}",
     "opensWhatsApp": "(se abre WhatsApp)",
-    "whatsappChat": "Escríbenos por WhatsApp",
+    "whatsappChat": "Escríbanos por WhatsApp",
     "backToTop": "Volver arriba",
     "socialNav": "Redes sociales",
     "socialProfile": "{{brand}} en {{network}}",
     "opensNewTab": "(se abre en una pestaña nueva)"
   },
   "theme": {
-    "toLight": "Cambiar a tema claro",
-    "toDark": "Cambiar a tema oscuro"
+    "toLight": "Activar modo claro",
+    "toDark": "Activar modo oscuro"
   },
   "language": {
     "label": "Idioma",
@@ -30,38 +26,61 @@
     }
   },
   "contact": {
-    "title": "Contacto",
+    "eyebrow": "Contacto",
+    "title": "Cuéntenos su caso",
+    "description": "Escríbanos por WhatsApp o déjenos sus datos y nuestro equipo se comunicará con usted.",
+    "whatsappLabel": "WhatsApp y teléfono",
+    "emailLabel": "Correo",
     "fields": {
       "fullName": "Nombre completo",
-      "email": "Correo",
+      "phone": "Teléfono",
+      "email": "Correo electrónico",
+      "subject": "Asunto",
       "message": "Mensaje"
     },
-    "send": "Enviar por WhatsApp",
-    "whatsappMessage": "Hola, soy {{fullName}} ({{email}}).\n\n{{message}}",
-    "success": "Abrimos WhatsApp con tu mensaje. Solo pulsa enviar en el chat.",
+    "subjectPlaceholder": "Seleccione un asunto (opcional)",
+    "otherSubject": "Otro asunto",
+    "privacyPrefix": "Acepto el tratamiento de mis datos personales conforme a la",
+    "privacyLink": "política de privacidad",
+    "send": "Enviar mensaje",
+    "sending": "Enviando…",
+    "success": "Gracias por contactarnos. Hemos recibido su información y nuestro equipo se comunicará con usted.",
+    "sendAnother": "Enviar otro mensaje",
     "errors": {
-      "fullNameRequired": "Escribe tu nombre completo",
+      "fullNameRequired": "Escriba su nombre completo",
       "fullNameTooLong": "Máximo 120 caracteres",
-      "emailRequired": "Escribe tu correo",
+      "emailRequired": "Escriba su correo",
       "emailInvalid": "Correo no válido",
-      "phoneTooLong": "Máximo 30 caracteres",
-      "messageRequired": "Cuéntanos en qué podemos ayudarte",
-      "messageTooShort": "Cuéntanos un poco más",
-      "messageTooLong": "Máximo 5000 caracteres"
+      "phoneRequired": "Escriba su teléfono",
+      "phoneInvalid": "Teléfono no válido",
+      "subjectTooLong": "Máximo 120 caracteres",
+      "messageRequired": "Cuéntenos en qué podemos ayudarle",
+      "messageTooShort": "Cuéntenos un poco más",
+      "messageTooLong": "Máximo 5000 caracteres",
+      "privacyRequired": "Debe aceptar la política de privacidad para enviar el mensaje",
+      "network": "No se pudo enviar el mensaje. Inténtelo de nuevo o escríbanos por WhatsApp."
     }
+  },
+  "landing": {
+    "breadcrumb": "Ruta de navegación",
+    "home": "Inicio",
+    "services": "Servicios",
+    "testimonialPending": "Reseña pendiente"
+  },
+  "share": {
+    "whatsapp": "Compartir por WhatsApp",
+    "facebook": "Compartir en Facebook",
+    "copy": "Copiar enlace",
+    "copied": "Enlace copiado",
+    "more": "Más opciones para compartir"
+  },
+  "legal": {
+    "pendingNotice": "Documento en preparación: el texto definitivo lo publicará Orión Lex una vez aprobado."
   },
   "notFound": {
     "title": "Página no encontrada",
+    "description": "La página que busca no existe o cambió de dirección.",
     "back": "Volver al inicio"
-  },
-  "carousel": {
-    "label": "Carrusel de clientes",
-    "slide": "{{current}} de {{total}}",
-    "previous": "Anterior",
-    "next": "Siguiente",
-    "pause": "Pausar el paso automático",
-    "play": "Reanudar el paso automático",
-    "goTo": "Ir a la tarjeta {{number}}"
   },
   "intro": {
     "label": "Introducción",

@@ -1,0 +1,66 @@
+{
+  "eyebrow": "Orión Lex Insights",
+  "title": "Legal News",
+  "description": "Clear, relevant legal information about changes that may affect your rights, obligations and decisions.",
+  "heroImage": {
+    "src": "/images/actualidad/encabezado-balanza.webp",
+    "alt": ""
+  },
+  "featuredLabel": "Legal news of the week",
+  "featuredReadMore": "Read article",
+  "latestTitle": "Latest articles",
+  "readMore": "Read more",
+  "allLabel": "See all articles",
+  "empty": "New articles coming soon.",
+  "backLabel": "Back to Legal News",
+  "sourcesLabel": "Sources",
+  "shareLabel": "Share",
+  "homeLimit": 4,
+  "categories": [
+    {
+      "slug": "actualidad-legislativa",
+      "name": "Legislative news"
+    },
+    {
+      "slug": "seguridad-social",
+      "name": "Social security"
+    },
+    {
+      "slug": "transito",
+      "name": "Traffic"
+    },
+    {
+      "slug": "datacredito",
+      "name": "Credit reports"
+    },
+    {
+      "slug": "tutelas",
+      "name": "Tutela actions"
+    },
+    {
+      "slug": "derecho-laboral",
+      "name": "Labor law"
+    },
+    {
+      "slug": "jurisprudencia",
+      "name": "Case law"
+    },
+    {
+      "slug": "guias",
+      "name": "Practical guides"
+    }
+  ],
+  "cta": {
+    "title": "Do you need guidance on any of these topics?",
+    "text": "Our team can review your situation and guide you on the legal options available.",
+    "button": {
+      "label": "Talk to Orión Lex",
+      "href": "whatsapp",
+      "message": "Hello, I read Legal News on the Orión Lex website and I would like guidance on my case."
+    },
+    "image": {
+      "src": "/images/actualidad/cta-planta.webp",
+      "alt": ""
+    }
+  }
+}

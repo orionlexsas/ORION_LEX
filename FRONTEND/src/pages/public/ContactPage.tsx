@@ -1,12 +1,17 @@
-import { useTranslation } from 'react-i18next';
-import { ContactForm } from '@/features/contact';
+import { useContent } from '@/content';
+import { ContactSection } from '@/features/contact';
+import { seoFor } from '@/seo/pages';
+import { useSeo } from '@/seo/use-seo';
 
 export function ContactPage() {
-  const { t } = useTranslation();
+  const content = useContent();
+  useSeo(seoFor.contact(content));
   return (
-    <section className="mx-auto max-w-xl px-4 py-16">
-      <h1 className="mb-8 font-serif text-4xl">{t('contact.title')}</h1>
-      <ContactForm />
-    </section>
+    <ContactSection
+      id="contacto"
+      contact={content.site.contact}
+      subjects={content.landings.map((l) => l.title)}
+      headingLevel="h1"
+    />
   );
 }

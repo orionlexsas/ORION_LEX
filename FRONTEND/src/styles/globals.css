@@ -2,35 +2,36 @@
 
 /* Variante `light:` para ajustes puntuales del tema claro (p. ej. light:opacity-50). */
 @custom-variant light (&:where([data-theme='light'], [data-theme='light'] *));
+/* Variante `dark:` ligada al tema elegido (no a la preferencia del sistema). */
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
 
 /*
- * Tokens de diseño de Orión Lex. Los componentes usan estos nombres, nunca colores sueltos.
- * El tema oscuro es el predeterminado; el claro redefine los mismos tokens (ver más abajo).
+ * Tokens de diseño de Orión Lex (manual de identidad): negro #000000, naranja #F57C00 y
+ * blanco #FFFFFF. El naranja es solo acento. Los componentes usan estos nombres, nunca hex sueltos.
+ * El tema claro es el predeterminado; el oscuro redefine los mismos tokens (ver más abajo).
  */
 @theme {
-  --font-sans: 'Figtree Variable', ui-sans-serif, system-ui, sans-serif;
-  --font-serif: 'Libre Caslon Text', ui-serif, Georgia, serif;
-  --font-display: 'Cinzel', ui-serif, Georgia, serif;
+  --font-sans: 'Montserrat Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Playfair Display Variable', ui-serif, Georgia, serif;
+  /* Solo para la frase decorativa del hero */
   --font-script: 'Allura', cursive;
 
-  --color-background: #0b0a08;
-  --color-surface: #14120f;
-  --color-foreground: #f6f2ea;
-  --color-muted: #b8b1a5;
-  --color-border: rgb(255 255 255 / 0.14);
-  /* Dorado para textos, bordes e íconos */
-  --color-gold: #e3bf76;
-  /* Dorado de palabras destacadas en títulos */
-  --color-gold-light: #f3d99f;
-  /* Texto sobre un fondo dorado sólido (bg-gold) */
-  --color-on-gold: #1b1409;
-  /* Texto de los botones dorados (su degradado es igual en ambos temas) */
-  --color-gold-ink: #1b1409;
-  --color-danger: #f0877d;
-  /* Fondo oscuro fijo (igual en ambos temas), p. ej. controles sobre fotos */
-  --color-night: #14120f;
-  /* Dorado anaranjado intenso de los marcadores del mapa (igual en ambos temas) */
-  --color-beacon: #dc8a1a;
+  --color-background: #ffffff;
+  /* Fondo alterno de secciones y tarjetas */
+  --color-surface: #f6f5f3;
+  --color-foreground: #0a0a0a;
+  --color-muted: #5c5c5c;
+  --color-border: rgb(0 0 0 / 0.1);
+  /* Naranja corporativo: botones, líneas, íconos y detalles */
+  --color-accent: #f57c00;
+  /* Naranja para textos pequeños: más oscuro en el tema claro para cumplir el contraste AA */
+  --color-accent-text: #b35400;
+  /* Texto sobre un fondo naranja sólido */
+  --color-on-accent: #000000;
+  --color-danger: #b42318;
+  --color-success: #1f7a3d;
+  /* Negro de marca: bandas oscuras fijas (pie, llamados finales) en ambos temas */
+  --color-ink: #000000;
   /* Verde oficial de WhatsApp y fondo del video de intro */
   --color-whatsapp: #25d366;
   --color-intro: #fefefe;
@@ -39,26 +40,20 @@
 }
 
 :root {
-  color-scheme: dark;
-  /* Degradado del texto del logo */
-  --gold-text-from: #f3d99f;
-  --gold-text-to: #c2974b;
+  color-scheme: light;
 }
 
-/* Tema claro: fondo marfil y un dorado más profundo para mantener el contraste. */
-:root[data-theme='light'] {
-  color-scheme: light;
-  --color-background: #f7f3ec;
-  --color-surface: #fffdf9;
-  --color-foreground: #1c1812;
-  --color-muted: #6a6254;
-  --color-border: rgb(28 24 18 / 0.14);
-  --color-gold: #93702c;
-  --color-gold-light: #8a6526;
-  --color-on-gold: #fffaf0;
-  --color-danger: #b42318;
-  --gold-text-from: #b38a3e;
-  --gold-text-to: #6f5019;
+/* Tema oscuro: negro de marca con el naranja más vivo (7.8:1 sobre negro). */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --color-background: #0a0a0a;
+  --color-surface: #151515;
+  --color-foreground: #ffffff;
+  --color-muted: #a3a3a3;
+  --color-border: rgb(255 255 255 / 0.12);
+  --color-accent-text: #f57c00;
+  --color-danger: #f0877d;
+  --color-success: #6fd08f;
 }
 
 @layer base {
@@ -73,8 +68,14 @@
       color 0.3s ease;
   }
 
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
   :focus-visible {
-    @apply outline-2 outline-offset-2 outline-gold;
+    @apply outline-2 outline-offset-2 outline-accent;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -90,30 +91,30 @@
   }
 }
 
-/* Texto sobre una foto oscurecida: colores claros fijos, en cualquier tema. */
-@utility on-photo {
-  --color-foreground: #f6f2ea;
-  --color-gold: #e3bf76;
-  --color-gold-light: #f3d99f;
+/* Contenido sobre una banda negra o una foto oscura: colores claros fijos, en cualquier tema. */
+@utility on-dark {
+  --color-foreground: #ffffff;
+  --color-muted: #b8b8b8;
+  --color-border: rgb(255 255 255 / 0.16);
+  --color-accent-text: #f57c00;
   color: var(--color-foreground);
 }
 
 /* Espacio vertical de las secciones de contenido: un solo lugar para ajustarlo. */
 @utility section-spacing {
-  padding-block: 3rem;
+  padding-block: 3.5rem;
   @media (width >= 64rem) {
-    padding-block: 4rem;
+    padding-block: 5rem;
   }
 }
 
-/* Degradado de los botones dorados: igual en ambos temas. */
-@utility bg-gold-gradient {
-  background-image: linear-gradient(180deg, #f3d99f 0%, #e3bf76 45%, #c2974b 100%);
-}
-
-/* Degradado para texto dorado (logo); se oscurece en el tema claro. */
-@utility bg-gold-text-gradient {
-  background-image: linear-gradient(180deg, var(--gold-text-from), var(--gold-text-to));
+/* Etiqueta pequeña sobre los títulos de sección. */
+@utility eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-accent-text);
 }
 
 /* Mientras corre el video de intro: sin scroll y con las animaciones de entrada en pausa,
@@ -129,7 +130,7 @@ html.intro-playing .animate-rise {
 @keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(14px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
@@ -138,6 +139,6 @@ html.intro-playing .animate-rise {
 }
 
 @utility animate-rise {
-  animation: rise 0.8s var(--ease-out-soft) both;
+  animation: rise 0.7s var(--ease-out-soft) both;
   animation-delay: var(--delay, 0ms);
 }

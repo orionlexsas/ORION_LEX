@@ -1,131 +1,108 @@
 {
-  "eyebrow": "Legal services",
-  "title": [
-    {
-      "text": "Our",
-      "highlight": false
-    },
-    {
-      "text": "services",
-      "highlight": true
-    }
-  ],
-  "description": "Comprehensive legal solutions with professional, strategic and personalized attention.",
-  "quote": "More than legal services, we build peace of mind at every stage of your life.",
-  "image": {
-    "src": "/images/servicios/encabezado-justicia.webp",
-    "alt": "",
-    "light": {
-      "src": "/images/servicios/encabezado-justicia-claro.webp"
-    }
-  },
-  "brand": {
-    "name": "Orión Lex",
-    "tagline": "Legal services"
-  },
-  "featured": {
-    "eyebrow": "Support in every decision",
-    "footerLabel": "Your legal ally every step of the way",
-    "footerText": "We listen, analyze and guide you to the best solution."
-  },
-  "linkLabel": "Learn more",
+  "eyebrow": "Practice areas",
+  "title": "Legal services",
+  "description": "Advice and representation in the main areas of law.",
+  "script": "Law, strategy and support",
+  "detailsLabel": "What does it involve?",
+  "ctaLabel": "Request advice",
+  "backLabel": "Back to Legal services",
   "items": [
     {
       "slug": "asesoria-juridica",
+      "status": "final",
+      "featured": true,
       "icon": "user",
       "title": "Legal advice",
-      "description": "Clear, strategic legal guidance for individuals and businesses.",
-      "href": "/contacto",
+      "description": "Clear guidance for individuals and businesses.",
+      "details": "We review your situation, explain your rights and obligations, and tell you the options you have.",
+      "message": "Hello, I saw the Orión Lex website and I would like to request legal advice.",
       "image": {
-        "src": "/images/servicios/asesoria-juridica.webp",
-        "alt": "Law books and a pen on a desk",
-        "light": {
-          "src": "/images/servicios/asesoria-juridica-claro.webp"
-        }
+        "src": "/images/areas/asesoria-juridica.webp",
+        "alt": "Documents and a pen on an office desk"
       }
     },
     {
       "slug": "derecho-civil",
+      "status": "provisional",
+      "featured": false,
       "icon": "scale",
       "title": "Civil law",
-      "description": "Contracts, obligations, civil liability and more.",
-      "href": "/contacto",
+      "description": "Contracts, obligations and civil liability.",
+      "details": "We advise you on contracts, debt collection, property matters, inheritance and damage claims, both during negotiation and before the courts.",
+      "message": "Hello, I saw the Orión Lex website and I would like advice on civil law.",
       "image": {
-        "src": "/images/servicios/derecho-civil.webp",
-        "alt": "Golden scales of justice",
-        "light": {
-          "src": "/images/servicios/derecho-civil-claro.webp"
-        }
+        "src": "/images/areas/derecho-civil.webp",
+        "alt": "Scales of justice on a desk"
       }
     },
     {
       "slug": "derecho-laboral",
+      "status": "provisional",
+      "featured": false,
       "icon": "briefcase",
       "title": "Labor law",
-      "description": "Support in employment relationships and claims.",
-      "href": "/contacto",
+      "description": "Employment relationships, dismissals and claims.",
+      "details": "We guide employees and employers on employment contracts, final settlements, dismissals, workplace harassment and claims for wages, benefits and social security.",
+      "message": "Hello, I saw the Orión Lex website and I would like advice on labor law.",
       "image": {
-        "src": "/images/servicios/derecho-laboral.webp",
-        "alt": "Office chair and documents on a desk",
-        "light": {
-          "src": "/images/servicios/derecho-laboral-claro.webp"
-        }
+        "src": "/images/areas/derecho-laboral.webp",
+        "alt": "Professional reviewing documents next to a laptop"
       }
     },
     {
       "slug": "derecho-familia",
+      "status": "provisional",
+      "featured": false,
       "icon": "users",
       "title": "Family law",
-      "description": "Family proceedings handled with sensitivity and legal backing.",
-      "href": "/contacto",
+      "description": "Family proceedings handled with care and support.",
+      "details": "We support divorces, child support, custody and visitation, de facto marital unions and other family matters, seeking agreements whenever possible.",
+      "message": "Hello, I saw the Orión Lex website and I would like advice on family law.",
       "image": {
-        "src": "/images/servicios/derecho-familia.webp",
-        "alt": "Family walking hand in hand at sunset",
-        "light": {
-          "src": "/images/servicios/derecho-familia-claro.webp"
-        }
+        "src": "/images/areas/derecho-familia.webp",
+        "alt": "Lawyer talking with a mother and her son"
       }
     },
     {
       "slug": "derecho-comercial",
+      "status": "provisional",
+      "featured": false,
       "icon": "landmark",
       "title": "Commercial law",
-      "description": "Support for businesses, companies and commercial matters.",
-      "href": "/contacto",
+      "description": "Businesses, companies and commercial matters.",
+      "details": "We support entrepreneurs and companies with incorporation, commercial contracts, collections and disputes between partners.",
+      "message": "Hello, I saw the Orión Lex website and I would like advice on commercial law.",
       "image": {
-        "src": "/images/servicios/derecho-comercial.webp",
-        "alt": "Office buildings seen from below",
-        "light": {
-          "src": "/images/servicios/derecho-comercial-claro.webp"
-        }
+        "src": "/images/areas/derecho-comercial.webp",
+        "alt": "Office buildings seen from below"
       }
     },
     {
       "slug": "derecho-penal",
+      "status": "provisional",
+      "featured": false,
       "icon": "gavel",
       "title": "Criminal law",
       "description": "Defense and representation with professional rigor.",
-      "href": "/contacto",
+      "details": "We advise and represent people under investigation or accused, and victims seeking recognition of their rights in criminal proceedings.",
+      "message": "Hello, I saw the Orión Lex website and I would like advice on criminal law.",
       "image": {
-        "src": "/images/servicios/derecho-penal.webp",
-        "alt": "Judge's gavel on the table",
-        "light": {
-          "src": "/images/servicios/derecho-penal-claro.webp"
-        }
+        "src": "/images/areas/derecho-penal.webp",
+        "alt": "Judge's gavel on a desk"
       }
     },
     {
       "slug": "conciliacion-contratos",
+      "status": "provisional",
+      "featured": false,
       "icon": "file-text",
-      "title": "Mediation and contracts",
-      "description": "Conflict prevention and secure legal agreements.",
-      "href": "/contacto",
+      "title": "Conciliation and contracts",
+      "description": "Conflict prevention and secure agreements.",
+      "details": "We draft and review contracts, and support you in conciliation hearings to resolve disputes without going to trial.",
+      "message": "Hello, I saw the Orión Lex website and I would like advice on conciliation and contracts.",
       "image": {
-        "src": "/images/servicios/conciliacion-contratos.webp",
-        "alt": "Handshake over a signed contract",
-        "light": {
-          "src": "/images/servicios/conciliacion-contratos-claro.webp"
-        }
+        "src": "/images/areas/conciliacion-contratos.webp",
+        "alt": "Handshake over a signed contract"
       }
     }
   ]

@@ -24,7 +24,7 @@ export function LanguageSwitcher({ className }: { className?: string }) {
             onClick={() => void i18n.changeLanguage(language)}
             className={cn(
               'h-full min-w-10 rounded-full px-2.5 text-sm font-semibold tracking-wide uppercase transition-colors duration-300',
-              active ? 'bg-gold text-on-gold' : 'text-foreground/75 hover:text-gold',
+              active ? 'bg-accent text-on-accent' : 'text-foreground/75 hover:text-accent-text',
             )}
           >
             {language}

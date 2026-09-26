@@ -1,0 +1,31 @@
+{
+  "eyebrow": "Coverage",
+  "title": "Service throughout Colombia and abroad",
+  "text": "We work online throughout Colombia and with people living abroad who need to resolve legal matters in the country.",
+  "points": [
+    {
+      "icon": "laptop",
+      "title": "Online service",
+      "text": "We handle your case without you having to travel."
+    },
+    {
+      "icon": "globe",
+      "title": "Colombians abroad",
+      "text": "We manage your matters in Colombia wherever you are."
+    },
+    {
+      "icon": "phone",
+      "title": "Direct contact",
+      "text": "Talk to us on WhatsApp, by phone or by email."
+    }
+  ],
+  "image": {
+    "src": "/images/ubicaciones/mapa-colombia-gris.webp",
+    "alt": "Map of Colombia"
+  },
+  "cta": {
+    "label": "Talk to a lawyer",
+    "href": "whatsapp",
+    "message": "Hello, I saw the Orión Lex website and I would like to talk to a lawyer."
+  }
+}

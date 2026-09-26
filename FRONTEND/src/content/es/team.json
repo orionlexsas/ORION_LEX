@@ -1,0 +1,33 @@
+{
+  "eyebrow": "Nosotros",
+  "title": "Quién atenderá su caso",
+  "description": "Un equipo que le escucha, le explica con claridad y le acompaña en cada etapa.",
+  "script": "Personas que escuchan personas",
+  "facebookLabel": "Ver perfil en Facebook",
+  "members": [
+    {
+      "status": "final",
+      "name": "Yuricsa Romero Trigos",
+      "role": "Abogada | Atención jurídica integral",
+      "description": "Escucha cada situación con atención y explica las alternativas jurídicas de manera clara, cercana y comprensible.",
+      "photo": {
+        "src": "/images/equipo/yuricsa-romero-trigos.webp",
+        "alt": "Yuricsa Romero Trigos, abogada de Orión Lex",
+        "position": "50% 15%"
+      },
+      "facebook": "https://www.facebook.com/yuricsar"
+    },
+    {
+      "status": "final",
+      "name": "Sergio Ardila",
+      "role": "Abogado | Atención jurídica integral",
+      "description": "Analiza cada caso, organiza la ruta de atención y acompaña al cliente durante cada etapa con comunicación clara y oportuna.",
+      "photo": {
+        "src": "/images/equipo/sergio-ardila.webp",
+        "alt": "Sergio Ardila, abogado de Orión Lex",
+        "position": "55% 20%"
+      },
+      "facebook": "https://www.facebook.com/sergioardila406"
+    }
+  ]
+}

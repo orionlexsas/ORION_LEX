@@ -1,59 +1,61 @@
+import type { CSSProperties } from 'react';
 import type { ApproachContent } from '@orion-lex/shared';
-import { ContentIcon } from '@/components/ui/ContentIcon';
-import { useThemedImage } from '@/hooks/use-themed-image';
 import { cn } from '@/lib/cn';
 
 interface ApproachStepProps {
   step: ApproachContent['steps'][number];
   number: number;
-  /** Dibuja la línea que une esta tarjeta con la siguiente (solo en escritorio). */
-  connectToNext: boolean;
+  /** true cuando la lista entró en pantalla: dispara la aparición escalonada. */
+  visible: boolean;
 }
 
-/** Tarjeta de un paso del proceso: número, ícono, texto y foto. */
-export function ApproachStep({ step, number, connectToNext }: ApproachStepProps) {
-  const photo = useThemedImage(step.image);
+/**
+ * Tarjeta de una etapa: foto arriba, número grande y tenue detrás del título, y el punto
+ * naranja donde termina la línea que une las etapas (solo en escritorio).
+ */
+export function ApproachStep({ step, number, visible }: ApproachStepProps) {
+  const label = String(number).padStart(2, '0');
 
   return (
     <li
+      style={{ '--delay': `${(number - 1) * 120}ms` } as CSSProperties}
       className={cn(
-        'relative flex flex-col rounded-xl border border-gold/30 bg-surface/80 px-5 pt-12 pb-5 backdrop-blur-sm sm:px-7',
-        connectToNext &&
-          'lg:after:absolute lg:after:top-4 lg:after:-right-8 lg:after:h-px lg:after:w-8 lg:after:bg-gold/40',
+        'group relative flex flex-col rounded-md border border-border bg-background shadow-[0_1px_6px_-3px_rgb(0_0_0/0.08)]',
+        'transition-[opacity,translate,box-shadow] duration-500 ease-out-soft [transition-delay:var(--delay)]',
+        'hover:-translate-y-[3px] hover:shadow-[0_14px_30px_-20px_rgb(0_0_0/0.3)] hover:[transition-delay:0ms] hover:duration-200',
+        visible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0',
       )}
     >
+      {/* Punto naranja donde llega la línea de conexión */}
       <span
         aria-hidden="true"
-        className="absolute -top-7 left-7 grid size-14 place-items-center rounded-full border-[1.5px] border-gold bg-background text-lg font-semibold text-gold"
-      >
-        {String(number).padStart(2, '0')}
-      </span>
-
-      <div className="flex items-start gap-5">
-        <span className="grid size-16 shrink-0 place-items-center rounded-full bg-gold/12 text-gold lg:size-[5.25rem]">
-          <ContentIcon name={step.icon} className="size-8 lg:size-10" strokeWidth={1.3} />
+        className="absolute -top-[7px] left-1/2 z-10 hidden size-3 -translate-x-1/2 rounded-full bg-accent ring-4 ring-transparent transition-[box-shadow,scale] duration-200 group-hover:scale-125 group-hover:ring-accent/20 lg:block"
+      />
+      <img
+        src={step.image.src}
+        alt={step.image.alt}
+        loading="lazy"
+        decoding="async"
+        width={1012}
+        height={596}
+        className="aspect-[1.7/1] w-full rounded-t-md object-cover"
+      />
+      <div className="relative flex-1 px-6 pt-10 pb-8 sm:px-7 lg:px-6 lg:pt-12">
+        <span
+          aria-hidden="true"
+          className="absolute top-2 left-5 font-serif text-[5.5rem] leading-none font-semibold text-accent/12 select-none sm:text-[6.5rem] lg:top-3"
+        >
+          {label}
         </span>
-        <div>
-          <h3 className="max-w-[12rem] font-serif text-[1.65rem] leading-[1.08] font-bold text-balance lg:text-[1.95rem]">
-            <span className="sr-only">{number}. </span>
+        <div className="relative pl-16 sm:pl-20 lg:pl-14">
+          <h3 className="font-serif text-[1.55rem] leading-tight font-semibold tracking-tight lg:text-[1.5rem] xl:text-[1.6rem]">
+            <span className="sr-only">{label}. </span>
             {step.title}
           </h3>
-          <p className="mt-3 text-[0.95rem] leading-snug text-foreground/80 lg:text-[1.05rem]">
+          <p className="mt-2 text-[1.02rem] leading-relaxed text-foreground/75">
             {step.description}
           </p>
         </div>
-      </div>
-
-      <div className="relative mt-6 overflow-hidden rounded-lg">
-        <img
-          src={photo.src}
-          alt={photo.alt}
-          loading="lazy"
-          decoding="async"
-          className="aspect-[2/1] w-full object-cover"
-        />
-        {/* La foto se funde con la tarjeta por arriba */}
-        <div className="absolute inset-x-0 top-0 h-10 bg-gradient-to-b from-surface to-transparent" />
       </div>
     </li>
   );

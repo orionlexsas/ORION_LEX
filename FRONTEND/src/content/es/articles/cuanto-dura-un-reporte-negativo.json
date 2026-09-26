@@ -1,0 +1,25 @@
+{
+  "slug": "cuanto-dura-un-reporte-negativo",
+  "status": "provisional",
+  "published": true,
+  "featured": false,
+  "title": "¿Cuánto tiempo permanece un reporte negativo?",
+  "category": "datacredito",
+  "date": "2026-09-15",
+  "excerpt": "Lo que debe saber sobre la permanencia de los reportes negativos en centrales de riesgo.",
+  "body": "Muchas personas creen que, al pagar una deuda en mora, el reporte negativo desaparece de inmediato de las centrales de riesgo como Datacrédito. No siempre es así.\n\n## ¿Cuánto tiempo permanece el dato negativo?\n\nLa Ley 1266 de 2008, modificada por la Ley 2157 de 2021, establece que la información negativa permanece **por el doble del tiempo que duró la mora**, con un **máximo de cuatro años** contados desde la fecha en que se pagó la obligación.\n\nPor ejemplo, si una persona estuvo seis meses en mora y luego pagó, el reporte negativo podría permanecer hasta doce meses después del pago.\n\n## ¿Deben avisarle antes de reportarlo?\n\nSí. La entidad debe comunicarle previamente que será reportado, para que pueda pagar o controvertir la información antes de que el reporte se haga efectivo.\n\n## ¿Cuándo conviene revisar su caso?\n\n- Ya pagó y el reporte continúa después del plazo.\n- No reconoce la deuda o el valor reportado.\n- No recibió el aviso previo.\n- Considera que el plazo de permanencia ya terminó.\n\nEn estos casos puede presentar una reclamación ante la fuente de la información o ante el operador. Si la respuesta no resuelve su situación, existen otras vías jurídicas.",
+  "sources": [
+    {
+      "label": "Ley 2157 de 2021 (Secretaría del Senado)",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_2157_2021.html"
+    },
+    {
+      "label": "Ley 1266 de 2008 (Secretaría del Senado)",
+      "url": "http://www.secretariasenado.gov.co/senado/basedoc/ley_1266_2008.html"
+    }
+  ],
+  "image": {
+    "src": "/images/actualidad/reporte-negativo.webp",
+    "alt": "Persona revisando un reporte de crédito en un computador portátil"
+  }
+}

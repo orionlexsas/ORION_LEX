@@ -1,7 +1,32 @@
 {
   "brand": {
     "name": "Orión Lex",
+    "legalName": "Orión Lex Servicios Jurídicos",
     "tagline": "Legal services"
+  },
+  "siteUrl": "https://orionlex.co",
+  "seo": {
+    "title": "Orión Lex | Legal Services in Colombia",
+    "description": "Orión Lex Servicios Jurídicos: legal advice and representation, online throughout Colombia and for people abroad with legal matters in the country.",
+    "image": "/images/og-orion-lex.jpg"
+  },
+  "pages": {
+    "services": {
+      "title": "Legal services | Orión Lex",
+      "description": "Removal of credit bureau reports and traffic fines, petitions, tutela actions, SOAT claims, support for conflict victims and advice in the main areas of law."
+    },
+    "about": {
+      "title": "About us | Orión Lex",
+      "description": "Meet the Orión Lex Servicios Jurídicos team: who will handle your case and how we work."
+    },
+    "blog": {
+      "title": "Legal News | Orión Lex",
+      "description": "Legal news, reforms, case law and practical guides to understand your rights in Colombia."
+    },
+    "contact": {
+      "title": "Contact | Orión Lex",
+      "description": "Write to us on WhatsApp at +57 313 234 4178, by email at abogados@orionlex.co or through the form. Online service throughout Colombia and abroad."
+    }
   },
   "nav": [
     {
@@ -14,11 +39,11 @@
     },
     {
       "label": "About us",
-      "href": "/#nosotros"
+      "href": "/nosotros"
     },
     {
-      "label": "Cases",
-      "href": "/#casos"
+      "label": "Legal News",
+      "href": "/actualidad"
     },
     {
       "label": "Contact",
@@ -26,73 +51,57 @@
     }
   ],
   "cta": {
-    "label": "Book a consultation",
-    "href": "whatsapp"
+    "label": "Tell us about your case",
+    "href": "whatsapp",
+    "message": "Hello, I saw the Orión Lex website and I would like to tell you about my case."
   },
   "contact": {
     "phone": "+57 313 234 4178",
-    "email": "sergio.ardila@outlook.com",
-    "city": "Bogotá, Colombia",
-    "modality": "In-person and virtual meetings",
+    "email": "abogados@orionlex.co",
+    "coverage": "We work online throughout Colombia and with people living abroad who need to resolve legal matters in the country.",
     "whatsapp": {
       "number": "573132344178",
-      "message": "Hello, I would like to book a consultation with Orión Lex."
+      "message": "Hello, I saw the Orión Lex website and I would like to tell you about my case."
     }
   },
   "social": [
     {
-      "network": "tiktok",
-      "url": "https://www.tiktok.com/@orionlex"
-    },
-    {
       "network": "facebook",
       "url": "https://www.facebook.com/AbogadoSergioArdila/"
+    },
+    {
+      "network": "tiktok",
+      "url": "https://www.tiktok.com/@orionlex"
     }
   ],
   "footer": {
     "cta": {
       "eyebrow": "We are here to help",
       "title": "Let's talk about your case",
-      "description": "Get clear, personalized legal guidance.",
+      "description": "Write to us on WhatsApp and a lawyer will review your situation.",
       "button": {
-        "label": "Book a consultation",
-        "href": "whatsapp"
-      },
-      "scriptLines": ["Your ally", "at every step"],
-      "image": {
-        "src": "/images/footer/justicia.webp",
-        "alt": ""
+        "label": "Talk to a lawyer",
+        "href": "whatsapp",
+        "message": "Hello, I saw the Orión Lex website and I would like to talk to a lawyer."
       }
     },
-    "tagline": "Your legal peace of mind, our priority.",
+    "tagline": "Clear legal solutions for your case.",
     "headings": {
-      "explore": "Explore",
+      "explore": "Navigation",
       "services": "Services",
       "contact": "Contact"
     },
-    "servicesLimit": 4,
-    "writeUsLabel": "Write to us",
     "rightsText": "All rights reserved.",
     "legalLinks": [
       {
-        "label": "Privacy",
+        "label": "Privacy policy",
         "href": "/privacidad"
       },
       {
-        "label": "Terms",
+        "label": "Terms and conditions",
         "href": "/terminos"
       }
-    ],
-    "decorations": {
-      "left": {
-        "src": "/images/footer/libros.webp",
-        "alt": ""
-      },
-      "right": {
-        "src": "/images/footer/planta.webp",
-        "alt": ""
-      }
-    }
+    ]
   },
   "intro": {
     "video": "/video/intro-orion-lex.mp4"
