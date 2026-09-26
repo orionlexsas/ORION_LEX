@@ -2,26 +2,31 @@
   "eyebrow": "Nuestro proceso",
   "title": "Cómo trabajamos",
   "description": "Un proceso claro para acompañarle desde la primera conversación.",
+  "script": "Acompañamiento en cada paso",
   "steps": [
     {
-      "icon": "messages",
       "title": "Cuéntenos su situación",
-      "description": "Escuchamos su caso y resolvemos sus primeras inquietudes."
+      "description": "Escuchamos su caso y resolvemos sus primeras inquietudes.",
+      "image": {
+        "src": "/images/proceso/paso-1-conversacion.webp",
+        "alt": "Abogado conversando con una cliente en una oficina luminosa"
+      }
     },
     {
-      "icon": "route",
       "title": "Trazamos una ruta",
-      "description": "Analizamos su caso y le explicamos las opciones disponibles."
+      "description": "Analizamos su caso y le explicamos las opciones disponibles.",
+      "image": {
+        "src": "/images/proceso/paso-2-analisis.webp",
+        "alt": "Profesional analizando documentos jurídicos con un bolígrafo"
+      }
     },
     {
-      "icon": "handshake",
       "title": "Avanzamos con usted",
-      "description": "Le acompañamos en cada etapa con comunicación clara."
+      "description": "Le acompañamos en cada etapa con comunicación clara.",
+      "image": {
+        "src": "/images/proceso/paso-3-acompanamiento.webp",
+        "alt": "Abogada escuchando con atención a un cliente en una asesoría"
+      }
     }
-  ],
-  "cta": {
-    "label": "Cuéntenos su caso",
-    "href": "whatsapp",
-    "message": "Hola, vi la página web de Orión Lex y quiero contarles mi caso."
-  }
+  ]
 }

@@ -2,26 +2,31 @@
   "eyebrow": "Our process",
   "title": "How we work",
   "description": "A clear process to support you from the very first conversation.",
+  "script": "Support at every step",
   "steps": [
     {
-      "icon": "messages",
       "title": "Tell us your situation",
-      "description": "We listen to your case and answer your first questions."
+      "description": "We listen to your case and answer your first questions.",
+      "image": {
+        "src": "/images/proceso/paso-1-conversacion.webp",
+        "alt": "Lawyer talking with a client in a bright office"
+      }
     },
     {
-      "icon": "route",
       "title": "We map out a path",
-      "description": "We analyze your case and explain the options available."
+      "description": "We analyze your case and explain the options available.",
+      "image": {
+        "src": "/images/proceso/paso-2-analisis.webp",
+        "alt": "Professional reviewing legal documents with a pen"
+      }
     },
     {
-      "icon": "handshake",
       "title": "We move forward with you",
-      "description": "We support you at every stage with clear communication."
+      "description": "We support you at every stage with clear communication.",
+      "image": {
+        "src": "/images/proceso/paso-3-acompanamiento.webp",
+        "alt": "Lawyer listening attentively to a client during a consultation"
+      }
     }
-  ],
-  "cta": {
-    "label": "Tell us about your case",
-    "href": "whatsapp",
-    "message": "Hello, I saw the Orión Lex website and I would like to tell you about my case."
-  }
+  ]
 }

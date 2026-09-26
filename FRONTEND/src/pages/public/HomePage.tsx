@@ -22,7 +22,7 @@ export function HomePage() {
     <>
       <HeroSection hero={home.hero} />
       <MattersSection id="asuntos" content={matters} landings={landings} />
-      <ApproachSection id="como-trabajamos" content={approach} />
+      <ApproachSection id="como-trabajamos" content={approach} className="bg-surface" />
       <ServicesSection id="servicios-juridicos" content={services} className="bg-surface" />
       <TeamSection id="nosotros" content={team} />
       <BlogPreviewSection id="actualidad" blog={blog} articles={articles} className="bg-surface" />

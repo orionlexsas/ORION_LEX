@@ -216,10 +216,20 @@ export const approachContentSchema = z.object({
   eyebrow: z.string(),
   title: z.string(),
   description: z.string(),
+  /** Frase manuscrita a la derecha del encabezado; de ella sale la línea que une las etapas. */
+  script: z.string().optional(),
   steps: z
-    .array(z.object({ icon: contentIconSchema, title: z.string(), description: z.string() }))
+    .array(
+      z.object({
+        title: z.string(),
+        description: z.string(),
+        /** Foto de la etapa (arriba de la tarjeta). */
+        image: imageSchema,
+      }),
+    )
     .min(1),
-  cta: linkSchema,
+  /** Botón bajo las etapas (opcional; el diseño aprobado no lo lleva). */
+  cta: linkSchema.optional(),
 });
 
 /**
