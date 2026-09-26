@@ -233,28 +233,34 @@ export const approachContentSchema = z.object({
 });
 
 /**
- * Áreas del derecho (servicios jurídicos generales). `action: "whatsapp"` abre WhatsApp
- * con `message`; `action: "details"` muestra la explicación breve en una ventana.
+ * Áreas del derecho (servicios jurídicos generales). Cada área tiene su página en
+ * `/servicios/<slug>` con la explicación (`details`) y el botón a WhatsApp (`message`).
+ * La que lleva `featured: true` se muestra como tarjeta grande (Asesoría jurídica).
  */
 export const servicesContentSchema = z.object({
   eyebrow: z.string(),
   title: z.string(),
   description: z.string(),
+  /** Frase manuscrita a la derecha del encabezado (opcional). */
+  script: z.string().optional(),
   detailsLabel: z.string(),
   ctaLabel: z.string(),
-  closeLabel: z.string(),
+  /** Enlace de regreso en la página de cada área. */
+  backLabel: z.string(),
   items: z
     .array(
       z.object({
         slug: slugSchema,
         status: statusSchema,
+        featured: z.boolean().default(false),
         icon: contentIconSchema,
         title: z.string(),
         description: z.string(),
+        /** Explicación breve que se muestra en la página del área. */
         details: z.string(),
-        action: z.enum(['whatsapp', 'details']),
         /** Mensaje de WhatsApp de esta área. */
         message: z.string(),
+        image: imageSchema,
       }),
     )
     .min(1),

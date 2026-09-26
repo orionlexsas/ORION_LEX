@@ -33,6 +33,17 @@ export const seoFor = {
     title: `${c.legal.terms.title} | ${c.site.brand.name}`,
     description: c.legal.terms.description,
   }),
+  practiceArea: (c: SiteContentBundle, slug: string): PageSeo | undefined => {
+    const item = c.services.items.find((i) => i.slug === slug);
+    return (
+      item && {
+        path: `/servicios/${item.slug}`,
+        title: `${item.title} | ${c.site.brand.name}`,
+        description: `${item.description} ${item.details}`,
+        image: item.image.src,
+      }
+    );
+  },
   landing: (c: SiteContentBundle, slug: string): PageSeo | undefined => {
     const landing = c.landings.find((l) => l.slug === slug);
     return (
@@ -69,6 +80,7 @@ export function allPages(c: SiteContentBundle): PageSeo[] {
     seoFor.privacy(c),
     seoFor.terms(c),
     ...c.landings.map((l) => seoFor.landing(c, l.slug)!),
+    ...c.services.items.map((i) => seoFor.practiceArea(c, i.slug)!),
     ...c.articles.map((a) => seoFor.article(c, a.slug)!),
   ];
 }

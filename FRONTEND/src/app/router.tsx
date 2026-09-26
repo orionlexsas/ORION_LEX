@@ -8,6 +8,7 @@ import { ContactPage } from '@/pages/public/ContactPage';
 import { HomePage } from '@/pages/public/HomePage';
 import { LandingPage } from '@/pages/public/LandingPage';
 import { NotFoundPage } from '@/pages/public/NotFoundPage';
+import { PracticeAreaPage } from '@/pages/public/PracticeAreaPage';
 import { ServicesPage } from '@/pages/public/ServicesPage';
 
 /** Páginas que ya cierran con su propio llamado: sin la franja "Hablemos de su caso". */
@@ -22,6 +23,14 @@ const landingRoutes: RouteObject[] = getContent(defaultLanguage).landings.map((l
   element: <LandingPage slug={landing.slug} />,
   handle: noFooterCta,
 }));
+
+/** Una página por área del derecho: /servicios/<slug> (mismos slugs en todos los idiomas). */
+const practiceAreaRoutes: RouteObject[] = getContent(defaultLanguage).services.items.map(
+  (item) => ({
+    path: `servicios/${item.slug}`,
+    element: <PracticeAreaPage slug={item.slug} />,
+  }),
+);
 
 export const router = createBrowserRouter([
   {
@@ -58,6 +67,7 @@ export const router = createBrowserRouter([
         },
       },
       ...landingRoutes,
+      ...practiceAreaRoutes,
       { path: '*', Component: NotFoundPage },
     ],
   },

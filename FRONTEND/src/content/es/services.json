@@ -2,79 +2,108 @@
   "eyebrow": "Áreas de práctica",
   "title": "Servicios jurídicos",
   "description": "Asesoría y representación en las principales áreas del derecho.",
+  "script": "Derecho, estrategia y respaldo",
   "detailsLabel": "¿En qué consiste?",
   "ctaLabel": "Solicitar asesoría",
-  "closeLabel": "Cerrar",
+  "backLabel": "Volver a Servicios jurídicos",
   "items": [
     {
       "slug": "asesoria-juridica",
       "status": "final",
-      "icon": "messages",
+      "featured": true,
+      "icon": "user",
       "title": "Asesoría jurídica",
-      "description": "Orientación legal clara para tomar decisiones informadas.",
+      "description": "Orientación clara para personas y empresas.",
       "details": "Revisamos su situación, le explicamos sus derechos y obligaciones, y le indicamos las opciones que tiene.",
-      "action": "whatsapp",
-      "message": "Hola, vi la página de Orión Lex y quiero solicitar una asesoría jurídica."
+      "message": "Hola, vi la página de Orión Lex y quiero solicitar una asesoría jurídica.",
+      "image": {
+        "src": "/images/areas/asesoria-juridica.webp",
+        "alt": "Documentos y una pluma sobre un escritorio de oficina"
+      }
     },
     {
       "slug": "derecho-civil",
       "status": "provisional",
+      "featured": false,
       "icon": "scale",
       "title": "Derecho civil",
-      "description": "Contratos, obligaciones, bienes y responsabilidad civil.",
+      "description": "Contratos, obligaciones y responsabilidad civil.",
       "details": "Le asesoramos en contratos, cobro de obligaciones, asuntos sobre bienes, sucesiones y reclamaciones por daños y perjuicios, tanto en la etapa de negociación como ante los jueces.",
-      "action": "details",
-      "message": "Hola, vi la página de Orión Lex y quiero asesoría en derecho civil."
+      "message": "Hola, vi la página de Orión Lex y quiero asesoría en derecho civil.",
+      "image": {
+        "src": "/images/areas/derecho-civil.webp",
+        "alt": "Balanza de la justicia sobre un escritorio"
+      }
     },
     {
       "slug": "derecho-laboral",
       "status": "provisional",
+      "featured": false,
       "icon": "briefcase",
       "title": "Derecho laboral",
       "description": "Relaciones laborales, despidos y reclamaciones.",
       "details": "Orientamos a trabajadores y empleadores en contratos de trabajo, liquidaciones, despidos, acoso laboral y reclamaciones de salarios, prestaciones y seguridad social.",
-      "action": "details",
-      "message": "Hola, vi la página de Orión Lex y quiero asesoría en derecho laboral."
+      "message": "Hola, vi la página de Orión Lex y quiero asesoría en derecho laboral.",
+      "image": {
+        "src": "/images/areas/derecho-laboral.webp",
+        "alt": "Profesional revisando documentos junto a un computador"
+      }
     },
     {
       "slug": "derecho-familia",
       "status": "provisional",
+      "featured": false,
       "icon": "users",
       "title": "Derecho de familia",
-      "description": "Procesos familiares con sensibilidad y respaldo legal.",
+      "description": "Procesos familiares con sensibilidad y respaldo.",
       "details": "Acompañamos divorcios, cuotas alimentarias, custodia y visitas, uniones maritales de hecho y otros asuntos familiares, buscando acuerdos cuando es posible.",
-      "action": "details",
-      "message": "Hola, vi la página de Orión Lex y quiero asesoría en derecho de familia."
+      "message": "Hola, vi la página de Orión Lex y quiero asesoría en derecho de familia.",
+      "image": {
+        "src": "/images/areas/derecho-familia.webp",
+        "alt": "Abogado conversando con una madre y su hijo"
+      }
     },
     {
       "slug": "derecho-comercial",
       "status": "provisional",
+      "featured": false,
       "icon": "landmark",
       "title": "Derecho comercial",
       "description": "Negocios, sociedades y asuntos mercantiles.",
       "details": "Apoyamos a emprendedores y empresas en la constitución de sociedades, contratos comerciales, cobro de cartera y conflictos entre socios.",
-      "action": "details",
-      "message": "Hola, vi la página de Orión Lex y quiero asesoría en derecho comercial."
+      "message": "Hola, vi la página de Orión Lex y quiero asesoría en derecho comercial.",
+      "image": {
+        "src": "/images/areas/derecho-comercial.webp",
+        "alt": "Edificios de oficinas vistos desde abajo"
+      }
     },
     {
       "slug": "derecho-penal",
       "status": "provisional",
+      "featured": false,
       "icon": "gavel",
       "title": "Derecho penal",
-      "description": "Defensa y representación de víctimas.",
+      "description": "Defensa y representación con rigor profesional.",
       "details": "Asesoramos y representamos a personas investigadas o acusadas, y a víctimas que buscan que sus derechos sean reconocidos en el proceso penal.",
-      "action": "details",
-      "message": "Hola, vi la página de Orión Lex y quiero asesoría en derecho penal."
+      "message": "Hola, vi la página de Orión Lex y quiero asesoría en derecho penal.",
+      "image": {
+        "src": "/images/areas/derecho-penal.webp",
+        "alt": "Mazo judicial sobre un escritorio"
+      }
     },
     {
       "slug": "conciliacion-contratos",
       "status": "provisional",
+      "featured": false,
       "icon": "file-text",
       "title": "Conciliación y contratos",
-      "description": "Acuerdos seguros y prevención de conflictos.",
+      "description": "Prevención de conflictos y acuerdos seguros.",
       "details": "Redactamos y revisamos contratos, y le acompañamos en audiencias de conciliación para resolver conflictos sin llegar a un juicio.",
-      "action": "details",
-      "message": "Hola, vi la página de Orión Lex y quiero asesoría en conciliación y contratos."
+      "message": "Hola, vi la página de Orión Lex y quiero asesoría en conciliación y contratos.",
+      "image": {
+        "src": "/images/areas/conciliacion-contratos.webp",
+        "alt": "Apretón de manos sobre un contrato firmado"
+      }
     }
   ]
 }
