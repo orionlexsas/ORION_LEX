@@ -271,14 +271,22 @@ export const teamContentSchema = z.object({
   eyebrow: z.string(),
   title: z.string(),
   description: z.string(),
+  /** Frase manuscrita a la derecha del encabezado (opcional). */
+  script: z.string().optional(),
+  /** Texto del enlace al perfil de Facebook de cada integrante. */
+  facebookLabel: z.string(),
   members: z.array(
     z.object({
       status: statusSchema,
       name: z.string(),
+      /** Cargo, p. ej. "Abogada | Atención jurídica integral". */
       role: z.string(),
-      specialty: z.string(),
-      bio: z.string(),
-      photo: imageSchema,
+      description: z.string(),
+      photo: imageSchema.extend({
+        /** Encuadre de la foto dentro del recorte (CSS object-position), p. ej. "50% 20%". */
+        position: z.string().default('50% 20%'),
+      }),
+      facebook: z.url().optional(),
     }),
   ),
   values: z
