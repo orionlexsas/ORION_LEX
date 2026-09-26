@@ -1,0 +1,76 @@
+{
+  "slug": "derechos-de-peticion",
+  "status": "provisional",
+  "title": "Derechos de petición",
+  "seo": {
+    "title": "Derechos de petición | Orión Lex",
+    "description": "Redactamos y presentamos derechos de petición ante entidades públicas y privadas, con seguimiento a la respuesta. Atención virtual en toda Colombia."
+  },
+  "leadEvent": "peticion_lead",
+  "icon": "file-pen",
+  "cta": {
+    "label": "Solicitar asesoría",
+    "message": "Hola, vi la página de Orión Lex y necesito ayuda con un derecho de petición."
+  },
+  "hero": {
+    "eyebrow": "Derecho de petición",
+    "lead": "¿Necesita una respuesta de una entidad y no la ha recibido?",
+    "paragraphs": [
+      "El derecho de petición le permite solicitar información, documentos, correcciones o actuaciones a entidades públicas y, en ciertos casos, a empresas privadas. La entidad debe responder de fondo y dentro de los plazos que fija la ley."
+    ],
+    "emphasis": "En ORIÓN LEX le ayudamos a redactar y presentar su petición con los fundamentos adecuados para su caso."
+  },
+  "cases": {
+    "title": "¿Cuándo puede servirle?",
+    "items": [
+      "Necesita información o copias de documentos.",
+      "Quiere pedir la corrección de datos o registros.",
+      "Tiene un reclamo ante una entidad de salud, pensiones o servicios públicos.",
+      "Busca que se le reconozca un derecho.",
+      "Presentó una petición y no le han respondido."
+    ]
+  },
+  "process": {
+    "title": "¿Cómo trabajamos?",
+    "steps": [
+      {
+        "title": "Diagnóstico",
+        "description": "Revisamos su situación y qué necesita obtener de la entidad."
+      },
+      {
+        "title": "Redacción",
+        "description": "Preparamos la petición con los hechos, las solicitudes y los fundamentos aplicables."
+      },
+      {
+        "title": "Radicación y seguimiento",
+        "description": "La presentamos ante la entidad y hacemos seguimiento a los plazos de respuesta."
+      },
+      {
+        "title": "Siguientes pasos",
+        "description": "Si la respuesta no llega o no resuelve su solicitud, le explicamos las acciones disponibles."
+      }
+    ]
+  },
+  "faq": {
+    "title": "Preguntas frecuentes",
+    "items": [
+      {
+        "question": "¿Cuánto tiempo tiene la entidad para responder?",
+        "answer": "Por regla general, 15 días hábiles. Para solicitudes de documentos e información el plazo es de 10 días hábiles y para consultas, de 30 días hábiles (Ley 1755 de 2015)."
+      },
+      {
+        "question": "¿Qué pasa si no me responden?",
+        "answer": "La falta de respuesta vulnera el derecho fundamental de petición y puede reclamarse mediante una acción de tutela."
+      },
+      {
+        "question": "¿Puedo presentar un derecho de petición ante una empresa privada?",
+        "answer": "Sí, en los casos que establece la ley, por ejemplo ante bancos, aseguradoras o empresas de servicios. Revisamos si su caso lo permite."
+      }
+    ]
+  },
+  "closing": {
+    "title": "Cuéntenos qué necesita",
+    "text": "Escríbanos por WhatsApp y le diremos cómo presentar su petición.",
+    "coverage": "Atendemos de forma virtual en toda Colombia y a personas que viven en el exterior y necesitan resolver asuntos jurídicos en el país."
+  }
+}

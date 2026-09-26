@@ -1,0 +1,93 @@
+{
+  "slug": "eliminacion-reportes-datacredito",
+  "status": "final",
+  "title": "Eliminación de reportes en Datacrédito",
+  "seo": {
+    "title": "Eliminación de reportes en Datacrédito | Orión Lex",
+    "description": "¿Está reportado en Datacrédito? Revisamos su caso conforme a la ley para determinar si el reporte puede corregirse o eliminarse. Atención virtual en toda Colombia."
+  },
+  "leadEvent": "datacredito_lead",
+  "icon": "credit-card",
+  "cta": {
+    "label": "Revisar mi reporte",
+    "message": "Hola, quiero revisar mi reporte en Datacrédito."
+  },
+  "hero": {
+    "eyebrow": "Historial crediticio",
+    "lead": "¿Está reportado en Datacrédito?",
+    "paragraphs": [
+      "Incluso una deuda pequeña puede afectar su historial crediticio. Y pagarla no siempre elimina el reporte de inmediato: la información negativa puede permanecer hasta el doble del tiempo que duró la mora, con un máximo de cuatro años después del pago."
+    ],
+    "emphasis": "En ORIÓN LEX revisamos su caso conforme a la ley para determinar si el reporte puede corregirse o eliminarse."
+  },
+  "cases": {
+    "title": "¿Cuándo conviene revisar su caso?",
+    "items": [
+      "Ya pagó y el reporte continúa.",
+      "No reconoce la deuda o el valor reportado.",
+      "No recibió aviso antes del reporte.",
+      "Considera que el plazo de permanencia terminó.",
+      "No está conforme con el reporte."
+    ]
+  },
+  "process": {
+    "title": "¿Cómo trabajamos?",
+    "steps": [
+      {
+        "title": "Diagnóstico",
+        "description": "Revisamos su historia crediticia y los documentos de la obligación."
+      },
+      {
+        "title": "Asesoría",
+        "description": "Le explicamos lo encontrado y las opciones de solución para su caso."
+      },
+      {
+        "title": "Gestión jurídica",
+        "description": "Presentamos las reclamaciones y adelantamos las actuaciones que procedan."
+      },
+      {
+        "title": "Entrega",
+        "description": "Le informamos el resultado y le entregamos las actuaciones realizadas."
+      }
+    ]
+  },
+  "stats": {
+    "prefix": "Más de",
+    "value": 1000,
+    "label": "reportes eliminados"
+  },
+  "testimonials": {
+    "title": "Lo que dicen nuestros clientes",
+    "items": []
+  },
+  "faq": {
+    "title": "Preguntas frecuentes",
+    "items": [
+      {
+        "question": "¿Pueden garantizar que eliminarán mi reporte?",
+        "answer": "Nuestra tasa de éxito es de 90 % de los casos que toma nuestra firma."
+      },
+      {
+        "question": "¿Cuánto tarda?",
+        "answer": "La gestión puede tomar entre 15 y 90 días."
+      },
+      {
+        "question": "¿Atienden a nivel nacional?",
+        "answer": "Sí. Atendemos virtualmente en Colombia y a personas en el exterior con asuntos sujetos a la legislación colombiana."
+      },
+      {
+        "question": "¿Cómo sé con quién contrato?",
+        "answer": "Antes de contratar puede conocer los datos de ORIÓN LEX S.A.S., el profesional que atenderá su caso y las condiciones del servicio."
+      },
+      {
+        "question": "¿Puedo solicitar la eliminación aunque todavía deba dinero?",
+        "answer": "Sí, pero retirar el dato no equivale a extinguir la deuda."
+      }
+    ]
+  },
+  "closing": {
+    "title": "Revisemos su reporte",
+    "text": "Escríbanos por WhatsApp y le diremos si existe una posibilidad jurídica de corregir o eliminar su reporte.",
+    "coverage": "Atendemos de forma virtual en toda Colombia y a personas en el exterior con asuntos sujetos a la legislación colombiana."
+  }
+}

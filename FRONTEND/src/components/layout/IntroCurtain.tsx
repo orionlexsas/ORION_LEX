@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { X } from 'lucide-react';
 import { cn } from '@/lib/cn';
 
 /** Claves compartidas con el script de index.html, que decide si mostrar la intro antes de pintar. */
@@ -7,14 +8,15 @@ const SEEN_KEY = 'orion-lex-intro';
 const PENDING_CLASS = 'intro-pending';
 const PLAYING_CLASS = 'intro-playing';
 /** Si por algo el video no termina (red lenta, bloqueo), el telón sube igual tras este tiempo. */
-const MAX_DURATION_MS = 10_000;
+const MAX_DURATION_MS = 8_000;
 
 type Phase = 'playing' | 'lifting' | 'done';
 
 /**
- * Video de introducción a pantalla completa, una vez por visita. Mientras se reproduce, la
- * web ya se está cargando debajo; al terminar, el bloque sube como un telón y la revela.
- * Se puede saltar, y no aparece si el usuario prefiere menos movimiento.
+ * Video de introducción a pantalla completa. Nunca debe ser una barrera: solo sale en la portada
+ * y en la primera visita (no en las landings de anuncios ni al volver), dura como máximo 8 s,
+ * se puede saltar y no aparece si el usuario prefiere menos movimiento. El botón de WhatsApp
+ * queda por encima. Mientras corre, la web ya se carga debajo; al terminar, sube como un telón.
  */
 export function IntroCurtain({ src }: { src?: string }) {
   const { t } = useTranslation();
@@ -39,12 +41,12 @@ export function IntroCurtain({ src }: { src?: string }) {
   }, [lift]);
 
   // Al empezar a subir: se libera el scroll, arrancan las animaciones de la página
-  // y se recuerda que ya se vio en esta visita.
+  // y se recuerda en este navegador que ya se vio (no vuelve a salir en otras visitas).
   useEffect(() => {
     if (phase !== 'lifting') return;
     document.documentElement.classList.remove(PLAYING_CLASS);
     try {
-      sessionStorage.setItem(SEEN_KEY, '1');
+      localStorage.setItem(SEEN_KEY, '1');
     } catch {
       // Sin almacenamiento: la intro volvería a salir al recargar, nada más.
     }
@@ -76,14 +78,16 @@ export function IntroCurtain({ src }: { src?: string }) {
       <button
         type="button"
         onClick={lift}
-        className="absolute right-5 bottom-5 rounded-full border border-gold-ink/15 bg-intro/80 px-5 py-2 text-sm font-medium text-gold-ink/70 transition-colors hover:border-gold-ink/40 hover:text-gold-ink"
+        autoFocus
+        className="absolute bottom-6 left-1/2 inline-flex min-h-12 -translate-x-1/2 items-center gap-2 rounded-full bg-ink px-6 text-sm font-semibold text-white shadow-lg transition-colors hover:bg-ink/85"
       >
         {t('intro.skip')}
+        <X className="size-4" aria-hidden="true" />
       </button>
       {/* Sombra bajo el borde del telón mientras sube */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-full h-20 bg-gradient-to-b from-night/25 to-transparent"
+        className="pointer-events-none absolute inset-x-0 top-full h-20 bg-gradient-to-b from-ink/20 to-transparent"
       />
     </div>
   );

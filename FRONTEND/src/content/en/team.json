@@ -1,0 +1,29 @@
+{
+  "eyebrow": "About us",
+  "title": "Who will handle your case",
+  "description": "A team that listens, explains clearly and supports you at every stage.",
+  "members": [
+    {
+      "status": "provisional",
+      "name": "Name to be confirmed",
+      "role": "Lawyer",
+      "specialty": "Specialty to be confirmed",
+      "bio": "Professional profile pending. A short biography with real education and experience will go here.",
+      "photo": {
+        "src": "/images/equipo/integrante-1.webp",
+        "alt": "Member of Orión Lex"
+      }
+    },
+    {
+      "status": "provisional",
+      "name": "Name to be confirmed",
+      "role": "Lawyer",
+      "specialty": "Specialty to be confirmed",
+      "bio": "Professional profile pending. A short biography with real education and experience will go here.",
+      "photo": {
+        "src": "/images/equipo/integrante-2.webp",
+        "alt": "Member of Orión Lex"
+      }
+    }
+  ]
+}

@@ -1,52 +1,27 @@
 {
-  "eyebrow": "Our approach",
-  "title": [
-    {
-      "text": "Your case, in",
-      "highlight": false
-    },
-    {
-      "text": "good hands",
-      "highlight": true
-    }
-  ],
+  "eyebrow": "Our process",
+  "title": "How we work",
   "description": "A clear process to support you from the very first conversation.",
-  "scriptLines": ["More than lawyers,", "your trusted team."],
   "steps": [
     {
       "icon": "messages",
       "title": "Tell us your situation",
-      "description": "We listen to your needs and answer your first questions.",
-      "image": {
-        "src": "/images/enfoque/paso-1-conversacion.webp",
-        "alt": "Lawyer talking with a client at his desk"
-      }
+      "description": "We listen to your case and answer your first questions."
     },
     {
-      "icon": "file-search",
+      "icon": "route",
       "title": "We map out a path",
-      "description": "We analyze your case and explain the available options.",
-      "image": {
-        "src": "/images/enfoque/paso-2-ruta.webp",
-        "alt": "Document and pen on the desk, with scales of justice in the background"
-      }
+      "description": "We analyze your case and explain the options available."
     },
     {
-      "icon": "users",
-      "title": "We move forward together",
-      "description": "We support you through every stage with clear communication.",
-      "image": {
-        "src": "/images/enfoque/paso-3-acompanamiento.webp",
-        "alt": "Handshake between the lawyer and his client"
-      }
+      "icon": "handshake",
+      "title": "We move forward with you",
+      "description": "We support you at every stage with clear communication."
     }
   ],
   "cta": {
-    "label": "Let's talk about your case",
-    "href": "/contacto"
-  },
-  "decoration": {
-    "src": "/images/enfoque/fondo-justicia.webp",
-    "alt": ""
+    "label": "Tell us about your case",
+    "href": "whatsapp",
+    "message": "Hello, I saw the Orión Lex website and I would like to tell you about my case."
   }
 }

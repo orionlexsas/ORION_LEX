@@ -1,0 +1,76 @@
+{
+  "slug": "derechos-de-peticion",
+  "status": "provisional",
+  "title": "Right of petition",
+  "seo": {
+    "title": "Right of petition | Orión Lex",
+    "description": "We draft and file petitions before public and private entities, and follow up on the response. Online service throughout Colombia."
+  },
+  "leadEvent": "peticion_lead",
+  "icon": "file-pen",
+  "cta": {
+    "label": "Request advice",
+    "message": "Hello, I saw the Orión Lex website and I need help with a petition."
+  },
+  "hero": {
+    "eyebrow": "Right of petition",
+    "lead": "Do you need a response from an entity and have not received it?",
+    "paragraphs": [
+      "The right of petition allows you to request information, documents, corrections or actions from public entities and, in certain cases, from private companies. The entity must give a substantive response within the time limits set by law."
+    ],
+    "emphasis": "At ORIÓN LEX we help you draft and file your petition with the right legal grounds for your case."
+  },
+  "cases": {
+    "title": "When can it help you?",
+    "items": [
+      "You need information or copies of documents.",
+      "You want to request the correction of data or records.",
+      "You have a claim against a health, pension or utility provider.",
+      "You want a right to be recognized.",
+      "You filed a petition and have not received a response."
+    ]
+  },
+  "process": {
+    "title": "How we work",
+    "steps": [
+      {
+        "title": "Diagnosis",
+        "description": "We review your situation and what you need from the entity."
+      },
+      {
+        "title": "Drafting",
+        "description": "We prepare the petition with the facts, the requests and the applicable legal grounds."
+      },
+      {
+        "title": "Filing and follow-up",
+        "description": "We file it with the entity and track the response deadlines."
+      },
+      {
+        "title": "Next steps",
+        "description": "If the response does not arrive or does not resolve your request, we explain the actions available."
+      }
+    ]
+  },
+  "faq": {
+    "title": "Frequently asked questions",
+    "items": [
+      {
+        "question": "How long does the entity have to respond?",
+        "answer": "As a general rule, 15 business days. For requests for documents and information the deadline is 10 business days, and for consultations, 30 business days (Law 1755 of 2015)."
+      },
+      {
+        "question": "What happens if they do not respond?",
+        "answer": "Failing to respond violates the fundamental right of petition and can be challenged through a tutela action."
+      },
+      {
+        "question": "Can I file a petition with a private company?",
+        "answer": "Yes, in the cases established by law, for example with banks, insurers or service companies. We check whether your case allows it."
+      }
+    ]
+  },
+  "closing": {
+    "title": "Tell us what you need",
+    "text": "Write to us on WhatsApp and we will tell you how to file your petition.",
+    "coverage": "We work online throughout Colombia and with people living abroad who need to resolve legal matters in the country."
+  }
+}

@@ -13,13 +13,10 @@ export const resources = {
   en: { translation: en },
 } as const;
 
-/** Mantiene <html lang>, el título y la descripción de la página en el idioma activo. */
+/** Mantiene <html lang> en el idioma activo (el título y la descripción los pone cada página). */
 function syncDocument() {
+  if (typeof document === 'undefined') return;
   document.documentElement.lang = i18n.resolvedLanguage ?? defaultLanguage;
-  document.title = i18n.t('meta.title');
-  document
-    .querySelector('meta[name="description"]')
-    ?.setAttribute('content', i18n.t('meta.description'));
 }
 
 void i18n

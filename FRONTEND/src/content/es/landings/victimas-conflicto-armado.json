@@ -1,0 +1,76 @@
+{
+  "slug": "victimas-conflicto-armado",
+  "status": "provisional",
+  "title": "Asesoría a víctimas del conflicto armado",
+  "seo": {
+    "title": "Asesoría a víctimas del conflicto armado | Orión Lex",
+    "description": "Orientación y acompañamiento para víctimas del conflicto armado: inclusión en el Registro Único de Víctimas, indemnización y reparación. Atención virtual en Colombia y el exterior."
+  },
+  "leadEvent": "victimas_lead",
+  "icon": "heart",
+  "cta": {
+    "label": "Solicitar asesoría",
+    "message": "Hola, vi la página de Orión Lex y necesito asesoría como víctima del conflicto armado."
+  },
+  "hero": {
+    "eyebrow": "Ley de Víctimas",
+    "lead": "¿Usted o su familia han sido afectados por el conflicto armado?",
+    "paragraphs": [
+      "La Ley 1448 de 2011 reconoce a las víctimas del conflicto armado derechos de atención, asistencia y reparación integral. Acceder a ellos requiere trámites ante entidades como la Unidad para las Víctimas."
+    ],
+    "emphasis": "En ORIÓN LEX le orientamos sobre sus derechos y le acompañamos en los trámites."
+  },
+  "cases": {
+    "title": "¿Cuándo puede servirle?",
+    "items": [
+      "Necesita rendir su declaración para ser incluido en el Registro Único de Víctimas.",
+      "Su solicitud de inclusión fue negada.",
+      "Quiere solicitar o hacer seguimiento a la indemnización administrativa.",
+      "Debe actualizar sus datos o reportar novedades en el registro.",
+      "Busca orientación sobre otras medidas de reparación."
+    ]
+  },
+  "process": {
+    "title": "¿Cómo trabajamos?",
+    "steps": [
+      {
+        "title": "Diagnóstico",
+        "description": "Escuchamos su caso y revisamos su situación en el registro."
+      },
+      {
+        "title": "Orientación",
+        "description": "Le explicamos sus derechos y las rutas disponibles."
+      },
+      {
+        "title": "Gestión",
+        "description": "Presentamos las solicitudes, peticiones o recursos que correspondan."
+      },
+      {
+        "title": "Seguimiento",
+        "description": "Acompañamos el trámite ante las entidades hasta obtener respuesta."
+      }
+    ]
+  },
+  "faq": {
+    "title": "Preguntas frecuentes",
+    "items": [
+      {
+        "question": "¿Qué es el Registro Único de Víctimas?",
+        "answer": "Es el registro oficial de las víctimas del conflicto armado. Estar incluido es el primer paso para acceder a las medidas de la Ley 1448 de 2011."
+      },
+      {
+        "question": "¿Qué puedo hacer si negaron mi inclusión?",
+        "answer": "La decisión puede controvertirse con los recursos que prevé la ley. Revisamos su caso y los plazos que aplican."
+      },
+      {
+        "question": "¿Pueden ayudarme si vivo fuera de Colombia?",
+        "answer": "Sí. Las víctimas que están en el exterior también pueden adelantar trámites, por ejemplo a través de los consulados. Le atendemos de forma virtual."
+      }
+    ]
+  },
+  "closing": {
+    "title": "Estamos para escucharle",
+    "text": "Escríbanos por WhatsApp y le orientaremos sobre los pasos a seguir en su caso.",
+    "coverage": "Atendemos de forma virtual en toda Colombia y a personas que viven en el exterior y necesitan resolver asuntos jurídicos en el país."
+  }
+}

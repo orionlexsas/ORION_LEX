@@ -1,0 +1,29 @@
+{
+  "eyebrow": "Nosotros",
+  "title": "Quién atenderá su caso",
+  "description": "Un equipo que le escucha, le explica con claridad y le acompaña en cada etapa.",
+  "members": [
+    {
+      "status": "provisional",
+      "name": "Nombre por confirmar",
+      "role": "Abogada",
+      "specialty": "Especialidad por confirmar",
+      "bio": "Perfil profesional pendiente. Aquí irá una biografía breve con la formación y la experiencia reales.",
+      "photo": {
+        "src": "/images/equipo/integrante-1.webp",
+        "alt": "Integrante de Orión Lex"
+      }
+    },
+    {
+      "status": "provisional",
+      "name": "Nombre por confirmar",
+      "role": "Abogado",
+      "specialty": "Especialidad por confirmar",
+      "bio": "Perfil profesional pendiente. Aquí irá una biografía breve con la formación y la experiencia reales.",
+      "photo": {
+        "src": "/images/equipo/integrante-2.webp",
+        "alt": "Integrante de Orión Lex"
+      }
+    }
+  ]
+}

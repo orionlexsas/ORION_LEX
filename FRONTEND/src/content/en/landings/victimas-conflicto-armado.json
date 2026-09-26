@@ -1,0 +1,76 @@
+{
+  "slug": "victimas-conflicto-armado",
+  "status": "provisional",
+  "title": "Advice for victims of the armed conflict",
+  "seo": {
+    "title": "Advice for victims of the armed conflict | Orión Lex",
+    "description": "Guidance and support for victims of the armed conflict: inclusion in the Single Registry of Victims, compensation and reparation. Online service in Colombia and abroad."
+  },
+  "leadEvent": "victimas_lead",
+  "icon": "heart",
+  "cta": {
+    "label": "Request advice",
+    "message": "Hello, I saw the Orión Lex website and I need advice as a victim of the armed conflict."
+  },
+  "hero": {
+    "eyebrow": "Victims' Law",
+    "lead": "Have you or your family been affected by the armed conflict?",
+    "paragraphs": [
+      "Law 1448 of 2011 grants victims of the armed conflict rights to care, assistance and comprehensive reparation. Accessing them requires procedures with entities such as the Victims' Unit (Unidad para las Víctimas)."
+    ],
+    "emphasis": "At ORIÓN LEX we guide you on your rights and support you through the procedures."
+  },
+  "cases": {
+    "title": "When can it help you?",
+    "items": [
+      "You need to give your statement to be included in the Single Registry of Victims.",
+      "Your request for inclusion was denied.",
+      "You want to request or follow up on administrative compensation.",
+      "You need to update your data or report changes in the registry.",
+      "You are looking for guidance on other reparation measures."
+    ]
+  },
+  "process": {
+    "title": "How we work",
+    "steps": [
+      {
+        "title": "Diagnosis",
+        "description": "We listen to your case and review your status in the registry."
+      },
+      {
+        "title": "Guidance",
+        "description": "We explain your rights and the paths available."
+      },
+      {
+        "title": "Management",
+        "description": "We file the applicable requests, petitions or appeals."
+      },
+      {
+        "title": "Follow-up",
+        "description": "We follow the process with the entities until a response is obtained."
+      }
+    ]
+  },
+  "faq": {
+    "title": "Frequently asked questions",
+    "items": [
+      {
+        "question": "What is the Single Registry of Victims?",
+        "answer": "It is the official registry of victims of the armed conflict. Being included is the first step to access the measures of Law 1448 of 2011."
+      },
+      {
+        "question": "What can I do if my inclusion was denied?",
+        "answer": "The decision can be challenged with the remedies provided by law. We review your case and the applicable deadlines."
+      },
+      {
+        "question": "Can you help me if I live outside Colombia?",
+        "answer": "Yes. Victims living abroad can also carry out procedures, for example through consulates. We serve you online."
+      }
+    ]
+  },
+  "closing": {
+    "title": "We are here to listen",
+    "text": "Write to us on WhatsApp and we will guide you on the next steps for your case.",
+    "coverage": "We work online throughout Colombia and with people living abroad who need to resolve legal matters in the country."
+  }
+}

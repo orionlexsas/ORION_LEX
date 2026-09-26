@@ -1,0 +1,28 @@
+{
+  "eyebrow": "Actualidad Jurídica",
+  "title": "Actualidad Jurídica",
+  "description": "Novedades legales, jurisprudencia y explicaciones prácticas para entender sus derechos.",
+  "featuredLabel": "Actualidad jurídica de la semana",
+  "readMore": "Leer más",
+  "allLabel": "Ver todos los artículos",
+  "empty": "Pronto publicaremos nuevos artículos.",
+  "backLabel": "Volver a Actualidad Jurídica",
+  "sourcesLabel": "Fuentes",
+  "shareLabel": "Compartir",
+  "homeLimit": 3,
+  "categories": [
+    { "slug": "novedades", "name": "Novedades legales" },
+    { "slug": "reformas", "name": "Reformas" },
+    { "slug": "jurisprudencia", "name": "Jurisprudencia" },
+    { "slug": "guias", "name": "Guías prácticas" }
+  ],
+  "cta": {
+    "title": "¿Este tema se relaciona con su caso?",
+    "text": "Cuéntenos su situación y le explicamos sus opciones.",
+    "button": {
+      "label": "Hablar con un abogado",
+      "href": "whatsapp",
+      "message": "Hola, leí un artículo de Actualidad Jurídica en la página de Orión Lex y quiero hacer una consulta."
+    }
+  }
+}

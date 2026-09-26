@@ -4,7 +4,7 @@ export type Theme = 'light' | 'dark';
 
 /** Misma clave que usa el script de index.html para aplicar el tema antes de pintar. */
 const STORAGE_KEY = 'orion-lex-theme';
-const THEME_COLORS: Record<Theme, string> = { dark: '#0b0a08', light: '#f7f3ec' };
+const THEME_COLORS: Record<Theme, string> = { dark: '#0a0a0a', light: '#ffffff' };
 
 const listeners = new Set<() => void>();
 

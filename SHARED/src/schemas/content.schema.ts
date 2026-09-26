@@ -3,31 +3,38 @@ import { z } from 'zod';
 /** Íconos disponibles para el contenido editable. El frontend traduce cada nombre a un ícono. */
 export const contentIconSchema = z.enum([
   'user',
+  'users',
   'clock',
-  'chart',
   'phone',
   'mail',
   'map-pin',
+  'globe',
+  'laptop',
   'scale',
   'briefcase',
-  'users',
   'landmark',
   'gavel',
   'file-text',
-  'messages',
   'file-search',
+  'messages',
+  'route',
+  'shield-check',
+  'handshake',
+  'heart',
+  'credit-card',
+  'car',
+  'file-pen',
+  'hospital',
 ]);
 
-/** Fragmento de texto; `highlight` lo pinta en dorado. */
-const highlightTextSchema = z.object({ text: z.string(), highlight: z.boolean().default(false) });
-
 /**
- * Enlace o botón. `href: "whatsapp"` abre WhatsApp con el número y mensaje de
- * `site.contact.whatsapp` (así el número se cambia en un solo lugar).
+ * Enlace o botón. `href: "whatsapp"` abre WhatsApp con el número de `site.contact.whatsapp`
+ * (así el número se cambia en un solo lugar) y `message` como texto ya escrito.
  */
 const linkSchema = z.object({
   label: z.string().min(1),
   href: z.string().min(1),
+  message: z.string().optional(),
 });
 
 const imageSourceSchema = z.object({
@@ -38,51 +45,55 @@ const imageSourceSchema = z.object({
 
 const imageSchema = imageSourceSchema.extend({
   alt: z.string(),
-  /** Versión de la imagen para el tema claro (opcional; si falta se usa la misma). */
-  light: imageSourceSchema.optional(),
+  /** Versión de la imagen para el tema oscuro (opcional; si falta se usa la misma). */
+  dark: imageSourceSchema.optional(),
 });
 
-/** Pie de página: franja de llamada a la acción, columnas de enlaces y datos legales. */
-const footerSchema = z.object({
-  cta: z.object({
-    eyebrow: z.string(),
-    title: z.string(),
-    description: z.string(),
-    button: linkSchema,
-    scriptLines: z.array(z.string()),
-    image: imageSchema,
-  }),
-  tagline: z.string(),
-  headings: z.object({ explore: z.string(), services: z.string(), contact: z.string() }),
-  /** Cuántos servicios (en el orden de services.json) se listan en el pie. */
-  servicesLimit: z.number().int().positive(),
-  writeUsLabel: z.string(),
-  rightsText: z.string(),
-  legalLinks: z.array(linkSchema),
-  decorations: z.object({ left: imageSchema, right: imageSchema }),
-});
+/** Ruta interna o slug: solo minúsculas, números y guiones. */
+const slugSchema = z.string().regex(/^[a-z0-9-]+$/);
 
-/** Datos globales del sitio: marca, menú, datos de contacto y pie de página. */
+/**
+ * Estado del contenido: `final` = aprobado por el despacho; `provisional` = texto de relleno
+ * o sin confirmar que debe reemplazarse (ver CONTENIDO_PENDIENTE.md).
+ */
+const statusSchema = z.enum(['final', 'provisional']).default('final');
+
+const questionSchema = z.object({ question: z.string(), answer: z.string() });
+
+const pageSeoSchema = z.object({ title: z.string(), description: z.string() });
+
+/** Datos globales: marca, SEO por defecto, menú, contacto y pie de página. */
 export const siteContentSchema = z.object({
   brand: z.object({
     name: z.string().min(1),
+    legalName: z.string().min(1),
     tagline: z.string(),
+  }),
+  /** Dominio público, sin barra final. Se usa en canonical, Open Graph y el sitemap. */
+  siteUrl: z.url().refine((url) => !url.endsWith('/'), 'sin barra final'),
+  seo: z.object({ title: z.string(), description: z.string(), image: z.string() }),
+  /** Título y descripción de las páginas fijas (las landings y artículos traen los suyos). */
+  pages: z.object({
+    services: pageSeoSchema,
+    about: pageSeoSchema,
+    blog: pageSeoSchema,
+    contact: pageSeoSchema,
   }),
   nav: z.array(linkSchema),
   cta: linkSchema,
   contact: z.object({
     phone: z.string(),
     email: z.email(),
-    city: z.string(),
-    modality: z.string(),
+    /** Texto de cobertura: atención virtual en toda Colombia y el exterior. */
+    coverage: z.string(),
     whatsapp: z.object({
       /** Número con indicativo de país, solo dígitos (p. ej. 573132344178). */
       number: z.string().regex(/^\d{8,15}$/),
-      /** Mensaje que aparece ya escrito al abrir el chat. */
+      /** Mensaje por defecto (botón flotante y enlaces sin mensaje propio). */
       message: z.string(),
     }),
   }),
-  /** Perfiles en redes sociales (se muestran como íconos en el pie). */
+  /** Perfiles en redes sociales. Instagram se agrega aquí cuando exista. */
   social: z
     .array(
       z.object({
@@ -91,147 +102,250 @@ export const siteContentSchema = z.object({
       }),
     )
     .default([]),
-  footer: footerSchema,
-  /** Video de introducción que se muestra una vez por visita (opcional). */
+  footer: z.object({
+    cta: z.object({
+      eyebrow: z.string(),
+      title: z.string(),
+      description: z.string(),
+      button: linkSchema,
+    }),
+    tagline: z.string(),
+    headings: z.object({ explore: z.string(), services: z.string(), contact: z.string() }),
+    rightsText: z.string(),
+    legalLinks: z.array(linkSchema),
+  }),
+  /** Video de introducción: solo en la portada y solo en la primera visita (opcional). */
   intro: z.object({ video: z.string().min(1) }).optional(),
 });
 
-/** Contenido de la página de inicio. */
+/** Portada: hero compacto. */
 export const homeContentSchema = z.object({
   hero: z.object({
     eyebrow: z.string(),
-    /** Cada línea del título; `highlight` la pinta en dorado. */
-    titleLines: z.array(highlightTextSchema),
+    title: z.string(),
     description: z.string(),
     primaryCta: linkSchema,
     secondaryCta: linkSchema,
+    /** Frases cortas de confianza bajo los botones. */
+    points: z.array(z.string()).max(4),
     image: imageSchema,
-    highlights: z.array(
-      z.object({ icon: contentIconSchema, title: z.string(), description: z.string() }),
-    ),
-    contactItems: z.array(
-      z.object({
-        icon: contentIconSchema,
-        label: z.string(),
-        value: z.string(),
-        detail: z.string().optional(),
-        href: z.string().optional(),
-      }),
-    ),
-    signature: z.object({
-      scriptLines: z.array(z.string()),
-      brand: z.string(),
-      tagline: z.string(),
-    }),
-    quote: z.string(),
-    scrollHint: z.string(),
   }),
 });
 
-/** Sección de servicios: encabezado, servicio destacado y tarjetas. */
+/** Sección "Asuntos que atendemos con frecuencia": encabezado y orden de las tarjetas. */
+export const mattersContentSchema = z.object({
+  eyebrow: z.string(),
+  title: z.string(),
+  description: z.string(),
+  cardCta: z.string(),
+  /** Slugs de las landing pages, en el orden en que se muestran (6 tarjetas). */
+  order: z.array(slugSchema).min(1),
+});
+
+/**
+ * Landing page de un servicio (una por archivo en `landings/`). Pensada para anuncios:
+ * cada bloque es opcional salvo el hero, el llamado principal y el cierre.
+ */
+export const landingContentSchema = z.object({
+  slug: slugSchema,
+  status: statusSchema,
+  /** Nombre del servicio: título de la tarjeta y H1 de la página. */
+  title: z.string(),
+  seo: z.object({ title: z.string(), description: z.string() }),
+  /** Evento de analítica que se envía al pulsar el llamado a WhatsApp (p. ej. datacredito_lead). */
+  leadEvent: z
+    .string()
+    .regex(/^[a-z]+_lead$/)
+    .transform((event) => event as `${string}_lead`),
+  /** Ícono de la tarjeta; se ve en lugar de la foto mientras no haya `image`. */
+  icon: contentIconSchema,
+  /** Foto del servicio (tarjeta y encabezado). Opcional: sin ella se usa un panel con el ícono. */
+  image: imageSchema.optional(),
+  /** Llamado principal: siempre abre WhatsApp con este mensaje. */
+  cta: z.object({ label: z.string(), message: z.string() }),
+  hero: z.object({
+    eyebrow: z.string(),
+    /** Pregunta de entrada bajo el título. */
+    lead: z.string(),
+    paragraphs: z.array(z.string()),
+    /** Frase destacada (qué hace Orión Lex por el cliente). */
+    emphasis: z.string().optional(),
+    /** Aviso destacado junto al botón (p. ej. diagnóstico gratis). */
+    highlight: z.string().optional(),
+  }),
+  cases: z.object({ title: z.string(), items: z.array(z.string()).min(1) }).optional(),
+  process: z
+    .object({
+      title: z.string(),
+      steps: z.array(z.object({ title: z.string(), description: z.string() })).min(1),
+    })
+    .optional(),
+  guarantee: z.object({ title: z.string(), text: z.string() }).optional(),
+  /** Contador animado. La cifra se cambia aquí; la confirma el despacho. */
+  stats: z
+    .object({
+      prefix: z.string(),
+      value: z.number().int().positive(),
+      label: z.string(),
+    })
+    .optional(),
+  testimonials: z
+    .object({
+      title: z.string(),
+      /** Vacío hasta recibir reseñas reales: la sección no se muestra. */
+      items: z.array(
+        z.object({ name: z.string(), text: z.string(), photo: imageSchema.optional() }),
+      ),
+    })
+    .optional(),
+  faq: z.object({ title: z.string(), items: z.array(questionSchema).min(1) }).optional(),
+  closing: z.object({
+    title: z.string(),
+    text: z.string(),
+    coverage: z.string().optional(),
+  }),
+});
+
+/** "Cómo trabajamos": pasos del proceso de atención. */
+export const approachContentSchema = z.object({
+  eyebrow: z.string(),
+  title: z.string(),
+  description: z.string(),
+  steps: z
+    .array(z.object({ icon: contentIconSchema, title: z.string(), description: z.string() }))
+    .min(1),
+  cta: linkSchema,
+});
+
+/**
+ * Áreas del derecho (servicios jurídicos generales). `action: "whatsapp"` abre WhatsApp
+ * con `message`; `action: "details"` muestra la explicación breve en una ventana.
+ */
 export const servicesContentSchema = z.object({
   eyebrow: z.string(),
-  title: z.array(highlightTextSchema),
+  title: z.string(),
   description: z.string(),
-  quote: z.string(),
-  image: imageSchema,
-  brand: z.object({ name: z.string(), tagline: z.string() }),
-  /** El primero se muestra como tarjeta destacada. */
+  detailsLabel: z.string(),
+  ctaLabel: z.string(),
+  closeLabel: z.string(),
   items: z
     .array(
       z.object({
-        slug: z.string().regex(/^[a-z0-9-]+$/),
+        slug: slugSchema,
+        status: statusSchema,
         icon: contentIconSchema,
         title: z.string(),
         description: z.string(),
-        href: z.string(),
-        image: imageSchema.optional(),
+        details: z.string(),
+        action: z.enum(['whatsapp', 'details']),
+        /** Mensaje de WhatsApp de esta área. */
+        message: z.string(),
       }),
     )
     .min(1),
-  featured: z.object({
-    eyebrow: z.string(),
-    footerLabel: z.string(),
-    footerText: z.string(),
-  }),
-  linkLabel: z.string(),
 });
 
-/** Sección "Nuestro enfoque": pasos del proceso de atención. */
-export const approachContentSchema = z.object({
-  eyebrow: z.string(),
-  title: z.array(highlightTextSchema),
-  description: z.string(),
-  scriptLines: z.array(z.string()),
-  steps: z
-    .array(
-      z.object({
-        icon: contentIconSchema,
-        title: z.string(),
-        description: z.string(),
-        image: imageSchema,
-      }),
-    )
-    .min(1),
-  cta: linkSchema,
-  decoration: imageSchema,
-});
-
-/** Sección "Nuestros clientes": carrusel de tarjetas con foto. */
-export const clientsContentSchema = z.object({
+/** Nosotros: quién atiende al cliente. Misión y visión son opcionales y secundarias. */
+export const teamContentSchema = z.object({
   eyebrow: z.string(),
   title: z.string(),
-  /** Segundos entre cada cambio automático de tarjeta. */
-  autoplaySeconds: z.number().positive().default(5),
-  items: z.array(z.object({ tag: z.string(), caption: z.string(), image: imageSchema })).min(1),
+  description: z.string(),
+  members: z.array(
+    z.object({
+      status: statusSchema,
+      name: z.string(),
+      role: z.string(),
+      specialty: z.string(),
+      bio: z.string(),
+      photo: imageSchema,
+    }),
+  ),
+  values: z
+    .object({
+      title: z.string(),
+      items: z.array(z.object({ title: z.string(), text: z.string() })),
+    })
+    .optional(),
 });
 
-/** Sección "Preguntas frecuentes". */
-export const faqContentSchema = z.object({
+/** Cobertura: atención virtual en toda Colombia y para personas en el exterior. */
+export const coverageContentSchema = z.object({
   eyebrow: z.string(),
-  title: z.array(highlightTextSchema),
-  description: z.string(),
-  items: z.array(z.object({ question: z.string(), answer: z.string() })).min(1),
+  title: z.string(),
+  text: z.string(),
+  points: z.array(z.object({ icon: contentIconSchema, title: z.string(), text: z.string() })),
+  image: imageSchema,
   cta: linkSchema,
-  /** Texto pequeño bajo el botón (p. ej. ciudades). */
-  footnote: z.string().optional(),
-  decorations: z.object({ right: imageSchema, left: imageSchema }),
 });
 
-/** Porcentaje (0–100) dentro de la imagen del mapa. */
-const percentSchema = z.number().min(0).max(100);
-
-/** Sección "Dónde te atendemos": mapa con las ciudades. */
-export const locationsContentSchema = z.object({
+/** Textos de la sección Actualidad Jurídica (blog). */
+export const blogContentSchema = z.object({
   eyebrow: z.string(),
-  /** Cada línea del título, con sus partes (`highlight` = dorado). */
-  titleLines: z.array(z.array(highlightTextSchema)),
+  title: z.string(),
   description: z.string(),
-  features: z.array(z.object({ icon: contentIconSchema, text: z.string() })),
-  cta: linkSchema,
-  map: imageSchema,
-  cities: z
-    .array(
-      z.object({
-        name: z.string(),
-        detail: z.string(),
-        /** Ubicación del marcador sobre el mapa. */
-        marker: z.object({ x: percentSchema, y: percentSchema }),
-        /** Punto donde termina la línea y se apoya la etiqueta; `side` = hacia dónde va el texto. */
-        label: z.object({ x: percentSchema, y: percentSchema, side: z.enum(['left', 'right']) }),
-      }),
-    )
-    .min(1),
+  featuredLabel: z.string(),
+  readMore: z.string(),
+  allLabel: z.string(),
+  empty: z.string(),
+  backLabel: z.string(),
+  sourcesLabel: z.string(),
+  shareLabel: z.string(),
+  categories: z.array(z.object({ slug: slugSchema, name: z.string() })).min(1),
+  cta: z.object({ title: z.string(), text: z.string(), button: linkSchema }),
+  /** Cuántos artículos se muestran en la portada. */
+  homeLimit: z.number().int().positive(),
+});
+
+/** Un artículo de Actualidad Jurídica (un archivo por artículo en `articles/`). */
+export const articleContentSchema = z.object({
+  slug: slugSchema,
+  status: statusSchema,
+  /** false = borrador: no se muestra en la web. */
+  published: z.boolean().default(true),
+  /** Marca el artículo como "Actualidad jurídica de la semana". */
+  featured: z.boolean().default(false),
+  title: z.string(),
+  category: slugSchema,
+  /** Fecha de publicación (AAAA-MM-DD). */
+  date: z.iso.date(),
+  excerpt: z.string(),
+  /** Imagen destacada (opcional: sin ella se usa un panel con la categoría). */
+  image: imageSchema.optional(),
+  /** Contenido en Markdown (títulos ##, listas, negritas, enlaces). */
+  body: z.string().min(1),
+  sources: z.array(z.object({ label: z.string(), url: z.url() })).default([]),
+  seo: z.object({ description: z.string() }).optional(),
+});
+
+/** Páginas legales (privacidad y términos). Su texto debe aprobarlo el despacho. */
+const legalPageSchema = z.object({
+  status: statusSchema,
+  title: z.string(),
+  description: z.string(),
+  /** Contenido en Markdown. */
+  body: z.string(),
+});
+
+export const legalContentSchema = z.object({
+  privacy: legalPageSchema,
+  terms: legalPageSchema,
 });
 
 export type ContentImage = z.infer<typeof imageSchema>;
 export type ContentIcon = z.infer<typeof contentIconSchema>;
+export type ContentLink = z.infer<typeof linkSchema>;
 export type SiteContent = z.infer<typeof siteContentSchema>;
 export type SocialNetwork = SiteContent['social'][number]['network'];
 export type HomeContent = z.infer<typeof homeContentSchema>;
+export type MattersContent = z.infer<typeof mattersContentSchema>;
+export type LandingContent = z.infer<typeof landingContentSchema>;
 export type ApproachContent = z.infer<typeof approachContentSchema>;
-export type ClientsContent = z.infer<typeof clientsContentSchema>;
-export type FaqContent = z.infer<typeof faqContentSchema>;
-export type LocationsContent = z.infer<typeof locationsContentSchema>;
 export type ServicesContent = z.infer<typeof servicesContentSchema>;
 export type ServiceItem = ServicesContent['items'][number];
+export type TeamContent = z.infer<typeof teamContentSchema>;
+export type CoverageContent = z.infer<typeof coverageContentSchema>;
+export type BlogContent = z.infer<typeof blogContentSchema>;
+export type ArticleContent = z.infer<typeof articleContentSchema>;
+export type LegalContent = z.infer<typeof legalContentSchema>;
+export type LegalPage = z.infer<typeof legalPageSchema>;
+export type FaqItem = z.infer<typeof questionSchema>;

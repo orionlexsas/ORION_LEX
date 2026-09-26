@@ -1,0 +1,40 @@
+{
+  "eyebrow": "Legal News",
+  "title": "Legal News",
+  "description": "Legal news, case law and practical explanations to help you understand your rights.",
+  "featuredLabel": "Legal news of the week",
+  "readMore": "Read more",
+  "allLabel": "See all articles",
+  "empty": "New articles coming soon.",
+  "backLabel": "Back to Legal News",
+  "sourcesLabel": "Sources",
+  "shareLabel": "Share",
+  "homeLimit": 3,
+  "categories": [
+    {
+      "slug": "novedades",
+      "name": "Legal updates"
+    },
+    {
+      "slug": "reformas",
+      "name": "Reforms"
+    },
+    {
+      "slug": "jurisprudencia",
+      "name": "Case law"
+    },
+    {
+      "slug": "guias",
+      "name": "Practical guides"
+    }
+  ],
+  "cta": {
+    "title": "Is this topic related to your case?",
+    "text": "Tell us your situation and we will explain your options.",
+    "button": {
+      "label": "Talk to a lawyer",
+      "href": "whatsapp",
+      "message": "Hello, I read a Legal News article on the Orión Lex website and I would like to ask a question."
+    }
+  }
+}

@@ -16,8 +16,10 @@ describe('createJsonContactRepository', () => {
     const repo = createJsonContactRepository(file);
     const msg = {
       fullName: 'Ana Pérez',
+      phone: '313 000 0000',
       email: 'ana@example.com',
       message: 'Hola, necesito ayuda.',
+      privacyAccepted: true as const,
     };
 
     await Promise.all([repo.create(msg), repo.create(msg), repo.create(msg)]);

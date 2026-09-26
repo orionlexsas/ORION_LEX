@@ -1,0 +1,14 @@
+{
+  "eyebrow": "Services",
+  "title": "Matters we frequently handle",
+  "description": "Choose your situation to see how we can help you.",
+  "cardCta": "Learn more",
+  "order": [
+    "eliminacion-reportes-datacredito",
+    "eliminacion-comparendos",
+    "derechos-de-peticion",
+    "acciones-de-tutela",
+    "indemnizacion-soat",
+    "victimas-conflicto-armado"
+  ]
+}

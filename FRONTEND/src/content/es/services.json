@@ -1,132 +1,80 @@
 {
-  "eyebrow": "Servicios jurídicos",
-  "title": [
-    {
-      "text": "Nuestros",
-      "highlight": false
-    },
-    {
-      "text": "servicios",
-      "highlight": true
-    }
-  ],
-  "description": "Soluciones legales integrales con atención profesional, estratégica y personalizada.",
-  "quote": "Más que servicios legales, construimos tranquilidad en cada etapa de tu vida.",
-  "image": {
-    "src": "/images/servicios/encabezado-justicia.webp",
-    "alt": "",
-    "light": {
-      "src": "/images/servicios/encabezado-justicia-claro.webp"
-    }
-  },
-  "brand": {
-    "name": "Orión Lex",
-    "tagline": "Servicios jurídicos"
-  },
-  "featured": {
-    "eyebrow": "Apoyo en cada decisión",
-    "footerLabel": "Tu aliado legal en cada paso",
-    "footerText": "Escuchamos, analizamos y te guiamos hacia la mejor solución."
-  },
-  "linkLabel": "Ver más",
+  "eyebrow": "Áreas de práctica",
+  "title": "Servicios jurídicos",
+  "description": "Asesoría y representación en las principales áreas del derecho.",
+  "detailsLabel": "¿En qué consiste?",
+  "ctaLabel": "Solicitar asesoría",
+  "closeLabel": "Cerrar",
   "items": [
     {
       "slug": "asesoria-juridica",
-      "icon": "user",
+      "status": "final",
+      "icon": "messages",
       "title": "Asesoría jurídica",
-      "description": "Orientación legal clara y estratégica para personas y empresas.",
-      "href": "/contacto",
-      "image": {
-        "src": "/images/servicios/asesoria-juridica.webp",
-        "alt": "Libros de leyes y una pluma sobre un escritorio",
-        "light": {
-          "src": "/images/servicios/asesoria-juridica-claro.webp"
-        }
-      }
+      "description": "Orientación legal clara para tomar decisiones informadas.",
+      "details": "Revisamos su situación, le explicamos sus derechos y obligaciones, y le indicamos las opciones que tiene.",
+      "action": "whatsapp",
+      "message": "Hola, vi la página de Orión Lex y quiero solicitar una asesoría jurídica."
     },
     {
       "slug": "derecho-civil",
+      "status": "provisional",
       "icon": "scale",
       "title": "Derecho civil",
-      "description": "Contratos, obligaciones, responsabilidad civil y más.",
-      "href": "/contacto",
-      "image": {
-        "src": "/images/servicios/derecho-civil.webp",
-        "alt": "Balanza de la justicia dorada",
-        "light": {
-          "src": "/images/servicios/derecho-civil-claro.webp"
-        }
-      }
+      "description": "Contratos, obligaciones, bienes y responsabilidad civil.",
+      "details": "Le asesoramos en contratos, cobro de obligaciones, asuntos sobre bienes, sucesiones y reclamaciones por daños y perjuicios, tanto en la etapa de negociación como ante los jueces.",
+      "action": "details",
+      "message": "Hola, vi la página de Orión Lex y quiero asesoría en derecho civil."
     },
     {
       "slug": "derecho-laboral",
+      "status": "provisional",
       "icon": "briefcase",
       "title": "Derecho laboral",
-      "description": "Acompañamiento en relaciones laborales y reclamaciones.",
-      "href": "/contacto",
-      "image": {
-        "src": "/images/servicios/derecho-laboral.webp",
-        "alt": "Silla de oficina y documentos sobre un escritorio",
-        "light": {
-          "src": "/images/servicios/derecho-laboral-claro.webp"
-        }
-      }
+      "description": "Relaciones laborales, despidos y reclamaciones.",
+      "details": "Orientamos a trabajadores y empleadores en contratos de trabajo, liquidaciones, despidos, acoso laboral y reclamaciones de salarios, prestaciones y seguridad social.",
+      "action": "details",
+      "message": "Hola, vi la página de Orión Lex y quiero asesoría en derecho laboral."
     },
     {
       "slug": "derecho-familia",
+      "status": "provisional",
       "icon": "users",
       "title": "Derecho de familia",
       "description": "Procesos familiares con sensibilidad y respaldo legal.",
-      "href": "/contacto",
-      "image": {
-        "src": "/images/servicios/derecho-familia.webp",
-        "alt": "Familia caminando de la mano al atardecer",
-        "light": {
-          "src": "/images/servicios/derecho-familia-claro.webp"
-        }
-      }
+      "details": "Acompañamos divorcios, cuotas alimentarias, custodia y visitas, uniones maritales de hecho y otros asuntos familiares, buscando acuerdos cuando es posible.",
+      "action": "details",
+      "message": "Hola, vi la página de Orión Lex y quiero asesoría en derecho de familia."
     },
     {
       "slug": "derecho-comercial",
+      "status": "provisional",
       "icon": "landmark",
       "title": "Derecho comercial",
-      "description": "Soporte para negocios, sociedades y asuntos mercantiles.",
-      "href": "/contacto",
-      "image": {
-        "src": "/images/servicios/derecho-comercial.webp",
-        "alt": "Edificios de oficinas vistos desde abajo",
-        "light": {
-          "src": "/images/servicios/derecho-comercial-claro.webp"
-        }
-      }
+      "description": "Negocios, sociedades y asuntos mercantiles.",
+      "details": "Apoyamos a emprendedores y empresas en la constitución de sociedades, contratos comerciales, cobro de cartera y conflictos entre socios.",
+      "action": "details",
+      "message": "Hola, vi la página de Orión Lex y quiero asesoría en derecho comercial."
     },
     {
       "slug": "derecho-penal",
+      "status": "provisional",
       "icon": "gavel",
       "title": "Derecho penal",
-      "description": "Defensa y representación con rigor profesional.",
-      "href": "/contacto",
-      "image": {
-        "src": "/images/servicios/derecho-penal.webp",
-        "alt": "Mazo de juez sobre la mesa",
-        "light": {
-          "src": "/images/servicios/derecho-penal-claro.webp"
-        }
-      }
+      "description": "Defensa y representación de víctimas.",
+      "details": "Asesoramos y representamos a personas investigadas o acusadas, y a víctimas que buscan que sus derechos sean reconocidos en el proceso penal.",
+      "action": "details",
+      "message": "Hola, vi la página de Orión Lex y quiero asesoría en derecho penal."
     },
     {
       "slug": "conciliacion-contratos",
+      "status": "provisional",
       "icon": "file-text",
       "title": "Conciliación y contratos",
-      "description": "Prevención de conflictos y acuerdos jurídicos seguros.",
-      "href": "/contacto",
-      "image": {
-        "src": "/images/servicios/conciliacion-contratos.webp",
-        "alt": "Apretón de manos sobre un contrato firmado",
-        "light": {
-          "src": "/images/servicios/conciliacion-contratos-claro.webp"
-        }
-      }
+      "description": "Acuerdos seguros y prevención de conflictos.",
+      "details": "Redactamos y revisamos contratos, y le acompañamos en audiencias de conciliación para resolver conflictos sin llegar a un juicio.",
+      "action": "details",
+      "message": "Hola, vi la página de Orión Lex y quiero asesoría en conciliación y contratos."
     }
   ]
 }

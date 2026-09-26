@@ -6,11 +6,12 @@ import globals from 'globals';
 import prettier from 'eslint-config-prettier';
 
 export default tseslint.config(
-  { ignores: ['**/dist', '**/node_modules', '**/coverage'] },
+  { ignores: ['**/dist', '**/node_modules', '**/coverage', '**/.vercel'] },
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {
-    files: ['BACKEND/**/*.ts', 'SHARED/**/*.ts'],
+    // Código que corre en Node: backend, función de Vercel y scripts de build.
+    files: ['BACKEND/**/*.ts', 'SHARED/**/*.ts', 'FRONTEND/{api,server,scripts}/**/*.{ts,mjs}'],
     languageOptions: { globals: globals.node },
   },
   {

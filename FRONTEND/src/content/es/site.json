@@ -1,7 +1,32 @@
 {
   "brand": {
     "name": "Orión Lex",
+    "legalName": "Orión Lex Servicios Jurídicos",
     "tagline": "Servicios jurídicos"
+  },
+  "siteUrl": "https://orionlex.co",
+  "seo": {
+    "title": "Orión Lex | Servicios Jurídicos en Colombia",
+    "description": "Orión Lex Servicios Jurídicos: asesoría y gestión jurídica de forma virtual en toda Colombia y para personas en el exterior con asuntos legales en el país.",
+    "image": "/images/og-orion-lex.jpg"
+  },
+  "pages": {
+    "services": {
+      "title": "Servicios jurídicos | Orión Lex",
+      "description": "Eliminación de reportes en Datacrédito y de comparendos, derechos de petición, tutelas, SOAT, víctimas del conflicto y asesoría en las principales áreas del derecho."
+    },
+    "about": {
+      "title": "Nosotros | Orión Lex",
+      "description": "Conozca al equipo de Orión Lex Servicios Jurídicos: quién atenderá su caso y cómo trabajamos."
+    },
+    "blog": {
+      "title": "Actualidad Jurídica | Orión Lex",
+      "description": "Novedades legales, reformas, jurisprudencia y guías prácticas para entender sus derechos en Colombia."
+    },
+    "contact": {
+      "title": "Contacto | Orión Lex",
+      "description": "Escríbanos por WhatsApp al 313 234 4178, al correo abogados@orionlex.co o por el formulario. Atención virtual en toda Colombia y el exterior."
+    }
   },
   "nav": [
     {
@@ -14,11 +39,11 @@
     },
     {
       "label": "Nosotros",
-      "href": "/#nosotros"
+      "href": "/nosotros"
     },
     {
-      "label": "Casos",
-      "href": "/#casos"
+      "label": "Actualidad",
+      "href": "/actualidad"
     },
     {
       "label": "Contacto",
@@ -26,73 +51,57 @@
     }
   ],
   "cta": {
-    "label": "Agenda tu consulta",
-    "href": "whatsapp"
+    "label": "Cuéntenos su caso",
+    "href": "whatsapp",
+    "message": "Hola, vi la página web de Orión Lex y quiero contarles mi caso."
   },
   "contact": {
-    "phone": "+57 313 234 4178",
-    "email": "sergio.ardila@outlook.com",
-    "city": "Bogotá, Colombia",
-    "modality": "Atención presencial y virtual",
+    "phone": "313 234 4178",
+    "email": "abogados@orionlex.co",
+    "coverage": "Atendemos de forma virtual en toda Colombia y a personas que viven en el exterior y necesitan resolver asuntos jurídicos en el país.",
     "whatsapp": {
       "number": "573132344178",
-      "message": "Hola, quisiera agendar una consulta con Orión Lex."
+      "message": "Hola, vi la página web de Orión Lex y quiero contarles mi caso."
     }
   },
   "social": [
     {
-      "network": "tiktok",
-      "url": "https://www.tiktok.com/@orionlex"
-    },
-    {
       "network": "facebook",
       "url": "https://www.facebook.com/AbogadoSergioArdila/"
+    },
+    {
+      "network": "tiktok",
+      "url": "https://www.tiktok.com/@orionlex"
     }
   ],
   "footer": {
     "cta": {
-      "eyebrow": "Estamos para ayudarte",
-      "title": "Hablemos de tu caso",
-      "description": "Recibe orientación jurídica clara y personalizada.",
+      "eyebrow": "Estamos para ayudarle",
+      "title": "Hablemos de su caso",
+      "description": "Escríbanos por WhatsApp y un abogado revisará su situación.",
       "button": {
-        "label": "Agenda tu consulta",
-        "href": "whatsapp"
-      },
-      "scriptLines": ["Tu aliado", "en cada paso"],
-      "image": {
-        "src": "/images/footer/justicia.webp",
-        "alt": ""
+        "label": "Hablar con un abogado",
+        "href": "whatsapp",
+        "message": "Hola, vi la página de Orión Lex y quiero hablar con un abogado."
       }
     },
-    "tagline": "Tu tranquilidad legal, nuestra prioridad.",
+    "tagline": "Soluciones jurídicas claras para su caso.",
     "headings": {
-      "explore": "Explora",
+      "explore": "Navegación",
       "services": "Servicios",
       "contact": "Contacto"
     },
-    "servicesLimit": 4,
-    "writeUsLabel": "Escríbenos",
     "rightsText": "Todos los derechos reservados.",
     "legalLinks": [
       {
-        "label": "Privacidad",
+        "label": "Política de privacidad",
         "href": "/privacidad"
       },
       {
-        "label": "Términos",
+        "label": "Términos y condiciones",
         "href": "/terminos"
       }
-    ],
-    "decorations": {
-      "left": {
-        "src": "/images/footer/libros.webp",
-        "alt": ""
-      },
-      "right": {
-        "src": "/images/footer/planta.webp",
-        "alt": ""
-      }
-    }
+    ]
   },
   "intro": {
     "video": "/video/intro-orion-lex.mp4"

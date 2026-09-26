@@ -1,0 +1,76 @@
+{
+  "slug": "acciones-de-tutela",
+  "status": "provisional",
+  "title": "Tutela actions",
+  "seo": {
+    "title": "Tutela actions | Orión Lex",
+    "description": "We prepare and file tutela actions to protect your fundamental rights: health, petition, due process and minimum subsistence. Online service throughout Colombia."
+  },
+  "leadEvent": "tutela_lead",
+  "icon": "scale",
+  "cta": {
+    "label": "Request advice",
+    "message": "Hello, I saw the Orión Lex website and I need help with a tutela action."
+  },
+  "hero": {
+    "eyebrow": "Fundamental rights",
+    "lead": "Do you believe one of your fundamental rights is being violated?",
+    "paragraphs": [
+      "The tutela action is a mechanism to ask a judge for the immediate protection of fundamental rights such as health, petition, due process or minimum subsistence, when there is no other effective way to defend them."
+    ],
+    "emphasis": "At ORIÓN LEX we review your case and, if applicable, prepare and file the tutela with the necessary evidence."
+  },
+  "cases": {
+    "title": "When can it help you?",
+    "items": [
+      "You are denied treatments, medicines or medical appointments.",
+      "A petition you filed has not been answered.",
+      "Your minimum subsistence is affected.",
+      "Due process was not respected in a proceeding.",
+      "Your situation requires urgent protection."
+    ]
+  },
+  "process": {
+    "title": "How we work",
+    "steps": [
+      {
+        "title": "Diagnosis",
+        "description": "We analyze whether the tutela is the right mechanism for your case."
+      },
+      {
+        "title": "Preparation",
+        "description": "We gather the documents and evidence, and draft the action."
+      },
+      {
+        "title": "Filing",
+        "description": "We file the tutela with the competent judge."
+      },
+      {
+        "title": "Follow-up",
+        "description": "We follow the process and verify that the judge's orders are complied with."
+      }
+    ]
+  },
+  "faq": {
+    "title": "Frequently asked questions",
+    "items": [
+      {
+        "question": "How long does the judge take to decide?",
+        "answer": "The judge must decide within 10 business days after the tutela is filed (Decree 2591 of 1991)."
+      },
+      {
+        "question": "Do I need a lawyer to file a tutela?",
+        "answer": "It is not mandatory. Having advice helps you clearly present the facts, the rights violated and the evidence."
+      },
+      {
+        "question": "What happens if the ruling is not complied with?",
+        "answer": "A contempt proceeding (incidente de desacato) can be started to demand compliance with the judge's orders."
+      }
+    ]
+  },
+  "closing": {
+    "title": "Tell us your situation",
+    "text": "Write to us on WhatsApp and we will review whether a tutela is the right path for your case.",
+    "coverage": "We work online throughout Colombia and with people living abroad who need to resolve legal matters in the country."
+  }
+}

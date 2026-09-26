@@ -1,6 +1,6 @@
 # Arquitectura de Orion Lex
 
-Web del despacho (informativa + formulario de contacto) y panel de administración.
+Web del despacho (portada, landings de servicios para anuncios, blog y contacto) y panel de administración.
 
 ## Visión general
 
@@ -61,20 +61,22 @@ FRONTEND/src/
 ├── config/env.ts           variables VITE_*
 ├── content/<idioma>/       textos e imágenes del sitio (es/, en/) → useContent()
 ├── i18n/                   idiomas: configuración de i18next y textos de interfaz (locales/)
-├── lib/                    api-client (único fetch), cn()
+├── lib/                    api-client (único fetch), analytics (GTM/GA4/Meta Pixel), whatsapp, cn()
+├── seo/                    SEO por página (pages.ts) y useSeo()
 ├── styles/globals.css      tokens de diseño (@theme de Tailwind)
 ├── components/
 │   ├── ui/                 piezas del sistema de diseño (Button, Input…) — sin lógica de negocio
 │   └── layout/             SiteLayout, SiteHeader, SiteFooter (web pública), AdminLayout (panel)
 ├── features/               una carpeta por funcionalidad
-│   ├── contact/            referencia: api/ · hooks/ · components/ · index.ts
-│   ├── home/               portada (HeroSection…)
-│   ├── approach/           "Nuestro enfoque": pasos del proceso (en la portada)
-│   ├── clients/            "Nuestros clientes": carrusel 3D con paso automático
-│   ├── locations/          "Dónde te atendemos": mapa animado con ciudades (posiciones en % en el JSON)
-│   ├── faq/                "Preguntas frecuentes" (acordeón + datos schema.org para Google), antes del pie
-│   ├── services/           servicios (tarjetas y encabezado), página /servicios
-│   ├── team/ · blog/                           (pendientes, web pública)
+│   ├── home/               portada (HeroSection)
+│   ├── matters/            "Asuntos que atendemos con frecuencia" (6 tarjetas) y bloques de las landings
+│   ├── approach/           "Cómo trabajamos": pasos del proceso
+│   ├── services/           áreas del derecho (tarjetas + ventana con la explicación)
+│   ├── team/               Nosotros: quién atiende el caso
+│   ├── blog/               Actualidad Jurídica (listado, destacado de la semana, artículo)
+│   ├── coverage/           cobertura nacional y en el exterior
+│   ├── faq/                preguntas frecuentes (acordeón + datos schema.org para Google)
+│   ├── contact/            formulario (api/ · hooks/ · components/) y sección de contacto
 │   └── auth/ · admin-messages/                  (pendientes, panel)
 ├── pages/
 │   ├── public/             páginas de la web (delgadas: componen features)
@@ -97,12 +99,16 @@ Reglas:
 
 ## Contenido y datos locales (mientras no hay base de datos)
 
-| Qué                            | Dónde                                                 | Validado con        |
-| ------------------------------ | ----------------------------------------------------- | ------------------- |
-| Textos de la web (menú, hero…) | `FRONTEND/src/content/<es                             | en>/*.json`         | `SHARED/src/schemas/content.schema.ts` |
-| Imágenes                       | `FRONTEND/public/images/` (WebP optimizado)           | —                   |
-| Mensajes del formulario        | `BACKEND/data/contact-messages.json` (no se versiona) | `contact.schema.ts` |
+| Qué                                                | Dónde                                                                                  | Validado con                           |
+| -------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------- |
+| Textos por sección (menú, portada, áreas, equipo…) | `FRONTEND/src/content/<es\|en>/*.json`                                                 | `SHARED/src/schemas/content.schema.ts` |
+| Landing pages (una por servicio)                   | `FRONTEND/src/content/<idioma>/landings/<slug>.json`                                   | `landingContentSchema`                 |
+| Artículos de Actualidad Jurídica                   | `FRONTEND/src/content/<idioma>/articles/<slug>.json` (cuerpo en Markdown)              | `articleContentSchema`                 |
+| Imágenes                                           | `FRONTEND/public/images/` y logo en `public/brand/` (WebP)                             | —                                      |
+| Mensajes del formulario                            | Producción: correo a abogados@orionlex.co. Local: `BACKEND/data/contact-messages.json` | `contact.schema.ts`                    |
 
+- Contenido sin aprobar: `"status": "provisional"`. Lista completa en `docs/CONTENIDO_PENDIENTE.md`.
+- Las rutas de las landings salen de `matters.json` → `order` (mismos slugs en todos los idiomas).
 - Para cambiar un texto se edita el JSON; si falta un campo, la web falla al cargar con el error exacto.
 - Los componentes nunca importan los JSON directamente: pasan por `FRONTEND/src/content/index.ts`.
   Cuando exista el panel, ese archivo leerá de la API y nada más cambia.
@@ -117,19 +123,38 @@ Reglas:
   - Los errores del formulario en `SHARED` son **códigos** (`emailInvalid`); el frontend los traduce.
   - Para añadir un idioma: agregarlo en `i18n/index.ts`, crear `locales/<idioma>.json` y `content/<idioma>/`.
 - **Tema** claro/oscuro (`hooks/use-theme.ts`): claro por defecto; la elección se guarda. `index.html` lo
-  aplica antes de pintar. El tema claro redefine los tokens en `globals.css` (`:root[data-theme='light']`).
-  - `light:` es una variante para ajustes puntuales. La portada usa `hero.image.light` en tema claro.
+  aplica antes de pintar. El tema oscuro redefine los tokens en `globals.css` (`:root[data-theme='dark']`).
+  - Colores del manual: negro, blanco y naranja `#F57C00` como acento (`accent`); texto naranja
+    pequeño con `accent-text` (más oscuro en tema claro, contraste AA). Tipografías: Playfair Display
+    (títulos) y Montserrat (textos).
+  - `light:` y `dark:` son variantes para ajustes puntuales; una imagen puede tener versión `dark`.
 
 ## Intro, WhatsApp y botones flotantes
 
-- **Video de intro** (`components/layout/IntroCurtain.tsx`, video en `site.intro.video`): una vez por
-  visita (sessionStorage), no aparece con movimiento reducido y se puede saltar. `index.html` decide
-  antes de pintar y pone una cortina estática para que no se vea la web un instante; tiene un seguro de
-  8 s por si la app no arranca. Al terminar, el bloque sube como telón y arrancan las animaciones.
-- **WhatsApp**: en el contenido, `href: "whatsapp"` convierte un botón en enlace a WhatsApp con el
-  número y mensaje de `site.contact.whatsapp` (un solo lugar para cambiarlo). Lo resuelve `CtaLink`.
-- **Botones flotantes** (`FloatingActions`): WhatsApp siempre visible y "volver arriba" tras bajar una pantalla.
-- `content/content.test.ts` valida todos los JSON de contenido en ambos idiomas.
+- **Video de intro** (`components/layout/IntroCurtain.tsx`, video en `site.intro.video`): solo en la
+  portada y solo la primera visita (localStorage), máximo 8 s, botón "Saltar intro", no aparece con
+  movimiento reducido y nunca en las landings (tráfico de anuncios). `index.html` decide antes de pintar.
+- **WhatsApp**: en el contenido, `href: "whatsapp"` + `message` convierte un botón en enlace a WhatsApp
+  con el número de `site.contact.whatsapp` (un solo lugar). Lo resuelve `CtaLink`, que además envía
+  los eventos de analítica.
+- **Botones flotantes** (`FloatingActions`): WhatsApp (se aparta mientras otro botón de WhatsApp está
+  en pantalla, para no tapar llamados en móvil) y "volver arriba".
+- `content/content.test.ts` valida todos los JSON (secciones, landings y artículos) en ambos idiomas.
+
+## Producción (Vercel)
+
+- **Formulario**: función de Vercel `FRONTEND/api/v1/contact.ts` (misma URL `/api/v1/contact`).
+  La lógica está en `FRONTEND/server/contact.ts` (probada en `contact.test.ts`) y envía el correo por
+  el SMTP de Hostinger (`SMTP_USER`, `SMTP_PASS` en Vercel). En local, `/api` va al backend Express.
+  La función importa el esquema desde `SHARED/src/...` con rutas `.js` (no el paquete): Vercel no
+  resuelve paquetes del monorepo escritos en TypeScript. Sigue siendo un único esquema.
+- **SEO**: `src/seo/pages.ts` define título, descripción, canonical y Open Graph de cada página.
+  `useSeo()` los aplica al navegar y `scripts/prerender.mjs` (después de `vite build`) escribe un HTML
+  por página con esos datos, más `sitemap.xml` y `robots.txt`, para Google y las vistas previas de
+  redes (que no ejecutan JavaScript). `vercel.json` usa `cleanUrls` para servirlos.
+- **Analítica** (`lib/analytics.ts`): GTM, GA4 y Meta Pixel se cargan solo si existen
+  `VITE_GTM_ID`, `VITE_GA_ID` o `VITE_META_PIXEL_ID`. Los componentes llaman `track('evento')`.
+- Artículos, páginas legales y el formulario se cargan aparte (lazy) para aligerar la portada.
 
 ## Cómo añadir una funcionalidad nueva
 

@@ -2,7 +2,7 @@ import type { HTMLAttributes } from 'react';
 import { cn } from '@/lib/cn';
 
 const sizes = {
-  default: 'max-w-[92rem]',
+  default: 'max-w-[80rem]',
   wide: 'max-w-[102rem]',
 };
 

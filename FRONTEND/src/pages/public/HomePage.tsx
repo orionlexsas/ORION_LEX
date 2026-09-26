@@ -1,20 +1,53 @@
+import { StructuredData } from '@/components/seo/StructuredData';
 import { useContent } from '@/content';
 import { ApproachSection } from '@/features/approach';
-import { ClientsSection } from '@/features/clients';
-import { FaqSection } from '@/features/faq';
+import { BlogPreviewSection } from '@/features/blog';
+import { ContactSection } from '@/features/contact';
+import { CoverageSection } from '@/features/coverage';
 import { HeroSection } from '@/features/home';
-import { LocationsSection } from '@/features/locations';
+import { MattersSection } from '@/features/matters';
+import { ServicesSection } from '@/features/services';
+import { TeamSection } from '@/features/team';
+import { seoFor } from '@/seo/pages';
+import { useSeo } from '@/seo/use-seo';
 
+/** Portada: servicio → confianza → explicación → contacto. */
 export function HomePage() {
-  const { home, approach, clients, locations, faq } = useContent();
+  const content = useContent();
+  const { site, home, matters, landings, approach, services, team, blog, articles, coverage } =
+    content;
+  useSeo(seoFor.home(content));
+
   return (
     <>
-      <HeroSection hero={home.hero} nextSectionHref="#enfoque" />
-      <ApproachSection id="enfoque" content={approach} />
-      {/* Aquí irán más secciones (nosotros, casos…); clientes, sedes y preguntas cierran la página. */}
-      <ClientsSection id="clientes" content={clients} />
-      <LocationsSection id="sedes" content={locations} />
-      <FaqSection id="preguntas" content={faq} />
+      <HeroSection hero={home.hero} />
+      <MattersSection id="asuntos" content={matters} landings={landings} className="bg-surface" />
+      <ApproachSection id="como-trabajamos" content={approach} />
+      <ServicesSection id="servicios-juridicos" content={services} className="bg-surface" />
+      <TeamSection id="nosotros" content={team} />
+      <BlogPreviewSection id="actualidad" blog={blog} articles={articles} className="bg-surface" />
+      <CoverageSection id="cobertura" content={coverage} />
+      <ContactSection
+        id="contacto"
+        contact={site.contact}
+        subjects={landings.map((l) => l.title)}
+        className="bg-surface"
+      />
+      <StructuredData
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'LegalService',
+          name: site.brand.legalName,
+          url: site.siteUrl,
+          logo: `${site.siteUrl}/brand/logo.webp`,
+          image: `${site.siteUrl}${site.seo.image}`,
+          description: site.seo.description,
+          telephone: `+${site.contact.whatsapp.number}`,
+          email: site.contact.email,
+          areaServed: { '@type': 'Country', name: 'Colombia' },
+          sameAs: site.social.map((s) => s.url),
+        }}
+      />
     </>
   );
 }

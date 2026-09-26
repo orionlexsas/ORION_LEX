@@ -3,44 +3,67 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- seo:start (el build lo reemplaza en cada página: scripts/prerender.mjs) -->
+    <title>Orión Lex | Servicios Jurídicos en Colombia</title>
     <meta
       name="description"
-      content="Orión Lex, servicios jurídicos en Bogotá. Asesoría legal profesional y acompañamiento personalizado para personas y empresas en Colombia."
+      content="Orión Lex Servicios Jurídicos: asesoría y gestión jurídica de forma virtual en toda Colombia y para personas en el exterior con asuntos legales en el país."
     />
-    <meta name="theme-color" content="#f7f3ec" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>Orión Lex | Servicios jurídicos en Bogotá</title>
+    <link rel="canonical" href="https://orionlex.co" />
+    <meta property="og:title" content="Orión Lex | Servicios Jurídicos en Colombia" />
+    <meta
+      property="og:description"
+      content="Orión Lex Servicios Jurídicos: asesoría y gestión jurídica de forma virtual en toda Colombia y para personas en el exterior con asuntos legales en el país."
+    />
+    <meta property="og:url" content="https://orionlex.co" />
+    <meta property="og:image" content="https://orionlex.co/images/og-orion-lex.jpg" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <!-- seo:end -->
+    <meta property="og:site_name" content="Orión Lex Servicios Jurídicos" />
+    <meta property="og:locale" content="es_CO" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <script>
       // Aplica el tema antes de pintar (evita un parpadeo del tema equivocado): claro por
-      // defecto, oscuro solo si el visitante lo eligió antes. También precarga la foto de ese tema.
+      // defecto, oscuro solo si el visitante lo eligió antes.
       (function () {
-        var light = true;
+        var dark = false;
         try {
-          light = localStorage.getItem('orion-lex-theme') !== 'dark';
+          dark = localStorage.getItem('orion-lex-theme') === 'dark';
         } catch (e) {}
-        document.documentElement.dataset.theme = light ? 'light' : 'dark';
-        if (!light) {
-          document.querySelector('meta[name="theme-color"]').content = '#0b0a08';
+        document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+        if (dark) {
+          document.querySelector('meta[name="theme-color"]').content = '#0a0a0a';
         }
-        var name = light ? 'hero-abogado-claro' : 'hero-abogado';
-        [
-          ['/images/' + name + '.webp', '(min-width: 768px)'],
-          ['/images/' + name + '-960.webp', '(max-width: 767px)'],
-        ].forEach(function (item) {
-          var link = document.createElement('link');
-          link.rel = 'preload';
-          link.as = 'image';
-          link.href = item[0];
-          link.media = item[1];
-          document.head.appendChild(link);
-        });
 
-        // Video de intro: una vez por visita y solo si no se pidió reducir el movimiento.
-        // Mientras carga React, una cortina blanca (del color del video) tapa la página.
+        var home = location.pathname === '/';
+        if (home) {
+          // Foto de la portada: se precarga para que aparezca cuanto antes.
+          [
+            ['/images/hero/equipo-1715.webp', '(min-width: 768px)'],
+            ['/images/hero/equipo-960.webp', '(max-width: 767px)'],
+          ].forEach(function (item) {
+            var link = document.createElement('link');
+            link.rel = 'preload';
+            link.as = 'image';
+            link.href = item[0];
+            link.media = item[1];
+            document.head.appendChild(link);
+          });
+        }
+
+        // Video de intro: solo en la portada, solo la primera vez que se visita el sitio desde
+        // este navegador y nunca si se pidió reducir el movimiento. Mientras carga React, una
+        // cortina blanca (del color del video) tapa la página.
         var intro = false;
         try {
           intro =
-            !sessionStorage.getItem('orion-lex-intro') &&
+            home &&
+            !localStorage.getItem('orion-lex-intro') &&
             !matchMedia('(prefers-reduced-motion: reduce)').matches;
         } catch (e) {}
         if (intro) {

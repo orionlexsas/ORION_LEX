@@ -1,0 +1,93 @@
+{
+  "slug": "eliminacion-reportes-datacredito",
+  "status": "final",
+  "title": "Removal of Datacrédito reports",
+  "seo": {
+    "title": "Removal of Datacrédito reports | Orión Lex",
+    "description": "Have you been reported to Datacrédito? We review your case under the law to determine whether the report can be corrected or removed. Online service throughout Colombia."
+  },
+  "leadEvent": "datacredito_lead",
+  "icon": "credit-card",
+  "cta": {
+    "label": "Review my report",
+    "message": "Hello, I would like to review my Datacrédito report."
+  },
+  "hero": {
+    "eyebrow": "Credit history",
+    "lead": "Have you been reported to Datacrédito?",
+    "paragraphs": [
+      "Even a small debt can affect your credit history. And paying it does not always remove the report right away: negative information can remain for up to twice the time the debt was overdue, with a maximum of four years after payment."
+    ],
+    "emphasis": "At ORIÓN LEX we review your case under the law to determine whether the report can be corrected or removed."
+  },
+  "cases": {
+    "title": "When should you have your case reviewed?",
+    "items": [
+      "You already paid and the report is still there.",
+      "You do not recognize the debt or the amount reported.",
+      "You did not receive notice before the report.",
+      "You believe the retention period has ended.",
+      "You disagree with the report."
+    ]
+  },
+  "process": {
+    "title": "How we work",
+    "steps": [
+      {
+        "title": "Diagnosis",
+        "description": "We review your credit history and the documents of the obligation."
+      },
+      {
+        "title": "Advice",
+        "description": "We explain what we found and the possible solutions for your case."
+      },
+      {
+        "title": "Legal action",
+        "description": "We file the claims and carry out the applicable legal actions."
+      },
+      {
+        "title": "Delivery",
+        "description": "We inform you of the result and deliver the actions taken."
+      }
+    ]
+  },
+  "stats": {
+    "prefix": "More than",
+    "value": 1000,
+    "label": "reports removed"
+  },
+  "testimonials": {
+    "title": "What our clients say",
+    "items": []
+  },
+  "faq": {
+    "title": "Frequently asked questions",
+    "items": [
+      {
+        "question": "Can you guarantee that my report will be removed?",
+        "answer": "Our success rate is 90% of the cases our firm takes on."
+      },
+      {
+        "question": "How long does it take?",
+        "answer": "The process can take between 15 and 90 days."
+      },
+      {
+        "question": "Do you work nationwide?",
+        "answer": "Yes. We work online throughout Colombia and with people abroad whose matters are subject to Colombian law."
+      },
+      {
+        "question": "How do I know who I am hiring?",
+        "answer": "Before hiring us you can review the details of ORIÓN LEX S.A.S., the professional who will handle your case and the terms of the service."
+      },
+      {
+        "question": "Can I request removal even if I still owe money?",
+        "answer": "Yes, but removing the record does not cancel the debt."
+      }
+    ]
+  },
+  "closing": {
+    "title": "Let's review your report",
+    "text": "Write to us on WhatsApp and we will tell you whether there is a legal way to correct or remove your report.",
+    "coverage": "We work online throughout Colombia and with people abroad whose matters are subject to Colombian law."
+  }
+}

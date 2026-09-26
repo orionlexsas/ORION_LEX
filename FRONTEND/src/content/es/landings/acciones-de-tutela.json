@@ -1,0 +1,76 @@
+{
+  "slug": "acciones-de-tutela",
+  "status": "provisional",
+  "title": "Acciones de tutela",
+  "seo": {
+    "title": "Acciones de tutela | Orión Lex",
+    "description": "Preparamos y presentamos acciones de tutela para proteger sus derechos fundamentales: salud, petición, debido proceso y mínimo vital. Atención virtual en toda Colombia."
+  },
+  "leadEvent": "tutela_lead",
+  "icon": "scale",
+  "cta": {
+    "label": "Solicitar asesoría",
+    "message": "Hola, vi la página de Orión Lex y necesito ayuda con una acción de tutela."
+  },
+  "hero": {
+    "eyebrow": "Derechos fundamentales",
+    "lead": "¿Considera que le están vulnerando un derecho fundamental?",
+    "paragraphs": [
+      "La acción de tutela es un mecanismo para pedirle a un juez la protección inmediata de derechos fundamentales como la salud, la petición, el debido proceso o el mínimo vital, cuando no existe otro medio eficaz para defenderlos."
+    ],
+    "emphasis": "En ORIÓN LEX revisamos su caso y, si procede, preparamos y presentamos la tutela con las pruebas necesarias."
+  },
+  "cases": {
+    "title": "¿Cuándo puede servirle?",
+    "items": [
+      "Le niegan tratamientos, medicamentos o citas médicas.",
+      "No le responden un derecho de petición.",
+      "Se afecta su mínimo vital.",
+      "No se respetó el debido proceso en una actuación.",
+      "Su situación requiere protección urgente."
+    ]
+  },
+  "process": {
+    "title": "¿Cómo trabajamos?",
+    "steps": [
+      {
+        "title": "Diagnóstico",
+        "description": "Analizamos si la tutela es el mecanismo adecuado para su caso."
+      },
+      {
+        "title": "Preparación",
+        "description": "Reunimos los documentos y las pruebas, y redactamos la acción."
+      },
+      {
+        "title": "Presentación",
+        "description": "Presentamos la tutela ante el juez competente."
+      },
+      {
+        "title": "Seguimiento",
+        "description": "Acompañamos el proceso y verificamos que se cumpla lo que el juez ordene."
+      }
+    ]
+  },
+  "faq": {
+    "title": "Preguntas frecuentes",
+    "items": [
+      {
+        "question": "¿Cuánto tarda el juez en decidir?",
+        "answer": "El juez debe resolver dentro de los 10 días hábiles siguientes a la presentación de la tutela (Decreto 2591 de 1991)."
+      },
+      {
+        "question": "¿Necesito un abogado para presentar una tutela?",
+        "answer": "No es obligatorio. Contar con asesoría ayuda a presentar con claridad los hechos, los derechos vulnerados y las pruebas."
+      },
+      {
+        "question": "¿Qué pasa si no cumplen el fallo?",
+        "answer": "Puede iniciarse un incidente de desacato para exigir el cumplimiento de lo ordenado por el juez."
+      }
+    ]
+  },
+  "closing": {
+    "title": "Cuéntenos su situación",
+    "text": "Escríbanos por WhatsApp y revisaremos si la tutela es el camino adecuado para su caso.",
+    "coverage": "Atendemos de forma virtual en toda Colombia y a personas que viven en el exterior y necesitan resolver asuntos jurídicos en el país."
+  }
+}
