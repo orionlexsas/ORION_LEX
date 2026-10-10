@@ -35,7 +35,7 @@ BACKEND/src/
     │   ├── contact.service.ts      reglas de negocio
     │   ├── contact.repository.ts   acceso a base de datos
     │   └── contact.test.ts
-    ├── auth/               (pendiente) login del panel
+    ├── auth/               (no se usa: el login del panel vive en FRONTEND/server/admin, ver "Panel")
     ├── practice-areas/     (pendiente) áreas de práctica editables
     ├── team/               (pendiente) abogados del despacho
     └── posts/              (pendiente) blog / noticias
@@ -77,7 +77,11 @@ FRONTEND/src/
 │   ├── coverage/           cobertura nacional y en el exterior
 │   ├── faq/                preguntas frecuentes (acordeón + datos schema.org para Google)
 │   ├── contact/            formulario (api/ · hooks/ · components/) y sección de contacto
-│   └── auth/ · admin-messages/                  (pendientes, panel)
+│   ├── auth/               panel: login, cierre de sesión y protección de /admin (AdminGate)
+│   ├── admin-dashboard/    panel: cifras, últimas noticias y últimas acciones
+│   ├── admin-news/         panel: gestión y editor de noticias (Actualidad Jurídica)
+│   ├── admin-media/        panel: biblioteca de fotos y banners (y los textos que las acompañan)
+│   └── admin-stats/        panel: estadísticas con gráficos (components/admin/charts.tsx)
 ├── pages/
 │   ├── public/             páginas de la web (delgadas: componen features)
 │   └── admin/              páginas del panel (se cargan en lazy)
@@ -140,6 +144,33 @@ Reglas:
 - **Botones flotantes** (`FloatingActions`): WhatsApp (se aparta mientras otro botón de WhatsApp está
   en pantalla, para no tapar llamados en móvil) y "volver arriba".
 - `content/content.test.ts` valida todos los JSON (secciones, landings y artículos) en ambos idiomas.
+
+## Panel de administración (/admin)
+
+Login en `/admin/login`; secciones: Dashboard, Noticias, Fotos y banners, Estadísticas y Configuración. El panel se carga aparte (lazy) y sin analítica.
+
+- **Sin base de datos:** el panel edita los mismos archivos que lee la web (`content/es/articles/*.json`
+  y `public/images/<carpeta>/`). La API vive en `FRONTEND/server/admin/` (no depende de Vercel ni de
+  Vite; probada en `handler.test.ts`) y guarda a través de un `ContentStore` intercambiable:
+  - **Local** (`fs-store`): `vite.config.ts` atiende `/api/v1/admin/*` y escribe en el disco; Vite recarga
+    la web. Historial en `FRONTEND/.admin-local/` (ignorado por git). En local nunca usa GitHub.
+  - **Vercel** (`github-store`): `api/v1/admin.ts` (con la regla de `vercel.json`) hace un commit en `main`
+    por cada cambio (mensajes `Panel: …`, que forman el historial). Vercel republica en 1–2 minutos.
+- **Acceso:** una cuenta en variables de entorno (`ADMIN_EMAIL`, `ADMIN_NAME`, `ADMIN_ROLE`,
+  `ADMIN_PASSWORD_HASH`, `ADMIN_SESSION_SECRET`; ver `FRONTEND/.env.example`). La contraseña se guarda
+  como huella scrypt (`npm run admin:password -w FRONTEND -- "contraseña"`). Sesión firmada en cookie
+  HttpOnly + SameSite=Strict: 12 h, o 30 días con "Recordarme". Máximo 10 intentos fallidos cada 15 min por IP.
+- **Noticias:** se editan en español. Si existe la versión en inglés se le copian estado, fecha, categoría,
+  imagen y URL; si no existe, la web en inglés muestra la española (`content/index.ts`). Solo una noticia
+  puede estar destacada. Las fotos se convierten a WebP en el navegador antes de subirlas (`lib/image-file.ts`).
+- **Textos de las fotos** (`server/admin/media-texts.ts`): se busca la imagen en los JSON en español; el
+  objeto que la contiene (banner, tarjeta, perfil) es el bloque y sus textos de una lista fija (título,
+  descripción, cargo…) y el `alt` se editan desde Fotos y banners. Se valida el archivo completo con su esquema.
+- **Estadísticas:** `GET /admin/stats` (noticias por mes y categoría, fotos por carpeta, actividad por día).
+  Gráficos sin librerías, color `chart` (validado en ambos temas), con detalle al pasar el mouse y vista de tabla.
+- **Imágenes:** una imagen en uso (su ruta aparece en algún JSON de contenido) no se puede borrar; al
+  reemplazarla se mantienen ruta y formato, y cambia en todo el sitio.
+- Datos que viajan entre panel y API: `SHARED/src/schemas/admin.schema.ts`.
 
 ## Producción (Vercel)
 

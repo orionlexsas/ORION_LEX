@@ -10,7 +10,8 @@ import '@fontsource-variable/montserrat';
 import '@fontsource/allura/latin-400.css';
 import '@/styles/globals.css';
 
-initAnalytics();
+// El panel (/admin) no carga analítica: sus visitas no son de clientes.
+if (!window.location.pathname.startsWith('/admin')) initAnalytics();
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
