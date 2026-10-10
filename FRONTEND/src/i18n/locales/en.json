@@ -11,7 +11,8 @@
     "backToTop": "Back to top",
     "socialNav": "Social media",
     "socialProfile": "{{brand}} on {{network}}",
-    "opensNewTab": "(opens in a new tab)"
+    "opensNewTab": "(opens in a new tab)",
+    "adminLogin": "Admin panel sign-in"
   },
   "theme": {
     "toLight": "Turn on light mode",
