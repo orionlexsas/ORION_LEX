@@ -35,6 +35,12 @@
   /* Verde oficial de WhatsApp y fondo del video de intro */
   --color-whatsapp: #25d366;
   --color-intro: #fefefe;
+  /* Azul de los enlaces de Google: solo para la vista previa del resultado de búsqueda (panel) */
+  --color-serp-link: #1a0dab;
+  /* Barras de los gráficos del panel (validado: contraste y claridad en cada tema) */
+  --color-chart: #f57c00;
+  /* Líneas de guía de los gráficos */
+  --color-chart-grid: rgb(0 0 0 / 0.08);
 
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -54,6 +60,9 @@
   --color-accent-text: #f57c00;
   --color-danger: #f0877d;
   --color-success: #6fd08f;
+  --color-serp-link: #8ab4f8;
+  --color-chart: #e06f00;
+  --color-chart-grid: rgb(255 255 255 / 0.1);
 }
 
 @layer base {

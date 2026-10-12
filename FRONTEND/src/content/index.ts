@@ -94,9 +94,16 @@ function parseContent(language: Language) {
   });
 
   const categories = new Set(blog.categories.map((c) => c.slug));
-  const articles: ArticleContent[] = parseFolder(articleFiles, `./${language}/articles/`, (raw) =>
-    articleContentSchema.parse(raw),
-  )
+  const parseArticles = (lang: Language) =>
+    parseFolder(articleFiles, `./${lang}/articles/`, (raw) => articleContentSchema.parse(raw));
+  const own = parseArticles(language);
+  // Las noticias se escriben en español desde el panel: mientras no tengan traducción, los otros
+  // idiomas muestran la versión española (así las URLs son las mismas en todos los idiomas).
+  const untranslated =
+    language === defaultLanguage
+      ? []
+      : parseArticles(defaultLanguage).filter((a) => !own.some((o) => o.slug === a.slug));
+  const articles: ArticleContent[] = [...own, ...untranslated]
     .filter((article) => article.published)
     .map((article) => {
       if (!categories.has(article.category)) {

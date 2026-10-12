@@ -11,7 +11,8 @@
     "backToTop": "Volver arriba",
     "socialNav": "Redes sociales",
     "socialProfile": "{{brand}} en {{network}}",
-    "opensNewTab": "(se abre en una pestaña nueva)"
+    "opensNewTab": "(se abre en una pestaña nueva)",
+    "adminLogin": "Acceso al panel de administración"
   },
   "theme": {
     "toLight": "Activar modo claro",

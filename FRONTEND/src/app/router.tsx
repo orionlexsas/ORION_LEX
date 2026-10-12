@@ -1,4 +1,4 @@
-import { createBrowserRouter, type RouteObject } from 'react-router';
+import { createBrowserRouter, Navigate, type RouteObject } from 'react-router';
 import { SiteLayout, type RouteHandle } from '@/components/layout/SiteLayout';
 import { getContent } from '@/content';
 import { defaultLanguage } from '@/i18n';
@@ -71,12 +71,14 @@ export const router = createBrowserRouter([
       { path: '*', Component: NotFoundPage },
     ],
   },
+  // El panel se carga aparte (lazy) para que los visitantes de la web no descarguen su código.
   {
-    // El panel se carga aparte (lazy) para que los visitantes de la web no descarguen su código.
+    path: '/admin/login',
+    lazy: async () => ({ Component: (await import('@/pages/admin/LoginPage')).LoginPage }),
+  },
+  {
     path: '/admin',
-    lazy: async () => ({
-      Component: (await import('@/components/layout/AdminLayout')).AdminLayout,
-    }),
+    lazy: async () => ({ Component: (await import('@/pages/admin/AdminRoot')).AdminRoot }),
     children: [
       {
         index: true,
@@ -84,6 +86,25 @@ export const router = createBrowserRouter([
           Component: (await import('@/pages/admin/DashboardPage')).DashboardPage,
         }),
       },
+      {
+        path: 'noticias',
+        lazy: async () => ({ Component: (await import('@/pages/admin/NewsPage')).NewsPage }),
+      },
+      {
+        path: 'fotos',
+        lazy: async () => ({ Component: (await import('@/pages/admin/MediaPage')).MediaPage }),
+      },
+      {
+        path: 'estadisticas',
+        lazy: async () => ({ Component: (await import('@/pages/admin/StatsPage')).StatsPage }),
+      },
+      {
+        path: 'configuracion',
+        lazy: async () => ({
+          Component: (await import('@/pages/admin/SettingsPage')).SettingsPage,
+        }),
+      },
+      { path: '*', element: <Navigate to="/admin" replace /> },
     ],
   },
 ]);
