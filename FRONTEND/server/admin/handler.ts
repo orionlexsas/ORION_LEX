@@ -2,7 +2,10 @@ import type { ZodType } from 'zod';
 import type { ApiError } from '../../../SHARED/src/api.js';
 import {
   adminArticleSaveSchema,
+  adminAreasSaveSchema,
+  adminLandingSaveSchema,
   adminLoginSchema,
+  adminMattersOrderSchema,
   imageTextsSaveSchema,
   mediaReplaceSchema,
   mediaUploadSchema,
@@ -25,6 +28,13 @@ import {
 import { deleteMedia, listMedia, replaceMedia, uploadMedia } from './media.js';
 import { findImageTexts, saveImageTexts } from './media-texts.js';
 import { computeStats } from './stats.js';
+import {
+  deleteLanding,
+  readServices,
+  reorderLandings,
+  saveAreas,
+  saveLanding,
+} from './services.js';
 import { HttpError, PATHS, type ContentStore } from './store.js';
 
 /*
@@ -284,6 +294,27 @@ async function route(req: AdminRequest, deps: AdminDeps): Promise<AdminResponse>
     case 'PUT media/:id':
       if (id !== 'texts') break;
       await saveImageTexts(store, parseBody(imageTextsSaveSchema, req.body), user);
+      return ok(saved);
+
+    case 'GET services':
+      return ok(await readServices(store));
+    case 'PUT areas': {
+      const areas = await saveAreas(store, parseBody(adminAreasSaveSchema, req.body), user);
+      return ok({ items: areas.items, ...saved });
+    }
+    case 'POST landings': {
+      const { landing } = parseBody(adminLandingSaveSchema, req.body);
+      return ok({ landing: await saveLanding(store, landing, null, user), ...saved }, 201);
+    }
+    case 'PUT landings/:id': {
+      const { landing } = parseBody(adminLandingSaveSchema, req.body);
+      return ok({ landing: await saveLanding(store, landing, id!, user), ...saved });
+    }
+    case 'DELETE landings/:id':
+      await deleteLanding(store, id!, user);
+      return ok(saved);
+    case 'PUT landing-order':
+      await reorderLandings(store, parseBody(adminMattersOrderSchema, req.body).order, user);
       return ok(saved);
 
     case 'GET stats':

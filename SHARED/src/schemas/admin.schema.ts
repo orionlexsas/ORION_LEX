@@ -1,6 +1,12 @@
 import { z } from 'zod';
 // Con extensión .js: la función de Vercel importa este archivo directamente (ver FRONTEND/server).
-import { articleContentSchema } from './content.schema.js';
+import {
+  articleContentSchema,
+  landingContentSchema,
+  servicesContentSchema,
+  type LandingContent,
+  type ServicesContent,
+} from './content.schema.js';
 
 /*
  * Datos del panel de administración (/admin) que viajan entre el navegador y la API
@@ -175,4 +181,27 @@ export interface AdminStats {
   /** Cambios hechos desde el panel por día (últimos 30 días, AAAA-MM-DD). */
   activityByDay: { day: string; count: number }[];
   totals: { published: number; drafts: number; images: number; bytes: number; actions30d: number };
+}
+
+/** Guardar las áreas (categorías) con sus servicios: la lista completa, en orden. */
+export const adminAreasSaveSchema = z.object({
+  items: servicesContentSchema.shape.items,
+});
+export type AdminAreasSave = z.input<typeof adminAreasSaveSchema>;
+
+/** Crear o editar un asunto frecuente (landing para anuncios). */
+export const adminLandingSaveSchema = z.object({
+  landing: landingContentSchema.omit({ status: true }),
+});
+export type AdminLandingInput = z.input<typeof adminLandingSaveSchema>['landing'];
+
+/** Nuevo orden de las tarjetas de asuntos frecuentes. */
+export const adminMattersOrderSchema = z.object({
+  order: z.array(z.string().regex(/^[a-z0-9-]+$/)).min(1),
+});
+
+export interface AdminServicesResponse {
+  areas: ServicesContent;
+  /** Asuntos frecuentes en el orden de la web. */
+  landings: LandingContent[];
 }

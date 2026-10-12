@@ -1,12 +1,8 @@
-import { useRef, useState, type ReactNode } from 'react';
+import { useState } from 'react';
 import {
-  Bold,
   ClipboardList,
   Eye,
-  Heading2,
   Image as ImageIcon,
-  Link2,
-  List,
   LoaderCircle,
   Pencil,
   Plus,
@@ -15,6 +11,9 @@ import {
   X,
 } from 'lucide-react';
 import { adminArticleSaveSchema, type AdminArticle, type AdminCategory } from '@orion-lex/shared';
+import { Field } from '@/components/admin/Field';
+import { ImagePicker } from '@/components/admin/ImagePicker';
+import { MarkdownEditor } from '@/components/admin/MarkdownEditor';
 import { Modal } from '@/components/admin/Modal';
 import { Notice } from '@/components/admin/Notice';
 import { StatusBadge } from '@/components/admin/StatusBadge';
@@ -32,9 +31,8 @@ import { ApiRequestError } from '@/lib/api-client';
 import { cn } from '@/lib/cn';
 import { setFlash, setPendingOpen } from '@/lib/flash';
 import { formatDate } from '@/lib/format';
-import { useDeleteArticle, useSaveArticle } from '../hooks/use-articles';
+import { useDeleteArticle, useImageChoices, useSaveArticle } from '../hooks/use-articles';
 import { draftFrom, slugify, toPayload, type ArticleDraft } from '../lib/editor';
-import { ImagePicker } from './ImagePicker';
 
 type Tab = 'content' | 'seo' | 'settings';
 type FieldErrors = Partial<
@@ -90,6 +88,7 @@ export function ArticleEditor({
   const [errors, setErrors] = useState<FieldErrors>({});
   const [picking, setPicking] = useState(false);
   const [previewing, setPreviewing] = useState(false);
+  const choices = useImageChoices(picking);
   const save = useSaveArticle();
   const remove = useDeleteArticle();
 
@@ -331,7 +330,14 @@ export function ArticleEditor({
             />
 
             <Field label="Contenido" required error={errors.body} group>
-              <BodyEditor value={draft.body} onChange={(body) => update({ body })} />
+              <MarkdownEditor
+                value={draft.body}
+                onChange={(body) => update({ body })}
+                label="Contenido de la noticia"
+                placeholder={
+                  'Escribe aquí la noticia.\n\n## Un subtítulo\n\nUn párrafo con **negrita**.\n\n- Un punto\n- Otro punto'
+                }
+              />
             </Field>
           </>
         )}
@@ -509,6 +515,7 @@ export function ArticleEditor({
 
       {picking && (
         <ImagePicker
+          choices={choices}
           onClose={() => setPicking(false)}
           onPick={(picked) => {
             setPicking(false);
@@ -549,127 +556,6 @@ export function ArticleEditor({
         </Modal>
       )}
     </section>
-  );
-}
-
-function Field({
-  label,
-  required,
-  error,
-  hint,
-  group,
-  children,
-}: {
-  label: string;
-  required?: boolean;
-  error?: string;
-  hint?: string;
-  /** true si el control tiene botones dentro: se agrupa sin <label> (lleva su propio aria-label). */
-  group?: boolean;
-  children: ReactNode;
-}) {
-  const Wrapper = group ? 'div' : 'label';
-  return (
-    <div>
-      <Wrapper className="block">
-        <span className={labelClass}>
-          {label}
-          {required && <span className="text-danger"> *</span>}
-        </span>
-        {children}
-      </Wrapper>
-      {error ? (
-        <p role="alert" className="mt-1.5 text-sm text-danger">
-          {error}
-        </p>
-      ) : (
-        hint && <p className="mt-1.5 text-right text-xs text-muted">{hint}</p>
-      )}
-    </div>
-  );
-}
-
-const TOOLS = [
-  { id: 'heading', label: 'Subtítulo', icon: Heading2 },
-  { id: 'bold', label: 'Negrita', icon: Bold },
-  { id: 'list', label: 'Lista', icon: List },
-  { id: 'link', label: 'Enlace', icon: Link2 },
-] as const;
-
-/** Texto de la noticia en Markdown, con botones para los formatos más comunes. */
-function BodyEditor({ value, onChange }: { value: string; onChange: (value: string) => void }) {
-  const ref = useRef<HTMLTextAreaElement>(null);
-  const [preview, setPreview] = useState(false);
-
-  /** Envuelve la selección (o inserta un ejemplo) con la sintaxis de Markdown. */
-  const apply = (before: string, after = '', placeholder = 'texto') => {
-    const area = ref.current;
-    if (!area) return;
-    const { selectionStart: start, selectionEnd: end } = area;
-    const selected = value.slice(start, end) || placeholder;
-    const next = value.slice(0, start) + before + selected + after + value.slice(end);
-    onChange(next);
-    requestAnimationFrame(() => {
-      area.focus();
-      area.setSelectionRange(start + before.length, start + before.length + selected.length);
-    });
-  };
-  const lineStart = (prefix: string, placeholder: string) => {
-    const start = ref.current?.selectionStart ?? value.length;
-    const needsBreak = start > 0 && value[start - 1] !== '\n';
-    apply(`${needsBreak ? '\n\n' : ''}${prefix}`, '', placeholder);
-  };
-
-  const runTool = (tool: (typeof TOOLS)[number]['id']) => {
-    if (tool === 'heading') lineStart('## ', 'Subtítulo');
-    if (tool === 'bold') apply('**', '**');
-    if (tool === 'list') lineStart('- ', 'Elemento de la lista');
-    if (tool === 'link') apply('[', '](https://)', 'texto del enlace');
-  };
-
-  return (
-    <div className="overflow-hidden rounded-lg border border-border focus-within:border-accent">
-      <div className="flex items-center gap-1 border-b border-border bg-surface px-2 py-1.5">
-        {TOOLS.map(({ id, label, icon: Icon }) => (
-          <button
-            key={id}
-            type="button"
-            onClick={() => runTool(id)}
-            disabled={preview}
-            title={label}
-            aria-label={label}
-            className="grid size-9 cursor-pointer place-items-center rounded-md text-muted hover:bg-foreground/8 hover:text-foreground disabled:opacity-40"
-          >
-            <Icon aria-hidden="true" className="size-4.5" />
-          </button>
-        ))}
-        <button
-          type="button"
-          onClick={() => setPreview((v) => !v)}
-          aria-pressed={preview}
-          className="ml-auto cursor-pointer rounded-md px-3 py-1.5 text-xs font-semibold text-muted hover:bg-foreground/8 hover:text-foreground"
-        >
-          {preview ? 'Editar' : 'Ver cómo queda'}
-        </button>
-      </div>
-      {preview ? (
-        <div className="max-h-[28rem] min-h-[16rem] overflow-y-auto px-4 pb-4 text-[0.95rem]">
-          <Markdown>{value || '_Sin contenido todavía._'}</Markdown>
-        </div>
-      ) : (
-        <textarea
-          ref={ref}
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          rows={14}
-          aria-label="Contenido de la noticia"
-          className="block min-h-[16rem] w-full resize-y bg-background px-4 py-3 font-mono text-[0.85rem] leading-relaxed focus:outline-none"
-          placeholder={
-            'Escribe aquí la noticia.\n\n## Un subtítulo\n\nUn párrafo con **negrita**.\n\n- Un punto\n- Otro punto'
-          }
-        />
-      )}
-    </div>
   );
 }
 

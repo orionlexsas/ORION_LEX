@@ -86,5 +86,13 @@
   "intro": {
     "label": "Introducción",
     "skip": "Saltar intro"
+  },
+  "practiceArea": {
+    "servicesTitle": "Servicios de esta área",
+    "servicesCount_one": "{{count}} servicio",
+    "servicesCount_other": "{{count}} servicios",
+    "viewService": "Ver servicio",
+    "otherServices": "Otros servicios de {{area}}",
+    "backTo": "Volver a {{area}}"
   }
 }

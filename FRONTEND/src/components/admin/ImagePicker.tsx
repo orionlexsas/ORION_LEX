@@ -1,27 +1,37 @@
 import { useMemo, useState } from 'react';
 import { Check, ImagePlus, LoaderCircle, Search } from 'lucide-react';
+import type { MediaItem } from '@orion-lex/shared';
 import { Modal } from '@/components/admin/Modal';
 import { Notice } from '@/components/admin/Notice';
 import { fieldClass, ghostClass } from '@/components/admin/styles';
 import { cn } from '@/lib/cn';
 import { ImageFileError, prepareImage, type PreparedImage } from '@/lib/image-file';
-import { useImageChoices } from '../hooks/use-articles';
 
 export type PickedImage =
   { kind: 'upload'; image: PreparedImage } | { kind: 'library'; src: string; url: string };
 
 interface ImagePickerProps {
+  /** Imágenes de la biblioteca (las carga quien abre el selector). */
+  choices: { data?: MediaItem[]; isPending: boolean; isError: boolean };
   onPick: (picked: PickedImage) => void;
   onClose: () => void;
+  title?: string;
+  /** Ancho máximo al optimizar una foto subida. */
+  maxWidth?: number;
 }
 
-/** Elegir la imagen destacada: subir una desde el equipo o usar una de la biblioteca. */
-export function ImagePicker({ onPick, onClose }: ImagePickerProps) {
+/** Elegir una imagen: subir una desde el equipo o usar una de la biblioteca. */
+export function ImagePicker({
+  choices,
+  onPick,
+  onClose,
+  title = 'Imagen destacada',
+  maxWidth = 1600,
+}: ImagePickerProps) {
   const [tab, setTab] = useState<'upload' | 'library'>('upload');
   const [error, setError] = useState<string | null>(null);
   const [processing, setProcessing] = useState(false);
   const [query, setQuery] = useState('');
-  const choices = useImageChoices(tab === 'library');
 
   const filtered = useMemo(
     () =>
@@ -36,8 +46,7 @@ export function ImagePicker({ onPick, onClose }: ImagePickerProps) {
     setError(null);
     setProcessing(true);
     try {
-      // Noticias: 1200 px de ancho bastan para la portada y la vista previa en redes.
-      onPick({ kind: 'upload', image: await prepareImage(file, { maxWidth: 1600 }) });
+      onPick({ kind: 'upload', image: await prepareImage(file, { maxWidth }) });
     } catch (e) {
       setError(e instanceof ImageFileError ? e.message : 'No se pudo procesar la imagen');
     } finally {
@@ -46,7 +55,7 @@ export function ImagePicker({ onPick, onClose }: ImagePickerProps) {
   };
 
   return (
-    <Modal title="Imagen destacada" onClose={onClose}>
+    <Modal title={title} onClose={onClose}>
       <div role="tablist" className="mb-5 flex gap-1 border-b border-border">
         {(
           [

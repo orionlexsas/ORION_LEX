@@ -1,3 +1,4 @@
+import { readdirSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import type { AdminActivity, AdminArticleInput } from '../../../SHARED/src/schemas/admin.schema.js';
 import { createLoginLimiter, hashPassword, SESSION_COOKIE } from './auth.js';
@@ -63,8 +64,9 @@ const webp = Buffer.concat([
   Buffer.from('WEBPVP8 '),
 ]).toString('base64');
 
-async function setup() {
+async function setup(extra: Record<string, string> = {}) {
   const memory = memoryStore({
+    ...extra,
     [`${C}/es/blog.json`]: JSON.stringify({ categories: [{ slug: 'tutelas', name: 'Tutelas' }] }),
     [`${C}/es/home.json`]: JSON.stringify({
       hero: { title: 'Hola', image: { src: '/images/hero/portada.webp' } },
@@ -408,5 +410,140 @@ describe('API del panel: archivos de imagen', () => {
     expect(
       (await call('GET', '/media/file?src=/images/no/existe.webp', undefined, cookie)).status,
     ).toBe(404);
+  });
+});
+
+/** Contenido real de servicios y asuntos (es y en), copiado en memoria: no se toca ningún archivo. */
+function realServicesContent() {
+  const files: Record<string, string> = {};
+  for (const language of ['es', 'en']) {
+    const base = `src/content/${language}`;
+    for (const name of ['services.json', 'matters.json']) {
+      files[`${C}/${language}/${name}`] = readFileSync(`${base}/${name}`, 'utf8');
+    }
+    for (const name of readdirSync(`${base}/landings`)) {
+      files[`${C}/${language}/landings/${name}`] = readFileSync(`${base}/landings/${name}`, 'utf8');
+    }
+  }
+  return files;
+}
+
+describe('API del panel: servicios', () => {
+  const readJson = (files: Map<string, Buffer>, path: string) =>
+    JSON.parse(files.get(`${C}/${path}`)!.toString());
+
+  it('lee las áreas y los asuntos frecuentes en el orden de la web', async () => {
+    const { call, cookie } = await setup(realServicesContent());
+    const res = await call('GET', '/services', undefined, cookie);
+    const body = res.body as { areas: { items: { slug: string }[] }; landings: { slug: string }[] };
+    expect(res.status).toBe(200);
+    expect(body.areas.items[0]?.slug).toBe('asesoria-juridica');
+    const { order } = JSON.parse(readFileSync('src/content/es/matters.json', 'utf8'));
+    expect(body.landings.map((l) => l.slug)).toEqual(order);
+  });
+
+  it('agrega un servicio dentro de una categoría', async () => {
+    const { call, cookie, files, log } = await setup(realServicesContent());
+    const { areas } = (await call('GET', '/services', undefined, cookie)).body as {
+      areas: { items: { slug: string; title: string; services: unknown[] }[] };
+    };
+    const laboral = areas.items.find((i) => i.slug === 'derecho-laboral')!;
+    laboral.services.push({
+      slug: 'despido-sin-justa-causa',
+      title: 'Despido sin justa causa',
+      description: 'Le ayudamos a reclamar su indemnización.',
+      body: '## ¿Qué hacer?\n\nRevise su carta de despido.',
+      message: 'Hola, me despidieron sin justa causa.',
+    });
+    const res = await call('PUT', '/areas', { items: areas.items }, cookie);
+    expect(res.status).toBe(200);
+    const saved = readJson(files, 'es/services.json');
+    expect(
+      saved.items.find((i: { slug: string }) => i.slug === 'derecho-laboral').services[0],
+    ).toMatchObject({
+      slug: 'despido-sin-justa-causa',
+      status: 'final',
+    });
+    expect(log[0]?.message).toBe(
+      'Se creó el servicio «Despido sin justa causa» en «Derecho laboral»',
+    );
+  });
+
+  it('no permite URLs repetidas ni dos categorías destacadas', async () => {
+    const { call, cookie } = await setup(realServicesContent());
+    const { areas } = (await call('GET', '/services', undefined, cookie)).body as {
+      areas: { items: { slug: string; featured: boolean }[] };
+    };
+    const repeated = areas.items.map((i, n) =>
+      n === 1 ? { ...i, slug: areas.items[0]!.slug } : i,
+    );
+    expect((await call('PUT', '/areas', { items: repeated }, cookie)).status).toBe(409);
+    const twoFeatured = areas.items.map((i) => ({ ...i, featured: true }));
+    expect((await call('PUT', '/areas', { items: twoFeatured }, cookie)).status).toBe(400);
+  });
+
+  it('crea un asunto frecuente con su URL y lo agrega al final en ambos idiomas', async () => {
+    const { call, cookie, files } = await setup(realServicesContent());
+    const { landings } = (await call('GET', '/services', undefined, cookie)).body as {
+      landings: Record<string, unknown>[];
+    };
+    const base = { ...landings[0]! };
+    delete base.status;
+    const landing = {
+      ...base,
+      slug: 'pension-de-vejez',
+      title: 'Pensión de vejez',
+      leadEvent: 'pension_lead',
+    };
+    const res = await call('POST', '/landings', { landing }, cookie);
+    expect(res.status).toBe(201);
+    expect(files.has(`${C}/es/landings/pension-de-vejez.json`)).toBe(true);
+    expect(readJson(files, 'es/matters.json').order.at(-1)).toBe('pension-de-vejez');
+    expect(readJson(files, 'en/matters.json').order.at(-1)).toBe('pension-de-vejez');
+  });
+
+  it('no deja usar URLs de otras páginas ni repetidas', async () => {
+    const { call, cookie } = await setup(realServicesContent());
+    const { landings } = (await call('GET', '/services', undefined, cookie)).body as {
+      landings: Record<string, unknown>[];
+    };
+    const base = { ...landings[0]! };
+    delete base.status;
+    expect(
+      (await call('POST', '/landings', { landing: { ...base, slug: 'nosotros' } }, cookie)).status,
+    ).toBe(409);
+    expect((await call('POST', '/landings', { landing: base }, cookie)).status).toBe(409);
+  });
+
+  it('cambiar la URL de un asunto mueve también la traducción y el orden', async () => {
+    const { call, cookie, files } = await setup(realServicesContent());
+    const { landings } = (await call('GET', '/services', undefined, cookie)).body as {
+      landings: Record<string, unknown>[];
+    };
+    const comparendos = { ...landings.find((l) => l.slug === 'eliminacion-comparendos')! };
+    delete comparendos.status;
+    const res = await call(
+      'PUT',
+      '/landings/eliminacion-comparendos',
+      { landing: { ...comparendos, slug: 'comparendos' } },
+      cookie,
+    );
+    expect(res.status).toBe(200);
+    expect(files.has(`${C}/es/landings/eliminacion-comparendos.json`)).toBe(false);
+    expect(readJson(files, 'en/landings/comparendos.json').slug).toBe('comparendos');
+    expect(readJson(files, 'es/matters.json').order).toContain('comparendos');
+    expect(readJson(files, 'es/matters.json').order).not.toContain('eliminacion-comparendos');
+  });
+
+  it('reordena y elimina asuntos', async () => {
+    const { call, cookie, files } = await setup(realServicesContent());
+    const order: string[] = readJson(files, 'es/matters.json').order;
+    const reversed = [...order].reverse();
+    expect((await call('PUT', '/landing-order', { order: reversed }, cookie)).status).toBe(200);
+    expect(readJson(files, 'en/matters.json').order).toEqual(reversed);
+    expect((await call('PUT', '/landing-order', { order: ['otro'] }, cookie)).status).toBe(400);
+    expect((await call('DELETE', `/landings/${order[0]}`, undefined, cookie)).status).toBe(200);
+    expect(files.has(`${C}/es/landings/${order[0]}.json`)).toBe(false);
+    expect(readJson(files, 'es/matters.json').order).not.toContain(order[0]);
   });
 });

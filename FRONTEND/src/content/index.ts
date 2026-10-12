@@ -13,6 +13,7 @@ import {
   teamContentSchema,
   type ArticleContent,
   type LandingContent,
+  type ServicesContent,
 } from '@orion-lex/shared';
 import { defaultLanguage, supportedLanguages, type Language } from '@/i18n';
 
@@ -78,19 +79,53 @@ function parseSection<N extends SectionName>(language: Language, name: N) {
   }
 }
 
+/**
+ * Áreas y servicios en otro idioma: el orden, las fotos, las URLs y lo destacado salen del español
+ * (lo que edita el panel); los textos, de la traducción si existe. Lo nuevo sin traducir sale en español.
+ */
+function mergeServices(base: ServicesContent, translated?: ServicesContent): ServicesContent {
+  if (!translated) return base;
+  return {
+    ...translated,
+    items: base.items.map((item) => {
+      const own = translated.items.find((t) => t.slug === item.slug);
+      if (!own) return item;
+      return {
+        ...item,
+        title: own.title,
+        description: own.description,
+        details: own.details,
+        message: own.message,
+        image: { ...item.image, alt: own.image.alt },
+        services: item.services.map((service) => {
+          const ownService = own.services.find((s) => s.slug === service.slug);
+          return ownService
+            ? { ...service, ...ownService, slug: service.slug, image: service.image }
+            : service;
+        }),
+      };
+    }),
+  };
+}
+
 function parseContent(language: Language) {
   const site = parseSection(language, 'site');
   const matters = parseSection(language, 'matters');
   const blog = parseSection(language, 'blog');
 
-  const allLandings = parseFolder(landingFiles, `./${language}/landings/`, (raw) =>
-    landingContentSchema.parse(raw),
-  );
-  // Las landings se muestran en el orden de matters.json; cada slug debe tener su archivo.
-  const landings: LandingContent[] = matters.order.map((slug) => {
-    const landing = allLandings.find((l) => l.slug === slug);
-    if (!landing) throw new Error(`matters.json (${language}) menciona "${slug}" sin landing`);
-    return landing;
+  const parseLandings = (lang: Language) =>
+    parseFolder(landingFiles, `./${lang}/landings/`, (raw) => landingContentSchema.parse(raw));
+  const ownLandings = parseLandings(language);
+  const baseLandings = language === defaultLanguage ? ownLandings : parseLandings(defaultLanguage);
+  // El orden y las fotos salen del español (lo que edita el panel). Las landings sin traducción
+  // se muestran en español: así cada URL existe en todos los idiomas.
+  const order =
+    language === defaultLanguage ? matters.order : parseSection(defaultLanguage, 'matters').order;
+  const landings: LandingContent[] = order.map((slug) => {
+    const base = baseLandings.find((l) => l.slug === slug);
+    if (!base) throw new Error(`matters.json menciona "${slug}" sin landing`);
+    const own = ownLandings.find((l) => l.slug === slug);
+    return own ? { ...own, image: base.image } : base;
   });
 
   const categories = new Set(blog.categories.map((c) => c.slug));
@@ -122,7 +157,10 @@ function parseContent(language: Language) {
     matters,
     landings,
     approach: parseSection(language, 'approach'),
-    services: parseSection(language, 'services'),
+    services: mergeServices(
+      parseSection(defaultLanguage, 'services'),
+      language === defaultLanguage ? undefined : parseSection(language, 'services'),
+    ),
     team: parseSection(language, 'team'),
     coverage: parseSection(language, 'coverage'),
     blog,

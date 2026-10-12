@@ -9,6 +9,7 @@ import { HomePage } from '@/pages/public/HomePage';
 import { LandingPage } from '@/pages/public/LandingPage';
 import { NotFoundPage } from '@/pages/public/NotFoundPage';
 import { PracticeAreaPage } from '@/pages/public/PracticeAreaPage';
+import { ServicePage } from '@/pages/public/ServicePage';
 import { ServicesPage } from '@/pages/public/ServicesPage';
 
 /** Páginas que ya cierran con su propio llamado: sin la franja "Hablemos de su caso". */
@@ -25,11 +26,15 @@ const landingRoutes: RouteObject[] = getContent(defaultLanguage).landings.map((l
 }));
 
 /** Una página por área del derecho: /servicios/<slug> (mismos slugs en todos los idiomas). */
-const practiceAreaRoutes: RouteObject[] = getContent(defaultLanguage).services.items.map(
-  (item) => ({
-    path: `servicios/${item.slug}`,
-    element: <PracticeAreaPage slug={item.slug} />,
-  }),
+const practiceAreaRoutes: RouteObject[] = getContent(defaultLanguage).services.items.flatMap(
+  (item) => [
+    { path: `servicios/${item.slug}`, element: <PracticeAreaPage slug={item.slug} /> },
+    // Cada servicio del área: /servicios/<área>/<servicio> (URL para compartir en anuncios).
+    ...item.services.map((service) => ({
+      path: `servicios/${item.slug}/${service.slug}`,
+      element: <ServicePage area={item.slug} slug={service.slug} />,
+    })),
+  ],
 );
 
 export const router = createBrowserRouter([
@@ -89,6 +94,12 @@ export const router = createBrowserRouter([
       {
         path: 'noticias',
         lazy: async () => ({ Component: (await import('@/pages/admin/NewsPage')).NewsPage }),
+      },
+      {
+        path: 'servicios',
+        lazy: async () => ({
+          Component: (await import('@/pages/admin/ServicesAdminPage')).ServicesAdminPage,
+        }),
       },
       {
         path: 'fotos',

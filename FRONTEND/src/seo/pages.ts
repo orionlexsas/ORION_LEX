@@ -44,6 +44,19 @@ export const seoFor = {
       }
     );
   },
+  service: (c: SiteContentBundle, area: string, slug: string): PageSeo | undefined => {
+    const item = c.services.items.find((i) => i.slug === area);
+    const service = item?.services.find((s) => s.slug === slug);
+    return (
+      item &&
+      service && {
+        path: `/servicios/${item.slug}/${service.slug}`,
+        title: service.seo?.title || `${service.title} | ${c.site.brand.name}`,
+        description: service.seo?.description || service.description,
+        image: (service.image ?? item.image).src,
+      }
+    );
+  },
   landing: (c: SiteContentBundle, slug: string): PageSeo | undefined => {
     const landing = c.landings.find((l) => l.slug === slug);
     return (
@@ -81,6 +94,7 @@ export function allPages(c: SiteContentBundle): PageSeo[] {
     seoFor.terms(c),
     ...c.landings.map((l) => seoFor.landing(c, l.slug)!),
     ...c.services.items.map((i) => seoFor.practiceArea(c, i.slug)!),
+    ...c.services.items.flatMap((i) => i.services.map((s) => seoFor.service(c, i.slug, s.slug)!)),
     ...c.articles.map((a) => seoFor.article(c, a.slug)!),
   ];
 }

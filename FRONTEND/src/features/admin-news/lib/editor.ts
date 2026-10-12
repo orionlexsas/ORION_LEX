@@ -24,16 +24,7 @@ export interface ArticleDraft {
   sources: { label: string; url: string }[];
 }
 
-/** "¿Cuánto dura un reporte?" → "cuanto-dura-un-reporte" */
-export function slugify(value: string) {
-  return value
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '')
-    .slice(0, 80);
-}
+export { slugify } from '@/lib/slug';
 
 export function draftFrom(
   article: AdminArticle | undefined,

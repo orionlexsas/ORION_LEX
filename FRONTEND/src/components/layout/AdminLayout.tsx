@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { Link, NavLink, Outlet, useLocation, useNavigate } from 'react-router';
 import {
+  Briefcase,
   ChartColumnIncreasing,
   ChevronDown,
   ExternalLink,
@@ -24,6 +25,7 @@ import { cn } from '@/lib/cn';
 const NAV: { to: string; label: string; icon: LucideIcon; end?: boolean }[] = [
   { to: '/admin', label: 'Dashboard', icon: LayoutGrid, end: true },
   { to: '/admin/noticias', label: 'Noticias', icon: FileText },
+  { to: '/admin/servicios', label: 'Servicios', icon: Briefcase },
   { to: '/admin/fotos', label: 'Fotos y banners', icon: Image },
   { to: '/admin/estadisticas', label: 'Estadísticas', icon: ChartColumnIncreasing },
   { to: '/admin/configuracion', label: 'Configuración', icon: Settings },

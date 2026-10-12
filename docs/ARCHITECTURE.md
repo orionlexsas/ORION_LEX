@@ -71,7 +71,7 @@ FRONTEND/src/
 │   ├── home/               portada (HeroSection)
 │   ├── matters/            "Asuntos que atendemos con frecuencia" (6 tarjetas) y bloques de las landings
 │   ├── approach/           "Cómo trabajamos": pasos del proceso
-│   ├── services/           áreas del derecho (tarjetas + ventana con la explicación)
+│   ├── services/           áreas del derecho (categorías) y sus servicios: /servicios/<área>/<servicio>
 │   ├── team/               Nosotros: quién atiende el caso
 │   ├── blog/               Actualidad Jurídica (listado, destacado de la semana, artículo)
 │   ├── coverage/           cobertura nacional y en el exterior
@@ -81,6 +81,7 @@ FRONTEND/src/
 │   ├── admin-dashboard/    panel: cifras, últimas noticias y últimas acciones
 │   ├── admin-news/         panel: gestión y editor de noticias (Actualidad Jurídica)
 │   ├── admin-media/        panel: biblioteca de fotos y banners (y los textos que las acompañan)
+│   ├── admin-services/     panel: categorías, servicios y asuntos frecuentes (con su URL editable)
 │   └── admin-stats/        panel: estadísticas con gráficos (components/admin/charts.tsx)
 ├── pages/
 │   ├── public/             páginas de la web (delgadas: componen features)
@@ -147,7 +148,7 @@ Reglas:
 
 ## Panel de administración (/admin)
 
-Login en `/admin/login`; secciones: Dashboard, Noticias, Fotos y banners, Estadísticas y Configuración. El panel se carga aparte (lazy) y sin analítica.
+Login en `/admin/login`; secciones: Dashboard, Noticias, Servicios, Fotos y banners, Estadísticas y Configuración. El panel se carga aparte (lazy) y sin analítica.
 
 - **Sin base de datos:** el panel edita los mismos archivos que lee la web (`content/es/articles/*.json`
   y `public/images/<carpeta>/`). La API vive en `FRONTEND/server/admin/` (no depende de Vercel ni de
@@ -166,6 +167,12 @@ Login en `/admin/login`; secciones: Dashboard, Noticias, Fotos y banners, Estad�
 - **Textos de las fotos** (`server/admin/media-texts.ts`): se busca la imagen en los JSON en español; el
   objeto que la contiene (banner, tarjeta, perfil) es el bloque y sus textos de una lista fija (título,
   descripción, cargo…) y el `alt` se editan desde Fotos y banners. Se valida el archivo completo con su esquema.
+- **Servicios** (`server/admin/services.ts`): las áreas de `services.json` son categorías y cada una tiene
+  `services[]` (página en `/servicios/<área>/<servicio>`, rutas y prerender generados desde el contenido).
+  Los asuntos frecuentes son las landings (`/<slug>`) en el orden de `matters.json` (igual en es y en). El
+  panel edita el español; en inglés se usan el orden, fotos y URLs del español y la traducción si existe
+  (`mergeServices` y landings en `content/index.ts`). Las URLs de asuntos no pueden chocar con rutas del
+  sitio (`RESERVED_SLUGS`). Cada elemento muestra su URL completa con botón "Copiar enlace" para anuncios.
 - **Estadísticas:** `GET /admin/stats` (noticias por mes y categoría, fotos por carpeta, actividad por día).
   Gráficos sin librerías, color `chart` (validado en ambos temas), con detalle al pasar el mouse y vista de tabla.
 - **Imágenes:** una imagen en uso (su ruta aparece en algún JSON de contenido) no se puede borrar; al
