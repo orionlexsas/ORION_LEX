@@ -1,5 +1,5 @@
 import type { AdminActivity } from '../../../SHARED/src/schemas/admin.schema.js';
-import { HttpError, type ContentStore, type StoredFile } from './store.js';
+import { HttpError, PATHS, type ContentStore, type StoredFile } from './store.js';
 
 /*
  * Almacenamiento en producción: cada guardado del panel es un commit en la rama de GitHub
@@ -34,12 +34,18 @@ export function createGithubStore({
   // Una instancia por petición: el árbol se lee una vez y se reutiliza.
   let snapshot: Promise<{ commit: string; files: Map<string, StoredFile> }> | null = null;
 
-  async function github<T>(path: string, init?: RequestInit & { raw?: boolean }): Promise<T> {
+  async function github<T>(
+    path: string,
+    init?: RequestInit & { raw?: boolean; binary?: boolean },
+  ): Promise<T> {
     const res = await fetchImpl(`https://api.github.com/repos/${repo}${path}`, {
       ...init,
       headers: {
         Authorization: `Bearer ${token}`,
-        Accept: init?.raw ? 'application/vnd.github.raw+json' : 'application/vnd.github+json',
+        Accept:
+          init?.raw || init?.binary
+            ? 'application/vnd.github.raw+json'
+            : 'application/vnd.github+json',
         'X-GitHub-Api-Version': '2022-11-28',
         'User-Agent': 'orion-lex-panel',
         ...(init?.body ? { 'Content-Type': 'application/json' } : {}),
@@ -59,6 +65,7 @@ export function createGithubStore({
         status: res.status,
       });
     }
+    if (init?.binary) return Buffer.from(await res.arrayBuffer()) as T;
     return (init?.raw ? await res.text() : await res.json()) as T;
   }
 
@@ -163,10 +170,16 @@ export function createGithubStore({
         });
     },
 
+    async readBinary(file) {
+      // Por el sha del archivo (blob): siempre la versión exacta, sin depender de la rama.
+      return github<Buffer>(`/git/blobs/${file.version}`, { binary: true });
+    },
+
     async publicUrl(file) {
-      // El repositorio es público: la imagen se ve desde GitHub aunque Vercel aún no republique.
-      const { commit } = await loadSnapshot();
-      return `https://raw.githubusercontent.com/${repo}/${commit}/${encodeURI(file.path)}`;
+      // El repositorio es privado: el panel pide la imagen a su propia API, que la trae de GitHub
+      // con el token. Así se ve al instante, aunque Vercel aún no haya republicado la web.
+      const src = file.path.slice(PATHS.public.length);
+      return `/api/v1/admin/media/file?src=${encodeURIComponent(src)}&v=${file.version}`;
     },
   };
 }

@@ -37,6 +37,8 @@ export interface ContentStore {
   list(folder: string): Promise<StoredFile[]>;
   /** Texto de un archivo, o null si no existe. */
   read(path: string): Promise<string | null>;
+  /** Contenido binario de un archivo (imágenes), o null si no existe. */
+  readBinary(file: StoredFile): Promise<Buffer | null>;
   /** Aplica varios cambios juntos y los registra en el historial. */
   commit(changes: FileChange[], message: string, author: AdminUser): Promise<void>;
   /** Últimos cambios hechos desde el panel, más recientes primero. */
