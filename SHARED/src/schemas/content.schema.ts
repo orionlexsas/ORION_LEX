@@ -237,6 +237,26 @@ export const approachContentSchema = z.object({
  * `/servicios/<slug>` con la explicación (`details`) y el botón a WhatsApp (`message`).
  * La que lleva `featured: true` se muestra como tarjeta grande (Asesoría jurídica).
  */
+/**
+ * Un servicio concreto dentro de un área (p. ej. Derecho laboral → Despido sin justa causa).
+ * Tiene su propia página en /servicios/<área>/<slug>, pensada para compartir en anuncios.
+ */
+export const practiceServiceSchema = z.object({
+  slug: slugSchema,
+  status: statusSchema,
+  title: z.string().min(1),
+  /** Resumen corto: tarjeta y subtítulo de la página. */
+  description: z.string().min(1),
+  /** Explicación completa en Markdown (## subtítulos, listas, negritas). */
+  body: z.string().default(''),
+  /** Mensaje de WhatsApp de este servicio. */
+  message: z.string().min(1),
+  /** Foto propia (opcional: si falta se usa la del área). */
+  image: imageSchema.optional(),
+  /** Título y descripción para Google y Facebook (opcionales). */
+  seo: z.object({ title: z.string().optional(), description: z.string().optional() }).optional(),
+});
+
 export const servicesContentSchema = z.object({
   eyebrow: z.string(),
   title: z.string(),
@@ -261,6 +281,8 @@ export const servicesContentSchema = z.object({
         /** Mensaje de WhatsApp de esta área. */
         message: z.string(),
         image: imageSchema,
+        /** Servicios concretos de esta categoría, cada uno en /servicios/<área>/<servicio>. */
+        services: z.array(practiceServiceSchema).default([]),
       }),
     )
     .min(1),
@@ -383,6 +405,7 @@ export type LandingContent = z.infer<typeof landingContentSchema>;
 export type ApproachContent = z.infer<typeof approachContentSchema>;
 export type ServicesContent = z.infer<typeof servicesContentSchema>;
 export type ServiceItem = ServicesContent['items'][number];
+export type PracticeService = z.infer<typeof practiceServiceSchema>;
 export type TeamContent = z.infer<typeof teamContentSchema>;
 export type CoverageContent = z.infer<typeof coverageContentSchema>;
 export type BlogContent = z.infer<typeof blogContentSchema>;

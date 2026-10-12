@@ -5,6 +5,7 @@ import { CtaLink } from '@/components/cta/CtaLink';
 import { ContentIcon } from '@/components/ui/ContentIcon';
 import { Container } from '@/components/ui/Container';
 import { practiceAreaHref } from '../lib/routes';
+import { AreaServices } from './AreaServices';
 
 interface PracticeAreaDetailProps {
   item: ServiceItem;
@@ -52,6 +53,8 @@ export function PracticeAreaDetail({ item, content }: PracticeAreaDetailProps) {
             className="aspect-[4/3] w-full rounded-md object-cover saturate-[0.9]"
           />
         </div>
+
+        <AreaServices item={item} />
 
         <nav aria-labelledby="other-areas" className="mt-16 border-t border-border pt-10 lg:mt-20">
           <h2 id="other-areas" className="font-serif text-2xl font-semibold">
