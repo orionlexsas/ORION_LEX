@@ -169,7 +169,11 @@ Login en `/admin/login`; secciones: Dashboard, Noticias, Fotos y banners, Estad�
 - **Estadísticas:** `GET /admin/stats` (noticias por mes y categoría, fotos por carpeta, actividad por día).
   Gráficos sin librerías, color `chart` (validado en ambos temas), con detalle al pasar el mouse y vista de tabla.
 - **Imágenes:** una imagen en uso (su ruta aparece en algún JSON de contenido) no se puede borrar; al
-  reemplazarla se mantienen ruta y formato, y cambia en todo el sitio.
+  reemplazarla se mantienen ruta y formato, y cambia en todo el sitio. En Vercel el panel muestra las
+  fotos con `/api/v1/admin/media/file?src=…&v=<sha>` (las trae de GitHub con el token y exige sesión),
+  así funcionan aunque el repositorio sea privado y antes de que Vercel republique.
+- **Repositorio privado + Vercel Hobby:** Vercel bloquea los despliegues cuyo autor no es `orionlexsas`.
+  Los guardados del panel sí despliegan (los firma el token de esa cuenta).
 - Datos que viajan entre panel y API: `SHARED/src/schemas/admin.schema.ts`.
 
 ## Producción (Vercel)
