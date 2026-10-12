@@ -19,23 +19,28 @@ import { Notice } from '@/components/admin/Notice';
 import { PageHeader } from '@/components/admin/PageHeader';
 import { StatusBadge } from '@/components/admin/StatusBadge';
 import { outlineAccentClass } from '@/components/admin/styles';
+import { errorMessage } from '@/lib/api-client';
 import { cn } from '@/lib/cn';
 import { formatDate, timeAgo } from '@/lib/format';
 import { useActivity, useOverview } from '../hooks/use-overview';
 
 /** Página de inicio del panel: cifras, últimas noticias, vista previa y últimas acciones. */
 export function DashboardView({ userName }: { userName: string }) {
-  const { data, isPending, isError } = useOverview();
+  const { data, isPending, isError, error } = useOverview();
   const firstName = userName.split(' ')[0];
 
   return (
-    <div className="grid gap-7 xl:grid-cols-[minmax(0,1fr)_minmax(22rem,30rem)]">
+    <div className="grid grid-cols-1 gap-7 xl:grid-cols-[minmax(0,1fr)_minmax(22rem,30rem)]">
       <div className="min-w-0 space-y-7">
         <PageHeader
           title="Panel administrativo"
           description={`Bienvenido/a, ${firstName}. Desde aquí puedes gestionar todo el contenido del sitio web de Orión Lex Servicios Jurídicos.`}
         />
-        {isError && <Notice tone="error">No se pudo cargar el resumen. Recarga la página.</Notice>}
+        {isError && (
+          <Notice tone="error">
+            {errorMessage(error, 'No se pudo cargar el resumen. Recarga la página.')}
+          </Notice>
+        )}
         <Stats data={data} />
         <LatestNews data={data} loading={isPending} />
       </div>
@@ -178,7 +183,7 @@ function LatestNews({ data, loading }: { data?: AdminOverview; loading: boolean 
           Aún no hay noticias. Crea la primera desde Noticias.
         </p>
       ) : (
-        <div className="overflow-x-auto">
+        <div className="relative overflow-x-auto">
           <table className="w-full min-w-[40rem] text-sm">
             <thead>
               <tr className="bg-surface text-left text-[0.8rem] font-semibold">
