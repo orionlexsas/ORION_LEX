@@ -15,6 +15,7 @@ import { Notice } from '@/components/admin/Notice';
 import { PageHeader } from '@/components/admin/PageHeader';
 import { StatusBadge } from '@/components/admin/StatusBadge';
 import { fieldClass, labelClass, primaryClass } from '@/components/admin/styles';
+import { errorMessage } from '@/lib/api-client';
 import { cn } from '@/lib/cn';
 import { formatDate } from '@/lib/format';
 import { useArticles, useDeleteArticle, useSaveArticle } from '../hooks/use-articles';
@@ -26,7 +27,7 @@ type Sort = 'recent' | 'oldest' | 'title';
 /** Gestión de noticias: filtros, tabla y editor lateral. La noticia abierta va en la URL (?editar=). */
 export function NewsManager() {
   const [params, setParams] = useSearchParams();
-  const { data, isPending, isError } = useArticles();
+  const { data, isPending, isError, error } = useArticles();
   const [flash, setFlashState] = useState<string | null>(() => takeFlash());
   const [category, setCategory] = useState('');
   const [status, setStatus] = useState<'' | 'published' | 'draft'>('');
@@ -85,7 +86,9 @@ export function NewsManager() {
   const editorOpen = !!data && (editing === 'nueva' || !!current);
 
   return (
-    <div className={cn('grid gap-7', editorOpen && '2xl:grid-cols-[minmax(0,1fr)_35rem]')}>
+    <div
+      className={cn('grid grid-cols-1 gap-7', editorOpen && '2xl:grid-cols-[minmax(0,1fr)_35rem]')}
+    >
       <div className="min-w-0 space-y-6">
         <PageHeader
           title="Gestión de noticias"
@@ -183,7 +186,7 @@ export function NewsManager() {
           </header>
           {isError ? (
             <Notice tone="error" className="mx-6 mb-6">
-              No se pudieron cargar las noticias. Recarga la página.
+              {errorMessage(error, 'No se pudieron cargar las noticias. Recarga la página.')}
             </Notice>
           ) : isPending ? (
             <p className="px-6 pb-8 text-sm text-muted">Cargando noticias…</p>
@@ -272,7 +275,7 @@ function NewsTable({ articles, categories, selected, compact, onEdit, onMessage 
   };
 
   return (
-    <div className="overflow-x-auto pb-2">
+    <div className="relative overflow-x-auto pb-2">
       {(save.isError || remove.isError) && (
         <Notice tone="error" className="mx-6 mb-4">
           No se pudo guardar el cambio. Inténtalo de nuevo.

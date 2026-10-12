@@ -9,6 +9,7 @@ import {
 } from '@/components/admin/charts';
 import { Notice } from '@/components/admin/Notice';
 import { PageHeader } from '@/components/admin/PageHeader';
+import { errorMessage } from '@/lib/api-client';
 import { formatBytes } from '@/lib/format';
 import { useStats } from '../hooks/use-stats';
 
@@ -72,7 +73,7 @@ function toCharts(stats: AdminStats) {
 
 /** Estadísticas: cifras y gráficos de las noticias, las imágenes y el uso del panel. */
 export function StatsView() {
-  const { data, isPending, isError } = useStats();
+  const { data, isPending, isError, error } = useStats();
 
   return (
     <div className="space-y-7">
@@ -81,7 +82,9 @@ export function StatsView() {
         description="Cómo crece el contenido del sitio: noticias publicadas, temas, imágenes y cambios hechos desde el panel."
       />
       {isError && (
-        <Notice tone="error">No se pudieron cargar las estadísticas. Recarga la página.</Notice>
+        <Notice tone="error">
+          {errorMessage(error, 'No se pudieron cargar las estadísticas. Recarga la página.')}
+        </Notice>
       )}
       {isPending && <p className="text-sm text-muted">Cargando estadísticas…</p>}
       {data && <Charts stats={data} />}

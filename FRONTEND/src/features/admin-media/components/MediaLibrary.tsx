@@ -25,7 +25,7 @@ import {
   labelClass,
   primaryClass,
 } from '@/components/admin/styles';
-import { ApiRequestError } from '@/lib/api-client';
+import { ApiRequestError, errorMessage } from '@/lib/api-client';
 import { cn } from '@/lib/cn';
 import { setFlash, takeFlash } from '@/lib/flash';
 import { formatBytes } from '@/lib/format';
@@ -66,7 +66,7 @@ const savedMessage = (action: string, mode: 'local' | 'github') =>
 
 /** Fotos y banners: biblioteca de imágenes con detalle, subida, reemplazo y borrado. */
 export function MediaLibrary() {
-  const { data, isPending, isError } = useMedia();
+  const { data, isPending, isError, error } = useMedia();
   const [tab, setTab] = useState('all');
   const [query, setQuery] = useState('');
   const [usage, setUsage] = useState<'' | 'used' | 'unused'>('');
@@ -117,7 +117,9 @@ export function MediaLibrary() {
   );
 
   return (
-    <div className={cn('grid gap-7', selected && '2xl:grid-cols-[minmax(0,1fr)_30rem]')}>
+    <div
+      className={cn('grid grid-cols-1 gap-7', selected && '2xl:grid-cols-[minmax(0,1fr)_30rem]')}
+    >
       <div className="min-w-0 space-y-6">
         <PageHeader
           title="Fotos y banners"
@@ -213,7 +215,9 @@ export function MediaLibrary() {
         </div>
 
         {isError ? (
-          <Notice tone="error">No se pudieron cargar las imágenes. Recarga la página.</Notice>
+          <Notice tone="error">
+            {errorMessage(error, 'No se pudieron cargar las imágenes. Recarga la página.')}
+          </Notice>
         ) : isPending ? (
           <p className="text-sm text-muted">Cargando imágenes…</p>
         ) : items.length === 0 ? (

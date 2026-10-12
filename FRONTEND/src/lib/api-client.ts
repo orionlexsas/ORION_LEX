@@ -32,3 +32,8 @@ export async function apiRequest<T>(path: string, init?: RequestInit): Promise<T
   }
   return body as T;
 }
+
+/** Mensaje para mostrar: el de la API si lo trae (p. ej. falta configuración), o `fallback`. */
+export function errorMessage(error: unknown, fallback: string) {
+  return error instanceof ApiRequestError && error.code !== 'HTTP_ERROR' ? error.message : fallback;
+}
