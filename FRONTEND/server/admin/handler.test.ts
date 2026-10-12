@@ -30,6 +30,9 @@ function memoryStore(initial: Record<string, string | Buffer>) {
     async activity(limit) {
       return log.slice(0, limit);
     },
+    async readBinary(file) {
+      return files.get(file.path) ?? null;
+    },
     async publicUrl(file) {
       return file.path.slice('FRONTEND/public'.length);
     },
@@ -377,5 +380,33 @@ describe('API del panel: estadísticas', () => {
     expect(stats.byCategory).toEqual([{ name: 'Tutelas', published: 1, drafts: 0 }]);
     expect(stats.byFolder[0]).toMatchObject({ folder: 'actualidad', count: 2 });
     expect(stats.activityByDay).toHaveLength(30);
+  });
+});
+
+describe('API del panel: archivos de imagen', () => {
+  it('sirve la imagen solo con sesión y con su tipo', async () => {
+    const { call, cookie } = await setup();
+    expect((await call('GET', '/media/file?src=/images/hero/portada.webp')).status).toBe(401);
+    const res = await call('GET', '/media/file?src=/images/hero/portada.webp', undefined, cookie);
+    expect(res.status).toBe(200);
+    expect(res.contentType).toBe('image/webp');
+    expect(Buffer.isBuffer(res.body)).toBe(true);
+  });
+
+  it('rechaza rutas fuera de la biblioteca', async () => {
+    const { call, cookie } = await setup();
+    const bad = ['/images/../.env', '/etc/passwd', '/images/hero/portada.txt'];
+    for (const src of bad) {
+      const res = await call(
+        'GET',
+        `/media/file?src=${encodeURIComponent(src)}`,
+        undefined,
+        cookie,
+      );
+      expect(res.status).toBe(400);
+    }
+    expect(
+      (await call('GET', '/media/file?src=/images/no/existe.webp', undefined, cookie)).status,
+    ).toBe(404);
   });
 });

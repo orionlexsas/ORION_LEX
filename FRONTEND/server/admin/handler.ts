@@ -58,8 +58,12 @@ export interface AdminRequest {
 
 export interface AdminResponse {
   status: number;
+  /** JSON, o un Buffer para archivos (imágenes). */
   body?: unknown;
   setCookie?: string;
+  /** Solo para archivos binarios. */
+  contentType?: string;
+  cacheControl?: string;
 }
 
 const ok = (body: unknown, status = 200): AdminResponse => ({ status, body });
@@ -131,6 +135,39 @@ function requireStore(deps: AdminDeps): ContentStore {
     );
   }
   return deps.store;
+}
+
+const CONTENT_TYPES: Record<string, string> = {
+  webp: 'image/webp',
+  jpg: 'image/jpeg',
+  jpeg: 'image/jpeg',
+  png: 'image/png',
+  avif: 'image/avif',
+  gif: 'image/gif',
+};
+
+/** Imagen de la biblioteca servida por la API (el repositorio es privado). Solo con sesión. */
+async function mediaFile(store: ContentStore, src: string | null): Promise<AdminResponse> {
+  const extension = /\.([a-z]+)$/i.exec(src ?? '')?.[1]?.toLowerCase() ?? '';
+  if (
+    !src ||
+    !/^\/images\/[a-z0-9/._-]+$/i.test(src) ||
+    src.includes('..') ||
+    !CONTENT_TYPES[extension]
+  ) {
+    throw new HttpError(400, 'VALIDATION_ERROR', 'Imagen inválida');
+  }
+  const path = `${PATHS.public}${src}`;
+  const file = (await store.list(PATHS.images)).find((f) => f.path === path);
+  const data = file ? await store.readBinary(file) : null;
+  if (!data) throw new HttpError(404, 'NOT_FOUND', 'La imagen no existe');
+  return {
+    status: 200,
+    body: data,
+    contentType: CONTENT_TYPES[extension],
+    // La URL lleva la versión del archivo (?v=): se puede guardar en caché sin miedo.
+    cacheControl: 'private, max-age=31536000, immutable',
+  };
 }
 
 async function overview(store: ContentStore, now: Date): Promise<AdminOverview> {
@@ -237,6 +274,7 @@ async function route(req: AdminRequest, deps: AdminDeps): Promise<AdminResponse>
     }
 
     case 'GET media/:id': {
+      if (id === 'file') return mediaFile(store, req.query.get('src'));
       // /media/texts?src=…: textos que acompañan a la imagen en la web.
       if (id !== 'texts') break;
       const src = req.query.get('src');

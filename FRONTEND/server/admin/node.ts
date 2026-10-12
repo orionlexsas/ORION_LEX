@@ -5,12 +5,17 @@ import { handleAdmin, type AdminResponse } from './handler.js';
 /** Escribe la respuesta del panel en una respuesta HTTP de Node (Vercel o Vite). */
 export function sendAdminResponse(res: ServerResponse, result: AdminResponse) {
   res.statusCode = result.status;
-  // Datos privados: que no se guarden en cachés ni aparezcan en buscadores.
-  res.setHeader('Cache-Control', 'no-store');
+  // Datos privados: que no se guarden en cachés compartidas ni aparezcan en buscadores.
+  res.setHeader('Cache-Control', result.cacheControl ?? 'no-store');
   res.setHeader('X-Robots-Tag', 'noindex');
   if (result.setCookie) res.setHeader('Set-Cookie', result.setCookie);
   if (result.body === undefined) {
     res.end();
+    return;
+  }
+  if (Buffer.isBuffer(result.body)) {
+    res.setHeader('Content-Type', result.contentType ?? 'application/octet-stream');
+    res.end(result.body);
     return;
   }
   res.setHeader('Content-Type', 'application/json; charset=utf-8');

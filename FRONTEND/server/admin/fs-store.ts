@@ -73,6 +73,14 @@ export function createFsStore(rootDir: string): ContentStore {
       return (await readActivity()).slice(0, limit);
     },
 
+    async readBinary(file) {
+      try {
+        return await readFile(abs(file.path));
+      } catch {
+        return null;
+      }
+    },
+
     async publicUrl(file) {
       // Vite sirve FRONTEND/public en la raíz: FRONTEND/public/images/x.webp → /images/x.webp
       return `${file.path.slice(PATHS.public.length)}?v=${file.version}`;
