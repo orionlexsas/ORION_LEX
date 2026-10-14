@@ -125,6 +125,8 @@ export const homeContentSchema = z.object({
     eyebrow: z.string(),
     title: z.string(),
     description: z.string(),
+    /** Versión corta de la descripción para celular (opcional; si falta se usa la normal). */
+    mobileDescription: z.string().optional(),
     primaryCta: linkSchema,
     secondaryCta: linkSchema,
     /** Frase decorativa en letra manuscrita bajo los botones ("Claridad para avanzar"). */
