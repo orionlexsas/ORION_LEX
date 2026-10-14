@@ -118,7 +118,7 @@ export function HeroSection({ hero }: HeroSectionProps) {
               {hero.script && (
                 <p
                   aria-hidden="true"
-                  className="mt-9 w-fit animate-rise text-foreground/90 max-sm:mt-10 max-sm:-ml-1"
+                  className="mt-9 w-fit animate-rise text-foreground/90 max-sm:mt-10 max-sm:-ml-1 max-[359px]:mt-24!"
                   style={delay(320)}
                 >
                   <span className="block -rotate-3 font-script text-[2.15rem] leading-none whitespace-nowrap min-[375px]:text-[2.45rem] sm:text-[3rem]">
@@ -159,7 +159,7 @@ export function HeroSection({ hero }: HeroSectionProps) {
               className={cn(
                 'block aspect-[5/4] h-auto w-full object-cover object-[74%_center] sm:aspect-[16/9] xl:aspect-auto xl:h-full xl:object-[right_center]',
                 // Celular: más ancha que la pantalla, abajo, con los rostros a la derecha del texto.
-                'max-sm:absolute max-sm:bottom-0 max-sm:left-[-2%] max-sm:aspect-[1672/941] max-sm:w-[122%] max-sm:max-w-none max-sm:mask-t-from-85% max-sm:mask-t-to-100%',
+                'max-sm:absolute max-sm:bottom-0 max-sm:left-[-2%] max-sm:aspect-[1672/941] max-sm:w-[122%] max-sm:max-w-none max-sm:brightness-[.8] max-sm:sepia-[.25] max-sm:[mask-composite:intersect] max-sm:[mask-image:linear-gradient(to_bottom,transparent,rgb(0_0_0/0.45)_7%,black_15%),radial-gradient(ellipse_75%_120%_at_66%_100%,black_70%,transparent_100%)]',
               )}
             />
           </picture>
