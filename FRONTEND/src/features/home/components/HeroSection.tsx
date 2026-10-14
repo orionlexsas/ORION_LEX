@@ -32,7 +32,7 @@ export function HeroSection({ hero }: HeroSectionProps) {
         aria-labelledby="hero-title"
         className="relative isolate flex flex-col overflow-hidden max-sm:min-h-[39rem] xl:min-h-[clamp(620px,calc(100svh-16.5rem),720px)] xl:justify-center"
       >
-        <Container className="py-8 max-sm:on-dark max-sm:[text-shadow:0_1px_14px_rgb(0_0_0/0.5)] max-sm:pt-11 max-sm:pb-10 sm:py-14 xl:py-16">
+        <Container className="py-8 max-sm:on-dark max-sm:[&_:is(h1,p,li)]:[text-shadow:0_1px_14px_rgb(0_0_0/0.55)] max-sm:pt-11 max-sm:pb-10 sm:py-14 xl:py-16">
           <div className="max-w-[36rem] max-sm:max-w-none xl:max-w-[38rem]">
             <p
               className="eyebrow animate-rise max-sm:text-[0.66rem] max-sm:tracking-[0.18em]"
@@ -163,10 +163,10 @@ export function HeroSection({ hero }: HeroSectionProps) {
               )}
             />
           </picture>
-          {/* Celular: velo café oscuro desde la izquierda para que el texto blanco se lea */}
+          {/* Celular: velo café solo en la izquierda (donde va el texto); el equipo queda con su color */}
           <div
             aria-hidden="true"
-            className="absolute inset-0 bg-[linear-gradient(180deg,color-mix(in_oklab,var(--color-hero-shade)_45%,transparent)_0%,transparent_35%,transparent_70%,color-mix(in_oklab,var(--color-hero-shade)_55%,transparent)_100%),linear-gradient(90deg,color-mix(in_oklab,var(--color-hero-shade)_85%,transparent)_0%,color-mix(in_oklab,var(--color-hero-shade)_70%,transparent)_45%,color-mix(in_oklab,var(--color-hero-shade)_12%,transparent)_85%,transparent_100%)] sm:hidden"
+            className="absolute inset-0 bg-[linear-gradient(180deg,color-mix(in_oklab,var(--color-hero-shade)_30%,transparent)_0%,transparent_22%,transparent_78%,color-mix(in_oklab,var(--color-hero-shade)_40%,transparent)_100%),linear-gradient(90deg,color-mix(in_oklab,var(--color-hero-shade)_78%,transparent)_0%,color-mix(in_oklab,var(--color-hero-shade)_50%,transparent)_35%,transparent_62%)] sm:hidden"
           />
           {/* Transición suave del color del tema desde la izquierda (blanca o negra), sin tapar rostros */}
           <div
