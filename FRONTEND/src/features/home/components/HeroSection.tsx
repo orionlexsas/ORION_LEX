@@ -32,7 +32,7 @@ export function HeroSection({ hero }: HeroSectionProps) {
         aria-labelledby="hero-title"
         className="relative isolate flex flex-col overflow-hidden max-sm:min-h-[39rem] xl:min-h-[clamp(620px,calc(100svh-16.5rem),720px)] xl:justify-center"
       >
-        <Container className="py-8 max-sm:on-dark max-sm:pt-11 max-sm:pb-10 sm:py-14 xl:py-16">
+        <Container className="py-8 max-sm:on-dark max-sm:[text-shadow:0_1px_14px_rgb(0_0_0/0.5)] max-sm:pt-11 max-sm:pb-10 sm:py-14 xl:py-16">
           <div className="max-w-[36rem] max-sm:max-w-none xl:max-w-[38rem]">
             <p
               className="eyebrow animate-rise max-sm:text-[0.66rem] max-sm:tracking-[0.18em]"
@@ -118,7 +118,7 @@ export function HeroSection({ hero }: HeroSectionProps) {
               {hero.script && (
                 <p
                   aria-hidden="true"
-                  className="mt-9 w-fit animate-rise text-foreground/90 max-sm:mt-10 max-sm:-ml-1 max-[359px]:mt-24!"
+                  className="mt-9 w-fit animate-rise text-foreground/90 max-sm:mt-10 max-sm:-ml-1"
                   style={delay(320)}
                 >
                   <span className="block -rotate-3 font-script text-[2.15rem] leading-none whitespace-nowrap min-[375px]:text-[2.45rem] sm:text-[3rem]">
@@ -142,13 +142,13 @@ export function HeroSection({ hero }: HeroSectionProps) {
 
         {/*
           Foto limpia: fondo completo desde 1280 px; bloque independiente debajo del texto en tablet.
-          En celular es el fondo de toda la sección: el equipo abajo a la derecha y, arriba, un
-          resplandor cálido sobre el café oscuro.
+          En celular es el fondo de toda la sección (foto vertical, `srcMobile`), con un velo café
+          oscuro para que el texto blanco se lea.
         */}
-        <div className="relative max-sm:absolute max-sm:inset-0 max-sm:-z-10 max-sm:overflow-hidden max-sm:bg-[radial-gradient(ellipse_at_85%_15%,color-mix(in_oklab,var(--color-accent)_30%,var(--color-hero-shade))_0%,var(--color-hero-shade)_70%)] xl:absolute xl:inset-0 xl:-z-10">
+        <div className="relative max-sm:absolute max-sm:inset-0 max-sm:-z-10 max-sm:overflow-hidden max-sm:bg-hero-shade xl:absolute xl:inset-0 xl:-z-10">
           <picture>
             {hero.image.srcMobile && (
-              <source media="(max-width: 767px)" srcSet={hero.image.srcMobile} />
+              <source media="(max-width: 639px)" srcSet={hero.image.srcMobile} />
             )}
             <img
               src={hero.image.src}
@@ -158,15 +158,15 @@ export function HeroSection({ hero }: HeroSectionProps) {
               fetchPriority="high"
               className={cn(
                 'block aspect-[5/4] h-auto w-full object-cover object-[74%_center] sm:aspect-[16/9] xl:aspect-auto xl:h-full xl:object-[right_center]',
-                // Celular: más ancha que la pantalla, abajo, con los rostros a la derecha del texto.
-                'max-sm:absolute max-sm:bottom-0 max-sm:left-[-2%] max-sm:aspect-[1672/941] max-sm:w-[122%] max-sm:max-w-none max-sm:brightness-[.8] max-sm:sepia-[.25] max-sm:[mask-composite:intersect] max-sm:[mask-image:linear-gradient(to_bottom,transparent,rgb(0_0_0/0.45)_7%,black_15%),radial-gradient(ellipse_75%_120%_at_66%_100%,black_70%,transparent_100%)]',
+                // Celular: foto vertical que llena la sección; los rostros quedan a la derecha.
+                'max-sm:absolute max-sm:inset-0 max-sm:size-full max-sm:aspect-auto max-sm:object-cover max-sm:object-[62%_35%]',
               )}
             />
           </picture>
           {/* Celular: velo café oscuro desde la izquierda para que el texto blanco se lea */}
           <div
             aria-hidden="true"
-            className="absolute inset-0 bg-[linear-gradient(90deg,color-mix(in_oklab,var(--color-hero-shade)_88%,transparent)_0%,color-mix(in_oklab,var(--color-hero-shade)_70%,transparent)_45%,color-mix(in_oklab,var(--color-hero-shade)_15%,transparent)_80%,transparent_100%)] sm:hidden"
+            className="absolute inset-0 bg-[linear-gradient(180deg,color-mix(in_oklab,var(--color-hero-shade)_45%,transparent)_0%,transparent_35%,transparent_70%,color-mix(in_oklab,var(--color-hero-shade)_55%,transparent)_100%),linear-gradient(90deg,color-mix(in_oklab,var(--color-hero-shade)_85%,transparent)_0%,color-mix(in_oklab,var(--color-hero-shade)_70%,transparent)_45%,color-mix(in_oklab,var(--color-hero-shade)_12%,transparent)_85%,transparent_100%)] sm:hidden"
           />
           {/* Transición suave del color del tema desde la izquierda (blanca o negra), sin tapar rostros */}
           <div
