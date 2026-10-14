@@ -16,6 +16,8 @@ export const resources = {
 /** Mantiene <html lang> en el idioma activo (el título y la descripción los pone cada página). */
 function syncDocument() {
   if (typeof document === 'undefined') return;
+  // El panel solo está en español, aunque en la web se haya elegido inglés.
+  if (window.location.pathname.startsWith('/admin')) return;
   document.documentElement.lang = i18n.resolvedLanguage ?? defaultLanguage;
 }
 

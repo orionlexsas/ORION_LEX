@@ -1,4 +1,5 @@
 import { createBrowserRouter, Navigate, type RouteObject } from 'react-router';
+import { RouteError } from '@/components/layout/RouteError';
 import { SiteLayout, type RouteHandle } from '@/components/layout/SiteLayout';
 import { getContent } from '@/content';
 import { defaultLanguage } from '@/i18n';
@@ -41,6 +42,7 @@ export const router = createBrowserRouter([
   {
     path: '/',
     Component: SiteLayout,
+    ErrorBoundary: RouteError,
     // Mientras carga una página diferida (artículo, páginas legales) al entrar directo a ella.
     HydrateFallback: () => <div className="min-h-dvh" />,
     children: [
@@ -79,10 +81,12 @@ export const router = createBrowserRouter([
   // El panel se carga aparte (lazy) para que los visitantes de la web no descarguen su código.
   {
     path: '/admin/login',
+    ErrorBoundary: RouteError,
     lazy: async () => ({ Component: (await import('@/pages/admin/LoginPage')).LoginPage }),
   },
   {
     path: '/admin',
+    ErrorBoundary: RouteError,
     lazy: async () => ({ Component: (await import('@/pages/admin/AdminRoot')).AdminRoot }),
     children: [
       {
