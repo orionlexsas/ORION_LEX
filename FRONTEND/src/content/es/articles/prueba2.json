@@ -1,0 +1,21 @@
+{
+  "slug": "prueba2",
+  "status": "final",
+  "published": true,
+  "featured": false,
+  "title": "prueba2",
+  "category": "tutelas",
+  "date": "2026-10-14",
+  "excerpt": "faliudhfaoiuf",
+  "body": "**falfliabfaebfae**[fsdfsd](https://)",
+  "sources": [
+    {
+      "label": "fsjdfs",
+      "url": "https://planetas-davidcasstella.vercel.app/"
+    }
+  ],
+  "image": {
+    "src": "/images/actualidad/prueba2.webp",
+    "alt": "fkajfila"
+  }
+}
