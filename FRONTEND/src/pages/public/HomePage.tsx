@@ -13,7 +13,7 @@ import { useSeo } from '@/seo/use-seo';
 
 /**
  * Portada: servicio → confianza → explicación → contacto. Los fondos alternan (blanco, crema,
- * banda negra, naranja suave) para que cada sección se distinga de la siguiente.
+ * la vitrina negra de Servicios, naranja suave) para que cada sección se distinga de la siguiente.
  */
 export function HomePage() {
   const content = useContent();
@@ -25,7 +25,7 @@ export function HomePage() {
     <>
       <HeroSection hero={home.hero} />
       <MattersSection id="asuntos" content={matters} landings={landings} className="bg-band" />
-      <ApproachSection id="como-trabajamos" content={approach} className="band-dark" />
+      <ApproachSection id="como-trabajamos" content={approach} />
       <ServicesSection id="servicios-juridicos" content={services} />
       <TeamSection id="nosotros" content={team} className="bg-band" />
       <BlogPreviewSection id="actualidad" blog={blog} articles={articles} />

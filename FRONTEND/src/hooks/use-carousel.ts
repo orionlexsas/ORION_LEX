@@ -108,5 +108,15 @@ export function useCarousel<T extends HTMLElement = HTMLUListElement>(): Carouse
     };
   }, [goTo]);
 
-  return { ref, nav: { active, count, touched, goTo } };
+  // Usar las flechas o los puntos también cuenta como tocar: deja de avanzar solo.
+  const userGoTo = useCallback(
+    (index: number) => {
+      touchedRef.current = true;
+      setTouched(true);
+      goTo(index);
+    },
+    [goTo],
+  );
+
+  return { ref, nav: { active, count, touched, goTo: userGoTo } };
 }

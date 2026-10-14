@@ -98,6 +98,17 @@
   "carousel": {
     "label": "Cards",
     "goTo": "Go to card {{number}} of {{total}}",
-    "hint": "Swipe to see more"
+    "hint": "Swipe to see more",
+    "previous": "Previous card",
+    "next": "Next card"
+  },
+  "showcase": {
+    "roledescription": "carousel",
+    "areas": "Practice areas",
+    "goTo": "Area {{number}}: {{area}}",
+    "choose": "Show {{area}}",
+    "previous": "Previous area",
+    "next": "Next area",
+    "hint": "Swipe or pick an area"
   }
 }

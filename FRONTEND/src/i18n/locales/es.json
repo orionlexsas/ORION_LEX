@@ -98,6 +98,17 @@
   "carousel": {
     "label": "Tarjetas",
     "goTo": "Ir a la tarjeta {{number}} de {{total}}",
-    "hint": "Desliza para ver más"
+    "hint": "Desliza para ver más",
+    "previous": "Tarjeta anterior",
+    "next": "Tarjeta siguiente"
+  },
+  "showcase": {
+    "roledescription": "carrusel",
+    "areas": "Áreas de práctica",
+    "goTo": "Área {{number}}: {{area}}",
+    "choose": "Ver {{area}}",
+    "previous": "Área anterior",
+    "next": "Área siguiente",
+    "hint": "Desliza o elige un área"
   }
 }
