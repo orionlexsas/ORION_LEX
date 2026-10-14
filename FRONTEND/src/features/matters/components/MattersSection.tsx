@@ -1,4 +1,5 @@
 import type { LandingContent, MattersContent } from '@orion-lex/shared';
+import { ComposerBar } from '@/components/cta/ComposerBar';
 import { CarouselNav } from '@/components/ui/CarouselNav';
 import { Container } from '@/components/ui/Container';
 import { carouselItem, carouselTrack, useCarousel } from '@/hooks/use-carousel';
@@ -68,15 +69,22 @@ export function MattersSection({
 
         <ul
           ref={carouselRef}
-          className={cn('mt-10 grid gap-5 sm:grid-cols-2 lg:mt-12 lg:gap-6', carouselTrack)}
+          className={cn(
+            'mt-10 grid gap-5 sm:grid-cols-2 lg:mt-12 lg:gap-6',
+            carouselTrack,
+            // Celular: fila de historias (caben 2 y media, como en Facebook).
+            'max-sm:mt-7 max-sm:gap-3',
+          )}
         >
           {landings.map((landing, i) => (
-            <li key={landing.slug} className={carouselItem}>
+            <li key={landing.slug} className={cn(carouselItem, 'max-sm:w-[39%]')}>
               <MatterCard landing={landing} ctaLabel={content.cardCta} priority={i < 2} />
             </li>
           ))}
         </ul>
         <CarouselNav {...carouselNav} />
+        {/* Celular: barra tipo "¿Qué estás pensando?" para quien no ve su caso en las tarjetas. */}
+        <ComposerBar location="matters_composer" className="mt-6 sm:hidden" />
       </Container>
     </section>
   );

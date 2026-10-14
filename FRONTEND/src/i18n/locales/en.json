@@ -110,5 +110,16 @@
     "previous": "Previous area",
     "next": "Next area",
     "hint": "Swipe or pick an area"
+  },
+  "composer": {
+    "placeholder": "Tell us about your case…"
+  },
+  "tabs": {
+    "label": "Sections",
+    "home": "Home",
+    "services": "Services",
+    "about": "Team",
+    "blog": "News",
+    "contact": "Contact"
   }
 }
