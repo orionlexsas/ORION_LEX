@@ -1,21 +1,15 @@
 import { useEffect, useState } from 'react';
 
 /**
- * true mientras la persona baja por la página (después de `offset` px) y false en cuanto sube,
- * como la barra de Facebook: al bajar se esconde la fila del logo y al subir vuelve.
+ * true en cuanto la persona baja más de `offset` px y false solo al volver al inicio de la página
+ * (subir un poco no lo cambia): la fila del logo solo se ve arriba del todo.
  */
-export function useHideOnScroll(offset = 120) {
+export function useHideOnScroll(offset = 80) {
   const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
-    let last = window.scrollY;
-    const onScroll = () => {
-      const y = window.scrollY;
-      // Pequeños movimientos (menos de 6 px) no cambian nada: evita parpadeos.
-      if (Math.abs(y - last) < 6) return;
-      setHidden(y > offset && y > last);
-      last = y;
-    };
+    const onScroll = () => setHidden(window.scrollY > offset);
+    onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, [offset]);

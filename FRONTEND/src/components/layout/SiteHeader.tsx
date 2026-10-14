@@ -40,7 +40,7 @@ function isActive(href: string, pathname: string) {
  * Cabecera fija con logo, menú, idioma, tema y botón principal.
  * Por debajo de xl (1280 px) el menú se despliega; en móvil, idioma y tema van dentro del menú.
  * También por debajo de xl hay una barra fija de íconos (Inicio, Servicios, Equipo, Noticias,
- * Contacto) como la de Facebook: al bajar se esconde la fila del logo y queda solo la barra.
+ * Contacto) como la de Facebook: la fila del logo solo se ve arriba del todo; al bajar queda solo la barra.
  * Mientras la fila del logo está escondida, el botón del menú flota a la derecha, a media altura
  * y medio transparente; al tocarlo se ve completo, vuelve la cabecera y se abre el menú.
  */
@@ -65,7 +65,7 @@ export function SiteHeader({ brand, nav, cta }: SiteHeaderProps) {
       <header
         className={cn(
           'sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur transition-transform duration-300 ease-out-soft',
-          // Al bajar se esconde la fila del logo (4,5 rem) y queda visible la barra de íconos.
+          // Fuera del inicio de la página se esconde la fila del logo (4,5 rem) y queda visible la barra de íconos.
           hideTop && !open && 'max-xl:-translate-y-[4.5rem]',
         )}
       >
