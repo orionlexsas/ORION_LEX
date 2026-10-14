@@ -6,6 +6,7 @@ import { ContentIcon } from '@/components/ui/ContentIcon';
 import { Container } from '@/components/ui/Container';
 import { track } from '@/lib/analytics';
 import { cn } from '@/lib/cn';
+import { PenStroke } from './PenStroke';
 
 /** Retraso escalonado para la animación de entrada (`animate-rise`). */
 const delay = (ms: number) => ({ '--delay': `${ms}ms` }) as CSSProperties;
@@ -182,7 +183,8 @@ export function HeroSection({ hero }: HeroSectionProps) {
       </section>
 
       {hero.points.length > 0 && (
-        <div className="border-y border-border bg-background max-sm:hidden">
+        // Encima del hero (z-10) para que el bolígrafo 3D pueda sobresalir hacia arriba.
+        <div className="relative z-10 border-y border-border bg-background max-sm:hidden">
           <Container>
             <ul className="flex items-center justify-center divide-x divide-border py-5">
               {hero.points.map((point) => (
@@ -200,6 +202,7 @@ export function HeroSection({ hero }: HeroSectionProps) {
               ))}
             </ul>
           </Container>
+          <PenStroke />
         </div>
       )}
     </>
