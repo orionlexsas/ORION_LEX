@@ -94,5 +94,10 @@
     "viewService": "Ver servicio",
     "otherServices": "Otros servicios de {{area}}",
     "backTo": "Volver a {{area}}"
+  },
+  "carousel": {
+    "label": "Tarjetas",
+    "goTo": "Ir a la tarjeta {{number}} de {{total}}",
+    "hint": "Desliza para ver más"
   }
 }

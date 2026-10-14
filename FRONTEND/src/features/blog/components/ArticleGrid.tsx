@@ -1,4 +1,6 @@
 import type { ArticleContent, BlogContent } from '@orion-lex/shared';
+import { CarouselNav } from '@/components/ui/CarouselNav';
+import { carouselItem, carouselTrack, useCarousel } from '@/hooks/use-carousel';
 import { cn } from '@/lib/cn';
 import { ArticleCard } from './ArticleCard';
 import { FeaturedArticle } from './FeaturedArticle';
@@ -10,13 +12,22 @@ interface ArticleGridProps {
   headingLevel?: 'h2' | 'h3';
   /** Muestra "Últimos artículos" con una línea entre el destacado y la cuadrícula. */
   showLatestTitle?: boolean;
+  /** En celular, los artículos se deslizan de lado en vez de apilarse (portada). */
+  carouselOnMobile?: boolean;
 }
 
 /**
  * El artículo destacado ("Actualidad jurídica de la semana") entre dos líneas, y el resto en
  * una cuadrícula de tres columnas. Si ninguno está destacado, todos van en la cuadrícula.
  */
-export function ArticleGrid({ articles, blog, headingLevel, showLatestTitle }: ArticleGridProps) {
+export function ArticleGrid({
+  articles,
+  blog,
+  headingLevel,
+  showLatestTitle,
+  carouselOnMobile,
+}: ArticleGridProps) {
+  const { ref: carouselRef, nav: carouselNav } = useCarousel();
   if (articles.length === 0) {
     return (
       <p className="rounded-md border border-dashed border-border p-10 text-center text-muted">
@@ -46,17 +57,20 @@ export function ArticleGrid({ articles, blog, headingLevel, showLatestTitle }: A
             </div>
           )}
           <ul
+            ref={carouselRef}
             className={cn(
               'mt-8 grid gap-4 sm:grid-cols-2 lg:gap-5',
               rest.length >= 3 && 'lg:grid-cols-3',
+              carouselOnMobile && carouselTrack,
             )}
           >
             {rest.map((article) => (
-              <li key={article.slug}>
+              <li key={article.slug} className={cn(carouselOnMobile && carouselItem)}>
                 <ArticleCard article={article} blog={blog} headingLevel={cardHeading} />
               </li>
             ))}
           </ul>
+          {carouselOnMobile && <CarouselNav {...carouselNav} />}
         </>
       )}
     </div>

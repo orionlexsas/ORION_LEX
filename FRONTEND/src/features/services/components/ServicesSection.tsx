@@ -1,5 +1,7 @@
 import type { ServicesContent } from '@orion-lex/shared';
+import { CarouselNav } from '@/components/ui/CarouselNav';
 import { Container } from '@/components/ui/Container';
+import { carouselItem, carouselTrack, useCarousel } from '@/hooks/use-carousel';
 import { cn } from '@/lib/cn';
 import { PracticeAreaCard } from './PracticeAreaCard';
 
@@ -15,6 +17,7 @@ interface ServicesSectionProps {
  * (foto al lado del texto) y el resto en dos o tres columnas. Móvil: una por fila, la destacada primero.
  */
 export function ServicesSection({ id, content, className }: ServicesSectionProps) {
+  const { ref: carouselRef, nav: carouselNav } = useCarousel();
   const titleId = `${id}-title`;
   // La destacada siempre va primero, aunque en el JSON esté en otra posición.
   const items = [...content.items].sort((a, b) => Number(b.featured) - Number(a.featured));
@@ -56,11 +59,20 @@ export function ServicesSection({ id, content, className }: ServicesSectionProps
           )}
         </div>
 
-        <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:mt-12 lg:grid-cols-3 xl:grid-cols-[1.7fr_1fr_1fr_1fr] xl:grid-rows-2">
+        <ul
+          ref={carouselRef}
+          className={cn(
+            'mt-10 grid gap-5 sm:grid-cols-2 lg:mt-12 lg:grid-cols-3 xl:grid-cols-[1.7fr_1fr_1fr_1fr] xl:grid-rows-2',
+            carouselTrack,
+          )}
+        >
           {items.map((item) => (
             <li
               key={item.slug}
-              className={cn(item.featured && 'sm:col-span-full xl:col-span-1 xl:row-span-2')}
+              className={cn(
+                carouselItem,
+                item.featured && 'sm:col-span-full xl:col-span-1 xl:row-span-2',
+              )}
             >
               <PracticeAreaCard
                 item={item}
@@ -70,6 +82,7 @@ export function ServicesSection({ id, content, className }: ServicesSectionProps
             </li>
           ))}
         </ul>
+        <CarouselNav {...carouselNav} />
       </Container>
     </section>
   );

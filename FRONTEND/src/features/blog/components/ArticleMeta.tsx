@@ -15,7 +15,7 @@ export function ArticleMeta({ article, blog, className }: ArticleMetaProps) {
   return (
     <p
       className={cn(
-        'flex flex-wrap items-center gap-x-2 gap-y-1 text-[0.7rem] font-semibold tracking-[0.16em] uppercase',
+        'flex flex-wrap items-center gap-x-2 gap-y-1 text-xs font-semibold tracking-[0.14em] uppercase sm:text-[0.7rem] sm:tracking-[0.16em]',
         className,
       )}
     >

@@ -94,5 +94,10 @@
     "viewService": "View service",
     "otherServices": "Other {{area}} services",
     "backTo": "Back to {{area}}"
+  },
+  "carousel": {
+    "label": "Cards",
+    "goTo": "Go to card {{number}} of {{total}}",
+    "hint": "Swipe to see more"
   }
 }

@@ -27,7 +27,11 @@ export function LandingHero({ landing, coverage }: LandingHeroProps) {
                 { label: t('landing.services'), href: '/servicios' },
               ].map((crumb) => (
                 <li key={crumb.href} className="flex items-center gap-1.5">
-                  <Link to={crumb.href} className="hover:text-foreground">
+                  <Link
+                    to={crumb.href}
+                    // Área táctil cómoda en celular (44 px de alto).
+                    className="inline-flex min-h-11 items-center hover:text-foreground"
+                  >
                     {crumb.label}
                   </Link>
                   <ChevronRight className="size-3.5" aria-hidden="true" />

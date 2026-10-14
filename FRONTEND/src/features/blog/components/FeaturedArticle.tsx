@@ -27,7 +27,7 @@ export function FeaturedArticle({
       />
       <div>
         <ArticleMeta article={article} blog={blog} />
-        <p className="mt-2 text-[0.7rem] font-semibold tracking-[0.16em] text-muted uppercase">
+        <p className="mt-2 text-xs font-semibold tracking-[0.14em] text-muted uppercase sm:text-[0.7rem] sm:tracking-[0.16em]">
           {blog.featuredLabel}
         </p>
         <Heading className="mt-4 font-serif text-3xl leading-[1.1] font-semibold tracking-tight sm:text-4xl lg:text-[2.6rem]">

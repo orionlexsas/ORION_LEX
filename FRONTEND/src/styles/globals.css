@@ -162,6 +162,17 @@ html.intro-playing .animate-rise {
   animation-play-state: paused;
 }
 
+/* Flecha del aviso "Desliza para ver más" en los carruseles del celular. */
+@keyframes nudge {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(4px);
+  }
+}
+
 /* Entrada suave del contenido del hero, escalonada con --delay. */
 @keyframes rise {
   from {

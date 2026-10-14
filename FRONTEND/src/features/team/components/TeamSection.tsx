@@ -3,8 +3,10 @@ import { useTranslation } from 'react-i18next';
 import { ArrowRight } from 'lucide-react';
 import { siFacebook } from 'simple-icons';
 import type { TeamContent } from '@orion-lex/shared';
+import { CarouselNav } from '@/components/ui/CarouselNav';
 import { Container } from '@/components/ui/Container';
 import { useInView } from '@/hooks/use-in-view';
+import { carouselItem, carouselTrack, useCarousel } from '@/hooks/use-carousel';
 import { cn } from '@/lib/cn';
 
 interface TeamSectionProps {
@@ -27,7 +29,8 @@ export function TeamSection({
   className,
 }: TeamSectionProps) {
   const titleId = `${id}-title`;
-  const [listRef, inView] = useInView<HTMLUListElement>(0.15);
+  const [listRef, inView] = useInView<HTMLDivElement>(0.15);
+  const { ref: carouselRef, nav: carouselNav } = useCarousel();
 
   return (
     <section
@@ -66,24 +69,32 @@ export function TeamSection({
           )}
         </div>
 
-        <ul
-          ref={listRef}
-          className="mt-12 grid divide-y divide-border lg:mt-14 xl:grid-cols-2 xl:divide-x xl:divide-y-0"
-        >
-          {content.members.map((member, i) => (
-            <li
-              key={member.name}
-              style={{ '--delay': `${i * 140}ms` } as CSSProperties}
-              className={cn(
-                'py-10 first:pt-0 last:pb-0 xl:py-0 xl:first:pr-10 xl:last:pl-10',
-                'transition-[opacity,translate] duration-500 ease-out-soft [transition-delay:var(--delay)]',
-                inView ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0',
-              )}
-            >
-              <TeamProfile member={member} facebookLabel={content.facebookLabel} />
-            </li>
-          ))}
-        </ul>
+        <div ref={listRef}>
+          <ul
+            ref={carouselRef}
+            className={cn(
+              'mt-12 grid divide-y divide-border lg:mt-14 xl:grid-cols-2 xl:divide-x xl:divide-y-0',
+              carouselTrack,
+              'max-sm:gap-6 max-sm:divide-y-0',
+            )}
+          >
+            {content.members.map((member, i) => (
+              <li
+                key={member.name}
+                style={{ '--delay': `${i * 140}ms` } as CSSProperties}
+                className={cn(
+                  'py-10 first:pt-0 last:pb-0 max-sm:py-0 xl:py-0 xl:first:pr-10 xl:last:pl-10',
+                  carouselItem,
+                  'transition-[opacity,translate] duration-500 ease-out-soft [transition-delay:var(--delay)]',
+                  inView ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0',
+                )}
+              >
+                <TeamProfile member={member} facebookLabel={content.facebookLabel} />
+              </li>
+            ))}
+          </ul>
+          <CarouselNav {...carouselNav} />
+        </div>
       </Container>
     </section>
   );

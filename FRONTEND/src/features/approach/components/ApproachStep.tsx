@@ -7,13 +7,14 @@ interface ApproachStepProps {
   number: number;
   /** true cuando la lista entró en pantalla: dispara la aparición escalonada. */
   visible: boolean;
+  className?: string;
 }
 
 /**
  * Tarjeta de una etapa: foto arriba, número grande y tenue detrás del título, y el punto
  * naranja donde termina la línea que une las etapas (solo en escritorio).
  */
-export function ApproachStep({ step, number, visible }: ApproachStepProps) {
+export function ApproachStep({ step, number, visible, className }: ApproachStepProps) {
   const label = String(number).padStart(2, '0');
 
   return (
@@ -24,6 +25,7 @@ export function ApproachStep({ step, number, visible }: ApproachStepProps) {
         'transition-[opacity,translate,box-shadow] duration-500 ease-out-soft [transition-delay:var(--delay)]',
         'hover:-translate-y-[3px] hover:shadow-[0_14px_30px_-20px_rgb(0_0_0/0.3)] hover:[transition-delay:0ms] hover:duration-200',
         visible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0',
+        className,
       )}
     >
       {/* Punto naranja donde llega la línea de conexión */}

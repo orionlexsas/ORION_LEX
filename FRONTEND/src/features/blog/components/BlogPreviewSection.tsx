@@ -49,7 +49,7 @@ export function BlogPreviewSection({ id, blog, articles, className }: BlogPrevie
           )}
         </div>
         <div className="mt-10 lg:mt-12">
-          <ArticleGrid articles={shown} blog={blog} />
+          <ArticleGrid articles={shown} blog={blog} carouselOnMobile />
         </div>
       </Container>
     </section>

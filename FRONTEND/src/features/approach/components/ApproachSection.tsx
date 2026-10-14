@@ -1,7 +1,9 @@
 import type { ApproachContent } from '@orion-lex/shared';
 import { CtaLink } from '@/components/cta/CtaLink';
+import { CarouselNav } from '@/components/ui/CarouselNav';
 import { Container } from '@/components/ui/Container';
 import { useInView } from '@/hooks/use-in-view';
+import { carouselItem, carouselTrack, useCarousel } from '@/hooks/use-carousel';
 import { cn } from '@/lib/cn';
 import { ApproachStep } from './ApproachStep';
 import { ProcessConnector } from './ProcessConnector';
@@ -20,7 +22,8 @@ interface ApproachSectionProps {
  */
 export function ApproachSection({ id, content, className }: ApproachSectionProps) {
   const titleId = `${id}-title`;
-  const [listRef, inView] = useInView<HTMLOListElement>(0.15);
+  const [listRef, inView] = useInView<HTMLDivElement>(0.15);
+  const { ref: carouselRef, nav: carouselNav } = useCarousel<HTMLOListElement>();
 
   return (
     <section
@@ -53,14 +56,26 @@ export function ApproachSection({ id, content, className }: ApproachSectionProps
 
         <ProcessConnector />
 
-        <ol
-          ref={listRef}
-          className="mt-10 grid gap-6 sm:grid-cols-2 lg:mt-0 lg:grid-cols-3 lg:gap-6 sm:max-lg:*:last:col-span-2 sm:max-lg:*:last:mx-auto sm:max-lg:*:last:w-[calc(50%-0.75rem)]"
-        >
-          {content.steps.map((step, i) => (
-            <ApproachStep key={step.title} step={step} number={i + 1} visible={inView} />
-          ))}
-        </ol>
+        <div ref={listRef}>
+          <ol
+            ref={carouselRef}
+            className={cn(
+              'mt-10 grid gap-6 sm:grid-cols-2 lg:mt-0 lg:grid-cols-3 lg:gap-6 sm:max-lg:*:last:col-span-2 sm:max-lg:*:last:mx-auto sm:max-lg:*:last:w-[calc(50%-0.75rem)]',
+              carouselTrack,
+            )}
+          >
+            {content.steps.map((step, i) => (
+              <ApproachStep
+                key={step.title}
+                step={step}
+                number={i + 1}
+                visible={inView}
+                className={carouselItem}
+              />
+            ))}
+          </ol>
+          <CarouselNav {...carouselNav} />
+        </div>
 
         {content.cta && (
           <div className="mt-12 flex justify-center">
