@@ -13,6 +13,7 @@ import {
 import type { AdminArticle, AdminCategory } from '@orion-lex/shared';
 import { Notice } from '@/components/admin/Notice';
 import { PageHeader } from '@/components/admin/PageHeader';
+import { PanelImage } from '@/components/admin/PanelImage';
 import { StatusBadge } from '@/components/admin/StatusBadge';
 import { fieldClass, labelClass, primaryClass } from '@/components/admin/styles';
 import { errorMessage } from '@/lib/api-client';
@@ -361,20 +362,17 @@ function NewsTable({ articles, categories, selected, compact, onEdit, onMessage 
 }
 
 function Thumb({ src }: { src?: string }) {
-  const [failed, setFailed] = useState(false);
-  if (!src || failed) {
-    return (
-      <span className="grid h-12 w-16 place-items-center rounded-md bg-ink text-accent">
-        <FileText aria-hidden="true" className="size-5" />
-      </span>
-    );
-  }
+  const placeholder = (
+    <span className="grid h-12 w-16 place-items-center rounded-md bg-ink text-accent">
+      <FileText aria-hidden="true" className="size-5" />
+    </span>
+  );
+  if (!src) return placeholder;
   return (
-    <img
+    <PanelImage
       src={src}
-      alt=""
       loading="lazy"
-      onError={() => setFailed(true)}
+      fallback={placeholder}
       className="h-12 w-16 rounded-md object-cover"
     />
   );

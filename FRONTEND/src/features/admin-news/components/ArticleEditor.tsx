@@ -16,6 +16,7 @@ import { ImagePicker } from '@/components/admin/ImagePicker';
 import { MarkdownEditor } from '@/components/admin/MarkdownEditor';
 import { Modal } from '@/components/admin/Modal';
 import { Notice } from '@/components/admin/Notice';
+import { PanelImage } from '@/components/admin/PanelImage';
 import { StatusBadge } from '@/components/admin/StatusBadge';
 import { Switch } from '@/components/admin/Switch';
 import {
@@ -82,7 +83,7 @@ export function ArticleEditor({
   onSaved,
   onDeleted,
 }: ArticleEditorProps) {
-  const [initial] = useState(() => draftFrom(article, categories[0]?.slug ?? ''));
+  const [initial, setInitial] = useState(() => draftFrom(article, categories[0]?.slug ?? ''));
   const [draft, setDraft] = useState<ArticleDraft>(initial);
   const [tab, setTab] = useState<Tab>('content');
   const [errors, setErrors] = useState<FieldErrors>({});
@@ -132,6 +133,20 @@ export function ArticleEditor({
       {
         onSuccess: (result) => {
           setPendingOpen(null);
+          // El editor sigue abierto: la foto ya quedó guardada y no se vuelve a subir al guardar otra vez.
+          const saved: ArticleDraft = {
+            ...draft,
+            slug: result.article.slug,
+            slugTouched: true,
+            published: result.article.published,
+            image: {
+              ...draft.image,
+              src: result.article.image?.src ?? null,
+              upload: null,
+            },
+          };
+          setDraft(saved);
+          setInitial(saved);
           const when =
             result.mode === 'github'
               ? ' La web se actualizará en 1–2 minutos.'
@@ -262,7 +277,7 @@ export function ArticleEditor({
               <div className="flex flex-wrap items-start gap-4">
                 <span className="relative block aspect-[1200/630] w-full max-w-[13rem] overflow-hidden rounded-lg bg-surface">
                   {draft.image.previewUrl ? (
-                    <img src={draft.image.previewUrl} alt="" className="size-full object-cover" />
+                    <PanelImage src={draft.image.previewUrl} className="size-full object-cover" />
                   ) : (
                     <span className="grid size-full place-items-center text-muted">
                       <ImageIcon aria-hidden="true" className="size-8" strokeWidth={1.4} />
@@ -290,9 +305,9 @@ export function ArticleEditor({
                     </button>
                   )}
                   <p className="text-xs text-muted">
-                    JPG, PNG o WebP
+                    Cualquier foto: se recorta
                     <br />
-                    Recomendado: 1200 × 630 px
+                    sola a 1200 × 630 px
                   </p>
                 </div>
               </div>
@@ -516,6 +531,8 @@ export function ArticleEditor({
       {picking && (
         <ImagePicker
           choices={choices}
+          aspect={1200 / 630}
+          hint="Cualquier foto, de cualquier tamaño: se recorta al centro (1200 × 630 px) y se optimiza sola."
           onClose={() => setPicking(false)}
           onPick={(picked) => {
             setPicking(false);
@@ -545,7 +562,7 @@ export function ArticleEditor({
             </h1>
             <p className="mt-4 text-lg text-muted">{draft.excerpt}</p>
             {draft.image.previewUrl && (
-              <img
+              <PanelImage
                 src={draft.image.previewUrl}
                 alt={draft.image.alt}
                 className="mt-6 aspect-[1200/630] w-full rounded-xl object-cover"
