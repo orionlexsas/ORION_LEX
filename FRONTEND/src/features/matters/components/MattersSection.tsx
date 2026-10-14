@@ -1,5 +1,7 @@
 import type { LandingContent, MattersContent } from '@orion-lex/shared';
+import { CarouselNav } from '@/components/ui/CarouselNav';
 import { Container } from '@/components/ui/Container';
+import { carouselItem, carouselTrack, useCarousel } from '@/hooks/use-carousel';
 import { cn } from '@/lib/cn';
 import { MatterCard } from './MatterCard';
 
@@ -24,6 +26,7 @@ export function MattersSection({
   headingLevel: Heading = 'h2',
   className,
 }: MattersSectionProps) {
+  const { ref: carouselRef, nav: carouselNav } = useCarousel();
   const titleId = `${id}-title`;
   return (
     <section
@@ -63,13 +66,17 @@ export function MattersSection({
           )}
         </div>
 
-        <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:mt-12 lg:gap-6">
+        <ul
+          ref={carouselRef}
+          className={cn('mt-10 grid gap-5 sm:grid-cols-2 lg:mt-12 lg:gap-6', carouselTrack)}
+        >
           {landings.map((landing, i) => (
-            <li key={landing.slug}>
+            <li key={landing.slug} className={carouselItem}>
               <MatterCard landing={landing} ctaLabel={content.cardCta} priority={i < 2} />
             </li>
           ))}
         </ul>
+        <CarouselNav {...carouselNav} />
       </Container>
     </section>
   );

@@ -142,6 +142,13 @@ Reglas:
 - **WhatsApp**: en el contenido, `href: "whatsapp"` + `message` convierte un botón en enlace a WhatsApp
   con el número de `site.contact.whatsapp` (un solo lugar). Lo resuelve `CtaLink`, que además envía
   los eventos de analítica.
+- **Vitrina de Servicios jurídicos** (`features/services/components/ServicesSection.tsx`, inspirada en el
+  slider de PROYECT_ROSADO): foto grande del área activa con su nombre, explicación, botones y fila de
+  tarjetas que se corren; avanza sola (se pausa con mouse, foco o toque), flechas, puntos numerados y swipe.
+- **Carruseles en celular** (`hooks/use-carousel.ts` + `components/ui/CarouselNav.tsx`): bajo 640 px las
+  cuadrículas de tarjetas de la portada (asuntos, proceso, servicios, equipo, actualidad) se deslizan de lado.
+  Avanzan solas mientras están en pantalla hasta que la persona las toca; puntos y aviso "Desliza para ver más".
+  Sin avance automático con "reducir movimiento".
 - **Botones flotantes** (`FloatingActions`): WhatsApp (se aparta mientras otro botón de WhatsApp está
   en pantalla, para no tapar llamados en móvil) y "volver arriba".
 - `content/content.test.ts` valida todos los JSON (secciones, landings y artículos) en ambos idiomas.

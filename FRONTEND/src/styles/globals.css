@@ -30,6 +30,14 @@
   --color-on-accent: #000000;
   --color-danger: #b42318;
   --color-success: #1f7a3d;
+  /* Fondos de sección de la portada, para que se distingan unas de otras (ver HomePage) */
+  /* Crema cálida */
+  --color-band: #f6eee5;
+  /* Naranja muy suave (lavado del color de marca) */
+  --color-band-accent: #fdf0e1;
+  /* Banda oscura y el fondo de sus tarjetas (utilidad band-dark) */
+  --color-band-strong: #0a0a0a;
+  --color-band-card: #171717;
   /* Negro de marca: bandas oscuras fijas (pie, llamados finales) en ambos temas */
   --color-ink: #000000;
   /* Verde oficial de WhatsApp y fondo del video de intro */
@@ -61,6 +69,10 @@
   --color-danger: #f0877d;
   --color-success: #6fd08f;
   --color-serp-link: #8ab4f8;
+  --color-band: #15120e;
+  --color-band-accent: #1e150b;
+  --color-band-strong: #171717;
+  --color-band-card: #232323;
   --color-chart: #e06f00;
   --color-chart-grid: rgb(255 255 255 / 0.1);
 }
@@ -109,6 +121,21 @@
   color: var(--color-foreground);
 }
 
+/*
+ * Sección en banda oscura ("Cómo trabajamos" en la portada): fondo negro de marca y textos claros.
+ * Las tarjetas de adentro (bg-background) pasan a gris oscuro para que el texto se lea.
+ */
+@utility band-dark {
+  background-color: var(--color-band-strong);
+  --color-background: var(--color-band-card);
+  --color-surface: var(--color-band-card);
+  --color-foreground: #ffffff;
+  --color-muted: #b8b8b8;
+  --color-border: rgb(255 255 255 / 0.12);
+  --color-accent-text: #f57c00;
+  color: var(--color-foreground);
+}
+
 /* Espacio vertical de las secciones de contenido: un solo lugar para ajustarlo. */
 @utility section-spacing {
   padding-block: 3.5rem;
@@ -133,6 +160,17 @@ html.intro-playing {
 }
 html.intro-playing .animate-rise {
   animation-play-state: paused;
+}
+
+/* Flecha del aviso "Desliza para ver más" en los carruseles del celular. */
+@keyframes nudge {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(4px);
+  }
 }
 
 /* Entrada suave del contenido del hero, escalonada con --delay. */

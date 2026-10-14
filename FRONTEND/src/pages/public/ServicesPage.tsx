@@ -16,7 +16,7 @@ export function ServicesPage() {
         landings={content.landings}
         headingLevel="h1"
       />
-      <ServicesSection id="servicios-juridicos" content={content.services} className="bg-surface" />
+      <ServicesSection id="servicios-juridicos" content={content.services} />
     </>
   );
 }
