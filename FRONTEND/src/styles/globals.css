@@ -40,6 +40,8 @@
   --color-band-card: #171717;
   /* Negro de marca: bandas oscuras fijas (pie, llamados finales) en ambos temas */
   --color-ink: #000000;
+  /* Café oscuro del velo sobre la foto de la portada en celular (texto blanco encima) */
+  --color-hero-shade: #1f140b;
   /* Verde oficial de WhatsApp y fondo del video de intro */
   --color-whatsapp: #25d366;
   --color-intro: #fefefe;

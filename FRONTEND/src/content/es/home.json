@@ -3,6 +3,7 @@
     "eyebrow": "Orión Lex Servicios Jurídicos",
     "title": "Soluciones jurídicas claras para su caso",
     "description": "Revisamos su situación, le explicamos sus opciones con claridad y adelantamos las gestiones jurídicas que correspondan. Atención virtual en toda Colombia y para colombianos en el exterior.",
+    "mobileDescription": "Revisamos su situación, le explicamos sus opciones y le acompañamos en todo el proceso.",
     "primaryCta": {
       "label": "Cuéntenos su caso",
       "href": "whatsapp",
@@ -25,7 +26,7 @@
     ],
     "image": {
       "src": "/images/hero/portada-1672.webp",
-      "srcMobile": "/images/hero/portada-960.webp",
+      "srcMobile": "/images/hero/portada-movil-900.webp",
       "alt": "Equipo de Orión Lex Servicios Jurídicos"
     }
   }
