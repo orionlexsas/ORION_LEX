@@ -183,9 +183,10 @@ export function HeroSection({ hero }: HeroSectionProps) {
       </section>
 
       {hero.points.length > 0 && (
-        // Encima del hero (z-10) para que el bolígrafo 3D pueda sobresalir hacia arriba.
-        <div className="relative z-10 border-y border-border bg-background max-sm:hidden">
-          <Container>
+        // Encima del hero (z-10) para que el bolígrafo 3D pueda sobresalir hacia arriba. En celular
+        // las frases ya van en la portada: queda una franja crema solo para el bolígrafo y su línea.
+        <div className="relative z-10 border-y border-border bg-background max-sm:h-44 max-sm:border-y-0 max-sm:bg-band">
+          <Container className="max-sm:hidden">
             <ul className="flex items-center justify-center divide-x divide-border py-5">
               {hero.points.map((point) => (
                 <li
