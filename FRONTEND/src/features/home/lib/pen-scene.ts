@@ -27,8 +27,8 @@ const TURNS = 2.25;
 const FOLLOW = 0.12;
 const DRAG_FOLLOW = 0.4;
 /** Al moverse se inclina hacia donde va (grados por px de avance en un cuadro), con un tope. */
-const LEAN_PER_PX = 0.9;
-const MAX_LEAN_DEG = 28;
+const LEAN_PER_PX = 0.5;
+const MAX_LEAN_DEG = 16;
 /** Balanceo al pasar el mouse: amplitud (grados) y duración (ms). */
 const WOBBLE_DEG = 14;
 const WOBBLE_MS = 1300;
@@ -178,13 +178,17 @@ export async function createPenScene(
     if (!frame) frame = requestAnimationFrame(draw);
   };
 
+  // Cambiar el tamaño borra el lienzo: solo si de verdad cambió (en el celular llegan eventos
+  // resize con cada aparición de la barra de direcciones) y redibujando en el acto, sin parpadeo.
   const resize = () => {
     const { clientWidth: w, clientHeight: h } = canvas;
+    if (w === camera.right && h === camera.top) return;
     renderer.setSize(w, h, false);
     camera.right = w;
     camera.top = h;
     camera.updateProjectionMatrix();
-    wake();
+    cancelAnimationFrame(frame);
+    draw(performance.now());
   };
   resize();
   window.addEventListener('resize', resize);

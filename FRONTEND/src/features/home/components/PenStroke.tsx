@@ -86,9 +86,18 @@ export function PenStroke() {
       handle.style.height = `${box.top - box.bottom}px`;
     };
 
+    // Alto de pantalla fijo: en el celular la barra de direcciones aparece y se esconde al hacer
+    // scroll y cambia innerHeight; si se usara, el bolígrafo saltaría sin que nadie lo mueva.
+    // Solo se vuelve a medir al girar el teléfono (cambia el ancho).
+    let viewportWidth = window.innerWidth;
+    let viewportHeight = document.documentElement.clientHeight;
     const scrollProgress = () => {
+      if (window.innerWidth !== viewportWidth) {
+        viewportWidth = window.innerWidth;
+        viewportHeight = document.documentElement.clientHeight;
+      }
       const { top } = wrap.getBoundingClientRect();
-      const vh = window.innerHeight;
+      const vh = viewportHeight;
       return (vh * SCROLL_START - top) / (vh * (SCROLL_START - SCROLL_END));
     };
     const onScroll = () => pen?.setTarget(scrollProgress());
@@ -112,11 +121,16 @@ export function PenStroke() {
       const left = canvas.getBoundingClientRect().left;
       pen.dragTipTo(event.clientX - left - press.grab);
     };
-    const onPointerUp = () => {
-      if (press && !press.moved) pen?.poke('tap');
+    const endPress = () => {
       press = undefined;
       delete handle.dataset.dragging;
     };
+    const onPointerUp = () => {
+      if (press && !press.moved) pen?.poke('tap');
+      endPress();
+    };
+    // El navegador cancela el toque cuando el dedo se desliza en vertical (scroll): no es un toque.
+    const onPointerCancel = endPress;
 
     const start = async () => {
       try {
@@ -138,7 +152,7 @@ export function PenStroke() {
     handle.addEventListener('pointerdown', onPointerDown);
     handle.addEventListener('pointermove', onPointerMove);
     handle.addEventListener('pointerup', onPointerUp);
-    handle.addEventListener('pointercancel', onPointerUp);
+    handle.addEventListener('pointercancel', onPointerCancel);
 
     let stopWaiting = () => {};
     const nearby = new IntersectionObserver(
@@ -160,7 +174,7 @@ export function PenStroke() {
       handle.removeEventListener('pointerdown', onPointerDown);
       handle.removeEventListener('pointermove', onPointerMove);
       handle.removeEventListener('pointerup', onPointerUp);
-      handle.removeEventListener('pointercancel', onPointerUp);
+      handle.removeEventListener('pointercancel', onPointerCancel);
       pen?.dispose();
     };
   }, []);
@@ -178,11 +192,14 @@ export function PenStroke() {
           className="absolute inset-x-0 h-80 w-full"
         />
       )}
-      {/* Zona invisible sobre el bolígrafo: recibe el mouse y el dedo (sin hacer scroll). */}
+      {/*
+        Zona invisible sobre el bolígrafo: recibe el mouse y el dedo. Con el dedo, deslizar en
+        vertical sigue bajando la página (touch-pan-y); en horizontal arrastra el bolígrafo.
+      */}
       <div
         ref={handleRef}
         style={{ display: 'none' }}
-        className="pointer-events-auto absolute cursor-grab touch-none select-none data-dragging:cursor-grabbing"
+        className="pointer-events-auto absolute cursor-grab touch-pan-y select-none data-dragging:cursor-grabbing"
       />
     </div>
   );
