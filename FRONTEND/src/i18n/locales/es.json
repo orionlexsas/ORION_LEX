@@ -110,5 +110,16 @@
     "previous": "Área anterior",
     "next": "Área siguiente",
     "hint": "Desliza o elige un área"
+  },
+  "composer": {
+    "placeholder": "Cuéntenos su caso…"
+  },
+  "tabs": {
+    "label": "Secciones",
+    "home": "Inicio",
+    "services": "Servicios",
+    "about": "Equipo",
+    "blog": "Noticias",
+    "contact": "Contacto"
   }
 }
