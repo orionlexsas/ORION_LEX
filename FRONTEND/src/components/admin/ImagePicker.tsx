@@ -18,6 +18,10 @@ interface ImagePickerProps {
   title?: string;
   /** Ancho máximo al optimizar una foto subida. */
   maxWidth?: number;
+  /** Proporción (ancho / alto) a la que se recorta al centro una foto subida. */
+  aspect?: number;
+  /** Texto de ayuda bajo la zona para subir. */
+  hint?: string;
 }
 
 /** Elegir una imagen: subir una desde el equipo o usar una de la biblioteca. */
@@ -27,6 +31,8 @@ export function ImagePicker({
   onClose,
   title = 'Imagen destacada',
   maxWidth = 1600,
+  aspect,
+  hint = 'Cualquier foto (JPG, PNG, WebP…). Se optimiza sola.',
 }: ImagePickerProps) {
   const [tab, setTab] = useState<'upload' | 'library'>('upload');
   const [error, setError] = useState<string | null>(null);
@@ -46,7 +52,7 @@ export function ImagePicker({
     setError(null);
     setProcessing(true);
     try {
-      onPick({ kind: 'upload', image: await prepareImage(file, { maxWidth }) });
+      onPick({ kind: 'upload', image: await prepareImage(file, { maxWidth, aspect }) });
     } catch (e) {
       setError(e instanceof ImageFileError ? e.message : 'No se pudo procesar la imagen');
     } finally {
@@ -99,12 +105,10 @@ export function ImagePicker({
             <span className="font-semibold">
               {processing ? 'Preparando la imagen…' : 'Arrastra una foto o haz clic para elegirla'}
             </span>
-            <span className="text-sm text-muted">
-              JPG, PNG o WebP. Se optimiza sola (recomendado: 1200 × 630 px o más).
-            </span>
+            <span className="text-sm text-muted">{hint}</span>
             <input
               type="file"
-              accept="image/jpeg,image/png,image/webp"
+              accept="image/*"
               className="sr-only"
               onChange={(e) => void handleFile(e.target.files?.[0])}
             />

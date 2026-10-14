@@ -32,34 +32,62 @@ function blobToBase64(blob: Blob): Promise<string> {
   });
 }
 
+/** Zona centrada de la foto que tiene la proporción `aspect` (ancho / alto). */
+export function centerCrop(width: number, height: number, aspect?: number) {
+  if (!aspect || Math.abs(width / height - aspect) < 0.01) return { x: 0, y: 0, width, height };
+  if (width / height > aspect) {
+    // Más ancha de lo pedido: se recortan los lados.
+    const w = Math.round(height * aspect);
+    return { x: Math.round((width - w) / 2), y: 0, width: w, height };
+  }
+  // Más alta de lo pedido: se recorta arriba y abajo.
+  const h = Math.round(width / aspect);
+  return { x: 0, y: Math.round((height - h) / 2), width, height: h };
+}
+
 export async function prepareImage(
   file: File,
-  { maxWidth = 1920, mime = 'image/webp' as ImageMime, quality = 0.85 } = {},
+  {
+    maxWidth = 1920,
+    mime = 'image/webp' as ImageMime,
+    quality = 0.85,
+    /** Si se indica (ancho / alto), la foto se recorta al centro con esa proporción. */
+    aspect = undefined as number | undefined,
+  } = {},
 ): Promise<PreparedImage> {
-  if (!file.type.startsWith('image/')) throw new ImageFileError('El archivo no es una imagen');
+  // Algunos celulares no indican el tipo (fotos HEIC): se intenta abrir igual.
+  if (file.type && !file.type.startsWith('image/'))
+    throw new ImageFileError('El archivo no es una imagen');
 
   let bitmap: ImageBitmap;
   try {
     bitmap = await createImageBitmap(file);
   } catch {
-    throw new ImageFileError('No se pudo abrir la imagen. Prueba con JPG, PNG o WebP.');
+    throw new ImageFileError(
+      'Tu navegador no pudo abrir esta foto. Prueba con otra o guárdala como JPG.',
+    );
   }
-  const scale = Math.min(1, maxWidth / bitmap.width);
-  const width = Math.round(bitmap.width * scale);
-  const height = Math.round(bitmap.height * scale);
+  const crop = centerCrop(bitmap.width, bitmap.height, aspect);
+  const scale = Math.min(1, maxWidth / crop.width);
+  const width = Math.round(crop.width * scale);
+  const height = Math.round(crop.height * scale);
 
   const canvas = document.createElement('canvas');
   canvas.width = width;
   canvas.height = height;
   const context = canvas.getContext('2d');
   if (!context) throw new ImageFileError('Tu navegador no puede procesar imágenes');
-  context.drawImage(bitmap, 0, 0, width, height);
+  context.drawImage(bitmap, crop.x, crop.y, crop.width, crop.height, 0, 0, width, height);
   bitmap.close();
 
   const blob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, mime, quality));
   if (!blob || blob.type !== mime)
     throw new ImageFileError('Tu navegador no pudo convertir la imagen');
-  if (blob.size > MAX_BYTES) throw new ImageFileError('La imagen es demasiado pesada aun reducida');
+  if (blob.size > MAX_BYTES) {
+    // Fotos con mucho detalle: se intenta una vez más con menos calidad.
+    if (quality > 0.6) return prepareImage(file, { maxWidth, mime, quality: 0.6, aspect });
+    throw new ImageFileError('La imagen es demasiado pesada aun reducida');
+  }
 
   return {
     fileName: file.name,

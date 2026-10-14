@@ -541,7 +541,7 @@ function MediaDetail({ item, size, onClose, onMessage, onDeleted }: MediaDetailP
         <input
           ref={fileInput}
           type="file"
-          accept="image/jpeg,image/png,image/webp"
+          accept="image/*"
           className="sr-only"
           tabIndex={-1}
           onChange={(e) => {
@@ -643,13 +643,13 @@ function UploadDialog({ folders, defaultFolder, onClose, onUploaded }: UploadDia
               )}
               <span className="font-semibold">Arrastra una foto o haz clic para elegirla</span>
               <span className="text-sm text-muted">
-                JPG, PNG o WebP. Se convierte a WebP y se optimiza sola.
+                Cualquier foto (JPG, PNG, WebP…). Se convierte a WebP y se optimiza sola.
               </span>
             </span>
           )}
           <input
             type="file"
-            accept="image/jpeg,image/png,image/webp"
+            accept="image/*"
             className="sr-only"
             onChange={(e) => void choose(e.target.files?.[0])}
           />
