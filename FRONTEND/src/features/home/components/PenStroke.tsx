@@ -136,7 +136,9 @@ export function PenStroke() {
       try {
         const { createPenScene } = await import('../lib/pen-scene');
         if (cancelled) return;
-        const penHeight = Math.min(Math.max(canvas.clientWidth * 0.15, 170), 240);
+        // En celular la franja es baja (7 rem): bolígrafo más pequeño para que quepa.
+        const penHeight =
+          canvas.clientWidth < 640 ? 125 : Math.min(Math.max(canvas.clientWidth * 0.15, 170), 240);
         const scene = await createPenScene(canvas, { baseline: BASELINE, penHeight, onFrame });
         if (cancelled) return scene.dispose();
         pen = scene;
@@ -179,8 +181,14 @@ export function PenStroke() {
     };
   }, []);
 
+  // overflow-anchor: none — la zona táctil se mueve en cada cuadro; si el navegador la tomara como
+  // referencia para el scroll (scroll anchoring), corregiría la posición y la página daría un salto.
   return (
-    <div ref={wrapRef} aria-hidden="true" className="pointer-events-none absolute inset-0 z-20">
+    <div
+      ref={wrapRef}
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 z-20 [overflow-anchor:none]"
+    >
       <span
         ref={lineRef}
         className="absolute inset-x-0 -bottom-px h-0.5 origin-left scale-x-0 bg-accent"

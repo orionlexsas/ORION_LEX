@@ -56,7 +56,7 @@ export function HeroSection({ hero }: HeroSectionProps) {
                 {hero.title}
               </h1>
               <p
-                className="mt-5 animate-rise text-[0.95rem] leading-relaxed text-foreground/80 max-sm:leading-snug max-sm:text-foreground/90 sm:text-lg xl:text-[1.2rem]"
+                className="mt-5 animate-rise text-[0.95rem] leading-relaxed text-foreground/80 max-sm:max-w-[calc(56vw-1.25rem)] max-sm:min-w-[11rem] max-sm:leading-snug max-sm:text-foreground/90 sm:text-lg xl:text-[1.2rem]"
                 style={delay(160)}
               >
                 {hero.mobileDescription ? (
@@ -69,9 +69,15 @@ export function HeroSection({ hero }: HeroSectionProps) {
                 )}
               </p>
 
-              {/* Celular: las frases de confianza van aquí (en pantallas grandes, en la franja de abajo). */}
+              {/*
+                Celular: las frases de confianza van aquí (en pantallas grandes, en la franja de abajo).
+                Igual que la descripción, terminan antes de la cara de la abogada (≈ 56 % del ancho).
+              */}
               {hero.points.length > 0 && (
-                <ul className="mt-6 animate-rise space-y-3.5 sm:hidden" style={delay(200)}>
+                <ul
+                  className="mt-6 animate-rise space-y-3.5 max-sm:max-w-[calc(56vw-1.25rem)] max-sm:min-w-[11rem] sm:hidden"
+                  style={delay(200)}
+                >
                   {hero.points.map((point) => (
                     <li
                       key={point.text}
@@ -160,7 +166,7 @@ export function HeroSection({ hero }: HeroSectionProps) {
               className={cn(
                 'block aspect-[5/4] h-auto w-full object-cover object-[74%_center] sm:aspect-[16/9] xl:aspect-auto xl:h-full xl:object-[right_center]',
                 // Celular: foto vertical que llena la sección; los rostros quedan a la derecha.
-                'max-sm:absolute max-sm:inset-0 max-sm:size-full max-sm:aspect-auto max-sm:object-cover max-sm:object-[62%_35%]',
+                'max-sm:absolute max-sm:inset-0 max-sm:size-full max-sm:aspect-auto max-sm:object-cover max-sm:object-[50%_35%]',
               )}
             />
           </picture>
@@ -185,7 +191,7 @@ export function HeroSection({ hero }: HeroSectionProps) {
       {hero.points.length > 0 && (
         // Encima del hero (z-10) para que el bolígrafo 3D pueda sobresalir hacia arriba. En celular
         // las frases ya van en la portada: queda una franja crema solo para el bolígrafo y su línea.
-        <div className="relative z-10 border-y border-border bg-background max-sm:h-44 max-sm:border-y-0 max-sm:bg-band">
+        <div className="relative z-10 border-y border-border bg-background max-sm:h-28 max-sm:border-y-0 max-sm:bg-band">
           <Container className="max-sm:hidden">
             <ul className="flex items-center justify-center divide-x divide-border py-5">
               {hero.points.map((point) => (
