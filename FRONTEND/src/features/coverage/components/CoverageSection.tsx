@@ -20,7 +20,7 @@ export function CoverageSection({ id, content, className }: CoverageSectionProps
       aria-labelledby={titleId}
       className={cn('scroll-mt-20 overflow-hidden section-spacing', className)}
     >
-      <Container className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+      <Container className="grid items-center gap-10 max-sm:gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
         <div>
           <SectionHeading
             id={titleId}
@@ -28,7 +28,7 @@ export function CoverageSection({ id, content, className }: CoverageSectionProps
             title={content.title}
             description={content.text}
           />
-          <ul className="mt-10 grid gap-6 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
+          <ul className="mt-10 grid gap-6 max-sm:mt-6 max-sm:gap-5 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
             {content.points.map((point) => (
               <li key={point.title}>
                 <ContentIcon name={point.icon} className="size-7 text-accent" strokeWidth={1.5} />
@@ -37,7 +37,12 @@ export function CoverageSection({ id, content, className }: CoverageSectionProps
               </li>
             ))}
           </ul>
-          <CtaLink link={content.cta} location="coverage" variant="ink" className="mt-10" />
+          <CtaLink
+            link={content.cta}
+            location="coverage"
+            variant="ink"
+            className="mt-10 max-sm:mt-7"
+          />
         </div>
         <img
           src={content.image.src}

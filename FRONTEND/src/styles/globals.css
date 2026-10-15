@@ -138,9 +138,13 @@
   color: var(--color-foreground);
 }
 
-/* Espacio vertical de las secciones de contenido: un solo lugar para ajustarlo. */
+/* Espacio vertical de las secciones de contenido: un solo lugar para ajustarlo.
+   En celular, más compacto (sin franjas vacías grandes entre secciones). */
 @utility section-spacing {
-  padding-block: 3.5rem;
+  padding-block: 2.5rem;
+  @media (width >= 40rem) {
+    padding-block: 3.5rem;
+  }
   @media (width >= 64rem) {
     padding-block: 5rem;
   }

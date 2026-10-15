@@ -15,7 +15,7 @@ export function BlogPage() {
       <BlogHero blog={blog} />
       <Container className="pb-16 lg:pb-20">
         <ArticleGrid articles={articles} blog={blog} headingLevel="h2" showLatestTitle />
-        <div className="mt-14">
+        <div className="mt-14 max-sm:mt-8">
           <BlogCta cta={blog.cta} location="blog" />
         </div>
       </Container>

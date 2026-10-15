@@ -31,7 +31,7 @@ export function BlogPreviewSection({ id, blog, articles, className }: BlogPrevie
       className={cn('scroll-mt-20 section-spacing', className)}
     >
       <Container>
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+        <div className="flex flex-col gap-6 max-sm:gap-5 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeading
             id={titleId}
             eyebrow={blog.eyebrow}
@@ -48,7 +48,7 @@ export function BlogPreviewSection({ id, blog, articles, className }: BlogPrevie
             </Link>
           )}
         </div>
-        <div className="mt-10 lg:mt-12">
+        <div className="mt-10 max-sm:mt-6 lg:mt-12">
           <ArticleGrid articles={shown} blog={blog} carouselOnMobile />
         </div>
       </Container>

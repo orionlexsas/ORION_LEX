@@ -36,7 +36,7 @@ export function ContactSection({
       aria-labelledby={titleId}
       className={cn('scroll-mt-20 section-spacing', className)}
     >
-      <Container className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+      <Container className="grid gap-12 max-sm:gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
         <div>
           <SectionHeading
             id={titleId}
@@ -45,7 +45,7 @@ export function ContactSection({
             title={t('contact.title')}
             description={t('contact.description')}
           />
-          <ul className="mt-10 space-y-5">
+          <ul className="mt-10 space-y-5 max-sm:mt-6">
             <li>
               <a
                 href={whatsappUrl(contact.whatsapp.number, contact.whatsapp.message)}
@@ -80,7 +80,7 @@ export function ContactSection({
               </a>
             </li>
           </ul>
-          <p className="mt-8 max-w-md leading-relaxed text-muted">{contact.coverage}</p>
+          <p className="mt-8 max-w-md leading-relaxed text-muted max-sm:mt-6">{contact.coverage}</p>
         </div>
 
         <div className="relative rounded-lg border border-border bg-background p-6 sm:p-8">

@@ -18,7 +18,7 @@ export function LandingHero({ landing, coverage }: LandingHeroProps) {
 
   return (
     <section aria-labelledby="landing-title" className="border-b border-border">
-      <Container className="grid items-center gap-10 py-8 sm:py-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16 lg:py-14">
+      <Container className="grid items-center gap-10 py-8 max-sm:gap-7 max-sm:py-6 sm:py-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16 lg:py-14">
         <div>
           <nav aria-label={t('landing.breadcrumb')}>
             <ol className="flex flex-wrap items-center gap-1.5 text-sm text-muted">

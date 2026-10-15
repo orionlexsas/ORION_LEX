@@ -38,7 +38,7 @@ export function ServiceDetail({ area, service, content }: ServiceDetailProps) {
           {t('practiceArea.backTo', { area: area.title })}
         </Link>
 
-        <div className="mt-6 grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+        <div className="mt-6 grid items-center gap-10 max-sm:gap-7 lg:grid-cols-2 lg:gap-16">
           <div>
             <p className="eyebrow">{area.title}</p>
             <h1 className="mt-4 font-serif text-4xl leading-[1.08] font-semibold tracking-tight sm:text-5xl lg:text-[3.2rem]">
@@ -64,7 +64,7 @@ export function ServiceDetail({ area, service, content }: ServiceDetailProps) {
         </div>
 
         {service.body.trim() && (
-          <div className="mx-auto mt-14 max-w-3xl text-[1.05rem] lg:mt-20">
+          <div className="mx-auto mt-14 max-w-3xl text-[1.05rem] max-sm:mt-9 lg:mt-20">
             <Markdown>{service.body}</Markdown>
             <CtaLink
               link={cta}
@@ -78,7 +78,7 @@ export function ServiceDetail({ area, service, content }: ServiceDetailProps) {
         {others.length > 0 && (
           <nav
             aria-labelledby="other-services"
-            className="mt-16 border-t border-border pt-10 lg:mt-20"
+            className="mt-16 border-t border-border pt-10 max-sm:mt-10 max-sm:pt-8 lg:mt-20"
           >
             <h2 id="other-services" className="font-serif text-2xl font-semibold">
               {t('practiceArea.otherServices', { area: area.title })}

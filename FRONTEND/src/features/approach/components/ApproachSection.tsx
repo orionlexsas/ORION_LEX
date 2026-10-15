@@ -60,7 +60,7 @@ export function ApproachSection({ id, content, className }: ApproachSectionProps
           <ol
             ref={carouselRef}
             className={cn(
-              'mt-10 grid gap-6 sm:grid-cols-2 lg:mt-0 lg:grid-cols-3 lg:gap-6 sm:max-lg:*:last:col-span-2 sm:max-lg:*:last:mx-auto sm:max-lg:*:last:w-[calc(50%-0.75rem)]',
+              'mt-10 grid gap-6 max-sm:mt-6 sm:grid-cols-2 lg:mt-0 lg:grid-cols-3 lg:gap-6 sm:max-lg:*:last:col-span-2 sm:max-lg:*:last:mx-auto sm:max-lg:*:last:w-[calc(50%-0.75rem)]',
               carouselTrack,
             )}
           >
@@ -78,7 +78,7 @@ export function ApproachSection({ id, content, className }: ApproachSectionProps
         </div>
 
         {content.cta && (
-          <div className="mt-12 flex justify-center">
+          <div className="mt-12 flex justify-center max-sm:mt-8">
             <CtaLink link={content.cta} location="approach" variant="ink" />
           </div>
         )}

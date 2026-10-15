@@ -38,9 +38,14 @@ export function SectionHeading({
       </Heading>
       <span
         aria-hidden="true"
-        className={cn('mt-5 block h-0.5 w-12 bg-accent', align === 'center' && 'mx-auto')}
+        className={cn(
+          'mt-5 block h-0.5 w-12 bg-accent max-sm:mt-4',
+          align === 'center' && 'mx-auto',
+        )}
       />
-      {description && <p className="mt-5 text-lg leading-relaxed text-muted">{description}</p>}
+      {description && (
+        <p className="mt-5 text-lg leading-relaxed text-muted max-sm:mt-4">{description}</p>
+      )}
     </div>
   );
 }

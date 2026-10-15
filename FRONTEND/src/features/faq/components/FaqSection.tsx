@@ -21,7 +21,7 @@ export function FaqSection({ id, title, items, className }: FaqSectionProps) {
       aria-labelledby={titleId}
       className={cn('scroll-mt-20 section-spacing', className)}
     >
-      <Container className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+      <Container className="grid gap-10 max-sm:gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
         <SectionHeading id={titleId} title={title} />
         <div className="border-t border-border">
           {items.map((item) => (
