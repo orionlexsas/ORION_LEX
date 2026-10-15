@@ -331,6 +331,24 @@ export const coverageContentSchema = z.object({
   cta: linkSchema,
 });
 
+/** "Lo que dicen nuestros clientes" en la portada (casi al final). Sin reseñas, no se muestra. */
+export const testimonialsContentSchema = z.object({
+  eyebrow: z.string(),
+  title: z.string(),
+  description: z.string(),
+  /** Frase decorativa manuscrita bajo el encabezado (opcional). */
+  script: z.string().optional(),
+  items: z.array(
+    z.object({
+      name: z.string(),
+      /** Ciudad y asunto, p. ej. "Bogotá · Reporte en Datacrédito". */
+      detail: z.string(),
+      text: z.string(),
+      rating: z.number().int().min(1).max(5).default(5),
+    }),
+  ),
+});
+
 /** Textos de la sección Actualidad Jurídica (blog). */
 export const blogContentSchema = z.object({
   eyebrow: z.string(),
@@ -410,6 +428,7 @@ export type ServiceItem = ServicesContent['items'][number];
 export type PracticeService = z.infer<typeof practiceServiceSchema>;
 export type TeamContent = z.infer<typeof teamContentSchema>;
 export type CoverageContent = z.infer<typeof coverageContentSchema>;
+export type TestimonialsContent = z.infer<typeof testimonialsContentSchema>;
 export type BlogContent = z.infer<typeof blogContentSchema>;
 export type ArticleContent = z.infer<typeof articleContentSchema>;
 export type LegalContent = z.infer<typeof legalContentSchema>;

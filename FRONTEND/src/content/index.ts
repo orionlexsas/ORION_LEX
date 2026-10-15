@@ -11,6 +11,7 @@ import {
   servicesContentSchema,
   siteContentSchema,
   teamContentSchema,
+  testimonialsContentSchema,
   type ArticleContent,
   type LandingContent,
   type ServicesContent,
@@ -35,6 +36,7 @@ export const sectionSchemas = {
   services: servicesContentSchema,
   team: teamContentSchema,
   coverage: coverageContentSchema,
+  testimonials: testimonialsContentSchema,
   blog: blogContentSchema,
   legal: legalContentSchema,
 };
@@ -163,6 +165,7 @@ function parseContent(language: Language) {
     ),
     team: parseSection(language, 'team'),
     coverage: parseSection(language, 'coverage'),
+    testimonials: parseSection(language, 'testimonials'),
     blog,
     articles,
     legal: parseSection(language, 'legal'),

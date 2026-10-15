@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import { House, Mail, Menu, Newspaper, Scale, Users, X, type LucideIcon } from 'lucide-react';
 import type { SiteContent } from '@orion-lex/shared';
 import { CtaLink } from '@/components/cta/CtaLink';
-import { AdminLoginButton } from '@/components/ui/AdminLoginButton';
 import { Container } from '@/components/ui/Container';
 import { LanguageSwitcher } from '@/components/ui/LanguageSwitcher';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
@@ -86,7 +85,6 @@ export function SiteHeader({ brand, nav, cta }: SiteHeaderProps) {
           <div className="ml-auto hidden items-center gap-2 md:flex xl:ml-6">
             <LanguageSwitcher />
             <ThemeToggle />
-            <AdminLoginButton />
           </div>
 
           <CtaLink link={cta} location="header" className="hidden md:inline-flex xl:ml-2" />
@@ -165,7 +163,6 @@ export function SiteHeader({ brand, nav, cta }: SiteHeaderProps) {
               <div className="mt-3 flex items-center gap-2 md:hidden">
                 <LanguageSwitcher />
                 <ThemeToggle />
-                <AdminLoginButton />
               </div>
               <CtaLink
                 link={cta}

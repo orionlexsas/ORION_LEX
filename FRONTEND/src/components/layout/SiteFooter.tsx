@@ -1,5 +1,5 @@
-import type { ReactNode } from 'react';
-import { Link } from 'react-router';
+import { useRef, type MouseEvent, type ReactNode } from 'react';
+import { Link, useNavigate } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { Globe, Mail, Phone } from 'lucide-react';
 import type { SiteContent } from '@orion-lex/shared';
@@ -27,6 +27,7 @@ interface SiteFooterProps {
 export function SiteFooter({ site, services, showCta }: SiteFooterProps) {
   const { t } = useTranslation();
   const { brand, footer, nav, contact } = site;
+  const secretTaps = useSecretTaps();
 
   return (
     <footer className="on-dark bg-ink">
@@ -34,7 +35,12 @@ export function SiteFooter({ site, services, showCta }: SiteFooterProps) {
 
       <Container className="grid gap-x-10 gap-y-8 pt-9 pb-8 sm:grid-cols-2 sm:gap-y-10 sm:pt-12 sm:pb-10 lg:grid-cols-[1.1fr_0.8fr_1.1fr_1.3fr] lg:pt-12">
         <div className="flex flex-wrap items-center justify-between gap-4 sm:flex-col sm:items-start sm:justify-start">
-          <Link to="/" aria-label={t('a11y.goHome', { name: brand.name })}>
+          <Link
+            to="/"
+            onClick={secretTaps}
+            aria-label={t('a11y.goHome', { name: brand.name })}
+            className="select-none [-webkit-tap-highlight-color:transparent]"
+          >
             {/* Celular: escudo y nombre en una fila; desde 640 px, el logo apilado. */}
             <span className="flex items-center gap-2.5 sm:hidden">
               <img
@@ -185,4 +191,36 @@ function FooterLinks({
       ))}
     </ul>
   );
+}
+
+/** Toques seguidos sobre el logo del pie que abren el acceso al panel. */
+const SECRET_TAPS = 3;
+/** Tiempo máximo entre un toque y el siguiente (ms). */
+const TAP_WINDOW = 600;
+
+/**
+ * Acceso escondido al panel: no hay botón visible; tocar el logo del pie 3 veces seguidas lleva a
+ * /admin/login. Un solo toque sigue llevando al inicio, pero espera un instante por si llegan más.
+ */
+function useSecretTaps() {
+  const navigate = useNavigate();
+  const taps = useRef(0);
+  const timer = useRef<number | undefined>(undefined);
+
+  return (event: MouseEvent<HTMLAnchorElement>) => {
+    // Ctrl/Cmd + clic (abrir en otra pestaña) funciona como un enlace normal.
+    if (event.metaKey || event.ctrlKey || event.shiftKey) return;
+    event.preventDefault();
+    window.clearTimeout(timer.current);
+    taps.current += 1;
+    if (taps.current >= SECRET_TAPS) {
+      taps.current = 0;
+      void navigate('/admin/login');
+      return;
+    }
+    timer.current = window.setTimeout(() => {
+      taps.current = 0;
+      void navigate('/');
+    }, TAP_WINDOW);
+  };
 }

@@ -1,0 +1,44 @@
+{
+  "eyebrow": "Testimonios",
+  "title": "Lo que dicen nuestros clientes",
+  "description": "Personas que confiaron su caso a Orión Lex y hoy cuentan cómo les fue.",
+  "script": "Su tranquilidad, nuestro compromiso",
+  "items": [
+    {
+      "name": "Carolina M.",
+      "detail": "Bogotá · Reporte en Datacrédito",
+      "text": "Llevaba años reportada por una deuda que ya había pagado. Me explicaron todo con paciencia y en pocas semanas el reporte desapareció. Por fin pude sacar mi crédito.",
+      "rating": 5
+    },
+    {
+      "name": "Andrés R.",
+      "detail": "Medellín · Comparendos",
+      "text": "Tenía comparendos viejos que no me dejaban renovar la licencia. Revisaron cada uno, me dijeron cuáles se podían tumbar y lo lograron. Muy claros desde el primer mensaje.",
+      "rating": 5
+    },
+    {
+      "name": "Luz Dary P.",
+      "detail": "Cali · Acción de tutela",
+      "text": "La EPS me negaba un tratamiento para mi mamá. Presentaron la tutela muy rápido y nos la concedieron. Siempre estuvieron pendientes y me contestaban por WhatsApp.",
+      "rating": 5
+    },
+    {
+      "name": "Jhon F.",
+      "detail": "Bucaramanga · Indemnización SOAT",
+      "text": "Después del accidente no sabía qué hacer con el SOAT. Ellos se encargaron de todo el trámite y recibí la indemnización sin tener que ir a ninguna oficina.",
+      "rating": 5
+    },
+    {
+      "name": "Marcela T.",
+      "detail": "Desde España · Derecho de familia",
+      "text": "Vivo en Madrid y necesitaba resolver un asunto familiar en Colombia. Todo fue virtual, con reuniones por videollamada y documentos por correo. Excelente acompañamiento.",
+      "rating": 5
+    },
+    {
+      "name": "Rubén C.",
+      "detail": "Barranquilla · Derecho de petición",
+      "text": "Una entidad no me respondía hace meses. Me redactaron el derecho de petición y en quince días tenía la respuesta. Atención seria y a buen precio.",
+      "rating": 5
+    }
+  ]
+}
