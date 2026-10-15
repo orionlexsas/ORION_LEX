@@ -73,7 +73,7 @@ export function TeamSection({
           <ul
             ref={carouselRef}
             className={cn(
-              'mt-12 grid divide-y divide-border lg:mt-14 xl:grid-cols-2 xl:divide-x xl:divide-y-0',
+              'mt-12 grid divide-y divide-border max-sm:mt-6 lg:mt-14 xl:grid-cols-2 xl:divide-x xl:divide-y-0',
               carouselTrack,
               'max-sm:gap-6 max-sm:divide-y-0',
             )}

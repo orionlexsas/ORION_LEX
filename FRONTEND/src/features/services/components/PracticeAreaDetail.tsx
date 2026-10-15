@@ -27,7 +27,7 @@ export function PracticeAreaDetail({ item, content }: PracticeAreaDetailProps) {
           {content.backLabel}
         </Link>
 
-        <div className="mt-6 grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+        <div className="mt-6 grid items-center gap-10 max-sm:gap-7 lg:grid-cols-2 lg:gap-16">
           <div>
             <p className="eyebrow">{content.eyebrow}</p>
             <ContentIcon name={item.icon} className="mt-5 size-10 text-accent" strokeWidth={1.4} />
@@ -56,7 +56,10 @@ export function PracticeAreaDetail({ item, content }: PracticeAreaDetailProps) {
 
         <AreaServices item={item} />
 
-        <nav aria-labelledby="other-areas" className="mt-16 border-t border-border pt-10 lg:mt-20">
+        <nav
+          aria-labelledby="other-areas"
+          className="mt-16 border-t border-border pt-10 max-sm:mt-10 max-sm:pt-8 lg:mt-20"
+        >
           <h2 id="other-areas" className="font-serif text-2xl font-semibold">
             {content.title}
           </h2>

@@ -10,7 +10,7 @@ export function AreaServices({ item }: { item: ServiceItem }) {
   if (item.services.length === 0) return null;
 
   return (
-    <section aria-labelledby="area-services" className="mt-16 lg:mt-20">
+    <section aria-labelledby="area-services" className="mt-16 max-sm:mt-10 lg:mt-20">
       <h2 id="area-services" className="font-serif text-3xl font-semibold sm:text-4xl">
         {t('practiceArea.servicesTitle')}
       </h2>

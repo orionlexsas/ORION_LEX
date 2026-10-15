@@ -54,7 +54,7 @@ export function ArticleView({ article, blog, url, publisher }: ArticleViewProps)
         <Markdown className="mt-10">{article.body}</Markdown>
 
         {article.sources.length > 0 && (
-          <aside className="mt-12 rounded-lg bg-surface p-6">
+          <aside className="mt-12 rounded-lg bg-surface p-6 max-sm:mt-8">
             <h2 className="text-sm font-semibold tracking-wide uppercase">{blog.sourcesLabel}</h2>
             <ul className="mt-3 space-y-2">
               {article.sources.map((source) => (
@@ -78,7 +78,7 @@ export function ArticleView({ article, blog, url, publisher }: ArticleViewProps)
           <ShareButtons url={url} title={article.title} label={blog.shareLabel} />
         </div>
 
-        <div className="mt-12">
+        <div className="mt-12 max-sm:mt-8">
           <BlogCta cta={blog.cta} location="article" />
         </div>
       </Container>

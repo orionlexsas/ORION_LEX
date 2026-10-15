@@ -12,7 +12,12 @@ export function ProcessSteps({ process }: { process: Process }) {
     <section aria-labelledby="landing-process" className="section-spacing">
       <Container>
         <SectionHeading id="landing-process" title={process.title} />
-        <ol className={cn('mt-12 grid gap-10 sm:grid-cols-2 lg:gap-8', columns)}>
+        <ol
+          className={cn(
+            'mt-12 grid gap-10 max-sm:mt-7 max-sm:gap-6 sm:grid-cols-2 lg:gap-8',
+            columns,
+          )}
+        >
           {process.steps.map((step, i) => (
             <li key={step.title} className="relative">
               <div className="flex items-center gap-4">

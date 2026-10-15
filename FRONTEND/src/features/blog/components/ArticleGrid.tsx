@@ -49,7 +49,7 @@ export function ArticleGrid({
       {rest.length > 0 && (
         <>
           {showLatestTitle && (
-            <div className="mt-10 flex items-center gap-6 lg:mt-12">
+            <div className="mt-10 flex items-center gap-6 max-sm:mt-7 lg:mt-12">
               <h2 className="shrink-0 font-serif text-3xl font-semibold tracking-tight sm:text-4xl">
                 {blog.latestTitle}
               </h2>
