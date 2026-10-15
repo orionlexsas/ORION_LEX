@@ -78,11 +78,15 @@ export function PenStroke() {
     const onFrame = (progress: number, box: PenBox) => {
       drawLine(progress);
       tipX = progress * canvas.clientWidth;
-      const visible = box.right > 0 && box.left < canvas.clientWidth;
+      // La zona táctil nunca se sale de la franja: si sobresaliera por la derecha, la página se
+      // haría más ancha un instante y el celular la reacomodaría (un salto al bajar).
+      const left = Math.max(box.left, 0);
+      const right = Math.min(box.right, canvas.clientWidth);
+      const visible = right - left > 8;
       handle.style.display = visible ? 'block' : 'none';
-      handle.style.left = `${box.left}px`;
+      handle.style.left = `${left}px`;
       handle.style.bottom = `${box.bottom - BASELINE}px`;
-      handle.style.width = `${box.right - box.left}px`;
+      handle.style.width = `${right - left}px`;
       handle.style.height = `${box.top - box.bottom}px`;
     };
 
@@ -136,9 +140,9 @@ export function PenStroke() {
       try {
         const { createPenScene } = await import('../lib/pen-scene');
         if (cancelled) return;
-        // En celular la franja es baja (7 rem): bolígrafo más pequeño para que quepa.
+        // En celular, más pequeño: va sobre el final de la foto de portada.
         const penHeight =
-          canvas.clientWidth < 640 ? 125 : Math.min(Math.max(canvas.clientWidth * 0.15, 170), 240);
+          canvas.clientWidth < 640 ? 140 : Math.min(Math.max(canvas.clientWidth * 0.15, 170), 240);
         const scene = await createPenScene(canvas, { baseline: BASELINE, penHeight, onFrame });
         if (cancelled) return scene.dispose();
         pen = scene;
@@ -187,7 +191,7 @@ export function PenStroke() {
     <div
       ref={wrapRef}
       aria-hidden="true"
-      className="pointer-events-none absolute inset-0 z-20 [overflow-anchor:none]"
+      className="pointer-events-none absolute inset-0 z-20 overflow-x-clip [overflow-anchor:none]"
     >
       <span
         ref={lineRef}
