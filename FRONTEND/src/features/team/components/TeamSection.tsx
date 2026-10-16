@@ -138,16 +138,19 @@ function ProfileCard({ member, content }: { member: Member; content: TeamContent
 
   const flip = (value: boolean) => {
     setFlipped(value);
-    // El foco pasa al botón de la otra cara (para teclado y lectores de pantalla).
+    // Si se usó el teclado, el foco pasa al botón de la otra cara (lectores de pantalla).
+    if (!document.activeElement?.closest('article')) return;
     window.setTimeout(() => (value ? backButton : frontButton).current?.focus(), 50);
   };
 
   const face =
-    'rounded-xl border border-border bg-background shadow-[0_12px_40px_-24px_rgb(0_0_0/0.35)] [grid-area:1/1] backface-hidden';
+    'cursor-pointer rounded-xl border border-border bg-background shadow-[0_12px_40px_-24px_rgb(0_0_0/0.35)] transition-shadow [grid-area:1/1] backface-hidden hover:shadow-[0_18px_44px_-22px_rgb(0_0_0/0.4)]';
 
   return (
     <article className="h-full perspective-[1800px]">
+      {/* Tocar cualquier parte de la tarjeta (foto incluida) la gira; los botones hacen lo mismo. */}
       <div
+        onClick={() => flip(!flipped)}
         className={cn(
           'grid h-full transition-transform duration-700 ease-out-soft transform-3d motion-reduce:transition-none',
           flipped && 'rotate-y-180',
@@ -200,7 +203,6 @@ function ProfileCard({ member, content }: { member: Member; content: TeamContent
             <button
               ref={frontButton}
               type="button"
-              onClick={() => flip(true)}
               aria-expanded={flipped}
               className="group mt-auto inline-flex w-fit cursor-pointer items-center gap-2 border-b-2 border-accent pt-4 pb-0.5 font-semibold text-accent-text"
             >
@@ -237,7 +239,6 @@ function ProfileCard({ member, content }: { member: Member; content: TeamContent
           <button
             ref={backButton}
             type="button"
-            onClick={() => flip(false)}
             className="group mt-auto inline-flex w-fit cursor-pointer items-center gap-2 pt-5 font-semibold text-accent-text"
           >
             <ArrowLeft
