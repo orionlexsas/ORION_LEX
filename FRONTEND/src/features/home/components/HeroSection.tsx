@@ -191,19 +191,38 @@ export function HeroSection({ hero }: HeroSectionProps) {
             const shown = activeSlide === i + 1;
             if (!ready || i > reached) return null;
             return (
-              <img
+              // Llena la portada; con `fit: contain`, en computador se ve completa a la derecha
+              // (sin recortar ni agrandar) y la misma foto difuminada llena el resto.
+              <span
                 key={slide.src}
-                src={slide.src}
-                alt={shown ? slide.alt : ''}
                 aria-hidden={!shown}
-                loading="lazy"
-                decoding="async"
                 style={{ transitionDuration: `1500ms, ${SLIDE_MS + 1500}ms` }}
                 className={cn(
-                  'absolute inset-0 size-full object-cover object-[50%_35%] transition-[opacity,scale] ease-out-soft',
-                  shown ? 'scale-100 opacity-100' : 'scale-110 opacity-0',
+                  'absolute inset-0 transition-[opacity,scale] ease-out-soft',
+                  shown ? 'scale-[1.03] opacity-100' : 'scale-100 opacity-0',
                 )}
-              />
+              >
+                {slide.fit === 'contain' && (
+                  <img
+                    src={slide.src}
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                    className="absolute inset-0 hidden size-full scale-110 object-cover blur-2xl xl:block"
+                  />
+                )}
+                <img
+                  src={slide.src}
+                  alt={shown ? slide.alt : ''}
+                  loading="lazy"
+                  decoding="async"
+                  className={cn(
+                    'absolute inset-0 size-full object-cover object-[50%_35%]',
+                    slide.fit === 'contain' &&
+                      'xl:object-contain xl:object-right xl:[mask-image:linear-gradient(to_right,transparent_32%,black_52%)]',
+                  )}
+                />
+              </span>
             );
           })}
           {/* Celular: velo café solo en la izquierda (donde va el texto); el equipo queda con su color */}

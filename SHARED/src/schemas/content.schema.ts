@@ -135,7 +135,18 @@ export const homeContentSchema = z.object({
     points: z.array(z.object({ icon: contentIconSchema, text: z.string() })).max(4),
     image: imageSchema,
     /** Más fotos de fondo: la portada pasa sola de la principal a estas (opcional). */
-    slides: z.array(imageSchema).optional(),
+    slides: z
+      .array(
+        imageSchema.extend({
+          /**
+           * `contain`: en computador la foto se ve completa a la derecha (sin recortar ni
+           * agrandar) y el resto se llena con ella misma difuminada. Para fotos pequeñas o casi
+           * cuadradas. `cover` (por defecto): llena la portada.
+           */
+          fit: z.enum(['cover', 'contain']).default('cover'),
+        }),
+      )
+      .optional(),
   }),
 });
 
