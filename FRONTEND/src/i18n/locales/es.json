@@ -95,6 +95,13 @@
     "otherServices": "Otros servicios de {{area}}",
     "backTo": "Volver a {{area}}"
   },
+  "privacyNotice": {
+    "label": "Aviso de tratamiento de datos personales",
+    "title": "Tratamiento de datos personales",
+    "text": "En Orión Lex protegemos sus datos personales conforme a la Ley 1581 de 2012. Al continuar navegando y al escribirnos, usted autoriza su tratamiento según nuestra",
+    "link": "Política de Tratamiento de Datos",
+    "accept": "Acepto"
+  },
   "carousel": {
     "label": "Tarjetas",
     "goTo": "Ir a la tarjeta {{number}} de {{total}}",

@@ -95,6 +95,13 @@
     "otherServices": "Other {{area}} services",
     "backTo": "Back to {{area}}"
   },
+  "privacyNotice": {
+    "label": "Personal data processing notice",
+    "title": "Personal data processing",
+    "text": "At Orión Lex we protect your personal data under Colombian Law 1581 of 2012. By continuing to browse and contacting us, you authorize its processing under our",
+    "link": "Data Processing Policy",
+    "accept": "I accept"
+  },
   "carousel": {
     "label": "Cards",
     "goTo": "Go to card {{number}} of {{total}}",

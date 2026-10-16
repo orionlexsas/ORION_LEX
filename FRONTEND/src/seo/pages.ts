@@ -10,12 +10,16 @@ export interface PageSeo {
   type?: 'website' | 'article';
   /** Fecha de publicación (artículos). */
   publishedTime?: string;
+  /** Título visible de la página (H1) y tipo, para los datos estructurados del prerender. */
+  heading?: string;
+  kind?: 'landing' | 'area' | 'service' | 'article';
 }
 
 /** SEO de cada página, en un solo lugar. */
 export const seoFor = {
   home: (c: SiteContentBundle): PageSeo => ({
     path: '/',
+    heading: `${c.site.brand.legalName}: ${c.home.hero.title}`,
     title: c.site.seo.title,
     description: c.site.seo.description,
   }),
@@ -38,6 +42,8 @@ export const seoFor = {
     return (
       item && {
         path: `/servicios/${item.slug}`,
+        heading: item.title,
+        kind: 'area',
         title: `${item.title} | ${c.site.brand.name}`,
         description: `${item.description} ${item.details}`,
         image: item.image.src,
@@ -51,6 +57,8 @@ export const seoFor = {
       item &&
       service && {
         path: `/servicios/${item.slug}/${service.slug}`,
+        heading: service.title,
+        kind: 'service',
         title: service.seo?.title || `${service.title} | ${c.site.brand.name}`,
         description: service.seo?.description || service.description,
         image: (service.image ?? item.image).src,
@@ -62,6 +70,8 @@ export const seoFor = {
     return (
       landing && {
         path: `/${landing.slug}`,
+        heading: landing.title,
+        kind: 'landing',
         ...landing.seo,
         image: landing.image?.src,
       }
@@ -72,6 +82,8 @@ export const seoFor = {
     return (
       article && {
         path: `/actualidad/${article.slug}`,
+        heading: article.title,
+        kind: 'article',
         title: `${article.title} | ${c.site.brand.name}`,
         description: article.seo?.description ?? article.excerpt,
         image: article.image?.src,

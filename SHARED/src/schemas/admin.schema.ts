@@ -205,3 +205,21 @@ export interface AdminServicesResponse {
   /** Asuntos frecuentes en el orden de la web. */
   landings: LandingContent[];
 }
+
+/** Un testimonio tal como se edita en el panel. */
+export const adminTestimonialSchema = z.object({
+  name: z.string().trim().min(1, 'required').max(80),
+  service: z.string().trim().min(1, 'required').max(60),
+  text: z.string().trim().min(1, 'required').max(320),
+});
+export type AdminTestimonial = z.infer<typeof adminTestimonialSchema>;
+
+/** Guardar la lista completa de testimonios (en el orden en que se muestran). */
+export const adminTestimonialsSaveSchema = z.object({
+  items: z.array(adminTestimonialSchema).max(30),
+});
+export type AdminTestimonialsSave = z.infer<typeof adminTestimonialsSaveSchema>;
+
+export interface AdminTestimonialsResponse {
+  items: AdminTestimonial[];
+}
