@@ -187,7 +187,7 @@ export function HeroSection({ hero }: HeroSectionProps) {
                 decoding="async"
                 style={{ transitionDuration: `1500ms, ${SLIDE_MS + 1500}ms` }}
                 className={cn(
-                  'absolute inset-0 size-full object-cover transition-[opacity,scale] ease-out-soft',
+                  'absolute inset-0 size-full object-cover object-[50%_35%] transition-[opacity,scale] ease-out-soft',
                   shown ? 'scale-100 opacity-100' : 'scale-110 opacity-0',
                 )}
               />
