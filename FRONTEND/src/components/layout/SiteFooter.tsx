@@ -1,4 +1,4 @@
-import { useRef, type MouseEvent, type ReactNode } from 'react';
+import { useRef, type ReactNode } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { Globe, Mail, Phone } from 'lucide-react';
@@ -35,10 +35,11 @@ export function SiteFooter({ site, services, showCta }: SiteFooterProps) {
 
       <Container className="grid gap-x-10 gap-y-8 pt-9 pb-8 sm:grid-cols-2 sm:gap-y-10 sm:pt-12 sm:pb-10 lg:grid-cols-[1.1fr_0.8fr_1.1fr_1.3fr] lg:pt-12">
         <div className="flex flex-wrap items-center justify-between gap-4 sm:flex-col sm:items-start sm:justify-start">
-          <Link
-            to="/"
+          {/* Solo el logo, sin enlace: un toque no hace nada (tres seguidos abren el panel). */}
+          <div
             onClick={secretTaps}
-            aria-label={t('a11y.goHome', { name: brand.name })}
+            role="img"
+            aria-label={brand.name}
             className="select-none [-webkit-tap-highlight-color:transparent]"
           >
             {/* Celular: escudo y nombre en una fila; desde 640 px, el logo apilado. */}
@@ -61,7 +62,7 @@ export function SiteFooter({ site, services, showCta }: SiteFooterProps) {
               />
             </span>
             <StackedLogo name={brand.legalName} tone="dark" className="w-28 max-sm:hidden" />
-          </Link>
+          </div>
           <p className="mt-5 max-w-[16rem] font-serif text-lg leading-snug max-sm:hidden">
             {footer.tagline}
           </p>
@@ -202,17 +203,14 @@ const TAP_WINDOW = 600;
 
 /**
  * Acceso escondido al panel: no hay botón visible; tocar el logo del pie 3 veces seguidas lleva a
- * /admin/login. Un solo toque sigue llevando al inicio, pero espera un instante por si llegan más.
+ * /admin/login. Uno o dos toques no hacen nada.
  */
 function useSecretTaps() {
   const navigate = useNavigate();
   const taps = useRef(0);
   const timer = useRef<number | undefined>(undefined);
 
-  return (event: MouseEvent<HTMLAnchorElement>) => {
-    // Ctrl/Cmd + clic (abrir en otra pestaña) funciona como un enlace normal.
-    if (event.metaKey || event.ctrlKey || event.shiftKey) return;
-    event.preventDefault();
+  return () => {
     window.clearTimeout(timer.current);
     taps.current += 1;
     if (taps.current >= SECRET_TAPS) {
@@ -220,9 +218,6 @@ function useSecretTaps() {
       void navigate('/admin/login');
       return;
     }
-    timer.current = window.setTimeout(() => {
-      taps.current = 0;
-      void navigate('/');
-    }, TAP_WINDOW);
+    timer.current = window.setTimeout(() => (taps.current = 0), TAP_WINDOW);
   };
 }
