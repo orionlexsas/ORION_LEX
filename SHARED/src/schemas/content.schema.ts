@@ -353,6 +353,8 @@ export const teamContentSchema = z.object({
       photo: imageSchema.extend({
         /** Encuadre de la foto dentro del recorte (CSS object-position), p. ej. "50% 20%". */
         position: z.string().default('50% 20%'),
+        /** Retrato recortado (fondo transparente): va completo sobre un fondo cálido. */
+        cutout: z.boolean().default(false),
       }),
     }),
   ),

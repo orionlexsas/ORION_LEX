@@ -147,7 +147,7 @@ function ProfileCard({ member, content }: { member: Member; content: TeamContent
     'cursor-pointer rounded-xl border border-border bg-background shadow-[0_12px_40px_-24px_rgb(0_0_0/0.35)] transition-shadow [grid-area:1/1] backface-hidden hover:shadow-[0_18px_44px_-22px_rgb(0_0_0/0.4)]';
 
   return (
-    <article className="h-full perspective-[1800px]">
+    <article className="group h-full perspective-[1800px]">
       {/* Tocar cualquier parte de la tarjeta (foto incluida) la gira; los botones hacen lo mismo. */}
       <div
         onClick={() => flip(!flipped)}
@@ -164,16 +164,36 @@ function ProfileCard({ member, content }: { member: Member; content: TeamContent
             'grid content-start gap-5 p-4 sm:content-stretch sm:grid-cols-[0.9fr_1fr] sm:gap-5 sm:p-4',
           )}
         >
-          <img
-            src={member.photo.src}
-            alt={member.photo.alt}
-            loading="lazy"
-            decoding="async"
-            width={960}
-            height={960}
-            style={{ objectPosition: member.photo.position }}
-            className="aspect-[4/3] w-full rounded-lg object-cover sm:aspect-auto sm:h-full sm:min-h-[17rem]"
-          />
+          {member.photo.cutout ? (
+            // Retrato recortado sobre un fondo de estudio cálido (luz naranja suave detrás).
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg bg-[radial-gradient(ellipse_70%_60%_at_50%_35%,color-mix(in_oklab,var(--color-accent)_28%,var(--color-band-accent))_0%,var(--color-band-accent)_55%,color-mix(in_oklab,var(--color-band)_70%,var(--color-ink)_6%)_100%)] sm:aspect-auto sm:h-full sm:min-h-[17rem]">
+              <span
+                aria-hidden="true"
+                className="absolute inset-x-6 bottom-0 h-1/3 rounded-t-full bg-accent/10 blur-2xl"
+              />
+              <img
+                src={member.photo.src}
+                alt={member.photo.alt}
+                loading="lazy"
+                decoding="async"
+                width={720}
+                height={1150}
+                style={{ objectPosition: member.photo.position }}
+                className="absolute inset-0 size-full object-cover drop-shadow-[0_10px_18px_rgb(0_0_0/0.18)] transition-transform duration-500 ease-out-soft group-hover:scale-[1.02]"
+              />
+            </div>
+          ) : (
+            <img
+              src={member.photo.src}
+              alt={member.photo.alt}
+              loading="lazy"
+              decoding="async"
+              width={960}
+              height={960}
+              style={{ objectPosition: member.photo.position }}
+              className="aspect-[4/3] w-full rounded-lg object-cover sm:aspect-auto sm:h-full sm:min-h-[17rem]"
+            />
+          )}
           <div className="flex flex-col pb-1 sm:py-1.5 sm:pr-1">
             <span aria-hidden="true" className="block h-[3px] w-10 rounded-full bg-accent" />
             <h3 className="mt-2.5 font-serif text-[1.9rem] leading-[1.05] font-semibold tracking-tight sm:text-[1.95rem]">
@@ -224,7 +244,10 @@ function ProfileCard({ member, content }: { member: Member; content: TeamContent
               loading="lazy"
               decoding="async"
               style={{ objectPosition: member.photo.position }}
-              className="size-16 shrink-0 rounded-full object-cover ring-2 ring-accent/60"
+              className={cn(
+                'size-16 shrink-0 rounded-full object-cover ring-2 ring-accent/60',
+                member.photo.cutout && 'bg-band-accent object-[50%_8%]',
+              )}
             />
             <div>
               <p className="font-serif text-[1.5rem] leading-tight font-semibold">{member.name}</p>
