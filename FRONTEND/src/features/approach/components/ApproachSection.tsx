@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import type { ApproachContent } from '@orion-lex/shared';
 import { CtaLink } from '@/components/cta/CtaLink';
 import { CarouselNav } from '@/components/ui/CarouselNav';
@@ -5,6 +6,7 @@ import { Container } from '@/components/ui/Container';
 import { useInView } from '@/hooks/use-in-view';
 import { carouselItem, carouselTrack, useCarousel } from '@/hooks/use-carousel';
 import { cn } from '@/lib/cn';
+import { ApproachScroll } from './ApproachScroll';
 import { ApproachStep } from './ApproachStep';
 import { ProcessConnector } from './ProcessConnector';
 
@@ -12,6 +14,8 @@ interface ApproachSectionProps {
   id: string;
   content: ApproachContent;
   className?: string;
+  /** Con video de fondo controlado por el scroll (portada), si el contenido lo trae. */
+  cinematic?: boolean;
 }
 
 /**
@@ -20,7 +24,18 @@ interface ApproachSectionProps {
  * tablet, una por fila en móvil. Las tarjetas aparecen escalonadas al entrar en pantalla
  * (sin animación si el usuario pidió reducir el movimiento: ver globals.css).
  */
-export function ApproachSection({ id, content, className }: ApproachSectionProps) {
+export function ApproachSection({ id, content, className, cinematic }: ApproachSectionProps) {
+  // Con "reducir movimiento" se muestran las tarjetas de siempre, sin recorrido.
+  const [reduceMotion] = useState(
+    () => window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+  );
+  if (cinematic && content.sequence && !reduceMotion) {
+    return <ApproachScroll id={id} content={content} sequence={content.sequence} />;
+  }
+  return <ApproachCards id={id} content={content} className={className} />;
+}
+
+function ApproachCards({ id, content, className }: Omit<ApproachSectionProps, 'cinematic'>) {
   const titleId = `${id}-title`;
   const [listRef, inView] = useInView<HTMLDivElement>(0.15);
   const { ref: carouselRef, nav: carouselNav } = useCarousel<HTMLOListElement>();

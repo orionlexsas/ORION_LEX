@@ -234,6 +234,17 @@ export const approachContentSchema = z.object({
     .min(1),
   /** Botón bajo las etapas (opcional; el diseño aprobado no lo lleva). */
   cta: linkSchema.optional(),
+  /**
+   * Video de fondo controlado por el scroll (portada), como secuencia de fotogramas WebP en
+   * `<path>/lg/0001.webp…` (computador) y `<path>/sm/…` (celular). Opcional.
+   */
+  sequence: z
+    .object({
+      path: z.string().min(1),
+      frames: z.object({ lg: z.number().int().min(2), sm: z.number().int().min(2) }),
+      alt: z.string(),
+    })
+    .optional(),
 });
 
 /**

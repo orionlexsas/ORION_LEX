@@ -28,5 +28,13 @@
         "alt": "Lawyer listening attentively to a client during a consultation"
       }
     }
-  ]
+  ],
+  "sequence": {
+    "path": "/frames/palacio",
+    "frames": {
+      "lg": 120,
+      "sm": 96
+    },
+    "alt": "A walk across the square and into the Palace of Justice"
+  }
 }
