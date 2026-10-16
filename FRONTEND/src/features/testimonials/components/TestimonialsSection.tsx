@@ -18,8 +18,11 @@ type Testimonial = TestimonialsContent['items'][number];
 const initials = (name: string) => {
   const words = name.replace(/\./g, '').split(/\s+/).filter(Boolean);
   return (
-    (words[0]?.[0] ?? '') + (words.length > 1 ? (words.at(-1)?.[0] ?? '') : '')
-  ).toUpperCase();
+    // Con dos nombres y dos apellidos, el primer nombre y el primer apellido.
+    (
+      (words[0]?.[0] ?? '') + ((words.length >= 4 ? words[2] : words.at(-1))?.[0] ?? '')
+    ).toUpperCase()
+  );
 };
 
 /**
@@ -135,7 +138,7 @@ export function TestimonialsSection({ id, content, className }: TestimonialsSect
       <div
         ref={stageRef}
         aria-hidden="true"
-        className="relative mt-6 h-[26.5rem] cursor-grab touch-pan-y select-none active:cursor-grabbing sm:h-[27rem] lg:mt-4 lg:h-[25rem]"
+        className="relative mt-6 h-[31rem] cursor-grab touch-pan-y select-none active:cursor-grabbing sm:h-[30.5rem] lg:mt-4 lg:h-[28.75rem]"
       >
         {cards.map((item, i) => (
           <div
@@ -144,7 +147,7 @@ export function TestimonialsSection({ id, content, className }: TestimonialsSect
               cardRefs.current[i] = el;
             }}
             style={{ opacity: 0 }}
-            className="group absolute top-2 left-0 -ml-[8.25rem] h-[23rem] w-[16.5rem] will-change-transform sm:-ml-[10rem] sm:h-[22rem] sm:w-[20rem] lg:-ml-[11rem] lg:w-[22rem]"
+            className="group absolute top-2 left-0 -ml-[9.5rem] h-[27.5rem] w-[19rem] will-change-transform sm:-ml-[10.5rem] sm:h-[25.75rem] sm:w-[21rem] lg:-ml-[11.5rem] lg:w-[23rem]"
           >
             <TestimonialCard item={item} clientLabel={content.clientLabel} />
           </div>
@@ -214,14 +217,14 @@ function TestimonialCard({ item, clientLabel }: TestimonialCardProps) {
         “
       </span>
 
-      <p className="relative mt-10 font-serif text-[1.8rem] leading-none font-semibold tracking-tight sm:mt-9 sm:text-[2rem]">
+      <p className="relative mt-10 font-serif text-[1.45rem] leading-[1.1] font-semibold tracking-tight sm:mt-9 sm:text-[1.6rem]">
         {item.name}
       </p>
       <span aria-hidden="true" className="mt-3 block h-0.5 w-9 bg-accent" />
       <p className="mt-3 text-[0.72rem] font-semibold tracking-[0.2em] text-accent-text uppercase sm:text-[0.78rem]">
         {item.service}
       </p>
-      <blockquote className="mt-3 line-clamp-6 flex-1 text-[0.98rem] leading-snug text-foreground/80 sm:line-clamp-5">
+      <blockquote className="mt-3 line-clamp-8 flex-1 text-[0.9rem] leading-snug text-foreground/80 sm:text-[0.92rem]">
         “{item.text}”
       </blockquote>
       <figcaption className="mt-4 flex items-center gap-3">

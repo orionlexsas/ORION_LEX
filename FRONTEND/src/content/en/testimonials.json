@@ -6,29 +6,44 @@
   "clientLabel": "Orión Lex client",
   "items": [
     {
-      "name": "María Rodríguez",
+      "name": "María Fernanda Rodríguez López",
       "service": "Labor law",
-      "text": "They explained every step clearly and I was able to make decisions with greater peace of mind."
+      "text": "When my contract ended I had doubts about my severance and several pending payments. They reviewed my documents, explained what I was owed and filed the claim. I finally received the pending amounts, with constant support."
     },
     {
-      "name": "Carlos Peña",
-      "service": "Tutela action",
-      "text": "I found a close, professional and committed team. They clearly explained each stage and were attentive to my concerns throughout the process."
-    },
-    {
-      "name": "Laura Castro",
-      "service": "Datacrédito",
-      "text": "They reviewed my situation carefully and helped me understand the available options."
-    },
-    {
-      "name": "Jorge Martínez",
-      "service": "Traffic fines",
-      "text": "From the first message they answered quickly and told me honestly what could be done in my case."
-    },
-    {
-      "name": "Diana Salazar",
+      "name": "Diana Marcela Suárez Gómez",
       "service": "Family law",
-      "text": "I live abroad and all the support was virtual. I always knew how my case was progressing."
+      "text": "I live outside Colombia and needed to settle a family matter without traveling. Everything was handled virtually, they explained each stage and the process was completed correctly. I appreciate their closeness and patience."
+    },
+    {
+      "name": "Carlos Andrés Pérez Rojas",
+      "service": "Tutela action",
+      "text": "An agency was not responding to a situation that affected my rights. They analyzed the case and filed the tutela with the necessary evidence. The ruling was favorable and the agency complied. Every step was explained simply."
+    },
+    {
+      "name": "Laura Camila Cárdenas Torres",
+      "service": "Datacrédito",
+      "text": "I was still reported even though I had paid the debt. They reviewed the dates, communications and due process, and filed the requests. The report was corrected and I regained peace of mind about my credit history."
+    },
+    {
+      "name": "Jorge Enrique Martínez Ruiz",
+      "service": "Traffic fines",
+      "text": "I had old traffic fines and didn't know if they could still be collected. They reviewed each file and the notices, and filed the requests with the transit authority. The obligations that didn't meet legal requirements were corrected."
+    },
+    {
+      "name": "Andrés Felipe Torres Vega",
+      "service": "SOAT compensation",
+      "text": "After an accident I didn't know which documents to gather or how to file a claim. They organized the medical records and supported me through the request. The claim was accepted and I received the compensation."
+    },
+    {
+      "name": "Sofía Valentina Gómez León",
+      "service": "Right of petition",
+      "text": "For months I asked an agency for information without a complete answer. They prepared a clear, well-supported petition, and the agency delivered the information I needed to move forward with my case."
+    },
+    {
+      "name": "Camilo Alejandro Álvarez Díaz",
+      "service": "Victims of the armed conflict",
+      "text": "I didn't know how to request recognition and reparation of my rights. They listened to my story respectfully, reviewed my documents and helped me file the requests. The process moved forward and I received an answer."
     }
   ]
 }
