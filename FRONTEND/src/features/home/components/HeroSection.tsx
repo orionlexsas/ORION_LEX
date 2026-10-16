@@ -216,8 +216,9 @@ export function HeroSection({ hero }: HeroSectionProps) {
                   alt={shown ? slide.alt : ''}
                   loading="lazy"
                   decoding="async"
+                  style={{ '--pos': slide.position } as CSSProperties}
                   className={cn(
-                    'absolute inset-0 size-full object-cover object-[50%_35%]',
+                    'absolute inset-0 size-full object-cover object-[var(--pos)]',
                     slide.fit === 'contain' &&
                       'xl:object-contain xl:object-right xl:[mask-image:linear-gradient(to_right,transparent_32%,black_52%)]',
                   )}

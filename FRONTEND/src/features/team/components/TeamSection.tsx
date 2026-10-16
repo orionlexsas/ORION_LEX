@@ -129,8 +129,8 @@ export function TeamSection({
 }
 
 /**
- * Tarjeta que gira (3D): al frente el resumen; detrás el perfil completo. Las dos caras ocupan la
- * misma celda de la cuadrícula, así la tarjeta mide lo que la más larga y ningún texto se corta.
+ * Tarjeta que gira (3D): al frente el resumen; detrás el perfil completo. La cara visible ocupa
+ * el alto y la otra va encima (absoluta), así no queda espacio vacío ni se corta el texto.
  */
 function ProfileCard({ member, content }: { member: Member; content: TeamContent }) {
   const [flipped, setFlipped] = useState(false);
@@ -154,7 +154,7 @@ function ProfileCard({ member, content }: { member: Member; content: TeamContent
       <div
         onClick={() => flip(!flipped)}
         className={cn(
-          'grid h-full transition-transform duration-700 ease-out-soft transform-3d motion-reduce:transition-none',
+          'relative grid h-full transition-transform duration-700 ease-out-soft transform-3d motion-reduce:transition-none',
           flipped && 'rotate-y-180',
         )}
       >
@@ -166,6 +166,9 @@ function ProfileCard({ member, content }: { member: Member; content: TeamContent
               ? 'cursor-pointer [grid-area:1/1] backface-hidden'
               : cn(face, 'p-4'),
             'grid content-start gap-5 sm:content-stretch sm:grid-cols-[0.9fr_1fr] sm:gap-5',
+            // La cara que no se ve no ocupa alto: la tarjeta mide lo que la cara visible
+            // (sin espacio vacío en celular, donde el perfil completo es mucho más largo).
+            flipped && 'absolute inset-0',
           )}
         >
           {member.photo.cutout ? (
@@ -237,7 +240,14 @@ function ProfileCard({ member, content }: { member: Member; content: TeamContent
         </div>
 
         {/* Detrás: el perfil completo */}
-        <div inert={!flipped} className={cn(face, 'flex rotate-y-180 flex-col p-6 sm:p-7')}>
+        <div
+          inert={!flipped}
+          className={cn(
+            face,
+            'flex rotate-y-180 flex-col p-6 sm:p-7',
+            !flipped && 'absolute inset-0 overflow-hidden',
+          )}
+        >
           <div className="flex items-center gap-4">
             <img
               src={member.photo.src}
