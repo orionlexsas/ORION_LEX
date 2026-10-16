@@ -158,7 +158,7 @@ function ProfileCard({ member, content }: { member: Member; content: TeamContent
           inert={flipped}
           className={cn(
             face,
-            'grid content-start gap-5 p-4 sm:content-stretch sm:grid-cols-[0.72fr_1fr] sm:gap-5 sm:p-4',
+            'grid content-start gap-5 p-4 sm:content-stretch sm:grid-cols-[0.9fr_1fr] sm:gap-5 sm:p-4',
           )}
         >
           <img

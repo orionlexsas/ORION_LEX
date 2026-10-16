@@ -168,7 +168,7 @@ export function HeroSection({ hero }: HeroSectionProps) {
               height={941}
               fetchPriority="high"
               className={cn(
-                'block aspect-[5/4] h-auto w-full object-cover object-[74%_center] sm:aspect-[16/9] xl:aspect-auto xl:h-full xl:object-[right_center]',
+                'block aspect-[5/4] h-auto w-full object-cover object-[74%_center] sm:aspect-[16/9] xl:aspect-auto xl:h-full xl:object-[right_12%]',
                 // Celular: foto vertical que llena la sección; los rostros quedan a la derecha.
                 'max-sm:absolute max-sm:inset-0 max-sm:size-full max-sm:aspect-auto max-sm:object-cover max-sm:object-[50%_35%]',
               )}
@@ -201,16 +201,16 @@ export function HeroSection({ hero }: HeroSectionProps) {
           {/* Computador: la cabecera va transparente encima; un velo arriba deja leer el menú */}
           <div
             aria-hidden="true"
-            className="absolute inset-x-0 top-0 hidden h-32 bg-gradient-to-b from-background/75 to-transparent xl:block"
+            className="absolute inset-x-0 top-0 hidden h-20 bg-gradient-to-b from-background/50 to-transparent xl:block"
           />
-          {/* Velo suave del color del tema a la izquierda (detrás del texto): la foto se ve hasta el borde */}
+          {/* Velo solo detrás del texto (izquierda) para leerlo; el resto de la foto queda nítido */}
           <div
             aria-hidden="true"
             className={cn(
               'absolute inset-0 hidden xl:block',
-              'bg-[linear-gradient(90deg,color-mix(in_oklab,var(--color-background)_78%,transparent)_0%,color-mix(in_oklab,var(--color-background)_68%,transparent)_26%,color-mix(in_oklab,var(--color-background)_30%,transparent)_42%,transparent_54%)]',
+              'bg-[linear-gradient(90deg,color-mix(in_oklab,var(--color-background)_72%,transparent)_0%,color-mix(in_oklab,var(--color-background)_62%,transparent)_24%,color-mix(in_oklab,var(--color-background)_20%,transparent)_36%,transparent_44%)]',
               // En modo oscuro la foto es muy clara: la transición negra llega un poco más lejos.
-              'dark:bg-[linear-gradient(90deg,var(--color-background)_0%,var(--color-background)_30%,color-mix(in_oklab,var(--color-background)_70%,transparent)_42%,transparent_56%)]',
+              'dark:bg-[linear-gradient(90deg,var(--color-background)_0%,var(--color-background)_26%,color-mix(in_oklab,var(--color-background)_55%,transparent)_38%,transparent_48%)]',
             )}
           />
         </div>
