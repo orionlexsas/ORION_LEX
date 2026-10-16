@@ -173,7 +173,7 @@ function ProfileCard({ member, content }: { member: Member; content: TeamContent
         >
           {member.photo.cutout ? (
             // Retrato recortado, sin fondo ni difuminado.
-            <div className="relative aspect-[4/3] w-full sm:aspect-auto sm:h-full sm:min-h-[22rem]">
+            <div className="relative aspect-square w-full sm:aspect-auto sm:h-full sm:min-h-[22rem]">
               <img
                 src={member.photo.src}
                 alt={member.photo.alt}
@@ -181,7 +181,7 @@ function ProfileCard({ member, content }: { member: Member; content: TeamContent
                 decoding="async"
                 width={720}
                 height={1150}
-                className="absolute inset-0 size-full object-contain object-bottom transition-transform duration-500 ease-out-soft group-hover:scale-[1.02] max-sm:object-[50%_15%] max-sm:object-cover"
+                className="absolute inset-x-0 top-3 bottom-0 h-[calc(100%-0.75rem)] w-full object-contain object-bottom transition-transform duration-500 ease-out-soft group-hover:scale-[1.02] max-sm:object-cover max-sm:object-top sm:top-0 sm:h-full"
               />
             </div>
           ) : (
