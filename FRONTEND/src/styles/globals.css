@@ -224,3 +224,10 @@ main > .section-spacing:first-child {
   content-visibility: auto;
   contain-intrinsic-size: auto 700px;
 }
+
+/* Fondo oscurecido del aviso de datos personales. */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}

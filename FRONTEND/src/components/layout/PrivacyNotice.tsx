@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router';
+import { Link, useLocation } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { ShieldCheck } from 'lucide-react';
 
@@ -19,13 +19,18 @@ const alreadyAccepted = () => {
   }
 };
 
+/** Páginas donde se lee la política: ahí no se oscurece el fondo para poder leerla. */
+const LEGAL_PAGES = ['/privacidad', '/terminos'];
+
 /**
- * Aviso de tratamiento de datos personales (Ley 1581 de 2012) al entrar a la web: tarjeta abajo
- * con el enlace a la política y el botón "Acepto". Aparece cuando termina el video de intro y,
- * una vez aceptado, no vuelve a salir en ese navegador.
+ * Aviso de tratamiento de datos personales (Ley 1581 de 2012) al entrar a la web: franja blanca
+ * abajo a todo el ancho (ícono, título, texto, enlaces a la política y los términos y "Acepto")
+ * con el resto de la página oscurecido hasta aceptar. Aparece cuando termina el video de intro
+ * y, una vez aceptado, no vuelve a salir en ese navegador.
  */
 export function PrivacyNotice() {
   const { t } = useTranslation();
+  const { pathname } = useLocation();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -56,39 +61,61 @@ export function PrivacyNotice() {
     setVisible(false);
   };
 
+  const reading = LEGAL_PAGES.includes(pathname);
+  const link =
+    'text-[0.92rem] text-foreground/80 underline underline-offset-4 transition-colors hover:text-accent-text';
+
   return (
-    <section
-      role="region"
-      aria-label={t('privacyNotice.label')}
-      className="fixed inset-x-3 bottom-3 z-[120] mx-auto max-w-[34rem] animate-rise rounded-2xl border border-border bg-background p-5 text-foreground shadow-[0_24px_60px_-20px_rgb(0_0_0/0.45)] sm:inset-x-auto sm:bottom-6 sm:left-6 sm:p-6"
-    >
-      <div className="flex items-start gap-3.5">
-        <ShieldCheck
+    <>
+      {/* Fondo oscurecido: la web queda detrás hasta aceptar (salvo al leer la política). */}
+      {!reading && (
+        <div
           aria-hidden="true"
-          className="mt-0.5 size-6 shrink-0 text-accent"
-          strokeWidth={1.7}
+          className="fixed inset-0 z-[119] animate-[fade-in_0.4s_ease-out_both] bg-black/55 backdrop-blur-[2px]"
         />
-        <div>
-          <p className="font-serif text-lg font-semibold">{t('privacyNotice.title')}</p>
-          <p className="mt-1.5 text-[0.92rem] leading-relaxed text-foreground/80">
-            {t('privacyNotice.text')}{' '}
-            <Link
-              to="/privacidad"
-              className="font-semibold text-accent-text underline underline-offset-4"
-            >
+      )}
+      <section
+        role="dialog"
+        aria-modal={!reading}
+        aria-labelledby="privacy-notice-title"
+        aria-describedby="privacy-notice-text"
+        className="fixed inset-x-0 bottom-0 z-[120] animate-rise border-t border-border bg-background text-foreground shadow-[0_-18px_50px_-20px_rgb(0_0_0/0.45)]"
+      >
+        <div className="mx-auto flex max-w-[90rem] flex-col gap-5 px-5 py-5 sm:px-8 sm:py-6 lg:flex-row lg:items-center lg:gap-10">
+          <div className="flex flex-1 items-start gap-4">
+            <span className="grid size-12 shrink-0 place-items-center rounded-full bg-accent/10 text-accent max-sm:hidden">
+              <ShieldCheck aria-hidden="true" className="size-6" strokeWidth={1.7} />
+            </span>
+            <div>
+              <p id="privacy-notice-title" className="text-[1.05rem] font-semibold sm:text-lg">
+                {t('privacyNotice.title')}
+              </p>
+              <p
+                id="privacy-notice-text"
+                className="mt-1.5 text-[0.9rem] leading-relaxed text-foreground/70 sm:text-[0.95rem]"
+              >
+                {t('privacyNotice.text')}
+              </p>
+            </div>
+          </div>
+          <div className="flex shrink-0 flex-wrap items-center gap-x-6 gap-y-3 max-lg:pl-0 sm:max-lg:pl-16">
+            <Link to="/privacidad" className={link}>
               {t('privacyNotice.link')}
             </Link>
-            .
-          </p>
-          <button
-            type="button"
-            onClick={accept}
-            className="mt-4 inline-flex min-h-11 cursor-pointer items-center justify-center rounded-md bg-accent px-7 font-semibold text-on-accent transition-colors hover:bg-[color-mix(in_oklab,var(--color-accent)_88%,#000)] max-sm:w-full"
-          >
-            {t('privacyNotice.accept')}
-          </button>
+            <Link to="/terminos" className={link}>
+              {t('privacyNotice.terms')}
+            </Link>
+            <button
+              type="button"
+              onClick={accept}
+              autoFocus
+              className="inline-flex min-h-12 cursor-pointer items-center justify-center rounded-full bg-accent px-9 font-semibold tracking-wide text-on-accent uppercase shadow-sm transition-colors hover:bg-[color-mix(in_oklab,var(--color-accent)_88%,#000)] max-sm:w-full"
+            >
+              {t('privacyNotice.accept')}
+            </button>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
