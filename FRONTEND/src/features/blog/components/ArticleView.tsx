@@ -30,7 +30,7 @@ export function ArticleView({ article, blog, url, publisher }: ArticleViewProps)
           {blog.backLabel}
         </Link>
 
-        <header className="mt-8">
+        <header className="mt-4">
           {article.featured && (
             <p className="mb-4 inline-block rounded-sm bg-accent px-2.5 py-1 text-xs font-semibold tracking-wide text-on-accent uppercase">
               {blog.featuredLabel}

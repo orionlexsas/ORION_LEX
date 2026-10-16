@@ -195,3 +195,11 @@ html.intro-playing .animate-rise {
   animation: rise 0.7s var(--ease-out-soft) both;
   animation-delay: var(--delay, 0ms);
 }
+
+/* Primera sección de cada página: va justo bajo la cabecera, sin una franja vacía encima. */
+main > .section-spacing:first-child {
+  padding-top: 1.5rem;
+  @media (width >= 64rem) {
+    padding-top: 2.5rem;
+  }
+}

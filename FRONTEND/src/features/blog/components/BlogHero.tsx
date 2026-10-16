@@ -15,7 +15,7 @@ export function BlogHero({ blog }: { blog: BlogContent }) {
         style={fadeLeft}
         className="absolute inset-y-0 right-0 -z-10 h-full w-full object-cover object-right opacity-35 sm:w-[75%] sm:opacity-100 lg:w-[62%]"
       />
-      <Container className="py-14 lg:py-20">
+      <Container className="pt-8 pb-14 lg:pt-10 lg:pb-20">
         <p className="eyebrow">{blog.eyebrow}</p>
         <h1
           id="blog-title"
