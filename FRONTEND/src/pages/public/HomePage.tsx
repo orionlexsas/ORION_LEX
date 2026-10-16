@@ -1,4 +1,3 @@
-import { StructuredData } from '@/components/seo/StructuredData';
 import { useContent } from '@/content';
 import { ApproachSection } from '@/features/approach';
 import { BlogPreviewSection } from '@/features/blog';
@@ -15,6 +14,7 @@ import { useSeo } from '@/seo/use-seo';
 /**
  * Portada: servicio → confianza → explicación → contacto. Los fondos alternan (blanco, crema,
  * la vitrina negra de Servicios, naranja suave) para que cada sección se distinga de la siguiente.
+ * Los datos del despacho para Google (JSON-LD) los escribe el prerender en el HTML de cada página.
  */
 export function HomePage() {
   const content = useContent();
@@ -53,21 +53,6 @@ export function HomePage() {
         className="defer-render"
         contact={site.contact}
         subjects={landings.map((l) => l.title)}
-      />
-      <StructuredData
-        data={{
-          '@context': 'https://schema.org',
-          '@type': 'LegalService',
-          name: site.brand.legalName,
-          url: site.siteUrl,
-          logo: `${site.siteUrl}/brand/logo.webp`,
-          image: `${site.siteUrl}${site.seo.image}`,
-          description: site.seo.description,
-          telephone: `+${site.contact.whatsapp.number}`,
-          email: site.contact.email,
-          areaServed: { '@type': 'Country', name: 'Colombia' },
-          sameAs: site.social.map((s) => s.url),
-        }}
       />
     </>
   );

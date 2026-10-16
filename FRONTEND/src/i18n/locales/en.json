@@ -1,4 +1,7 @@
 {
+  "credits": {
+    "designedBy": "Designed by"
+  },
   "a11y": {
     "goHome": "{{name}}, go to home page",
     "skipToContent": "Skip to content",
@@ -94,6 +97,14 @@
     "viewService": "View service",
     "otherServices": "Other {{area}} services",
     "backTo": "Back to {{area}}"
+  },
+  "privacyNotice": {
+    "label": "Personal data processing notice",
+    "title": "Manage consent for personal data processing",
+    "text": "At Orión Lex we protect your personal data under Colombian Law 1581 of 2012. We use the information you share with us (and basic browsing data) to handle your inquiry and improve this site. By accepting, you authorize its processing under our policy; you can review, update or withdraw your authorization at any time.",
+    "link": "Personal data processing policy",
+    "terms": "Terms and conditions",
+    "accept": "I accept"
   },
   "carousel": {
     "label": "Cards",

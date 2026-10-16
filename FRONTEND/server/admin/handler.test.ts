@@ -547,3 +547,55 @@ describe('API del panel: servicios', () => {
     expect(readJson(files, 'es/matters.json').order).not.toContain(order[0]);
   });
 });
+
+describe('API del panel: testimonios', () => {
+  const real = () => ({
+    [`${C}/es/testimonials.json`]: readFileSync('src/content/es/testimonials.json', 'utf8'),
+    [`${C}/en/testimonials.json`]: readFileSync('src/content/en/testimonials.json', 'utf8'),
+  });
+  const readJson = (files: Map<string, Buffer>, path: string) =>
+    JSON.parse(files.get(`${C}/${path}`)!.toString());
+  type Item = { name: string; service: string; text: string };
+
+  it('agrega, edita y reordena manteniendo la traducción al inglés', async () => {
+    const { call, cookie, files, log } = await setup(real());
+    const { items } = (await call('GET', '/testimonials', undefined, cookie)).body as {
+      items: Item[];
+    };
+    const [first, second, ...rest] = items;
+    const nuevo = {
+      name: 'Paula Andrea Ríos',
+      service: 'Derecho laboral',
+      text: 'Muy buena atención.',
+    };
+    const res = await call(
+      'PUT',
+      '/testimonials',
+      { items: [second, { ...first!, text: 'Texto nuevo.' }, ...rest, nuevo] },
+      cookie,
+    );
+    expect(res.status).toBe(200);
+    const es = readJson(files, 'es/testimonials.json');
+    const en = readJson(files, 'en/testimonials.json');
+    expect(es.items.at(-1)).toEqual(nuevo);
+    expect(es.title).toBe('La confianza de quienes hemos acompañado');
+    // El segundo no cambió: conserva su texto en inglés; el editado y el nuevo usan el español.
+    expect(en.items[0].text).not.toBe(second!.text);
+    expect(en.items[1].text).toBe('Texto nuevo.');
+    expect(en.items.at(-1).text).toBe('Muy buena atención.');
+    expect(log[0]?.message).toBe('Se agregó el testimonio de «Paula Andrea Ríos»');
+  });
+
+  it('no acepta campos vacíos ni nombres repetidos', async () => {
+    const { call, cookie } = await setup(real());
+    const vacio = await call(
+      'PUT',
+      '/testimonials',
+      { items: [{ name: '', service: 'x', text: 'y' }] },
+      cookie,
+    );
+    expect(vacio.status).toBe(400);
+    const t = { name: 'Ana', service: 'x', text: 'y' };
+    expect((await call('PUT', '/testimonials', { items: [t, t] }, cookie)).status).toBe(409);
+  });
+});

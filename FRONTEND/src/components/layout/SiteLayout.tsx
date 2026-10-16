@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useContent } from '@/content';
 import { trackPageView } from '@/lib/analytics';
 import { FloatingActions } from './FloatingActions';
+import { PrivacyNotice } from './PrivacyNotice';
 import { SiteFooter } from './SiteFooter';
 import { SiteHeader } from './SiteHeader';
 
@@ -46,6 +47,7 @@ export function SiteLayout() {
         showCta={showFooterCta}
       />
       <FloatingActions whatsapp={site.contact.whatsapp} />
+      <PrivacyNotice />
     </div>
   );
 }

@@ -106,6 +106,12 @@ export const router = createBrowserRouter([
         }),
       },
       {
+        path: 'testimonios',
+        lazy: async () => ({
+          Component: (await import('@/pages/admin/TestimonialsAdminPage')).TestimonialsAdminPage,
+        }),
+      },
+      {
         path: 'fotos',
         lazy: async () => ({ Component: (await import('@/pages/admin/MediaPage')).MediaPage }),
       },

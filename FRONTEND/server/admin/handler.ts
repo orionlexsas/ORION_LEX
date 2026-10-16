@@ -6,6 +6,7 @@ import {
   adminLandingSaveSchema,
   adminLoginSchema,
   adminMattersOrderSchema,
+  adminTestimonialsSaveSchema,
   imageTextsSaveSchema,
   mediaReplaceSchema,
   mediaUploadSchema,
@@ -36,6 +37,7 @@ import {
   saveLanding,
 } from './services.js';
 import { HttpError, PATHS, type ContentStore } from './store.js';
+import { listTestimonials, saveTestimonials } from './testimonials.js';
 
 /*
  * API del panel: /api/v1/admin/*. No depende de Vercel ni de Vite: recibe la petición ya
@@ -316,6 +318,13 @@ async function route(req: AdminRequest, deps: AdminDeps): Promise<AdminResponse>
     case 'PUT landing-order':
       await reorderLandings(store, parseBody(adminMattersOrderSchema, req.body).order, user);
       return ok(saved);
+
+    case 'GET testimonials':
+      return ok(await listTestimonials(store));
+    case 'PUT testimonials': {
+      const body = parseBody(adminTestimonialsSaveSchema, req.body);
+      return ok({ ...(await saveTestimonials(store, body, user)), ...saved });
+    }
 
     case 'GET stats':
       return ok(await computeStats(store, now));

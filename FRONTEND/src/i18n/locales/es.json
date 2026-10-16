@@ -1,4 +1,7 @@
 {
+  "credits": {
+    "designedBy": "Diseñado por"
+  },
   "a11y": {
     "goHome": "{{name}}, ir al inicio",
     "skipToContent": "Ir al contenido",
@@ -94,6 +97,14 @@
     "viewService": "Ver servicio",
     "otherServices": "Otros servicios de {{area}}",
     "backTo": "Volver a {{area}}"
+  },
+  "privacyNotice": {
+    "label": "Aviso de tratamiento de datos personales",
+    "title": "Gestionar el consentimiento del tratamiento de datos personales",
+    "text": "En Orión Lex protegemos sus datos personales conforme a la Ley 1581 de 2012. Usamos la información que nos comparte (y datos básicos de navegación) para atender su consulta y mejorar este sitio. Al aceptar, usted autoriza su tratamiento según nuestra política; puede consultar, actualizar o retirar su autorización en cualquier momento.",
+    "link": "Política de tratamiento de datos personales",
+    "terms": "Términos y condiciones",
+    "accept": "Acepto"
   },
   "carousel": {
     "label": "Tarjetas",
