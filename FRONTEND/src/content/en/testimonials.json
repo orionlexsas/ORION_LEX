@@ -1,44 +1,36 @@
 {
-  "eyebrow": "Testimonials",
-  "title": "What our clients say",
-  "description": "People who trusted Orión Lex with their case share how it went.",
-  "script": "Your peace of mind, our commitment",
+  "eyebrow": "Real experiences",
+  "title": "The trust of those we have supported",
+  "description": "Stories of people who found guidance, clarity and support to move forward.",
+  "script": "Every case has a story",
+  "clientLabel": "Orión Lex client",
+  "hint": "Swipe to see more experiences",
+  "note": "For privacy, some names are shown in abbreviated form.",
   "items": [
     {
-      "name": "Carolina M.",
-      "detail": "Bogotá · Datacrédito report",
-      "text": "I had been reported for years over a debt I had already paid. They explained everything patiently and within a few weeks the report was gone. I could finally get my loan.",
-      "rating": 5
+      "name": "María R.",
+      "service": "Labor law",
+      "text": "They explained every step clearly and I was able to make decisions with greater peace of mind."
     },
     {
-      "name": "Andrés R.",
-      "detail": "Medellín · Traffic fines",
-      "text": "Old traffic fines kept me from renewing my license. They reviewed each one, told me which could be challenged and got it done. Very clear from the first message.",
-      "rating": 5
+      "name": "Carlos P.",
+      "service": "Tutela action",
+      "text": "I found a close, professional and committed team. They clearly explained each stage and were attentive to my concerns throughout the process."
     },
     {
-      "name": "Luz Dary P.",
-      "detail": "Cali · Tutela action",
-      "text": "Our health provider denied my mother a treatment. They filed the tutela very quickly and it was granted. They were always available and answered on WhatsApp.",
-      "rating": 5
+      "name": "Laura C.",
+      "service": "Datacrédito",
+      "text": "They reviewed my situation carefully and helped me understand the available options."
     },
     {
-      "name": "Jhon F.",
-      "detail": "Bucaramanga · SOAT compensation",
-      "text": "After the accident I didn't know what to do with the SOAT insurance. They handled the whole process and I received the compensation without visiting any office.",
-      "rating": 5
+      "name": "Jorge M.",
+      "service": "Traffic fines",
+      "text": "From the first message they answered quickly and told me honestly what could be done in my case."
     },
     {
-      "name": "Marcela T.",
-      "detail": "From Spain · Family law",
-      "text": "I live in Madrid and needed to settle a family matter in Colombia. Everything was virtual, with video calls and documents by email. Excellent support.",
-      "rating": 5
-    },
-    {
-      "name": "Rubén C.",
-      "detail": "Barranquilla · Right of petition",
-      "text": "An agency hadn't answered me for months. They drafted the petition and within fifteen days I had a response. Serious service at a fair price.",
-      "rating": 5
+      "name": "Diana S.",
+      "service": "Family law",
+      "text": "I live abroad and all the support was virtual. I always knew how my case was progressing."
     }
   ]
 }

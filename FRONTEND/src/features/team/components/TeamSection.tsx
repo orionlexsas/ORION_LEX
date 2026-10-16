@@ -126,7 +126,12 @@ function TeamProfile({ member, facebookLabel }: TeamProfileProps) {
         </h3>
         <p className="mt-3 text-[0.95rem] font-medium text-foreground/80">{member.role}</p>
         <hr className="my-5 border-border" />
-        <p className="text-[1.05rem] leading-relaxed text-foreground/85">{member.description}</p>
+        {/* La descripción puede tener varios párrafos, separados por una línea en blanco. */}
+        <div className="space-y-4 text-[1.05rem] leading-relaxed text-foreground/85">
+          {member.description.split(/\n\s*\n/).map((paragraph) => (
+            <p key={paragraph.slice(0, 40)}>{paragraph.trim()}</p>
+          ))}
+        </div>
 
         {member.facebook && (
           <a

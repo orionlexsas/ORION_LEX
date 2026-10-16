@@ -8,22 +8,22 @@
     {
       "status": "final",
       "name": "Yuricsa Romero Trigos",
-      "role": "Abogada | Atención jurídica integral",
-      "description": "Escucha cada situación con atención y explica las alternativas jurídicas de manera clara, cercana y comprensible.",
+      "role": "Representante legal",
+      "description": "Abogada especialista en Derecho Constitucional y magíster en Reconciliación y Convivencia. Ha enfocado su trayectoria en el derecho privado, mediante la asesoría jurídica y el acompañamiento en la solución de controversias entre particulares.\n\nComo representante legal de Orión Lex, integra la gestión de la firma con su ejercicio profesional. Su formación le permite abordar los conflictos desde una perspectiva que combina el análisis jurídico, la negociación y la construcción de acuerdos, con el propósito de proteger los derechos de sus clientes y dar respuesta a sus necesidades.",
       "photo": {
         "src": "/images/equipo/yuricsa-romero-trigos.webp",
-        "alt": "Yuricsa Romero Trigos, abogada de Orión Lex",
+        "alt": "Yuricsa Romero Trigos, representante legal de Orión Lex",
         "position": "50% 15%"
       }
     },
     {
       "status": "final",
-      "name": "Sergio Ardila",
-      "role": "Abogado | Atención jurídica integral",
-      "description": "Analiza cada caso, organiza la ruta de atención y acompaña al cliente durante cada etapa con comunicación clara y oportuna.",
+      "name": "Sergio Ardila Rodriguez",
+      "role": "Director estratégico de litigios",
+      "description": "Abogado especialista en Derecho Constitucional y maestrante en Derecho Laboral y Seguridad Social. Su trayectoria comprende la asesoría jurídica a entidades públicas, la contratación estatal y la representación judicial en asuntos de derecho civil y derecho administrativo.\n\nEn Orión Lex, lidera la definición de estrategias de litigio a partir del análisis de cada caso, sus pruebas y las alternativas procesales disponibles. Su labor se centra en orientar la preparación de las actuaciones judiciales, coordinar el seguimiento de los procesos y construir una defensa jurídica que responda a las necesidades e intereses de cada cliente.",
       "photo": {
         "src": "/images/equipo/sergio-ardila.webp",
-        "alt": "Sergio Ardila, abogado de Orión Lex",
+        "alt": "Sergio Ardila Rodriguez, director estratégico de litigios de Orión Lex",
         "position": "55% 20%"
       }
     }

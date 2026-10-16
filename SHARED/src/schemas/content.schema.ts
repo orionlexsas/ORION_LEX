@@ -331,20 +331,26 @@ export const coverageContentSchema = z.object({
   cta: linkSchema,
 });
 
-/** "Lo que dicen nuestros clientes" en la portada (casi al final). Sin reseñas, no se muestra. */
+/** Testimonios en la portada (casi al final), en carrusel. Sin reseñas, no se muestra. */
 export const testimonialsContentSchema = z.object({
   eyebrow: z.string(),
   title: z.string(),
   description: z.string(),
-  /** Frase decorativa manuscrita bajo el encabezado (opcional). */
+  /** Frase decorativa manuscrita a la derecha del encabezado (opcional). */
   script: z.string().optional(),
+  /** Texto junto a las iniciales de cada tarjeta ("Cliente de Orión Lex"). */
+  clientLabel: z.string(),
+  /** Indicación bajo los puntos del carrusel ("Deslice para conocer más experiencias"). */
+  hint: z.string(),
+  /** Nota pequeña al pie (p. ej. sobre los nombres abreviados). */
+  note: z.string().optional(),
   items: z.array(
     z.object({
+      /** Nombre abreviado: "María R.". */
       name: z.string(),
-      /** Ciudad y asunto, p. ej. "Bogotá · Reporte en Datacrédito". */
-      detail: z.string(),
+      /** Asunto que se atendió ("Acción de tutela"). */
+      service: z.string(),
       text: z.string(),
-      rating: z.number().int().min(1).max(5).default(5),
     }),
   ),
 });
