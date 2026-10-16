@@ -5,13 +5,15 @@
  *   golpe de rueda no da un tirón.
  * - Los fotogramas se descargan por grupos; nunca se dibuja un hueco: si el exacto aún no está,
  *   se dibuja el más cercano ya cargado.
- * - Se dibuja "a lo object-fit: cover".
+ * - Se dibuja "a lo object-fit: cover", alineado abajo (`ALIGN_Y`).
  */
 
 /** Cuánto se acerca el fotograma mostrado al pedido en cada cuadro (0→1). */
 const SMOOTHING = 0.14;
 /** Fotogramas que se cargan primero (lo que se ve al llegar). */
 const FIRST = 8;
+/** Alineación vertical al recortar (0 = arriba, 1 = abajo). */
+const ALIGN_Y = 1;
 /** Tamaño de cada grupo de descarga posterior. */
 const GROUP = 12;
 
@@ -60,7 +62,8 @@ export function createFramePlayer(
     const scale = Math.max(cw / img.naturalWidth, ch / img.naturalHeight);
     const w = img.naturalWidth * scale;
     const h = img.naturalHeight * scale;
-    ctx.drawImage(img, (cw - w) / 2, (ch - h) / 2, w, h);
+    // Alineado abajo: se ve el suelo completo y, si sobra alto, se recorta el cielo.
+    ctx.drawImage(img, (cw - w) / 2, (ch - h) * ALIGN_Y, w, h);
     drawn = index;
   };
 

@@ -165,7 +165,12 @@ export function PenStroke() {
       ([entry]) => {
         if (!entry?.isIntersecting) return;
         nearby.disconnect();
-        stopWaiting = whenIntroEnds(() => void start());
+        stopWaiting = whenIntroEnds(() => {
+          // Cuando el navegador esté libre: no compite con la carga de la portada.
+          const idle =
+            window.requestIdleCallback ?? ((cb: () => void) => window.setTimeout(cb, 400));
+          idle(() => void start(), { timeout: 2000 });
+        });
       },
       { rootMargin: '400px 0px' },
     );

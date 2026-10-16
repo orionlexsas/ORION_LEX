@@ -46,6 +46,7 @@ export function SiteFooter({ site, services, showCta }: SiteFooterProps) {
               <img
                 src="/brand/escudo-blanco.webp"
                 alt=""
+                loading="lazy"
                 width={253}
                 height={192}
                 className="h-10 w-auto"
@@ -53,6 +54,7 @@ export function SiteFooter({ site, services, showCta }: SiteFooterProps) {
               <img
                 src="/brand/wordmark-blanco.webp"
                 alt=""
+                loading="lazy"
                 width={474}
                 height={120}
                 className="h-7 w-auto"

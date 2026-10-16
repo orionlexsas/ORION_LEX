@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'react';
+import { useEffect, useState, type CSSProperties } from 'react';
 import { ArrowRight } from 'lucide-react';
 import type { HomeContent } from '@orion-lex/shared';
 import { CtaLink } from '@/components/cta/CtaLink';
@@ -30,6 +30,18 @@ export function HeroSection({ hero }: HeroSectionProps) {
   // Fotos de fondo: la principal (el equipo) y luego las demás, pasando solas.
   const slides = hero.slides ?? [];
   const activeSlide = useSlideshow(slides.length + 1);
+  // Carga diferida de las demás fotos: la siguiente se descarga cuando el navegador queda libre
+  // tras cargar la página, y cada una se conserva después de haberse visto.
+  const [ready, setReady] = useState(false);
+  const [reached, setReached] = useState(0);
+  if (activeSlide > reached) setReached(activeSlide);
+  useEffect(() => {
+    const idle = window.requestIdleCallback ?? ((cb: () => void) => window.setTimeout(cb, 1500));
+    const start = () => idle(() => setReady(true), { timeout: 3000 });
+    if (document.readyState === 'complete') start();
+    else window.addEventListener('load', start, { once: true });
+    return () => window.removeEventListener('load', start);
+  }, []);
 
   return (
     <>
@@ -177,6 +189,7 @@ export function HeroSection({ hero }: HeroSectionProps) {
           {/* Más fotos de fondo: aparecen encima de la principal con un fundido y un zoom lento */}
           {slides.map((slide, i) => {
             const shown = activeSlide === i + 1;
+            if (!ready || i > reached) return null;
             return (
               <img
                 key={slide.src}

@@ -119,7 +119,7 @@ export function ApproachScroll({ id, content, sequence }: ApproachScrollProps) {
       i % 2 === 1 ? 'justify-end' : 'justify-start',
     );
   const glass =
-    'w-[86%] max-w-[30rem] rounded-2xl border border-white/15 bg-ink/60 p-7 text-white shadow-[0_30px_80px_-30px_rgb(0_0_0/0.6)] backdrop-blur-md max-sm:p-5 sm:w-full sm:p-9';
+    'w-[86%] max-w-[30rem] rounded-2xl border border-white/15 bg-ink/72 p-7 text-white shadow-[0_30px_80px_-30px_rgb(0_0_0/0.6)] max-sm:p-5 sm:w-full sm:p-9';
 
   return (
     <section

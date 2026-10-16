@@ -147,7 +147,7 @@ export function TestimonialsSection({ id, content, className }: TestimonialsSect
               cardRefs.current[i] = el;
             }}
             style={{ opacity: 0 }}
-            className="group absolute top-2 left-0 -ml-[9.5rem] h-[27.5rem] w-[19rem] will-change-transform sm:-ml-[10.5rem] sm:h-[25.75rem] sm:w-[21rem] lg:-ml-[11.5rem] lg:w-[23rem]"
+            className="group absolute top-2 left-0 [contain:layout_style] -ml-[9.5rem] h-[27.5rem] w-[19rem] will-change-transform sm:-ml-[10.5rem] sm:h-[25.75rem] sm:w-[21rem] lg:-ml-[11.5rem] lg:w-[23rem]"
           >
             <TestimonialCard item={item} clientLabel={content.clientLabel} />
           </div>

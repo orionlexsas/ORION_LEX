@@ -214,3 +214,13 @@ main > .section-spacing:first-child {
     padding-top: 2.5rem;
   }
 }
+
+/*
+ * Secciones lejanas: el navegador no las dibuja hasta que se acercan (carga y scroll más
+ * fluidos). Solo las que no necesitan medirse desde fuera (no el recorrido con video ni el
+ * carrusel de testimonios). `auto 700px` reserva su alto mientras tanto.
+ */
+@utility defer-render {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 700px;
+}
