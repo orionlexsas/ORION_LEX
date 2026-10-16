@@ -412,6 +412,9 @@ export const blogContentSchema = z.object({
   featuredReadMore: z.string(),
   /** Título sobre la cuadrícula ("Últimos artículos"). */
   latestTitle: z.string(),
+  /** Portada: frase manuscrita a la derecha y título de la lista lateral (opcionales). */
+  script: z.string().optional(),
+  recentLabel: z.string().optional(),
   readMore: z.string(),
   allLabel: z.string(),
   empty: z.string(),

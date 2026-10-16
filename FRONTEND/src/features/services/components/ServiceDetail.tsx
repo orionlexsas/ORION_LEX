@@ -32,16 +32,16 @@ export function ServiceDetail({ area, service, content }: ServiceDetailProps) {
       <Container>
         <Link
           to={practiceAreaHref(area.slug)}
-          className="inline-flex min-h-11 items-center gap-2 text-sm font-medium text-muted transition-colors hover:text-foreground"
+          className="inline-flex min-h-9 items-center gap-2 text-sm font-medium text-muted transition-colors hover:text-foreground"
         >
           <ArrowLeft className="size-4" aria-hidden="true" />
           {t('practiceArea.backTo', { area: area.title })}
         </Link>
 
-        <div className="mt-6 grid items-center gap-10 max-sm:gap-7 lg:grid-cols-2 lg:gap-16">
+        <div className="mt-3 grid items-center gap-10 max-sm:gap-7 lg:grid-cols-2 lg:gap-16">
           <div>
             <p className="eyebrow">{area.title}</p>
-            <h1 className="mt-4 font-serif text-4xl leading-[1.08] font-semibold tracking-tight sm:text-5xl lg:text-[3.2rem]">
+            <h1 className="mt-3 font-serif text-4xl leading-[1.08] font-semibold tracking-tight sm:text-5xl lg:text-[3.2rem]">
               {service.title}
             </h1>
             <span aria-hidden="true" className="mt-5 block h-0.5 w-12 bg-accent" />

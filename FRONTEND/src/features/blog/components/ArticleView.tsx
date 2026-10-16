@@ -24,7 +24,7 @@ export function ArticleView({ article, blog, url, publisher }: ArticleViewProps)
       <Container className="max-w-3xl">
         <Link
           to="/actualidad"
-          className="inline-flex min-h-11 items-center gap-2 text-sm font-medium text-muted transition-colors hover:text-foreground"
+          className="inline-flex min-h-9 items-center gap-2 text-sm font-medium text-muted transition-colors hover:text-foreground"
         >
           <ArrowLeft className="size-4" aria-hidden="true" />
           {blog.backLabel}
