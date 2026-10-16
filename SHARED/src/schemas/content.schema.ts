@@ -373,6 +373,8 @@ export const coverageContentSchema = z.object({
   text: z.string(),
   points: z.array(z.object({ icon: contentIconSchema, title: z.string(), text: z.string() })),
   image: imageSchema,
+  /** Foto de fondo de toda la sección (opcional; `srcMobile` para celular). */
+  background: imageSchema.optional(),
   cta: linkSchema,
 });
 

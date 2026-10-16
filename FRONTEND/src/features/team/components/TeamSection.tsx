@@ -92,6 +92,8 @@ export function TeamSection({
                 style={{ '--delay': `${i * 140}ms` } as CSSProperties}
                 className={cn(
                   carouselItem,
+                  // Línea vertical fina entre los dos perfiles (computador).
+                  i > 0 && 'xl:border-l xl:border-border xl:pl-6',
                   'transition-[opacity,translate] duration-500 ease-out-soft [transition-delay:var(--delay)]',
                   inView ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0',
                 )}
@@ -156,21 +158,19 @@ function ProfileCard({ member, content }: { member: Member; content: TeamContent
           flipped && 'rotate-y-180',
         )}
       >
-        {/* Frente */}
+        {/* Frente: con retrato recortado va abierto (sin recuadro), la persona grande a la izquierda */}
         <div
           inert={flipped}
           className={cn(
-            face,
-            'grid content-start gap-5 p-4 sm:content-stretch sm:grid-cols-[0.9fr_1fr] sm:gap-5 sm:p-4',
+            member.photo.cutout
+              ? 'cursor-pointer [grid-area:1/1] backface-hidden'
+              : cn(face, 'p-4'),
+            'grid content-start gap-5 sm:content-stretch sm:grid-cols-[0.9fr_1fr] sm:gap-5',
           )}
         >
           {member.photo.cutout ? (
-            // Retrato recortado sobre un fondo de estudio cálido (luz naranja suave detrás).
-            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg bg-[radial-gradient(ellipse_70%_60%_at_50%_35%,color-mix(in_oklab,var(--color-accent)_28%,var(--color-band-accent))_0%,var(--color-band-accent)_55%,color-mix(in_oklab,var(--color-band)_70%,var(--color-ink)_6%)_100%)] sm:aspect-auto sm:h-full sm:min-h-[17rem]">
-              <span
-                aria-hidden="true"
-                className="absolute inset-x-6 bottom-0 h-1/3 rounded-t-full bg-accent/10 blur-2xl"
-              />
+            // Retrato recortado, sin fondo: se funde abajo con la sección.
+            <div className="relative aspect-[4/3] w-full sm:aspect-auto sm:h-full sm:min-h-[22rem]">
               <img
                 src={member.photo.src}
                 alt={member.photo.alt}
@@ -178,8 +178,7 @@ function ProfileCard({ member, content }: { member: Member; content: TeamContent
                 decoding="async"
                 width={720}
                 height={1150}
-                style={{ objectPosition: member.photo.position }}
-                className="absolute inset-0 size-full object-cover drop-shadow-[0_10px_18px_rgb(0_0_0/0.18)] transition-transform duration-500 ease-out-soft group-hover:scale-[1.02]"
+                className="absolute inset-0 size-full object-contain object-bottom transition-transform duration-500 ease-out-soft [mask-image:linear-gradient(to_bottom,black_82%,transparent)] group-hover:scale-[1.02] max-sm:object-[50%_15%] max-sm:object-cover"
               />
             </div>
           ) : (
@@ -194,7 +193,9 @@ function ProfileCard({ member, content }: { member: Member; content: TeamContent
               className="aspect-[4/3] w-full rounded-lg object-cover sm:aspect-auto sm:h-full sm:min-h-[17rem]"
             />
           )}
-          <div className="flex flex-col pb-1 sm:py-1.5 sm:pr-1">
+          <div
+            className={cn('flex flex-col pb-1 sm:py-1.5 sm:pr-1', member.photo.cutout && 'sm:py-6')}
+          >
             <span aria-hidden="true" className="block h-[3px] w-10 rounded-full bg-accent" />
             <h3 className="mt-2.5 font-serif text-[1.9rem] leading-[1.05] font-semibold tracking-tight sm:text-[1.95rem]">
               {member.name}
