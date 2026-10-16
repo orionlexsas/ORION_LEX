@@ -1,11 +1,22 @@
 {
-  "eyebrow": "Áreas de práctica",
-  "title": "Servicios jurídicos",
-  "description": "Asesoría y representación en las principales áreas del derecho.",
+  "eyebrow": "Servicios jurídicos",
+  "title": "Nuestros servicios",
+  "description": "Soluciones legales integrales con atención profesional, estratégica y personalizada.",
   "script": "Derecho, estrategia y respaldo",
   "detailsLabel": "¿En qué consiste?",
   "ctaLabel": "Solicitar asesoría",
   "backLabel": "Volver a Servicios jurídicos",
+  "readMoreLabel": "Ver más",
+  "quote": "Más que servicios legales, construimos tranquilidad en cada etapa de su vida.",
+  "decor": {
+    "src": "/images/hero/justicia-mazo.webp",
+    "alt": ""
+  },
+  "featuredEyebrow": "Apoyo en cada decisión",
+  "featuredNote": {
+    "title": "Su aliado legal en cada paso",
+    "text": "Escuchamos, analizamos y le guiamos hacia la mejor solución."
+  },
   "items": [
     {
       "slug": "asesoria-juridica",

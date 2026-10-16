@@ -282,6 +282,15 @@ export const servicesContentSchema = z.object({
   ctaLabel: z.string(),
   /** Enlace de regreso en la página de cada área. */
   backLabel: z.string(),
+  /** Enlace de cada tarjeta del mosaico ("Ver más"). */
+  readMoreLabel: z.string(),
+  /** Cita a la derecha del encabezado (opcional). */
+  quote: z.string().optional(),
+  /** Imagen decorativa arriba a la derecha, fundida con el fondo (opcional). */
+  decor: imageSchema.optional(),
+  /** Tarjeta destacada: etiqueta pequeña y franja inferior (opcionales). */
+  featuredEyebrow: z.string().optional(),
+  featuredNote: z.object({ title: z.string(), text: z.string() }).optional(),
   items: z
     .array(
       z.object({
