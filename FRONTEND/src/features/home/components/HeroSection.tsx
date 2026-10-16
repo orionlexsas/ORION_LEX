@@ -72,7 +72,7 @@ export function HeroSection({ hero }: HeroSectionProps) {
                 {hero.title}
               </h1>
               <p
-                className="mt-5 animate-rise text-[0.95rem] leading-relaxed text-foreground/80 max-sm:max-w-[calc(56vw-1.25rem)] max-sm:min-w-[11rem] max-sm:leading-snug max-sm:text-foreground/90 sm:text-lg xl:text-[1.2rem]"
+                className="mt-5 animate-rise text-[0.95rem] leading-relaxed text-foreground/80 max-sm:max-w-[calc(56vw-1.25rem)] max-sm:min-w-[11rem] max-sm:leading-snug max-sm:text-foreground/90 sm:text-lg xl:text-[1.2rem] xl:text-foreground/90 xl:[text-shadow:0_1px_3px_color-mix(in_oklab,var(--color-background)_90%,transparent)]"
                 style={delay(160)}
               >
                 {hero.mobileDescription ? (
@@ -216,14 +216,14 @@ export function HeroSection({ hero }: HeroSectionProps) {
             aria-hidden="true"
             className="absolute inset-x-0 top-0 hidden h-20 bg-gradient-to-b from-background/50 to-transparent xl:block"
           />
-          {/* Velo solo detrás del texto (izquierda) para leerlo; el resto de la foto queda nítido */}
+          {/* Halo claro y suave detrás del texto (elipse a la izquierda); el resto de la foto queda nítido */}
           <div
             aria-hidden="true"
             className={cn(
               'absolute inset-0 hidden xl:block',
-              'bg-[linear-gradient(90deg,color-mix(in_oklab,var(--color-background)_72%,transparent)_0%,color-mix(in_oklab,var(--color-background)_62%,transparent)_24%,color-mix(in_oklab,var(--color-background)_20%,transparent)_36%,transparent_44%)]',
+              'bg-[radial-gradient(ellipse_46%_88%_at_20%_52%,color-mix(in_oklab,var(--color-background)_86%,transparent)_0%,color-mix(in_oklab,var(--color-background)_66%,transparent)_42%,color-mix(in_oklab,var(--color-background)_22%,transparent)_68%,transparent_84%)]',
               // En modo oscuro la foto es muy clara: la transición negra llega un poco más lejos.
-              'dark:bg-[linear-gradient(90deg,var(--color-background)_0%,var(--color-background)_26%,color-mix(in_oklab,var(--color-background)_55%,transparent)_38%,transparent_48%)]',
+              'dark:bg-[radial-gradient(ellipse_48%_92%_at_20%_52%,color-mix(in_oklab,var(--color-background)_92%,transparent)_0%,color-mix(in_oklab,var(--color-background)_75%,transparent)_45%,color-mix(in_oklab,var(--color-background)_30%,transparent)_70%,transparent_86%)]',
             )}
           />
         </div>
