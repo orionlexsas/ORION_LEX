@@ -37,7 +37,8 @@
       {
         "src": "/images/hero/justicia-mazo.webp",
         "alt": "Statue of justice and judge’s gavel on a desk",
-        "fit": "contain"
+        "fit": "contain",
+        "position": "64% 50%"
       }
     ]
   }

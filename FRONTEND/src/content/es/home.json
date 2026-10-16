@@ -37,7 +37,8 @@
       {
         "src": "/images/hero/justicia-mazo.webp",
         "alt": "Estatua de la justicia y mazo de juez sobre un escritorio",
-        "fit": "contain"
+        "fit": "contain",
+        "position": "64% 50%"
       }
     ]
   }

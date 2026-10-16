@@ -144,6 +144,8 @@ export const homeContentSchema = z.object({
            * cuadradas. `cover` (por defecto): llena la portada.
            */
           fit: z.enum(['cover', 'contain']).default('cover'),
+          /** Parte de la foto que se ve cuando se recorta (celular y tablet), p. ej. "80% 50%". */
+          position: z.string().default('50% 35%'),
         }),
       )
       .optional(),
