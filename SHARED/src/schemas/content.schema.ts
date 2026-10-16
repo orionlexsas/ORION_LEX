@@ -346,7 +346,7 @@ export const testimonialsContentSchema = z.object({
   note: z.string().optional(),
   items: z.array(
     z.object({
-      /** Nombre abreviado: "María R.". */
+      /** Nombre de quien da la reseña: "María Rodríguez". */
       name: z.string(),
       /** Asunto que se atendió ("Acción de tutela"). */
       service: z.string(),

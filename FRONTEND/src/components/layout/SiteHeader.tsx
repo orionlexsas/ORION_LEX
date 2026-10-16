@@ -58,12 +58,15 @@ export function SiteHeader({ brand, nav, cta }: SiteHeaderProps) {
     );
 
   const showFloatingMenu = pastTop && !open;
+  // Arriba del todo en el inicio (computador): sin fondo, encima de las fotos de la portada.
+  const overHero = pathname === '/' && !pastTop && !open;
 
   return (
     <>
       <header
         className={cn(
-          'sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur transition-transform duration-300 ease-out-soft',
+          'sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur transition-[translate,background-color,border-color] duration-300 ease-out-soft',
+          overHero && 'xl:border-transparent xl:bg-transparent xl:backdrop-blur-none',
           // Al bajar se esconde entera (más espacio para leer); al subir reaparece. En celular,
           // fuera del inicio de la página, reaparece solo la barra de íconos (sin la fila del logo).
           !open && hidden

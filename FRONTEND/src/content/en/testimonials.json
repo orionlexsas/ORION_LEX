@@ -4,30 +4,29 @@
   "description": "Stories of people who found guidance, clarity and support to move forward.",
   "script": "Every case has a story",
   "clientLabel": "Orión Lex client",
-  "note": "For privacy, some names are shown in abbreviated form.",
   "items": [
     {
-      "name": "María R.",
+      "name": "María Rodríguez",
       "service": "Labor law",
       "text": "They explained every step clearly and I was able to make decisions with greater peace of mind."
     },
     {
-      "name": "Carlos P.",
+      "name": "Carlos Peña",
       "service": "Tutela action",
       "text": "I found a close, professional and committed team. They clearly explained each stage and were attentive to my concerns throughout the process."
     },
     {
-      "name": "Laura C.",
+      "name": "Laura Castro",
       "service": "Datacrédito",
       "text": "They reviewed my situation carefully and helped me understand the available options."
     },
     {
-      "name": "Jorge M.",
+      "name": "Jorge Martínez",
       "service": "Traffic fines",
       "text": "From the first message they answered quickly and told me honestly what could be done in my case."
     },
     {
-      "name": "Diana S.",
+      "name": "Diana Salazar",
       "service": "Family law",
       "text": "I live abroad and all the support was virtual. I always knew how my case was progressing."
     }

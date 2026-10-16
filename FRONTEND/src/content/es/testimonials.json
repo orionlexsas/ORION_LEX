@@ -4,30 +4,29 @@
   "description": "Historias de personas que encontraron orientación, claridad y acompañamiento para avanzar.",
   "script": "Cada caso tiene una historia",
   "clientLabel": "Cliente de Orión Lex",
-  "note": "Por privacidad, algunos nombres se presentan de forma abreviada.",
   "items": [
     {
-      "name": "María R.",
+      "name": "María Rodríguez",
       "service": "Derecho laboral",
       "text": "Me explicaron cada paso con claridad y pude tomar decisiones con mayor tranquilidad."
     },
     {
-      "name": "Carlos P.",
+      "name": "Carlos Peña",
       "service": "Acción de tutela",
       "text": "Encontré un equipo cercano, profesional y comprometido. Me explicaron con claridad cada etapa y estuvieron atentos a mis inquietudes durante todo el proceso."
     },
     {
-      "name": "Laura C.",
+      "name": "Laura Castro",
       "service": "Datacrédito",
       "text": "Revisaron mi situación con cuidado y me ayudaron a comprender las alternativas disponibles."
     },
     {
-      "name": "Jorge M.",
+      "name": "Jorge Martínez",
       "service": "Comparendos",
       "text": "Desde el primer mensaje me respondieron con rapidez y me dijeron con sinceridad qué se podía hacer en mi caso."
     },
     {
-      "name": "Diana S.",
+      "name": "Diana Salazar",
       "service": "Derecho de familia",
       "text": "Vivo fuera del país y todo el acompañamiento fue virtual. Siempre supe en qué iba mi proceso."
     }

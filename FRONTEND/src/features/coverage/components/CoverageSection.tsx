@@ -20,7 +20,7 @@ export function CoverageSection({ id, content, className }: CoverageSectionProps
       aria-labelledby={titleId}
       className={cn('scroll-mt-20 overflow-hidden section-spacing', className)}
     >
-      <Container className="grid items-center gap-10 max-sm:gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+      <Container className="grid items-center gap-10 max-sm:gap-6 lg:grid-cols-[1fr_1.05fr] lg:gap-10">
         <div>
           <SectionHeading
             id={titleId}
@@ -51,7 +51,7 @@ export function CoverageSection({ id, content, className }: CoverageSectionProps
           decoding="async"
           width={1131}
           height={919}
-          className="mx-auto w-full max-w-md drop-shadow-[0_18px_30px_rgb(0_0_0/0.18)] lg:max-w-xl"
+          className="mx-auto w-full max-w-lg drop-shadow-[0_18px_30px_rgb(0_0_0/0.18)] lg:max-w-none lg:scale-110"
         />
       </Container>
     </section>

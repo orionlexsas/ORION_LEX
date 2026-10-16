@@ -40,7 +40,7 @@ export function ShareButtons({ url, title, label }: ShareButtonsProps) {
         title={t('share.whatsapp')}
         className={buttonClass}
       >
-        <WhatsAppIcon className="size-5" />
+        <WhatsAppIcon className="size-5 text-whatsapp" />
       </a>
       <a
         href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`}

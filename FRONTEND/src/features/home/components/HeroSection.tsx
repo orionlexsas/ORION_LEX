@@ -35,9 +35,9 @@ export function HeroSection({ hero }: HeroSectionProps) {
     <>
       <section
         aria-labelledby="hero-title"
-        className="relative isolate flex flex-col overflow-hidden max-sm:min-h-[39rem] xl:min-h-[clamp(30rem,calc(100svh-9rem),46rem)] xl:justify-center"
+        className="relative isolate flex flex-col overflow-hidden max-sm:min-h-[39rem] xl:-mt-[4.5rem] xl:min-h-[clamp(34.5rem,calc(100svh-4.5rem),50.5rem)] xl:justify-center"
       >
-        <Container className="py-8 max-sm:on-dark max-sm:[&_:is(h1,p,li)]:[text-shadow:0_1px_14px_rgb(0_0_0/0.55)] max-sm:pt-11 max-sm:pb-10 sm:py-14 xl:py-10">
+        <Container className="py-8 max-sm:on-dark max-sm:[&_:is(h1,p,li)]:[text-shadow:0_1px_14px_rgb(0_0_0/0.55)] max-sm:pt-11 max-sm:pb-10 sm:py-14 xl:pt-[7rem] xl:pb-10">
           <div className="max-w-[36rem] max-sm:max-w-none xl:max-w-[38rem]">
             <p
               className="eyebrow animate-rise max-sm:text-[0.66rem] max-sm:tracking-[0.18em]"
@@ -197,6 +197,11 @@ export function HeroSection({ hero }: HeroSectionProps) {
           <div
             aria-hidden="true"
             className="absolute inset-0 bg-[linear-gradient(180deg,color-mix(in_oklab,var(--color-hero-shade)_30%,transparent)_0%,transparent_22%,transparent_78%,color-mix(in_oklab,var(--color-hero-shade)_40%,transparent)_100%),linear-gradient(90deg,color-mix(in_oklab,var(--color-hero-shade)_78%,transparent)_0%,color-mix(in_oklab,var(--color-hero-shade)_50%,transparent)_35%,transparent_62%)] sm:hidden"
+          />
+          {/* Computador: la cabecera va transparente encima; un velo arriba deja leer el menú */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-x-0 top-0 hidden h-32 bg-gradient-to-b from-background/75 to-transparent xl:block"
           />
           {/* Velo suave del color del tema a la izquierda (detrás del texto): la foto se ve hasta el borde */}
           <div

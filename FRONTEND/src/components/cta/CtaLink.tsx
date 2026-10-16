@@ -62,7 +62,12 @@ export function CtaLink({
         // El botón flotante de WhatsApp se oculta mientras este llamado está en pantalla.
         data-whatsapp-cta=""
       >
-        {!hideWhatsAppIcon && <WhatsAppIcon className="size-5 shrink-0" />}
+        {/* Logo de WhatsApp en su verde (círculo como el botón flotante) */}
+        {!hideWhatsAppIcon && (
+          <span className="grid size-7 shrink-0 place-items-center rounded-full bg-whatsapp text-white">
+            <WhatsAppIcon className="size-4" />
+          </span>
+        )}
         {link.label}
         <span className="sr-only"> {t('a11y.opensWhatsApp')}</span>
         {trailingIcon}

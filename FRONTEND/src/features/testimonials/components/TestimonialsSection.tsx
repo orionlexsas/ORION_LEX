@@ -14,7 +14,7 @@ interface TestimonialsSectionProps {
 
 type Testimonial = TestimonialsContent['items'][number];
 
-/** Iniciales del círculo de cada tarjeta ("María R." → "MR"). */
+/** Iniciales del círculo de cada tarjeta ("María Rodríguez" → "MR"). */
 const initials = (name: string) => {
   const words = name.replace(/\./g, '').split(/\s+/).filter(Boolean);
   return (
