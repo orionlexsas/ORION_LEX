@@ -49,9 +49,9 @@ export function CoverageSection({ id, content, className }: CoverageSectionProps
           alt={content.image.alt}
           loading="lazy"
           decoding="async"
-          width={800}
-          height={800}
-          className="mx-auto w-full max-w-sm opacity-80 dark:opacity-60 lg:max-w-md"
+          width={1131}
+          height={919}
+          className="mx-auto w-full max-w-md drop-shadow-[0_18px_30px_rgb(0_0_0/0.18)] lg:max-w-xl"
         />
       </Container>
     </section>

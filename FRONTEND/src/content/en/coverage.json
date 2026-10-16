@@ -20,8 +20,8 @@
     }
   ],
   "image": {
-    "src": "/images/ubicaciones/mapa-colombia-gris.webp",
-    "alt": "Map of Colombia"
+    "src": "/images/ubicaciones/colombia-conectada-mundo.webp",
+    "alt": "Map of Colombia with service points across the country, connected to the world"
   },
   "cta": {
     "label": "Talk to a lawyer",
