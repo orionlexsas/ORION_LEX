@@ -3,13 +3,29 @@
   "title": "Quién atenderá su caso",
   "description": "Un equipo que le escucha, le explica con claridad y le acompaña en cada etapa.",
   "script": "Personas que escuchan personas",
-  "facebookLabel": "Ver perfil en Facebook",
+  "focusLabel": "Áreas de enfoque",
+  "profileLabel": "Conocer su perfil",
+  "backLabel": "Volver",
+  "closing": {
+    "text": "Su caso será atendido directamente por nuestro equipo jurídico.",
+    "cta": {
+      "label": "Cuéntenos su caso",
+      "href": "whatsapp",
+      "message": "Hola, vi el equipo de Orión Lex y quiero contarles mi caso."
+    }
+  },
   "members": [
     {
       "status": "final",
       "name": "Yuricsa Romero Trigos",
       "role": "Representante legal",
+      "summary": "Abogada especialista en Derecho Constitucional y magíster en Reconciliación y Convivencia. Lidera la gestión de Orión Lex y acompaña asuntos de derecho privado, negociación y solución de controversias.",
       "description": "Abogada especialista en Derecho Constitucional y magíster en Reconciliación y Convivencia. Ha enfocado su trayectoria en el derecho privado, mediante la asesoría jurídica y el acompañamiento en la solución de controversias entre particulares.\n\nComo representante legal de Orión Lex, integra la gestión de la firma con su ejercicio profesional. Su formación le permite abordar los conflictos desde una perspectiva que combina el análisis jurídico, la negociación y la construcción de acuerdos, con el propósito de proteger los derechos de sus clientes y dar respuesta a sus necesidades.",
+      "focus": [
+        "Derecho constitucional",
+        "Negociación",
+        "Derecho privado"
+      ],
       "photo": {
         "src": "/images/equipo/yuricsa-romero-trigos.webp",
         "alt": "Yuricsa Romero Trigos, representante legal de Orión Lex",
@@ -18,12 +34,18 @@
     },
     {
       "status": "final",
-      "name": "Sergio Ardila Rodriguez",
+      "name": "Sergio Ardila Rodríguez",
       "role": "Director estratégico de litigios",
+      "summary": "Abogado especialista en Derecho Constitucional y maestrante en Derecho Laboral y Seguridad Social. Diseña estrategias de litigio y acompaña asuntos civiles, administrativos y de contratación estatal.",
       "description": "Abogado especialista en Derecho Constitucional y maestrante en Derecho Laboral y Seguridad Social. Su trayectoria comprende la asesoría jurídica a entidades públicas, la contratación estatal y la representación judicial en asuntos de derecho civil y derecho administrativo.\n\nEn Orión Lex, lidera la definición de estrategias de litigio a partir del análisis de cada caso, sus pruebas y las alternativas procesales disponibles. Su labor se centra en orientar la preparación de las actuaciones judiciales, coordinar el seguimiento de los procesos y construir una defensa jurídica que responda a las necesidades e intereses de cada cliente.",
+      "focus": [
+        "Litigio estratégico",
+        "Derecho laboral",
+        "Derecho administrativo"
+      ],
       "photo": {
         "src": "/images/equipo/sergio-ardila.webp",
-        "alt": "Sergio Ardila Rodriguez, director estratégico de litigios de Orión Lex",
+        "alt": "Sergio Ardila Rodríguez, director estratégico de litigios de Orión Lex",
         "position": "55% 20%"
       }
     }

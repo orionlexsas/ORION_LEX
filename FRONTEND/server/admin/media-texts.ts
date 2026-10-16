@@ -36,6 +36,7 @@ const TEXT_KEYS: Record<string, { label: string; multiline?: boolean; optional?:
   title: { label: 'Título' },
   name: { label: 'Nombre' },
   role: { label: 'Cargo' },
+  summary: { label: 'Resumen corto', multiline: true },
   lead: { label: 'Pregunta de entrada', multiline: true },
   description: { label: 'Descripción', multiline: true },
   excerpt: { label: 'Extracto', multiline: true },

@@ -299,20 +299,30 @@ export const teamContentSchema = z.object({
   description: z.string(),
   /** Frase manuscrita a la derecha del encabezado (opcional). */
   script: z.string().optional(),
-  /** Texto del enlace al perfil de Facebook de cada integrante. */
-  facebookLabel: z.string(),
+  /** Título de las etiquetas de cada perfil ("Áreas de enfoque"). */
+  focusLabel: z.string(),
+  /** Botón que gira la tarjeta para leer el perfil completo ("Conocer su perfil"). */
+  profileLabel: z.string(),
+  /** Botón para volver al frente de la tarjeta. */
+  backLabel: z.string(),
+  /** Franja bajo los perfiles con un llamado a escribir (opcional). */
+  closing: z.object({ text: z.string(), cta: linkSchema }).optional(),
   members: z.array(
     z.object({
       status: statusSchema,
       name: z.string(),
       /** Cargo, p. ej. "Abogada | Atención jurídica integral". */
       role: z.string(),
+      /** Resumen corto para el frente de la tarjeta (si falta, se usa el primer párrafo). */
+      summary: z.string().optional(),
+      /** Perfil completo (detrás de la tarjeta); los párrafos van separados por una línea vacía. */
       description: z.string(),
+      /** Áreas de enfoque (etiquetas cortas). */
+      focus: z.array(z.string()).default([]),
       photo: imageSchema.extend({
         /** Encuadre de la foto dentro del recorte (CSS object-position), p. ej. "50% 20%". */
         position: z.string().default('50% 20%'),
       }),
-      facebook: z.url().optional(),
     }),
   ),
   values: z
