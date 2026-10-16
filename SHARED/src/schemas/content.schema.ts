@@ -134,6 +134,8 @@ export const homeContentSchema = z.object({
     /** Franja inferior del hero: frases cortas de confianza con su ícono. */
     points: z.array(z.object({ icon: contentIconSchema, text: z.string() })).max(4),
     image: imageSchema,
+    /** Más fotos de fondo: la portada pasa sola de la principal a estas (opcional). */
+    slides: z.array(imageSchema).optional(),
   }),
 });
 

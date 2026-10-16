@@ -6,6 +6,7 @@ import { ContentIcon } from '@/components/ui/ContentIcon';
 import { Container } from '@/components/ui/Container';
 import { track } from '@/lib/analytics';
 import { cn } from '@/lib/cn';
+import { SLIDE_MS, useSlideshow } from '../hooks/use-slideshow';
 import { PenStroke } from './PenStroke';
 
 /** Retraso escalonado para la animación de entrada (`animate-rise`). */
@@ -26,6 +27,9 @@ interface HeroSectionProps {
 export function HeroSection({ hero }: HeroSectionProps) {
   // "/#asuntos" → "#asuntos": ancla en la misma página, con desplazamiento suave (CSS).
   const servicesHref = hero.secondaryCta.href.replace(/^\/(?=#)/, '');
+  // Fotos de fondo: la principal (el equipo) y luego las demás, pasando solas.
+  const slides = hero.slides ?? [];
+  const activeSlide = useSlideshow(slides.length + 1);
 
   return (
     <>
@@ -152,7 +156,7 @@ export function HeroSection({ hero }: HeroSectionProps) {
           En celular es el fondo de toda la sección (foto vertical, `srcMobile`), con un velo café
           oscuro para que el texto blanco se lea.
         */}
-        <div className="relative max-sm:absolute max-sm:inset-0 max-sm:-z-10 max-sm:overflow-hidden max-sm:bg-hero-shade xl:absolute xl:inset-0 xl:-z-10">
+        <div className="relative overflow-hidden max-sm:absolute max-sm:inset-0 max-sm:-z-10 max-sm:bg-hero-shade xl:absolute xl:inset-0 xl:-z-10">
           <picture>
             {hero.image.srcMobile && (
               <source media="(max-width: 639px)" srcSet={hero.image.srcMobile} />
@@ -170,6 +174,25 @@ export function HeroSection({ hero }: HeroSectionProps) {
               )}
             />
           </picture>
+          {/* Más fotos de fondo: aparecen encima de la principal con un fundido y un zoom lento */}
+          {slides.map((slide, i) => {
+            const shown = activeSlide === i + 1;
+            return (
+              <img
+                key={slide.src}
+                src={slide.src}
+                alt={shown ? slide.alt : ''}
+                aria-hidden={!shown}
+                loading="lazy"
+                decoding="async"
+                style={{ transitionDuration: `1500ms, ${SLIDE_MS + 1500}ms` }}
+                className={cn(
+                  'absolute inset-0 size-full object-cover transition-[opacity,scale] ease-out-soft',
+                  shown ? 'scale-100 opacity-100' : 'scale-110 opacity-0',
+                )}
+              />
+            );
+          })}
           {/* Celular: velo café solo en la izquierda (donde va el texto); el equipo queda con su color */}
           <div
             aria-hidden="true"

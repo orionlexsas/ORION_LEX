@@ -28,6 +28,16 @@
       "src": "/images/hero/portada-1672.webp",
       "srcMobile": "/images/hero/portada-movil-900.webp",
       "alt": "Orión Lex Servicios Jurídicos team"
-    }
+    },
+    "slides": [
+      {
+        "src": "/images/hero/palacio-justicia.webp",
+        "alt": "Palace of Justice at Plaza de Bolívar, Bogotá"
+      },
+      {
+        "src": "/images/hero/justicia-mazo.webp",
+        "alt": "Statue of justice and judge’s gavel on a desk"
+      }
+    ]
   }
 }
