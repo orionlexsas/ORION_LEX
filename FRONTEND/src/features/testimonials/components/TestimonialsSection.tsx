@@ -63,7 +63,7 @@ export function TestimonialsSection({ id, content, className }: TestimonialsSect
     setPaused(!paused);
   };
   const control =
-    'grid size-12 cursor-pointer place-items-center rounded-full shadow-md transition-transform hover:scale-105 active:scale-95';
+    'grid size-11 cursor-pointer place-items-center rounded-full shadow-md transition-transform hover:scale-105 active:scale-95';
 
   if (items.length === 0) return null;
 
@@ -72,7 +72,8 @@ export function TestimonialsSection({ id, content, className }: TestimonialsSect
       id={id}
       aria-labelledby={titleId}
       className={cn(
-        'relative isolate scroll-mt-20 overflow-hidden border-t border-accent/70 bg-band section-spacing',
+        // Compacta: en un portátil la sección completa (encabezado, tarjetas y flechas) cabe en pantalla.
+        'relative isolate scroll-mt-20 overflow-hidden border-t border-accent/70 bg-band py-10 sm:py-12 lg:py-9',
         className,
       )}
     >
@@ -90,14 +91,14 @@ export function TestimonialsSection({ id, content, className }: TestimonialsSect
             <p className="eyebrow">{content.eyebrow}</p>
             <h2
               id={titleId}
-              className="mt-3 font-serif text-[2.3rem] leading-[1.02] font-semibold tracking-tight sm:text-5xl lg:text-[3.7rem]"
+              className="mt-3 font-serif text-[2.3rem] leading-[1.02] font-semibold tracking-tight sm:text-5xl lg:mt-2 lg:text-[3rem]"
             >
               {content.title}
             </h2>
           </div>
           {content.script && (
-            <p aria-hidden="true" className="w-fit shrink-0 text-foreground/90 lg:mt-12">
-              <span className="block -rotate-6 font-script text-[2rem] leading-none sm:text-[2.4rem] xl:text-[2.8rem]">
+            <p aria-hidden="true" className="w-fit shrink-0 text-foreground/90 lg:mt-8">
+              <span className="block -rotate-6 font-script text-[2rem] leading-none sm:text-[2.4rem]">
                 {content.script}
               </span>
               <svg viewBox="0 0 240 18" className="mt-1 ml-16 w-48 text-accent sm:w-60">
@@ -112,7 +113,7 @@ export function TestimonialsSection({ id, content, className }: TestimonialsSect
             </p>
           )}
         </div>
-        <p className="mt-3 max-w-3xl text-lg text-muted">{content.description}</p>
+        <p className="mt-3 max-w-4xl text-lg text-muted lg:mt-2">{content.description}</p>
 
         {/* Para lectores de pantalla y buscadores: cada reseña una sola vez */}
         <ul className="sr-only">
@@ -134,7 +135,7 @@ export function TestimonialsSection({ id, content, className }: TestimonialsSect
       <div
         ref={stageRef}
         aria-hidden="true"
-        className="relative mt-6 h-[26.5rem] cursor-grab touch-pan-y select-none active:cursor-grabbing sm:h-[31rem] lg:mt-8"
+        className="relative mt-6 h-[26.5rem] cursor-grab touch-pan-y select-none active:cursor-grabbing sm:h-[27rem] lg:mt-4 lg:h-[25rem]"
       >
         {cards.map((item, i) => (
           <div
@@ -143,7 +144,7 @@ export function TestimonialsSection({ id, content, className }: TestimonialsSect
               cardRefs.current[i] = el;
             }}
             style={{ opacity: 0 }}
-            className="group absolute top-2 left-0 -ml-[8.25rem] h-[23rem] w-[16.5rem] will-change-transform sm:-ml-[10rem] sm:h-[25rem] sm:w-[20rem] lg:-ml-[11rem] lg:w-[22rem]"
+            className="group absolute top-2 left-0 -ml-[8.25rem] h-[23rem] w-[16.5rem] will-change-transform sm:-ml-[10rem] sm:h-[22rem] sm:w-[20rem] lg:-ml-[11rem] lg:w-[22rem]"
           >
             <TestimonialCard
               item={item}
@@ -170,7 +171,7 @@ export function TestimonialsSection({ id, content, className }: TestimonialsSect
             onClick={togglePause}
             aria-label={paused ? t('carousel.play') : t('carousel.pause')}
             aria-pressed={paused}
-            className={cn(control, 'size-11 border border-border bg-background text-foreground')}
+            className={cn(control, 'size-10 border border-border bg-background text-foreground')}
           >
             {paused ? (
               <Play aria-hidden="true" className="size-5 translate-x-px" />
@@ -188,7 +189,7 @@ export function TestimonialsSection({ id, content, className }: TestimonialsSect
           </button>
         </div>
         {content.note && (
-          <p className="mt-5 text-center text-xs text-muted sm:text-left">{content.note}</p>
+          <p className="mt-3 text-center text-xs text-muted sm:text-left">{content.note}</p>
         )}
       </Container>
     </section>
@@ -206,32 +207,32 @@ function TestimonialCard({ item, number, clientLabel }: TestimonialCardProps) {
   return (
     <figure
       className={cn(
-        'relative flex h-full flex-col overflow-hidden rounded-md border border-border bg-background p-6 shadow-sm transition-[box-shadow,border-color] duration-500 sm:p-8',
+        'relative flex h-full flex-col overflow-hidden rounded-md border border-border bg-background p-6 shadow-sm transition-[box-shadow,border-color] duration-500',
         // La del centro resalta (data-center lo pone el carrusel).
         'group-data-[center=true]:border-l-[6px] group-data-[center=true]:border-l-accent group-data-[center=true]:shadow-[0_24px_60px_-20px_rgb(0_0_0/0.3)]',
       )}
     >
       <span
         aria-hidden="true"
-        className="absolute top-1 left-5 font-serif text-[5.5rem] leading-none text-accent/15 sm:left-7 sm:text-[6.5rem]"
+        className="absolute top-1 left-5 font-serif text-[5.5rem] leading-none text-accent/15 sm:left-6 sm:text-[6rem]"
       >
         “
       </span>
       <span
         aria-hidden="true"
-        className="absolute top-4 right-5 font-serif text-[3.8rem] leading-none font-semibold text-accent/10 sm:right-7 sm:text-[4.8rem]"
+        className="absolute top-4 right-5 font-serif text-[3.8rem] leading-none font-semibold text-accent/10 sm:right-6 sm:text-[4.3rem]"
       >
         {String(number).padStart(2, '0')}
       </span>
 
-      <p className="relative mt-10 font-serif text-[1.8rem] leading-none font-semibold tracking-tight sm:mt-12 sm:text-[2.3rem]">
+      <p className="relative mt-10 font-serif text-[1.8rem] leading-none font-semibold tracking-tight sm:mt-9 sm:text-[2rem]">
         {item.name}
       </p>
       <span aria-hidden="true" className="mt-3 block h-0.5 w-9 bg-accent" />
       <p className="mt-3 text-[0.72rem] font-semibold tracking-[0.2em] text-accent-text uppercase sm:text-[0.78rem]">
         {item.service}
       </p>
-      <blockquote className="mt-3 line-clamp-6 flex-1 text-[0.98rem] leading-snug text-foreground/80 sm:text-[1.1rem]">
+      <blockquote className="mt-3 line-clamp-6 flex-1 text-[0.98rem] leading-snug text-foreground/80 sm:line-clamp-5">
         “{item.text}”
       </blockquote>
       <figcaption className="mt-4 flex items-center gap-3">
