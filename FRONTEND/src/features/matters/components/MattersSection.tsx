@@ -70,7 +70,7 @@ export function MattersSection({
         <ul
           ref={carouselRef}
           className={cn(
-            'mt-10 grid gap-5 sm:grid-cols-2 lg:mt-12 lg:gap-6',
+            'mt-10 grid gap-5 sm:grid-cols-2 lg:mt-8 lg:grid-cols-3 lg:gap-5',
             carouselTrack,
             // Celular: fila de historias (caben 2 y media, como en Facebook).
             'max-sm:mt-7 max-sm:gap-3',

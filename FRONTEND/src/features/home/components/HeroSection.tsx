@@ -35,9 +35,9 @@ export function HeroSection({ hero }: HeroSectionProps) {
     <>
       <section
         aria-labelledby="hero-title"
-        className="relative isolate flex flex-col overflow-hidden max-sm:min-h-[39rem] xl:min-h-[clamp(620px,calc(100svh-16.5rem),720px)] xl:justify-center"
+        className="relative isolate flex flex-col overflow-hidden max-sm:min-h-[39rem] xl:min-h-[clamp(30rem,calc(100svh-9rem),46rem)] xl:justify-center"
       >
-        <Container className="py-8 max-sm:on-dark max-sm:[&_:is(h1,p,li)]:[text-shadow:0_1px_14px_rgb(0_0_0/0.55)] max-sm:pt-11 max-sm:pb-10 sm:py-14 xl:py-16">
+        <Container className="py-8 max-sm:on-dark max-sm:[&_:is(h1,p,li)]:[text-shadow:0_1px_14px_rgb(0_0_0/0.55)] max-sm:pt-11 max-sm:pb-10 sm:py-14 xl:py-10">
           <div className="max-w-[36rem] max-sm:max-w-none xl:max-w-[38rem]">
             <p
               className="eyebrow animate-rise max-sm:text-[0.66rem] max-sm:tracking-[0.18em]"

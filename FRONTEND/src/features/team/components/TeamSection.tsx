@@ -73,7 +73,7 @@ export function TeamSection({
           <ul
             ref={carouselRef}
             className={cn(
-              'mt-12 grid divide-y divide-border max-sm:mt-6 lg:mt-14 xl:grid-cols-2 xl:divide-x xl:divide-y-0',
+              'mt-12 grid divide-y divide-border max-sm:mt-6 lg:mt-14 xl:mt-8 xl:grid-cols-2 xl:divide-x xl:divide-y-0',
               carouselTrack,
               'max-sm:gap-6 max-sm:divide-y-0',
             )}
@@ -108,7 +108,7 @@ interface TeamProfileProps {
 function TeamProfile({ member, facebookLabel }: TeamProfileProps) {
   const { t } = useTranslation();
   return (
-    <article className="grid items-center gap-7 sm:grid-cols-[0.9fr_1.1fr] sm:gap-9 xl:grid-cols-2 xl:items-start xl:gap-7">
+    <article className="grid items-center gap-7 sm:grid-cols-[0.9fr_1.1fr] sm:gap-9 xl:grid-cols-[11rem_1fr] xl:items-start xl:gap-6">
       <img
         src={member.photo.src}
         alt={member.photo.alt}
@@ -120,14 +120,14 @@ function TeamProfile({ member, facebookLabel }: TeamProfileProps) {
         className="mx-auto aspect-[4/5] w-full max-w-sm rounded-sm object-cover sm:max-w-none"
       />
       <div>
-        <span aria-hidden="true" className="block h-0.5 w-12 bg-accent xl:mt-6" />
-        <h3 className="mt-5 font-serif text-[2.2rem] leading-[1.02] font-semibold tracking-tight sm:text-[2.4rem] xl:text-[2.3rem]">
+        <span aria-hidden="true" className="block h-0.5 w-12 bg-accent xl:mt-1" />
+        <h3 className="mt-5 font-serif text-[2.2rem] leading-[1.02] font-semibold tracking-tight sm:text-[2.4rem] xl:mt-3 xl:text-[1.9rem]">
           {member.name}
         </h3>
         <p className="mt-3 text-[0.95rem] font-medium text-foreground/80">{member.role}</p>
-        <hr className="my-5 border-border" />
+        <hr className="my-5 border-border xl:my-3" />
         {/* La descripción puede tener varios párrafos, separados por una línea en blanco. */}
-        <div className="space-y-4 text-[1.05rem] leading-relaxed text-foreground/85">
+        <div className="space-y-4 text-[1.05rem] leading-relaxed text-foreground/85 xl:space-y-3 xl:text-[0.95rem]">
           {member.description.split(/\n\s*\n/).map((paragraph) => (
             <p key={paragraph.slice(0, 40)}>{paragraph.trim()}</p>
           ))}

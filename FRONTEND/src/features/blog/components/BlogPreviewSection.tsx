@@ -48,8 +48,8 @@ export function BlogPreviewSection({ id, blog, articles, className }: BlogPrevie
             </Link>
           )}
         </div>
-        <div className="mt-10 max-sm:mt-6 lg:mt-12">
-          <ArticleGrid articles={shown} blog={blog} carouselOnMobile />
+        <div className="mt-10 max-sm:mt-6 lg:mt-6">
+          <ArticleGrid articles={shown} blog={blog} carouselOnMobile compact />
         </div>
       </Container>
     </section>
