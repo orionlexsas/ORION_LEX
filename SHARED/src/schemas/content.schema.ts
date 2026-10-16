@@ -340,8 +340,6 @@ export const testimonialsContentSchema = z.object({
   script: z.string().optional(),
   /** Texto junto a las iniciales de cada tarjeta ("Cliente de Orión Lex"). */
   clientLabel: z.string(),
-  /** Indicación bajo los puntos del carrusel ("Deslice para conocer más experiencias"). */
-  hint: z.string(),
   /** Nota pequeña al pie (p. ej. sobre los nombres abreviados). */
   note: z.string().optional(),
   items: z.array(

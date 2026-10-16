@@ -1,9 +1,8 @@
-import { useLayoutEffect, useRef, useState, type PointerEvent } from 'react';
-import { useTranslation } from 'react-i18next';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useEffect, useRef } from 'react';
 import type { TestimonialsContent } from '@orion-lex/shared';
 import { Container } from '@/components/ui/Container';
 import { cn } from '@/lib/cn';
+import { MIN_CARDS, startArcCarousel } from '../lib/arc-carousel';
 
 interface TestimonialsSectionProps {
   id: string;
@@ -11,8 +10,7 @@ interface TestimonialsSectionProps {
   className?: string;
 }
 
-/** Lo que hay que deslizar el dedo (px) para pasar de tarjeta. */
-const SWIPE = 40;
+type Testimonial = TestimonialsContent['items'][number];
 
 /** Iniciales del círculo de cada tarjeta ("María R." → "MR"). */
 const initials = (name: string) => {
@@ -24,56 +22,32 @@ const initials = (name: string) => {
 
 /**
  * Testimonios casi al final de la portada (maqueta del usuario): fondo crema con comillas gigantes,
- * encabezado con frase manuscrita a la derecha y un carrusel donde la tarjeta del centro es más
- * grande y lleva una franja naranja; las de los lados se ven más pequeñas. Flechas (negra a la
- * izquierda, naranja a la derecha), puntos, deslizar con el dedo y una nota al pie.
- * Sin reseñas en el JSON, la sección no aparece.
+ * encabezado con frase manuscrita a la derecha y las tarjetas en un carrusel en arco que entra
+ * solo y avanza sin fin (ver lib/arc-carousel). La tarjeta del centro resalta: más grande, franja
+ * naranja y sombra mayor. Las tarjetas animadas son decorativas (aria-hidden): el contenido real
+ * va en una lista solo para lectores de pantalla. Sin reseñas en el JSON, la sección no aparece.
  */
 export function TestimonialsSection({ id, content, className }: TestimonialsSectionProps) {
-  const { t } = useTranslation();
   const titleId = `${id}-title`;
-  const count = content.items.length;
-  const [active, setActive] = useState(() => Math.min(1, Math.max(count - 1, 0)));
-  const [offset, setOffset] = useState(0);
-  const viewportRef = useRef<HTMLDivElement>(null);
-  const trackRef = useRef<HTMLUListElement>(null);
-  const swipeStart = useRef<number | null>(null);
+  const { items } = content;
+  const stageRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  const goTo = (index: number) => setActive((index + count) % count);
+  // El set completo se repite hasta tener tarjetas suficientes para el bucle (las repetidas
+  // nunca quedan juntas porque se repite el set entero, no cada tarjeta).
+  const copies = items.length ? Math.ceil(MIN_CARDS / items.length) : 0;
+  const cards = Array.from({ length: copies }, () => items).flat();
 
-  // Desplaza la fila para que la tarjeta activa quede centrada (también al cambiar el tamaño).
-  useLayoutEffect(() => {
-    const viewport = viewportRef.current;
-    const track = trackRef.current;
-    if (!viewport || !track) return;
-    const center = () => {
-      const card = track.children[active] as HTMLElement | undefined;
-      if (card) setOffset(card.offsetLeft + card.offsetWidth / 2 - viewport.clientWidth / 2);
-    };
-    center();
-    const observer = new ResizeObserver(center);
-    observer.observe(viewport);
-    return () => observer.disconnect();
-  }, [active]);
+  useEffect(() => {
+    const stage = stageRef.current;
+    if (!stage) return;
+    return startArcCarousel(
+      stage,
+      cardRefs.current.filter((card): card is HTMLDivElement => card !== null),
+    );
+  }, [cards.length]);
 
-  if (count === 0) return null;
-
-  const onPointerDown = (event: PointerEvent) => {
-    swipeStart.current = event.clientX;
-  };
-  const onPointerUp = (event: PointerEvent) => {
-    if (swipeStart.current === null) return;
-    const dx = event.clientX - swipeStart.current;
-    swipeStart.current = null;
-    if (Math.abs(dx) > SWIPE) goTo(active + (dx < 0 ? 1 : -1));
-  };
-
-  const arrow =
-    'grid size-11 shrink-0 cursor-pointer place-items-center rounded-full shadow-lg transition-transform hover:scale-105 active:scale-95';
-  // Desde 640 px van a los lados de las tarjetas; en celular, en la fila de los puntos.
-  const sideArrow = 'absolute top-1/2 z-10 -translate-y-1/2 max-sm:hidden sm:size-14';
-  const prevClass = 'bg-foreground text-background';
-  const nextClass = 'bg-accent text-on-accent';
+  if (items.length === 0) return null;
 
   return (
     <section
@@ -122,162 +96,101 @@ export function TestimonialsSection({ id, content, className }: TestimonialsSect
         </div>
         <p className="mt-4 max-w-3xl text-lg text-muted">{content.description}</p>
 
-        {/* Carrusel */}
-        <div
-          role="region"
-          aria-roledescription="carrusel"
-          aria-label={content.title}
-          className="relative mt-8 lg:mt-10"
-        >
-          <div
-            ref={viewportRef}
-            onPointerDown={onPointerDown}
-            onPointerUp={onPointerUp}
-            onPointerCancel={() => (swipeStart.current = null)}
-            className="-mx-5 touch-pan-y overflow-hidden px-5 py-6 select-none sm:mx-0 sm:px-0"
-          >
-            <ul
-              ref={trackRef}
-              style={{ transform: `translateX(${-offset}px)` }}
-              className="flex items-center gap-4 transition-transform duration-700 ease-out-soft motion-reduce:transition-none sm:gap-5"
-            >
-              {content.items.map((item, i) => {
-                const current = i === active;
-                return (
-                  <li
-                    key={item.name}
-                    aria-hidden={!current}
-                    onClick={() => !current && goTo(i)}
-                    className={cn(
-                      'w-[84%] shrink-0 transition-[scale,opacity] duration-700 ease-out-soft motion-reduce:transition-none sm:w-[60%] lg:w-[31%]',
-                      current
-                        ? 'scale-100'
-                        : 'cursor-pointer opacity-80 hover:opacity-100 sm:scale-[0.9]',
-                    )}
-                  >
-                    <figure
-                      className={cn(
-                        'relative overflow-hidden rounded-md border border-border bg-background p-7 sm:p-9',
-                        current
-                          ? 'border-l-[6px] border-l-accent shadow-[0_20px_50px_-20px_rgb(0_0_0/0.25)]'
-                          : 'shadow-sm',
-                      )}
-                    >
-                      {/* Comillas y número grandes, muy suaves */}
-                      <span
-                        aria-hidden="true"
-                        className="absolute top-2 left-6 font-serif text-[6.5rem] leading-none text-accent/15 sm:left-8"
-                      >
-                        “
-                      </span>
-                      <span
-                        aria-hidden="true"
-                        className="absolute top-5 right-6 font-serif text-[4.5rem] leading-none font-semibold text-accent/10 sm:right-8 sm:text-[5.5rem]"
-                      >
-                        {String(i + 1).padStart(2, '0')}
-                      </span>
-
-                      <p className="relative mt-12 font-serif text-[2rem] leading-none font-semibold tracking-tight sm:text-[2.6rem]">
-                        {item.name}
-                      </p>
-                      <span aria-hidden="true" className="mt-3 block h-0.5 w-9 bg-accent" />
-                      <p className="mt-3 text-[0.78rem] font-semibold tracking-[0.2em] text-accent-text uppercase">
-                        {item.service}
-                      </p>
-                      <blockquote
-                        className={cn(
-                          'mt-4 leading-snug text-foreground/80',
-                          current
-                            ? 'text-[1.15rem] sm:text-[1.35rem]'
-                            : 'text-[1.05rem] sm:text-[1.2rem]',
-                        )}
-                      >
-                        “{item.text}”
-                      </blockquote>
-                      <figcaption className="mt-7 flex items-center gap-4">
-                        <span
-                          aria-hidden="true"
-                          className="grid size-14 shrink-0 place-items-center rounded-full bg-band-accent font-serif text-lg"
-                        >
-                          {initials(item.name)}
-                        </span>
-                        <span className="h-9 w-px bg-border" aria-hidden="true" />
-                        <span className="text-[0.95rem] text-muted">{content.clientLabel}</span>
-                      </figcaption>
-                    </figure>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-
-          {count > 1 && (
-            <>
-              <button
-                type="button"
-                onClick={() => goTo(active - 1)}
-                aria-label={t('carousel.previous')}
-                className={cn(arrow, sideArrow, prevClass, '-left-6')}
-              >
-                <ChevronLeft aria-hidden="true" className="size-6" />
-              </button>
-              <button
-                type="button"
-                onClick={() => goTo(active + 1)}
-                aria-label={t('carousel.next')}
-                className={cn(arrow, sideArrow, nextClass, '-right-6')}
-              >
-                <ChevronRight aria-hidden="true" className="size-6" />
-              </button>
-            </>
-          )}
-        </div>
-
-        {/* Puntos e indicación */}
-        <div className="mt-2 flex items-center justify-center gap-3">
-          {count > 1 && (
-            <button
-              type="button"
-              onClick={() => goTo(active - 1)}
-              aria-label={t('carousel.previous')}
-              className={cn(arrow, prevClass, 'mr-2 sm:hidden')}
-            >
-              <ChevronLeft aria-hidden="true" className="size-5" />
-            </button>
-          )}
-          {content.items.map((item, i) => (
-            <button
-              key={item.name}
-              type="button"
-              onClick={() => goTo(i)}
-              aria-label={`${i + 1} / ${count}`}
-              aria-current={i === active}
-              className="grid size-6 cursor-pointer place-items-center"
-            >
-              <span
-                className={cn(
-                  'block size-2.5 rounded-full transition-colors',
-                  i === active ? 'bg-accent' : 'bg-foreground/20',
-                )}
-              />
-            </button>
+        {/* Para lectores de pantalla y buscadores: cada reseña una sola vez */}
+        <ul className="sr-only">
+          {items.map((item) => (
+            <li key={item.name}>
+              <blockquote>{item.text}</blockquote>
+              <p>
+                {item.name}, {item.service}. {content.clientLabel}
+              </p>
+            </li>
           ))}
-          {count > 1 && (
-            <button
-              type="button"
-              onClick={() => goTo(active + 1)}
-              aria-label={t('carousel.next')}
-              className={cn(arrow, nextClass, 'ml-2 sm:hidden')}
-            >
-              <ChevronRight aria-hidden="true" className="size-5" />
-            </button>
-          )}
-        </div>
-        <p className="mt-2 text-center text-sm text-muted">{content.hint}</p>
-        {content.note && (
-          <p className="mt-6 text-center text-xs text-muted sm:text-left">{content.note}</p>
-        )}
+        </ul>
       </Container>
+
+      {/* Escenario del carrusel: a todo el ancho; el JS coloca cada tarjeta con transform */}
+      <div
+        ref={stageRef}
+        aria-hidden="true"
+        className="relative mt-4 h-[29rem] select-none sm:h-[33rem] lg:mt-6 lg:h-[36rem]"
+      >
+        {cards.map((item, i) => (
+          <div
+            key={`${item.name}-${i}`}
+            ref={(el) => {
+              cardRefs.current[i] = el;
+            }}
+            style={{ opacity: 0 }}
+            className="group absolute top-[44%] left-0 -mt-[11.5rem] -ml-[8.25rem] h-[23rem] w-[16.5rem] will-change-transform sm:-mt-[12.5rem] sm:-ml-[10rem] sm:h-[25rem] sm:w-[20rem] lg:-ml-[11rem] lg:w-[22rem]"
+          >
+            <TestimonialCard
+              item={item}
+              number={(i % items.length) + 1}
+              clientLabel={content.clientLabel}
+            />
+          </div>
+        ))}
+      </div>
+
+      {content.note && (
+        <Container>
+          <p className="mt-2 text-center text-xs text-muted sm:text-left">{content.note}</p>
+        </Container>
+      )}
     </section>
+  );
+}
+
+interface TestimonialCardProps {
+  item: Testimonial;
+  number: number;
+  clientLabel: string;
+}
+
+/** Tarjeta de la maqueta: comillas y número suaves, nombre, asunto, reseña e iniciales. */
+function TestimonialCard({ item, number, clientLabel }: TestimonialCardProps) {
+  return (
+    <figure
+      className={cn(
+        'relative flex h-full flex-col overflow-hidden rounded-md border border-border bg-background p-6 shadow-sm transition-[box-shadow,border-color] duration-500 sm:p-8',
+        // La del centro resalta (data-center lo pone el carrusel).
+        'group-data-[center=true]:border-l-[6px] group-data-[center=true]:border-l-accent group-data-[center=true]:shadow-[0_24px_60px_-20px_rgb(0_0_0/0.3)]',
+      )}
+    >
+      <span
+        aria-hidden="true"
+        className="absolute top-1 left-5 font-serif text-[5.5rem] leading-none text-accent/15 sm:left-7 sm:text-[6.5rem]"
+      >
+        “
+      </span>
+      <span
+        aria-hidden="true"
+        className="absolute top-4 right-5 font-serif text-[3.8rem] leading-none font-semibold text-accent/10 sm:right-7 sm:text-[4.8rem]"
+      >
+        {String(number).padStart(2, '0')}
+      </span>
+
+      <p className="relative mt-10 font-serif text-[1.8rem] leading-none font-semibold tracking-tight sm:mt-12 sm:text-[2.3rem]">
+        {item.name}
+      </p>
+      <span aria-hidden="true" className="mt-3 block h-0.5 w-9 bg-accent" />
+      <p className="mt-3 text-[0.72rem] font-semibold tracking-[0.2em] text-accent-text uppercase sm:text-[0.78rem]">
+        {item.service}
+      </p>
+      <blockquote className="mt-3 line-clamp-6 flex-1 text-[0.98rem] leading-snug text-foreground/80 sm:text-[1.1rem]">
+        “{item.text}”
+      </blockquote>
+      <figcaption className="mt-4 flex items-center gap-3">
+        <span
+          aria-hidden="true"
+          className="grid size-11 shrink-0 place-items-center rounded-full bg-band-accent font-serif sm:size-12"
+        >
+          {initials(item.name)}
+        </span>
+        <span className="h-8 w-px bg-border" aria-hidden="true" />
+        <span className="text-[0.85rem] text-muted sm:text-[0.95rem]">{clientLabel}</span>
+      </figcaption>
+    </figure>
   );
 }
