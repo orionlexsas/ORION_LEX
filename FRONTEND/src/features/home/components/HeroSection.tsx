@@ -198,12 +198,12 @@ export function HeroSection({ hero }: HeroSectionProps) {
             aria-hidden="true"
             className="absolute inset-0 bg-[linear-gradient(180deg,color-mix(in_oklab,var(--color-hero-shade)_30%,transparent)_0%,transparent_22%,transparent_78%,color-mix(in_oklab,var(--color-hero-shade)_40%,transparent)_100%),linear-gradient(90deg,color-mix(in_oklab,var(--color-hero-shade)_78%,transparent)_0%,color-mix(in_oklab,var(--color-hero-shade)_50%,transparent)_35%,transparent_62%)] sm:hidden"
           />
-          {/* Transición suave del color del tema desde la izquierda (blanca o negra), sin tapar rostros */}
+          {/* Velo suave del color del tema a la izquierda (detrás del texto): la foto se ve hasta el borde */}
           <div
             aria-hidden="true"
             className={cn(
               'absolute inset-0 hidden xl:block',
-              'bg-[linear-gradient(90deg,var(--color-background)_0%,color-mix(in_oklab,var(--color-background)_85%,transparent)_24%,color-mix(in_oklab,var(--color-background)_35%,transparent)_40%,transparent_52%)]',
+              'bg-[linear-gradient(90deg,color-mix(in_oklab,var(--color-background)_78%,transparent)_0%,color-mix(in_oklab,var(--color-background)_68%,transparent)_26%,color-mix(in_oklab,var(--color-background)_30%,transparent)_42%,transparent_54%)]',
               // En modo oscuro la foto es muy clara: la transición negra llega un poco más lejos.
               'dark:bg-[linear-gradient(90deg,var(--color-background)_0%,var(--color-background)_30%,color-mix(in_oklab,var(--color-background)_70%,transparent)_42%,transparent_56%)]',
             )}

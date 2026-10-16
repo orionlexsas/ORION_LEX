@@ -1,8 +1,10 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react';
 import type { TestimonialsContent } from '@orion-lex/shared';
 import { Container } from '@/components/ui/Container';
 import { cn } from '@/lib/cn';
-import { MIN_CARDS, startArcCarousel } from '../lib/arc-carousel';
+import { MIN_CARDS, startArcCarousel, type ArcCarousel } from '../lib/arc-carousel';
 
 interface TestimonialsSectionProps {
   id: string;
@@ -23,15 +25,19 @@ const initials = (name: string) => {
 /**
  * Testimonios casi al final de la portada (maqueta del usuario): fondo crema con comillas gigantes,
  * encabezado con frase manuscrita a la derecha y las tarjetas en un carrusel en arco que entra
- * solo y avanza sin fin (ver lib/arc-carousel). La tarjeta del centro resalta: más grande, franja
+ * solo y avanza sin fin (ver lib/arc-carousel); se puede arrastrar y tiene flechas con un botón
+ * de pausa en medio. La tarjeta del centro resalta: más grande, franja
  * naranja y sombra mayor. Las tarjetas animadas son decorativas (aria-hidden): el contenido real
  * va en una lista solo para lectores de pantalla. Sin reseñas en el JSON, la sección no aparece.
  */
 export function TestimonialsSection({ id, content, className }: TestimonialsSectionProps) {
+  const { t } = useTranslation();
   const titleId = `${id}-title`;
   const { items } = content;
   const stageRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const carousel = useRef<ArcCarousel | null>(null);
+  const [paused, setPaused] = useState(false);
 
   // El set completo se repite hasta tener tarjetas suficientes para el bucle (las repetidas
   // nunca quedan juntas porque se repite el set entero, no cada tarjeta).
@@ -41,11 +47,23 @@ export function TestimonialsSection({ id, content, className }: TestimonialsSect
   useEffect(() => {
     const stage = stageRef.current;
     if (!stage) return;
-    return startArcCarousel(
+    const instance = startArcCarousel(
       stage,
       cardRefs.current.filter((card): card is HTMLDivElement => card !== null),
     );
+    carousel.current = instance;
+    return () => {
+      instance.dispose();
+      carousel.current = null;
+    };
   }, [cards.length]);
+
+  const togglePause = () => {
+    carousel.current?.setPaused(!paused);
+    setPaused(!paused);
+  };
+  const control =
+    'grid size-12 cursor-pointer place-items-center rounded-full shadow-md transition-transform hover:scale-105 active:scale-95';
 
   if (items.length === 0) return null;
 
@@ -94,7 +112,7 @@ export function TestimonialsSection({ id, content, className }: TestimonialsSect
             </p>
           )}
         </div>
-        <p className="mt-4 max-w-3xl text-lg text-muted">{content.description}</p>
+        <p className="mt-3 max-w-3xl text-lg text-muted">{content.description}</p>
 
         {/* Para lectores de pantalla y buscadores: cada reseña una sola vez */}
         <ul className="sr-only">
@@ -109,11 +127,14 @@ export function TestimonialsSection({ id, content, className }: TestimonialsSect
         </ul>
       </Container>
 
-      {/* Escenario del carrusel: a todo el ancho; el JS coloca cada tarjeta con transform */}
+      {/*
+        Escenario del carrusel: a todo el ancho; el JS coloca cada tarjeta con transform. Se puede
+        arrastrar (touch-pan-y: en celular, deslizar en vertical sigue bajando la página).
+      */}
       <div
         ref={stageRef}
         aria-hidden="true"
-        className="relative mt-4 h-[29rem] select-none sm:h-[33rem] lg:mt-6 lg:h-[36rem]"
+        className="relative mt-6 h-[26.5rem] cursor-grab touch-pan-y select-none active:cursor-grabbing sm:h-[31rem] lg:mt-8"
       >
         {cards.map((item, i) => (
           <div
@@ -122,7 +143,7 @@ export function TestimonialsSection({ id, content, className }: TestimonialsSect
               cardRefs.current[i] = el;
             }}
             style={{ opacity: 0 }}
-            className="group absolute top-[44%] left-0 -mt-[11.5rem] -ml-[8.25rem] h-[23rem] w-[16.5rem] will-change-transform sm:-mt-[12.5rem] sm:-ml-[10rem] sm:h-[25rem] sm:w-[20rem] lg:-ml-[11rem] lg:w-[22rem]"
+            className="group absolute top-2 left-0 -ml-[8.25rem] h-[23rem] w-[16.5rem] will-change-transform sm:-ml-[10rem] sm:h-[25rem] sm:w-[20rem] lg:-ml-[11rem] lg:w-[22rem]"
           >
             <TestimonialCard
               item={item}
@@ -133,11 +154,43 @@ export function TestimonialsSection({ id, content, className }: TestimonialsSect
         ))}
       </div>
 
-      {content.note && (
-        <Container>
-          <p className="mt-2 text-center text-xs text-muted sm:text-left">{content.note}</p>
-        </Container>
-      )}
+      <Container>
+        {/* Flechas para pasar y, en medio, pausar o reanudar */}
+        <div className="flex items-center justify-center gap-4">
+          <button
+            type="button"
+            onClick={() => carousel.current?.previous()}
+            aria-label={t('carousel.previous')}
+            className={cn(control, 'bg-foreground text-background')}
+          >
+            <ChevronLeft aria-hidden="true" className="size-6" />
+          </button>
+          <button
+            type="button"
+            onClick={togglePause}
+            aria-label={paused ? t('carousel.play') : t('carousel.pause')}
+            aria-pressed={paused}
+            className={cn(control, 'size-11 border border-border bg-background text-foreground')}
+          >
+            {paused ? (
+              <Play aria-hidden="true" className="size-5 translate-x-px" />
+            ) : (
+              <Pause aria-hidden="true" className="size-5" />
+            )}
+          </button>
+          <button
+            type="button"
+            onClick={() => carousel.current?.next()}
+            aria-label={t('carousel.next')}
+            className={cn(control, 'bg-accent text-on-accent')}
+          >
+            <ChevronRight aria-hidden="true" className="size-6" />
+          </button>
+        </div>
+        {content.note && (
+          <p className="mt-5 text-center text-xs text-muted sm:text-left">{content.note}</p>
+        )}
+      </Container>
     </section>
   );
 }

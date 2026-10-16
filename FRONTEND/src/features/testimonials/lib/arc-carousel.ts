@@ -4,8 +4,9 @@
  *   desde la derecha, cada una con un pequeño retraso, y se acomodan en un arco suave (la del
  *   centro grande y recta; las de los lados más pequeñas, más abajo e inclinadas).
  * - Luego avanzan una posición a la izquierda, se detienen y vuelven a avanzar, sin fin: la que
- *   sale por la izquierda se teletransporta (sin animación y fuera de la pantalla) al final de la
- *   fila por la derecha. Quien llama debe pasar el set repetido hasta tener al menos visibles + 3.
+ *   sale por un lado se teletransporta (sin animación y fuera de la pantalla) al otro extremo.
+ *   Quien llama debe pasar el set repetido hasta tener al menos visibles + 3.
+ * - Se puede arrastrar con el mouse o el dedo, mover con flechas y pausar.
  * - Solo transform y opacity (CSS); se recalcula al cambiar el tamaño y se pausa fuera de pantalla.
  */
 
@@ -20,6 +21,10 @@ export const INTRO_MS = 2500;
 const INTRO_STAGGER_MS = 60;
 /** Espera entre el final de la entrada y el primer paso (ms). */
 const LOOP_DELAY_MS = 1000;
+/** Tras usar las flechas o arrastrar, espera antes de seguir solo (ms). */
+const RESUME_MS = 3000;
+/** Lo que hay que arrastrar (px) para pasar de tarjeta. */
+const DRAG_THRESHOLD = 40;
 /** Frenado suave al final de cada movimiento. */
 const EASE = 'cubic-bezier(.22,1,.36,1)';
 /** Escala de las tarjetas que no están en el centro. */
@@ -28,22 +33,32 @@ const SIDE_SCALE = 0.82;
 /** Tarjetas visibles, separación entre centros (px), caída del arco (px) e inclinación (°). */
 function settings(width: number) {
   if (width < 768) return { visible: 5, gap: width * 0.36, arc: 40, tilt: 3 };
-  if (width < 1200) return { visible: 7, gap: width * 0.17, arc: 90, tilt: 4 };
-  return { visible: 7, gap: Math.min(width, 2000) * 0.15, arc: 120, tilt: 5 };
+  if (width < 1200) return { visible: 7, gap: width * 0.17, arc: 80, tilt: 4 };
+  return { visible: 7, gap: Math.min(width, 2000) * 0.15, arc: 100, tilt: 5 };
 }
 
 /** Tarjetas necesarias para que el bucle no deje huecos (visibles + 3, con 7 visibles). */
 export const MIN_CARDS = 10;
 
-export function startArcCarousel(stage: HTMLElement, cards: HTMLElement[]): () => void {
+export interface ArcCarousel {
+  next: () => void;
+  previous: () => void;
+  setPaused: (paused: boolean) => void;
+  dispose: () => void;
+}
+
+export function startArcCarousel(stage: HTMLElement, cards: HTMLElement[]): ArcCarousel {
   const total = cards.length;
-  if (total === 0) return () => {};
+  const noop = () => {};
+  if (total === 0) return { next: noop, previous: noop, setPaused: noop, dispose: noop };
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let s = settings(stage.clientWidth);
   let step = 0;
   let started = false;
   let onScreen = false;
+  let paused = reduceMotion;
   let timer: number | undefined;
+  let drag: { startX: number; dx: number; id: number } | undefined;
 
   const transition = (ms: number, delay = 0) =>
     `transform ${ms}ms ${EASE} ${delay}ms, opacity 400ms`;
@@ -55,33 +70,47 @@ export function startArcCarousel(stage: HTMLElement, cards: HTMLElement[]): () =
     const e = d + extra;
     const x = stage.clientWidth / 2 + e * s.gap;
     const y = (e / center) ** 2 * s.arc;
-    const isCenter = Math.abs(d) < 0.01;
-    card.style.transform = `translate(${x}px, ${y}px) rotate(${e * s.tilt}deg) scale(${isCenter ? 1 : SIDE_SCALE})`;
-    card.style.zIndex = String(40 - Math.round(Math.abs(d) * 2));
-    card.dataset.center = String(isCenter);
+    // Al arrastrar, la escala pasa poco a poco de 0,82 a 1 al acercarse al centro.
+    const scale = 1 - (1 - SIDE_SCALE) * Math.min(Math.abs(e), 1);
+    card.style.transform = `translate(${x}px, ${y}px) rotate(${e * s.tilt}deg) scale(${scale})`;
+    card.style.zIndex = String(40 - Math.round(Math.abs(e) * 2));
+    card.dataset.center = String(Math.abs(e) < 0.5);
   };
 
-  // Slot de cada tarjeta en un paso: de -1 (saliendo por la izquierda) a total - 2.
+  // Slot de cada tarjeta en un paso: de -1 (fuera por la izquierda) a total - 2.
   const slotOf = (i: number, at: number) => ((((i - at) % total) + total) % total) - 1;
+  const isShown = (slot: number) => slot >= 0 && slot <= s.visible;
 
-  const layout = (animate: boolean) => {
+  const layout = (animate: boolean, from = step) => {
     cards.forEach((card, i) => {
       const slot = slotOf(i, step);
-      // Dio la vuelta (de la izquierda al final de la fila): se mueve sin animación.
-      const wrapped = slotOf(i, step - 1) === -1 && slot === total - 2;
+      // Dio la vuelta (de un extremo al otro): se mueve sin animación, ya invisible.
+      const wrapped = Math.abs(slot - slotOf(i, from)) > total / 2;
       card.style.transition = animate && !wrapped ? transition(MOVE_MS) : 'none';
       place(card, slot);
-      card.style.opacity = slot >= 0 && slot <= s.visible ? '1' : '0';
+      card.style.opacity = isShown(slot) ? '1' : '0';
     });
   };
 
-  const loop = () => {
+  const schedule = (ms: number) => {
+    window.clearTimeout(timer);
     timer = undefined;
-    if (!onScreen) return; // se reanuda al volver a verse
-    step += 1;
-    layout(true);
-    timer = window.setTimeout(loop, MOVE_MS + PAUSE_MS);
+    if (paused || !onScreen || !started) return;
+    timer = window.setTimeout(loop, ms);
   };
+
+  const go = (by: number) => {
+    const from = step;
+    step += by;
+    layout(true, from);
+  };
+
+  function loop() {
+    timer = undefined;
+    if (paused || !onScreen) return;
+    go(1);
+    schedule(MOVE_MS + PAUSE_MS);
+  }
 
   const intro = () => {
     started = true;
@@ -100,16 +129,64 @@ export function startArcCarousel(stage: HTMLElement, cards: HTMLElement[]): () =
       card.style.opacity = slot >= 0 && slot < s.visible ? '1' : '0';
     });
     // 3) Después, los pasos sin fin.
-    timer = window.setTimeout(loop, INTRO_MS + LOOP_DELAY_MS);
+    schedule(INTRO_MS + LOOP_DELAY_MS);
   };
 
-  // Sin animaciones (preferencia del sistema): quietas en su lugar.
+  // Antes de la entrada (o sin animaciones) las tarjetas esperan en su lugar o escondidas.
   if (reduceMotion) {
-    layout(false);
     started = true;
+    layout(false);
   } else {
     cards.forEach((card) => (card.style.opacity = '0'));
   }
+
+  // Usar las flechas o arrastrar adelanta la entrada si aún no había empezado.
+  const ensureStarted = () => {
+    if (started) return;
+    trigger.disconnect();
+    started = true;
+    layout(false);
+  };
+
+  // ---- Arrastrar con el mouse o el dedo ----
+  const onPointerDown = (event: PointerEvent) => {
+    if (event.button !== 0) return;
+    ensureStarted();
+    drag = { startX: event.clientX, dx: 0, id: event.pointerId };
+    window.clearTimeout(timer);
+    timer = undefined;
+  };
+  const onPointerMove = (event: PointerEvent) => {
+    if (!drag || event.pointerId !== drag.id) return;
+    drag.dx = event.clientX - drag.startX;
+    if (Math.abs(drag.dx) < 4) return;
+    if (!stage.hasPointerCapture(event.pointerId)) stage.setPointerCapture(event.pointerId);
+    // Las tarjetas siguen al dedo (como mucho una tarjeta y media).
+    const extra = Math.max(-1.5, Math.min(1.5, drag.dx / s.gap));
+    cards.forEach((card, i) => {
+      const slot = slotOf(i, step);
+      card.style.transition = 'none';
+      place(card, slot, extra);
+      card.style.opacity = isShown(slot) || isShown(slot + Math.sign(extra)) ? '1' : '0';
+    });
+  };
+  const endDrag = (event: PointerEvent) => {
+    if (!drag || event.pointerId !== drag.id) return;
+    const { dx } = drag;
+    drag = undefined;
+    if (Math.abs(dx) < 4) return schedule(RESUME_MS); // fue un clic, no un arrastre
+    const by =
+      Math.abs(dx) < DRAG_THRESHOLD
+        ? 0
+        : -Math.sign(dx) * Math.max(1, Math.round(Math.abs(dx) / s.gap));
+    if (by === 0) layout(true);
+    else go(by);
+    schedule(RESUME_MS);
+  };
+  stage.addEventListener('pointerdown', onPointerDown);
+  stage.addEventListener('pointermove', onPointerMove);
+  stage.addEventListener('pointerup', endDrag);
+  stage.addEventListener('pointercancel', endDrag);
 
   const trigger = new IntersectionObserver(
     ([entry]) => {
@@ -124,9 +201,7 @@ export function startArcCarousel(stage: HTMLElement, cards: HTMLElement[]): () =
   // Fuera de pantalla no se mueve nada; al volver, sigue donde iba.
   const visibility = new IntersectionObserver(([entry]) => {
     onScreen = !!entry?.isIntersecting;
-    if (onScreen && started && !reduceMotion && timer === undefined) {
-      timer = window.setTimeout(loop, PAUSE_MS);
-    }
+    if (onScreen && timer === undefined) schedule(PAUSE_MS);
   });
   visibility.observe(stage);
 
@@ -136,10 +211,36 @@ export function startArcCarousel(stage: HTMLElement, cards: HTMLElement[]): () =
   });
   resize.observe(stage);
 
-  return () => {
-    window.clearTimeout(timer);
-    trigger.disconnect();
-    visibility.disconnect();
-    resize.disconnect();
+  return {
+    next: () => {
+      ensureStarted();
+      go(1);
+      schedule(RESUME_MS);
+    },
+    previous: () => {
+      ensureStarted();
+      go(-1);
+      schedule(RESUME_MS);
+    },
+    setPaused: (value) => {
+      paused = value;
+      if (paused) {
+        window.clearTimeout(timer);
+        timer = undefined;
+      } else {
+        ensureStarted();
+        schedule(PAUSE_MS);
+      }
+    },
+    dispose: () => {
+      window.clearTimeout(timer);
+      trigger.disconnect();
+      visibility.disconnect();
+      resize.disconnect();
+      stage.removeEventListener('pointerdown', onPointerDown);
+      stage.removeEventListener('pointermove', onPointerMove);
+      stage.removeEventListener('pointerup', endDrag);
+      stage.removeEventListener('pointercancel', endDrag);
+    },
   };
 }

@@ -100,7 +100,9 @@
     "goTo": "Go to card {{number}} of {{total}}",
     "hint": "Swipe to see more",
     "previous": "Previous card",
-    "next": "Next card"
+    "next": "Next card",
+    "pause": "Pause carousel",
+    "play": "Play carousel"
   },
   "showcase": {
     "roledescription": "carousel",
