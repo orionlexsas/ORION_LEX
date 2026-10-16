@@ -1,11 +1,22 @@
 {
-  "eyebrow": "Practice areas",
-  "title": "Legal services",
-  "description": "Advice and representation in the main areas of law.",
+  "eyebrow": "Legal services",
+  "title": "Our services",
+  "description": "Comprehensive legal solutions with professional, strategic and personalized attention.",
   "script": "Law, strategy and support",
   "detailsLabel": "What does it involve?",
   "ctaLabel": "Request advice",
   "backLabel": "Back to Legal services",
+  "readMoreLabel": "Learn more",
+  "quote": "More than legal services, we build peace of mind at every stage of your life.",
+  "decor": {
+    "src": "/images/hero/justicia-mazo.webp",
+    "alt": ""
+  },
+  "featuredEyebrow": "Support in every decision",
+  "featuredNote": {
+    "title": "Your legal ally every step of the way",
+    "text": "We listen, analyze and guide you to the best solution."
+  },
   "items": [
     {
       "slug": "asesoria-juridica",

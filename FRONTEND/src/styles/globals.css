@@ -84,6 +84,17 @@
     scroll-behavior: smooth;
   }
 
+  /*
+   * Web pública en computador (portátiles de 1024 a 1919 px): todo un poco más pequeño, como un
+   * "zoom hacia atrás" (casi todo se mide en rem). Así cabe más en la pantalla. Solo la web
+   * pública (la que tiene #contenido); el panel de administración queda igual.
+   */
+  @media (width >= 64rem) and (width < 120rem) {
+    html:has(#contenido) {
+      font-size: 87.5%;
+    }
+  }
+
   body {
     @apply bg-background font-sans text-foreground antialiased;
     transition:
@@ -143,10 +154,10 @@
 @utility section-spacing {
   padding-block: 2.5rem;
   @media (width >= 40rem) {
-    padding-block: 3.5rem;
+    padding-block: 3rem;
   }
   @media (width >= 64rem) {
-    padding-block: 5rem;
+    padding-block: 3.75rem;
   }
 }
 
@@ -194,4 +205,22 @@ html.intro-playing .animate-rise {
 @utility animate-rise {
   animation: rise 0.7s var(--ease-out-soft) both;
   animation-delay: var(--delay, 0ms);
+}
+
+/* Primera sección de cada página: va justo bajo la cabecera, sin una franja vacía encima. */
+main > .section-spacing:first-child {
+  padding-top: 1.5rem;
+  @media (width >= 64rem) {
+    padding-top: 2.5rem;
+  }
+}
+
+/*
+ * Secciones lejanas: el navegador no las dibuja hasta que se acercan (carga y scroll más
+ * fluidos). Solo las que no necesitan medirse desde fuera (no el recorrido con video ni el
+ * carrusel de testimonios). `auto 700px` reserva su alto mientras tanto.
+ */
+@utility defer-render {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 700px;
 }

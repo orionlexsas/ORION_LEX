@@ -28,5 +28,13 @@
         "alt": "Abogada escuchando con atención a un cliente en una asesoría"
       }
     }
-  ]
+  ],
+  "sequence": {
+    "path": "/frames/palacio",
+    "frames": {
+      "lg": 120,
+      "sm": 96
+    },
+    "alt": "Recorrido por la plaza y el interior del Palacio de Justicia"
+  }
 }

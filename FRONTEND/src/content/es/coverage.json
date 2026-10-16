@@ -20,8 +20,13 @@
     }
   ],
   "image": {
-    "src": "/images/ubicaciones/mapa-colombia-gris.webp",
-    "alt": "Mapa de Colombia"
+    "src": "/images/ubicaciones/colombia-conectada-mundo.webp",
+    "alt": "Mapa de Colombia con puntos de atención en todo el país, conectado con el mundo"
+  },
+  "background": {
+    "src": "/images/ubicaciones/oficina-fondo.webp",
+    "srcMobile": "/images/ubicaciones/oficina-fondo-900.webp",
+    "alt": ""
   },
   "cta": {
     "label": "Hablar con un abogado",

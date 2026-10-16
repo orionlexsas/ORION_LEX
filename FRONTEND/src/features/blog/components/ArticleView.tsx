@@ -24,13 +24,13 @@ export function ArticleView({ article, blog, url, publisher }: ArticleViewProps)
       <Container className="max-w-3xl">
         <Link
           to="/actualidad"
-          className="inline-flex min-h-11 items-center gap-2 text-sm font-medium text-muted transition-colors hover:text-foreground"
+          className="inline-flex min-h-9 items-center gap-2 text-sm font-medium text-muted transition-colors hover:text-foreground"
         >
           <ArrowLeft className="size-4" aria-hidden="true" />
           {blog.backLabel}
         </Link>
 
-        <header className="mt-8">
+        <header className="mt-4">
           {article.featured && (
             <p className="mb-4 inline-block rounded-sm bg-accent px-2.5 py-1 text-xs font-semibold tracking-wide text-on-accent uppercase">
               {blog.featuredLabel}

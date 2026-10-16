@@ -28,6 +28,17 @@
       "src": "/images/hero/portada-1672.webp",
       "srcMobile": "/images/hero/portada-movil-900.webp",
       "alt": "Equipo de Orión Lex Servicios Jurídicos"
-    }
+    },
+    "slides": [
+      {
+        "src": "/images/hero/palacio-justicia.webp",
+        "alt": "Palacio de Justicia en la Plaza de Bolívar, Bogotá"
+      },
+      {
+        "src": "/images/hero/justicia-mazo.webp",
+        "alt": "Estatua de la justicia y mazo de juez sobre un escritorio",
+        "fit": "contain"
+      }
+    ]
   }
 }

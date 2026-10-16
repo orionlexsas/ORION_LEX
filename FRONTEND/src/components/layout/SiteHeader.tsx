@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import { House, Mail, Menu, Newspaper, Scale, Users, X, type LucideIcon } from 'lucide-react';
 import type { SiteContent } from '@orion-lex/shared';
 import { CtaLink } from '@/components/cta/CtaLink';
-import { AdminLoginButton } from '@/components/ui/AdminLoginButton';
 import { Container } from '@/components/ui/Container';
 import { LanguageSwitcher } from '@/components/ui/LanguageSwitcher';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
@@ -49,7 +48,7 @@ export function SiteHeader({ brand, nav, cta }: SiteHeaderProps) {
   const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
   const close = () => setOpen(false);
-  const hideTop = useHideOnScroll();
+  const { pastTop, hidden } = useHideOnScroll();
 
   const linkClass = (href: string) =>
     cn(
@@ -58,15 +57,21 @@ export function SiteHeader({ brand, nav, cta }: SiteHeaderProps) {
         'font-semibold after:absolute after:inset-x-0 after:-bottom-0.5 after:h-0.5 after:bg-accent',
     );
 
-  const showFloatingMenu = hideTop && !open;
+  const showFloatingMenu = pastTop && !open;
+  // Arriba del todo en el inicio (computador): sin fondo, encima de las fotos de la portada.
+  const overHero = pathname === '/' && !pastTop && !open;
 
   return (
     <>
       <header
         className={cn(
-          'sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur transition-transform duration-300 ease-out-soft',
-          // Fuera del inicio de la página se esconde la fila del logo (4,5 rem) y queda visible la barra de íconos.
-          hideTop && !open && 'max-xl:-translate-y-[4.5rem]',
+          'sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur transition-[translate,background-color,border-color] duration-300 ease-out-soft',
+          overHero && 'xl:border-transparent xl:bg-transparent xl:backdrop-blur-none',
+          // Al bajar se esconde entera (más espacio para leer); al subir reaparece. En celular,
+          // fuera del inicio de la página, reaparece solo la barra de íconos (sin la fila del logo).
+          !open && hidden
+            ? '-translate-y-full'
+            : pastTop && !open && 'max-xl:-translate-y-[4.5rem]',
         )}
       >
         <Container className="flex h-[4.5rem] items-center gap-3">
@@ -86,7 +91,6 @@ export function SiteHeader({ brand, nav, cta }: SiteHeaderProps) {
           <div className="ml-auto hidden items-center gap-2 md:flex xl:ml-6">
             <LanguageSwitcher />
             <ThemeToggle />
-            <AdminLoginButton />
           </div>
 
           <CtaLink link={cta} location="header" className="hidden md:inline-flex xl:ml-2" />
@@ -165,7 +169,6 @@ export function SiteHeader({ brand, nav, cta }: SiteHeaderProps) {
               <div className="mt-3 flex items-center gap-2 md:hidden">
                 <LanguageSwitcher />
                 <ThemeToggle />
-                <AdminLoginButton />
               </div>
               <CtaLink
                 link={cta}

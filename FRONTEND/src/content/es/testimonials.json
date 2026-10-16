@@ -1,0 +1,49 @@
+{
+  "eyebrow": "Experiencias reales",
+  "title": "La confianza de quienes hemos acompañado",
+  "description": "Historias de personas que encontraron orientación, claridad y acompañamiento para avanzar.",
+  "script": "Cada caso tiene una historia",
+  "clientLabel": "Cliente de Orión Lex",
+  "items": [
+    {
+      "name": "María Fernanda Rodríguez López",
+      "service": "Derecho laboral",
+      "text": "Al terminar mi contrato tenía dudas sobre la liquidación y varios pagos pendientes. Revisaron mis documentos, me explicaron qué debían reconocerme y adelantaron la reclamación. Finalmente recibí los valores pendientes, con acompañamiento constante."
+    },
+    {
+      "name": "Diana Marcela Suárez Gómez",
+      "service": "Derecho de familia",
+      "text": "Vivo fuera de Colombia y necesitaba resolver un asunto familiar sin viajar. Todo se organizó de forma virtual, me explicaron cada etapa y el trámite se completó correctamente. Agradezco la cercanía y la paciencia con mis inquietudes."
+    },
+    {
+      "name": "Carlos Andrés Pérez Rojas",
+      "service": "Acción de tutela",
+      "text": "Una entidad no daba respuesta a una situación que afectaba mis derechos. Analizaron el caso y presentaron la tutela con los soportes necesarios. La decisión fue favorable y la entidad cumplió. Cada paso me lo explicaron de forma sencilla."
+    },
+    {
+      "name": "Laura Camila Cárdenas Torres",
+      "service": "Datacrédito",
+      "text": "Seguía reportada a pesar de haber pagado la obligación. Revisaron las fechas, las comunicaciones y el debido proceso, y presentaron las solicitudes. El reporte fue corregido y recuperé la tranquilidad frente a mi historial crediticio."
+    },
+    {
+      "name": "Jorge Enrique Martínez Ruiz",
+      "service": "Comparendos",
+      "text": "Tenía comparendos antiguos y no sabía si aún podían cobrármelos. Revisaron cada expediente y las notificaciones, y presentaron las solicitudes ante tránsito. Se corrigieron las obligaciones que no cumplían los requisitos legales."
+    },
+    {
+      "name": "Andrés Felipe Torres Vega",
+      "service": "Indemnización SOAT",
+      "text": "Después de un accidente no sabía qué documentos reunir ni cómo reclamar. Organizaron los soportes médicos y me acompañaron en la solicitud. La reclamación fue aceptada y recibí la indemnización, con mucha más tranquilidad."
+    },
+    {
+      "name": "Sofía Valentina Gómez León",
+      "service": "Derecho de petición",
+      "text": "Durante meses pedí información a una entidad sin una respuesta completa. Prepararon un derecho de petición claro y bien sustentado, y la entidad entregó la información que necesitaba para seguir con mi caso."
+    },
+    {
+      "name": "Camilo Alejandro Álvarez Díaz",
+      "service": "Víctimas del conflicto",
+      "text": "No conocía las rutas para pedir el reconocimiento y la reparación de mis derechos. Escucharon mi historia con respeto, revisaron los documentos y me ayudaron a presentar las solicitudes. El proceso avanzó y recibí respuesta."
+    }
+  ]
+}

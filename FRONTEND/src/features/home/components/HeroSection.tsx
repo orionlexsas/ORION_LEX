@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'react';
+import { useEffect, useState, type CSSProperties } from 'react';
 import { ArrowRight } from 'lucide-react';
 import type { HomeContent } from '@orion-lex/shared';
 import { CtaLink } from '@/components/cta/CtaLink';
@@ -6,6 +6,7 @@ import { ContentIcon } from '@/components/ui/ContentIcon';
 import { Container } from '@/components/ui/Container';
 import { track } from '@/lib/analytics';
 import { cn } from '@/lib/cn';
+import { SLIDE_MS, useSlideshow } from '../hooks/use-slideshow';
 import { PenStroke } from './PenStroke';
 
 /** Retraso escalonado para la animación de entrada (`animate-rise`). */
@@ -26,14 +27,29 @@ interface HeroSectionProps {
 export function HeroSection({ hero }: HeroSectionProps) {
   // "/#asuntos" → "#asuntos": ancla en la misma página, con desplazamiento suave (CSS).
   const servicesHref = hero.secondaryCta.href.replace(/^\/(?=#)/, '');
+  // Fotos de fondo: la principal (el equipo) y luego las demás, pasando solas.
+  const slides = hero.slides ?? [];
+  const activeSlide = useSlideshow(slides.length + 1);
+  // Carga diferida de las demás fotos: la siguiente se descarga cuando el navegador queda libre
+  // tras cargar la página, y cada una se conserva después de haberse visto.
+  const [ready, setReady] = useState(false);
+  const [reached, setReached] = useState(0);
+  if (activeSlide > reached) setReached(activeSlide);
+  useEffect(() => {
+    const idle = window.requestIdleCallback ?? ((cb: () => void) => window.setTimeout(cb, 1500));
+    const start = () => idle(() => setReady(true), { timeout: 3000 });
+    if (document.readyState === 'complete') start();
+    else window.addEventListener('load', start, { once: true });
+    return () => window.removeEventListener('load', start);
+  }, []);
 
   return (
     <>
       <section
         aria-labelledby="hero-title"
-        className="relative isolate flex flex-col overflow-hidden max-sm:min-h-[39rem] xl:min-h-[clamp(620px,calc(100svh-16.5rem),720px)] xl:justify-center"
+        className="relative isolate flex flex-col overflow-hidden max-sm:min-h-[39rem] xl:-mt-[4.5rem] xl:min-h-[clamp(34.5rem,calc(100svh-4.5rem),50.5rem)] xl:justify-center"
       >
-        <Container className="py-8 max-sm:on-dark max-sm:[&_:is(h1,p,li)]:[text-shadow:0_1px_14px_rgb(0_0_0/0.55)] max-sm:pt-11 max-sm:pb-10 sm:py-14 xl:py-16">
+        <Container className="py-8 max-sm:on-dark max-sm:[&_:is(h1,p,li)]:[text-shadow:0_1px_14px_rgb(0_0_0/0.55)] max-sm:pt-11 max-sm:pb-10 sm:py-14 xl:pt-[7rem] xl:pb-10">
           <div className="max-w-[36rem] max-sm:max-w-none xl:max-w-[38rem]">
             <p
               className="eyebrow animate-rise max-sm:text-[0.66rem] max-sm:tracking-[0.18em]"
@@ -56,7 +72,7 @@ export function HeroSection({ hero }: HeroSectionProps) {
                 {hero.title}
               </h1>
               <p
-                className="mt-5 animate-rise text-[0.95rem] leading-relaxed text-foreground/80 max-sm:max-w-[calc(56vw-1.25rem)] max-sm:min-w-[11rem] max-sm:leading-snug max-sm:text-foreground/90 sm:text-lg xl:text-[1.2rem]"
+                className="mt-5 animate-rise text-[0.95rem] leading-relaxed text-foreground/80 max-sm:max-w-[calc(56vw-1.25rem)] max-sm:min-w-[11rem] max-sm:leading-snug max-sm:text-foreground/90 sm:text-lg xl:text-[1.2rem] xl:text-foreground/90 xl:[text-shadow:0_1px_3px_color-mix(in_oklab,var(--color-background)_90%,transparent)]"
                 style={delay(160)}
               >
                 {hero.mobileDescription ? (
@@ -152,7 +168,7 @@ export function HeroSection({ hero }: HeroSectionProps) {
           En celular es el fondo de toda la sección (foto vertical, `srcMobile`), con un velo café
           oscuro para que el texto blanco se lea.
         */}
-        <div className="relative max-sm:absolute max-sm:inset-0 max-sm:-z-10 max-sm:overflow-hidden max-sm:bg-hero-shade xl:absolute xl:inset-0 xl:-z-10">
+        <div className="relative overflow-hidden max-sm:absolute max-sm:inset-0 max-sm:-z-10 max-sm:bg-hero-shade xl:absolute xl:inset-0 xl:-z-10">
           <picture>
             {hero.image.srcMobile && (
               <source media="(max-width: 639px)" srcSet={hero.image.srcMobile} />
@@ -164,25 +180,69 @@ export function HeroSection({ hero }: HeroSectionProps) {
               height={941}
               fetchPriority="high"
               className={cn(
-                'block aspect-[5/4] h-auto w-full object-cover object-[74%_center] sm:aspect-[16/9] xl:aspect-auto xl:h-full xl:object-[right_center]',
+                'block aspect-[5/4] h-auto w-full object-cover object-[74%_center] sm:aspect-[16/9] xl:aspect-auto xl:h-full xl:object-[right_12%]',
                 // Celular: foto vertical que llena la sección; los rostros quedan a la derecha.
                 'max-sm:absolute max-sm:inset-0 max-sm:size-full max-sm:aspect-auto max-sm:object-cover max-sm:object-[50%_35%]',
               )}
             />
           </picture>
+          {/* Más fotos de fondo: aparecen encima de la principal con un fundido y un zoom lento */}
+          {slides.map((slide, i) => {
+            const shown = activeSlide === i + 1;
+            if (!ready || i > reached) return null;
+            return (
+              // Llena la portada; con `fit: contain`, en computador se ve completa a la derecha
+              // (sin recortar ni agrandar) y la misma foto difuminada llena el resto.
+              <span
+                key={slide.src}
+                aria-hidden={!shown}
+                style={{ transitionDuration: `1500ms, ${SLIDE_MS + 1500}ms` }}
+                className={cn(
+                  'absolute inset-0 transition-[opacity,scale] ease-out-soft',
+                  shown ? 'scale-[1.03] opacity-100' : 'scale-100 opacity-0',
+                )}
+              >
+                {slide.fit === 'contain' && (
+                  <img
+                    src={slide.src}
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                    className="absolute inset-0 hidden size-full scale-110 object-cover blur-2xl xl:block"
+                  />
+                )}
+                <img
+                  src={slide.src}
+                  alt={shown ? slide.alt : ''}
+                  loading="lazy"
+                  decoding="async"
+                  className={cn(
+                    'absolute inset-0 size-full object-cover object-[50%_35%]',
+                    slide.fit === 'contain' &&
+                      'xl:object-contain xl:object-right xl:[mask-image:linear-gradient(to_right,transparent_32%,black_52%)]',
+                  )}
+                />
+              </span>
+            );
+          })}
           {/* Celular: velo café solo en la izquierda (donde va el texto); el equipo queda con su color */}
           <div
             aria-hidden="true"
             className="absolute inset-0 bg-[linear-gradient(180deg,color-mix(in_oklab,var(--color-hero-shade)_30%,transparent)_0%,transparent_22%,transparent_78%,color-mix(in_oklab,var(--color-hero-shade)_40%,transparent)_100%),linear-gradient(90deg,color-mix(in_oklab,var(--color-hero-shade)_78%,transparent)_0%,color-mix(in_oklab,var(--color-hero-shade)_50%,transparent)_35%,transparent_62%)] sm:hidden"
           />
-          {/* Transición suave del color del tema desde la izquierda (blanca o negra), sin tapar rostros */}
+          {/* Computador: la cabecera va transparente encima; un velo arriba deja leer el menú */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-x-0 top-0 hidden h-20 bg-gradient-to-b from-background/50 to-transparent xl:block"
+          />
+          {/* Halo claro y suave detrás del texto (elipse a la izquierda); el resto de la foto queda nítido */}
           <div
             aria-hidden="true"
             className={cn(
               'absolute inset-0 hidden xl:block',
-              'bg-[linear-gradient(90deg,var(--color-background)_0%,color-mix(in_oklab,var(--color-background)_85%,transparent)_24%,color-mix(in_oklab,var(--color-background)_35%,transparent)_40%,transparent_52%)]',
+              'bg-[radial-gradient(ellipse_46%_88%_at_20%_52%,color-mix(in_oklab,var(--color-background)_86%,transparent)_0%,color-mix(in_oklab,var(--color-background)_66%,transparent)_42%,color-mix(in_oklab,var(--color-background)_22%,transparent)_68%,transparent_84%)]',
               // En modo oscuro la foto es muy clara: la transición negra llega un poco más lejos.
-              'dark:bg-[linear-gradient(90deg,var(--color-background)_0%,var(--color-background)_30%,color-mix(in_oklab,var(--color-background)_70%,transparent)_42%,transparent_56%)]',
+              'dark:bg-[radial-gradient(ellipse_48%_92%_at_20%_52%,color-mix(in_oklab,var(--color-background)_92%,transparent)_0%,color-mix(in_oklab,var(--color-background)_75%,transparent)_45%,color-mix(in_oklab,var(--color-background)_30%,transparent)_70%,transparent_86%)]',
             )}
           />
         </div>

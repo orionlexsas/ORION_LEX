@@ -17,7 +17,7 @@ export function NotFoundPage() {
 
   return (
     <section className="section-spacing">
-      <Container className="max-w-2xl py-12 text-center">
+      <Container className="max-w-2xl py-6 text-center">
         <p className="eyebrow">404</p>
         <h1 className="mt-4 font-serif text-4xl font-semibold sm:text-5xl">
           {t('notFound.title')}

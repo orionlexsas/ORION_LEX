@@ -20,8 +20,13 @@
     }
   ],
   "image": {
-    "src": "/images/ubicaciones/mapa-colombia-gris.webp",
-    "alt": "Map of Colombia"
+    "src": "/images/ubicaciones/colombia-conectada-mundo.webp",
+    "alt": "Map of Colombia with service points across the country, connected to the world"
+  },
+  "background": {
+    "src": "/images/ubicaciones/oficina-fondo.webp",
+    "srcMobile": "/images/ubicaciones/oficina-fondo-900.webp",
+    "alt": ""
   },
   "cta": {
     "label": "Talk to a lawyer",

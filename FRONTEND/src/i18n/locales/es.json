@@ -100,7 +100,9 @@
     "goTo": "Ir a la tarjeta {{number}} de {{total}}",
     "hint": "Desliza para ver más",
     "previous": "Tarjeta anterior",
-    "next": "Tarjeta siguiente"
+    "next": "Tarjeta siguiente",
+    "pause": "Pausar el carrusel",
+    "play": "Reanudar el carrusel"
   },
   "showcase": {
     "roledescription": "carrusel",

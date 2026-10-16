@@ -134,6 +134,19 @@ export const homeContentSchema = z.object({
     /** Franja inferior del hero: frases cortas de confianza con su ícono. */
     points: z.array(z.object({ icon: contentIconSchema, text: z.string() })).max(4),
     image: imageSchema,
+    /** Más fotos de fondo: la portada pasa sola de la principal a estas (opcional). */
+    slides: z
+      .array(
+        imageSchema.extend({
+          /**
+           * `contain`: en computador la foto se ve completa a la derecha (sin recortar ni
+           * agrandar) y el resto se llena con ella misma difuminada. Para fotos pequeñas o casi
+           * cuadradas. `cover` (por defecto): llena la portada.
+           */
+          fit: z.enum(['cover', 'contain']).default('cover'),
+        }),
+      )
+      .optional(),
   }),
 });
 
@@ -232,6 +245,17 @@ export const approachContentSchema = z.object({
     .min(1),
   /** Botón bajo las etapas (opcional; el diseño aprobado no lo lleva). */
   cta: linkSchema.optional(),
+  /**
+   * Video de fondo controlado por el scroll (portada), como secuencia de fotogramas WebP en
+   * `<path>/lg/0001.webp…` (computador) y `<path>/sm/…` (celular). Opcional.
+   */
+  sequence: z
+    .object({
+      path: z.string().min(1),
+      frames: z.object({ lg: z.number().int().min(2), sm: z.number().int().min(2) }),
+      alt: z.string(),
+    })
+    .optional(),
 });
 
 /**
@@ -269,6 +293,15 @@ export const servicesContentSchema = z.object({
   ctaLabel: z.string(),
   /** Enlace de regreso en la página de cada área. */
   backLabel: z.string(),
+  /** Enlace de cada tarjeta del mosaico ("Ver más"). */
+  readMoreLabel: z.string(),
+  /** Cita a la derecha del encabezado (opcional). */
+  quote: z.string().optional(),
+  /** Imagen decorativa arriba a la derecha, fundida con el fondo (opcional). */
+  decor: imageSchema.optional(),
+  /** Tarjeta destacada: etiqueta pequeña y franja inferior (opcionales). */
+  featuredEyebrow: z.string().optional(),
+  featuredNote: z.object({ title: z.string(), text: z.string() }).optional(),
   items: z
     .array(
       z.object({
@@ -297,20 +330,32 @@ export const teamContentSchema = z.object({
   description: z.string(),
   /** Frase manuscrita a la derecha del encabezado (opcional). */
   script: z.string().optional(),
-  /** Texto del enlace al perfil de Facebook de cada integrante. */
-  facebookLabel: z.string(),
+  /** Título de las etiquetas de cada perfil ("Áreas de enfoque"). */
+  focusLabel: z.string(),
+  /** Botón que gira la tarjeta para leer el perfil completo ("Conocer su perfil"). */
+  profileLabel: z.string(),
+  /** Botón para volver al frente de la tarjeta. */
+  backLabel: z.string(),
+  /** Franja bajo los perfiles con un llamado a escribir (opcional). */
+  closing: z.object({ text: z.string(), cta: linkSchema }).optional(),
   members: z.array(
     z.object({
       status: statusSchema,
       name: z.string(),
       /** Cargo, p. ej. "Abogada | Atención jurídica integral". */
       role: z.string(),
+      /** Resumen corto para el frente de la tarjeta (si falta, se usa el primer párrafo). */
+      summary: z.string().optional(),
+      /** Perfil completo (detrás de la tarjeta); los párrafos van separados por una línea vacía. */
       description: z.string(),
+      /** Áreas de enfoque (etiquetas cortas). */
+      focus: z.array(z.string()).default([]),
       photo: imageSchema.extend({
         /** Encuadre de la foto dentro del recorte (CSS object-position), p. ej. "50% 20%". */
         position: z.string().default('50% 20%'),
+        /** Retrato recortado (fondo transparente): va completo sobre un fondo cálido. */
+        cutout: z.boolean().default(false),
       }),
-      facebook: z.url().optional(),
     }),
   ),
   values: z
@@ -328,7 +373,31 @@ export const coverageContentSchema = z.object({
   text: z.string(),
   points: z.array(z.object({ icon: contentIconSchema, title: z.string(), text: z.string() })),
   image: imageSchema,
+  /** Foto de fondo de toda la sección (opcional; `srcMobile` para celular). */
+  background: imageSchema.optional(),
   cta: linkSchema,
+});
+
+/** Testimonios en la portada (casi al final), en carrusel. Sin reseñas, no se muestra. */
+export const testimonialsContentSchema = z.object({
+  eyebrow: z.string(),
+  title: z.string(),
+  description: z.string(),
+  /** Frase decorativa manuscrita a la derecha del encabezado (opcional). */
+  script: z.string().optional(),
+  /** Texto junto a las iniciales de cada tarjeta ("Cliente de Orión Lex"). */
+  clientLabel: z.string(),
+  /** Nota pequeña al pie (p. ej. sobre los nombres abreviados). */
+  note: z.string().optional(),
+  items: z.array(
+    z.object({
+      /** Nombre de quien da la reseña: "María Rodríguez". */
+      name: z.string(),
+      /** Asunto que se atendió ("Acción de tutela"). */
+      service: z.string(),
+      text: z.string(),
+    }),
+  ),
 });
 
 /** Textos de la sección Actualidad Jurídica (blog). */
@@ -343,6 +412,9 @@ export const blogContentSchema = z.object({
   featuredReadMore: z.string(),
   /** Título sobre la cuadrícula ("Últimos artículos"). */
   latestTitle: z.string(),
+  /** Portada: frase manuscrita a la derecha y título de la lista lateral (opcionales). */
+  script: z.string().optional(),
+  recentLabel: z.string().optional(),
   readMore: z.string(),
   allLabel: z.string(),
   empty: z.string(),
@@ -410,6 +482,7 @@ export type ServiceItem = ServicesContent['items'][number];
 export type PracticeService = z.infer<typeof practiceServiceSchema>;
 export type TeamContent = z.infer<typeof teamContentSchema>;
 export type CoverageContent = z.infer<typeof coverageContentSchema>;
+export type TestimonialsContent = z.infer<typeof testimonialsContentSchema>;
 export type BlogContent = z.infer<typeof blogContentSchema>;
 export type ArticleContent = z.infer<typeof articleContentSchema>;
 export type LegalContent = z.infer<typeof legalContentSchema>;
