@@ -84,6 +84,17 @@
     scroll-behavior: smooth;
   }
 
+  /*
+   * Web pública en computador (portátiles de 1024 a 1919 px): todo un poco más pequeño, como un
+   * "zoom hacia atrás" (casi todo se mide en rem). Así cabe más en la pantalla. Solo la web
+   * pública (la que tiene #contenido); el panel de administración queda igual.
+   */
+  @media (width >= 64rem) and (width < 120rem) {
+    html:has(#contenido) {
+      font-size: 87.5%;
+    }
+  }
+
   body {
     @apply bg-background font-sans text-foreground antialiased;
     transition:
