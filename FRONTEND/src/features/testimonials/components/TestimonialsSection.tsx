@@ -146,11 +146,7 @@ export function TestimonialsSection({ id, content, className }: TestimonialsSect
             style={{ opacity: 0 }}
             className="group absolute top-2 left-0 -ml-[8.25rem] h-[23rem] w-[16.5rem] will-change-transform sm:-ml-[10rem] sm:h-[22rem] sm:w-[20rem] lg:-ml-[11rem] lg:w-[22rem]"
           >
-            <TestimonialCard
-              item={item}
-              number={(i % items.length) + 1}
-              clientLabel={content.clientLabel}
-            />
+            <TestimonialCard item={item} clientLabel={content.clientLabel} />
           </div>
         ))}
       </div>
@@ -198,12 +194,11 @@ export function TestimonialsSection({ id, content, className }: TestimonialsSect
 
 interface TestimonialCardProps {
   item: Testimonial;
-  number: number;
   clientLabel: string;
 }
 
-/** Tarjeta de la maqueta: comillas y número suaves, nombre, asunto, reseña e iniciales. */
-function TestimonialCard({ item, number, clientLabel }: TestimonialCardProps) {
+/** Tarjeta de la maqueta: comillas suaves, nombre, asunto, reseña e iniciales. */
+function TestimonialCard({ item, clientLabel }: TestimonialCardProps) {
   return (
     <figure
       className={cn(
@@ -217,12 +212,6 @@ function TestimonialCard({ item, number, clientLabel }: TestimonialCardProps) {
         className="absolute top-1 left-5 font-serif text-[5.5rem] leading-none text-accent/15 sm:left-6 sm:text-[6rem]"
       >
         “
-      </span>
-      <span
-        aria-hidden="true"
-        className="absolute top-4 right-5 font-serif text-[3.8rem] leading-none font-semibold text-accent/10 sm:right-6 sm:text-[4.3rem]"
-      >
-        {String(number).padStart(2, '0')}
       </span>
 
       <p className="relative mt-10 font-serif text-[1.8rem] leading-none font-semibold tracking-tight sm:mt-9 sm:text-[2rem]">

@@ -64,15 +64,18 @@ export function startArcCarousel(stage: HTMLElement, cards: HTMLElement[]): ArcC
     `transform ${ms}ms ${EASE} ${delay}ms, opacity 400ms`;
 
   // Posición según el "slot" (0 = extremo izquierdo visible); `extra` la corre en slots.
-  const place = (card: HTMLElement, slot: number, extra = 0) => {
+  // `horizontal`: solo cambia X (la entrada llega en línea recta desde la derecha, ya a la altura
+  // y con la inclinación de su lugar final, sin subir desde abajo).
+  const place = (card: HTMLElement, slot: number, extra = 0, horizontal = false) => {
     const center = (s.visible - 1) / 2;
     const d = slot - center;
     const e = d + extra;
+    const curve = horizontal ? d : e;
     const x = stage.clientWidth / 2 + e * s.gap;
-    const y = (e / center) ** 2 * s.arc;
+    const y = (curve / center) ** 2 * s.arc;
     // Al arrastrar, la escala pasa poco a poco de 0,82 a 1 al acercarse al centro.
-    const scale = 1 - (1 - SIDE_SCALE) * Math.min(Math.abs(e), 1);
-    card.style.transform = `translate(${x}px, ${y}px) rotate(${e * s.tilt}deg) scale(${scale})`;
+    const scale = 1 - (1 - SIDE_SCALE) * Math.min(Math.abs(curve), 1);
+    card.style.transform = `translate(${x}px, ${y}px) rotate(${curve * s.tilt}deg) scale(${scale})`;
     card.style.zIndex = String(40 - Math.round(Math.abs(e) * 2));
     card.dataset.center = String(Math.abs(e) < 0.5);
   };
@@ -117,7 +120,7 @@ export function startArcCarousel(stage: HTMLElement, cards: HTMLElement[]): ArcC
     // 1) Todas fuera de la pantalla, a la derecha.
     cards.forEach((card, i) => {
       card.style.transition = 'none';
-      place(card, slotOf(i, 0), s.visible + 2);
+      place(card, slotOf(i, 0), s.visible + 2, true);
       card.style.opacity = '1';
     });
     void stage.offsetHeight; // fuerza el repintado antes de animar
