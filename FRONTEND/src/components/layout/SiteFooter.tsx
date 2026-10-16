@@ -134,6 +134,19 @@ export function SiteFooter({ site, services, showCta }: SiteFooterProps) {
               ))}
             </ul>
           </nav>
+          {/* Créditos del diseño de la web */}
+          <p>
+            {t('credits.designedBy')}{' '}
+            <a
+              href="https://conexia-oficial.vercel.app/"
+              target="_blank"
+              rel="noopener"
+              className="font-semibold text-foreground/85 transition-colors hover:text-accent-text"
+            >
+              ConexIA
+              <span className="sr-only"> {t('a11y.opensNewTab')}</span>
+            </a>
+          </p>
         </div>
       </Container>
     </footer>

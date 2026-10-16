@@ -1,4 +1,7 @@
 {
+  "credits": {
+    "designedBy": "Designed by"
+  },
   "a11y": {
     "goHome": "{{name}}, go to home page",
     "skipToContent": "Skip to content",
